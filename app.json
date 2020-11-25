@@ -1,7 +1,12 @@
 {
   "pages":[
     "pages/index/index",
-    "pages/logs/logs"
+    "pages/logs/logs",
+    "pages/games/index",
+    "pages/training/index",
+    "pages/me/index",
+    "pages/performance/index"
+
   ],
   "window":{
     "backgroundTextStyle":"light",
