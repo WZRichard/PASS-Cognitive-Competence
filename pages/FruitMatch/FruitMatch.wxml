@@ -1,0 +1,15 @@
+<!--pages/FruitMatch/FruitMatch.wxml-->
+<view>
+  <!-- n*n的格子 -->
+  <view class="grid" wx:for="[0, 1]">
+    <view class="row" wx:for="{{row[index]}}" bindtap="tap_image" data-num="{{index}}" >
+      <!-- {{item}} -->
+      <image class="img" src="{{item}}" mode="heightFix"></image>
+    </view>
+  </view>
+</view>
+
+<block wx:for="{{[1, 2, 3]}}">
+  <view class="cell"> {{index}}: </view>
+  <view> {{item}} </view>
+</block>

@@ -1,0 +1,18 @@
+/* pages/FruitMatch/FruitMatch.wxss */
+.img {
+  height: 80px;
+  background-color: #eeeeee;
+}
+
+.cell {
+  float: left;
+}
+
+.row {
+  height: 100px;
+}
+
+.grid {
+  display: flex;
+  justify-content: center;
+}
