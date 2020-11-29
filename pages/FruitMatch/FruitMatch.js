@@ -1,5 +1,25 @@
 // pages/FruitMatch/FruitMatch.js
 Page({
+  // 待填返回函数
+  tap_back: function () {
+    console.log("back");
+  },
+
+  return_score: function () {
+    var score = 0, round = this.data.round-1;
+    if (round < 2) {
+      score = round * 0.75;
+    } else if (round < 4) {
+      score = 1.5 + (round - 2) * 1.25;
+    } else {
+      score = 4 + (round - 4) * 1.5;
+    }
+
+    console.log(score);
+    this.setData({
+      score: score,
+    })
+  },
 
   /**
    * 页面的初始数据
@@ -17,6 +37,7 @@ Page({
     opacity_B: false,
     timer: '',
     countDownNum: '10', //倒计时初始值(单位s)
+    score: 0, //获得分数
   },
 
   /**
@@ -60,6 +81,7 @@ Page({
       img_hidden: [[0, 0, 0], [0, 0, 0], [0, 0, 0]], //是否显示
       img_hidden_before: [], //保证所有水果都有被展示
       opacity_Q: 0,
+      countDownNum: '10',
     })
 
     this.set_row();
@@ -73,23 +95,29 @@ Page({
     }
 
     clearInterval(this.data.timer);
-    if (this.data.round == 8) {
-      this.reset_all();
-      wx.showToast({
-        title: '恭喜您通关了！',
-        icon: 'none',
-        duration: 2000,
-      })
-    } else if (this.data.row[e.currentTarget.dataset.row][e.currentTarget.dataset.index] == this.data.answer) {
-      wx.showToast({
-        title: '正确 恭喜您！',
-        icon: 'none',
-        duration: 2000,
-      })
-      this.next_round();
+    if (this.data.row[e.currentTarget.dataset.row][e.currentTarget.dataset.index] == this.data.answer) {
+      if (this.data.round == 8) {
+        this.setData({
+          round: this.data.round + 1,
+        })
+        this.reset_all();
+        wx.showToast({
+          title: '恭喜您通关了！',
+          icon: 'none',
+          duration: 2000,
+        })
+      } else {
+        wx.showToast({
+          title: '正确 恭喜您！',
+          icon: 'none',
+          duration: 2000,
+        })
+        this.next_round();
+      }
     } else {
       this.reset_all();
 
+      var that = this;
       wx.showModal({
         title: '选错啦',
         confirmText: '再来一次',
@@ -99,7 +127,7 @@ Page({
           //   console.log('用户点击确定')
           // } else 
           if (res.cancel) {
-            this.tap_back();
+            that.tap_back();
           }
         }
       })
@@ -107,6 +135,8 @@ Page({
   },
 
   reset_all: function () {
+    this.return_score();
+
     this.setData({
       cnt_row: 2, //行数（2或3）
       round: 1, //一共8轮
@@ -114,6 +144,7 @@ Page({
       img_hidden_before: [], //保证所有水果都有被展示
       opacity_Q: 0,
       opacity_B: false,
+      countDownNum: '10',
     })
 
     this.set_row();
@@ -222,7 +253,7 @@ Page({
         countDownNum--;
         //然后把countDownNum存进data，好让用户知道时间在倒计着
         that.setData({
-          countDownNum: countDownNum
+          countDownNum: countDownNum,
         })
       }
     }, 1000)
