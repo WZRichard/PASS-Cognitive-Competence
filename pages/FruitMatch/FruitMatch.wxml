@@ -1,9 +1,34 @@
 <!--pages/FruitMatch/FruitMatch.wxml-->
-<view hidden="" >
+<view class="_container">
+  <!-- 背景图 -->
+  <image class="background" src="./data/background.jpg" mode="aspectFill"></image>
+  <!-- Title -->
+  <view class="title">
+    <image src="./data/title.png" mode="heightFix"></image>
+    <view class="in_title">
+      <view class="in_title_text" hidden="{{opacity_B==true?false:true}}">
+        <text>第{{round}}关</text>
+      </view>
+      <view hidden="{{opacity_B}}">
+        <Button class="in_title_button1" bindtap="tap_button">开始</Button>
+        <Button class="in_title_button2" bindtap="tap_back">返回</Button>
+      </view>
+    </view>
+  </view>
+  <!-- Question -->
+  <view class="Question" style="opacity: {{opacity_Q}};">
+    <view>
+      <text>尝试找出下图中的水果\n</text>
+    </view>
+    <image class="img img_Question" src="{{answer}}" mode="heightFix"></image>
+  </view>
   <!-- n*n的格子 -->
-  <view class="grid" wx:for="{{cnt_row}}" wx:key="*this" wx:for-index="idx" >
-    <view class="row" wx:for="{{row[idx]}}" wx:key="*this" bindtap="tap_image" data-index="{{index}}" data-row="{{idx}}" >
-      <image class="img" src="{{item}}" mode="heightFix" hidden="{{img_hidden[idx][index]}}" ></image>
+  <view>
+    <view class="grid" wx:for="{{cnt_row}}" wx:key="index" wx:for-index="idx">
+      <view class="row" wx:for="{{row[idx]}}" wx:key="index" bindtap="tap_image" data-index="{{index}}"
+        data-row="{{idx}}" wx:if="{{index < cnt_row}}">
+        <image class="img" src="{{item}}" mode="heightFix" style="opacity: {{img_hidden[idx][index]}};"></image>
+      </view>
     </view>
   </view>
 </view>
