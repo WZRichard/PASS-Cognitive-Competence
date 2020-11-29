@@ -16,7 +16,7 @@ Page({
     opacity_Q: 0,
     opacity_B: false,
     timer: '',
-    countDownNum: '10', //倒计时初始值
+    countDownNum: '10', //倒计时初始值(单位s)
   },
 
   /**
@@ -72,6 +72,7 @@ Page({
       return;
     }
 
+    clearInterval(this.data.timer);
     if (this.data.round == 8) {
       this.reset_all();
       wx.showToast({

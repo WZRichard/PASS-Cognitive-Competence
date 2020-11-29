@@ -7,7 +7,7 @@
     <image src="./data/title.png" mode="heightFix"></image>
     <view class="in_title">
       <view class="in_title_text" hidden="{{opacity_B==true?false:true}}">
-        <text>第{{round}}关</text>
+        <text>第{{round}}关 剩余{{countDownNum}}s</text>
       </view>
       <view hidden="{{opacity_B}}">
         <Button class="in_title_button1" bindtap="tap_button">开始</Button>
@@ -24,7 +24,7 @@
   </view>
   <!-- n*n的格子 -->
   <view>
-    <view class="grid" wx:for="{{cnt_row}}" wx:key="index" wx:for-index="idx">
+    <view class="grid" wx:for="{{cnt_row}}" wx:key="idx" wx:for-index="idx">
       <view class="row" wx:for="{{row[idx]}}" wx:key="index" bindtap="tap_image" data-index="{{index}}"
         data-row="{{idx}}" wx:if="{{index < cnt_row}}">
         <image class="img" src="{{item}}" mode="heightFix" style="opacity: {{img_hidden[idx][index]}};"></image>
