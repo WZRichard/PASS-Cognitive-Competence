@@ -1,0 +1,41 @@
+<!--pages/setting/index.wxml-->
+<view class="container">
+  <view class="message">
+    <view class="texttips">
+      <text class="tips"> 年龄 : </text>
+      <view class="select"> 
+        <Select prop-array='{{selectArray1}}' bind:myget='getData1'></Select>
+      </view>
+    </view>
+    <view class="texttips">
+      <text class="tips"> 性别 : </text>
+      <view class="select"> 
+        <radio-group class="radio-group" bindchange="radioChange1" data-id="{{item.id}}">
+          <label class="radio" wx:for="{{items1}}">
+            <radio value="{{item.value}}" checked="{{item.checked}}">{{item.value}}</radio>
+          </label>
+        </radio-group>
+      </view>
+    </view>
+    <view class="texttips">
+      <text class="tips"> 是否接触过 : </text>
+      <view class="select"> 
+        <radio-group class="radio-group" bindchange="radioChange2" data-id="{{item.id}}">
+          <label class="radio" wx:for="{{items2}}">
+            <radio value="{{item.value}}" checked="{{item.checked}}">{{item.value}}</radio>
+          </label>
+        </radio-group>
+      </view>
+    </view>
+    <view class="texttips">
+      <text class="tips">家长的学历 :</text>
+      <view class="select"> 
+        <Select prop-array='{{selectArray2}}' bind:myget='getData2'></Select>
+      </view>
+    </view>
+      
+    <view class="button">
+      <button class="save" bindtap="goToMe"> 保存 </button>
+    </view>
+  </view>
+</view>

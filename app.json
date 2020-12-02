@@ -1,19 +1,25 @@
 {
-  "pages":[
+  "pages": [
+    "pages/login/login",
     "pages/index/index",
     "pages/logs/logs",
     "pages/games/index",
     "pages/training/index",
     "pages/me/index",
-    "pages/performance/index"
-
+    "pages/performance/index",
+    "pages/message/sex/sex",
+    "pages/message/has/has",
+    "pages/message/edu/edu",
+    "pages/message/age/age",
+    "pages/message/message/message",
+    "Component/select/select",
+    "pages/setting/index"
   ],
-  "window":{
-    "backgroundTextStyle":"light",
-    "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "Weixin",
-    "navigationBarTextStyle":"black"
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#E06663",
+    "navigationBarTitleText": "PASS认知模型",
+    "navigationBarTextStyle": "white"
   },
-  "style": "v2",
   "sitemapLocation": "sitemap.json"
 }

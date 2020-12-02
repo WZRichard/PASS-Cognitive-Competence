@@ -1,4 +1,4 @@
-//index.js
+//login.js
 //获取应用实例
 const app = getApp()
 
@@ -49,5 +49,18 @@ Page({
       userInfo: e.detail.userInfo,
       hasUserInfo: true
     })
+  },
+  onAuth() {
+    wx.getSetting({
+      success: (res) => {
+        if (res.authSetting['scope.userInfo']) {
+          wx.reLaunch({
+            url: '../message/message/message',
+          })
+        }
+      }
+    })
   }
+
+  
 })

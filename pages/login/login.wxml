@@ -1,0 +1,18 @@
+<!--index.wxml-->
+<view class="container">
+  <view class="userinfo">
+    <block wx:if="{{!hasUserInfo && canIUse}}">
+      <!-- app图片需要上传云端 -->
+      <image class="app-image" src="../../pic/brain2.PNG"></image>
+      <text class="app-motto1"> 认知评估 </text>
+      <text class="app-motto2"> 助力孩子开发大脑，愉快成长 </text>
+      <button class="app-login" open-type="getUserInfo" bindgetuserinfo="onAuth"> 微信授权登录 </button>
+    </block>
+    <!-- <block wx:else>
+      <image class="userinfo-avatar" bindtap="bindViewTap" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+      <text class="app-motto1"> 认知评估 </text>
+      <text class="app-motto2"> 助力孩子开发大脑，愉快成长 </text>
+    </block> -->
+  </view>
+</view>

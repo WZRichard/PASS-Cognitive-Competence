@@ -1,0 +1,22 @@
+<!--pages/message/has/has.wxml-->
+<view class="container">
+  <view class="message">
+    <!-- app图片需要上传云端 -->
+    <image class="image" src="../../../pic/brain4.PNG"></image>
+      <view class="texttips">
+        <text class="tips"> 3.小朋友是否接触过认知模型？</text>
+        <view class="select"> 
+          <radio-group class="radio-group" bindchange="radioChange" data-id="{{item.id}}">
+            <label class="radio" wx:for="{{items}}">
+              <radio value="{{item.value}}" checked="{{item.checked}}">{{item.value}}</radio>
+            </label>
+          </radio-group>
+        </view>
+      </view>
+      <view class="button">
+        <button class="back" bindtap="goToSex"> 上一题 </button>
+        <button class="next" bindtap="goToEdu"> 下一题 </button>
+      </view>
+  </view>
+</view>
+

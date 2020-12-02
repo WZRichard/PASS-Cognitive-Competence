@@ -23,11 +23,12 @@
 }
 
 .app-login {
+  width: 400rpx;
   margin-top: 100rpx;
-  background-color: #13227a;
+  background-color: #E06663;
   color: white;
+  font-size: medium;
   font-weight: 400;
-  width: 300px;
   border-radius: 30px;
 }
 

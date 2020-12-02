@@ -1,0 +1,12 @@
+<!--pages/message/message/message.wxml-->
+<view class="container">
+  <view class="message">
+    <!-- app图片需要上传云端 -->
+    <image class="image" src="../../../pic/brain4.PNG"></image>
+      <view class="texttips">
+        <text class="tips"> 接下来，我们将采集一些信息，以便我们后续做出更好的训练安排 </text>
+      </view>
+      <button class="start" bindtap="goToAge"> 开始采集 </button>
+  </view>
+</view>
+
