@@ -1,0 +1,19 @@
+<view class="about-box">
+  <view class="pass-icon">
+  <image src="/pic/pass_pic/brain1.PNG"></image>
+  </view>
+  <view class="pass-title">
+    <text>·PASS认知模型小程序·</text>
+  </view>
+  <view class="pass-text">
+  <text>此小程序基于PASS智力评估模型，评估孩子的认知能力。评估系统适用于7~12岁个体，内容包括计划、注意、同时性加工和继时性加工。针对孩子的认知能力，搭配相关的认知训练，从而提高孩子的能力。</text>
+  </view>
+  <view class="pass-title">
+    <text>·联系我们·</text>
+  </view>
+  <view class="pass-text" >
+  <text>团队：浙大城院软件工程阿巴里里小组\n项目负责人：陈xx\n项目成员：周xx、 王xx、 陈xx、\n李xx、 王xx\n联系方式：tangyuanwar（微信号）\n期待您的加入！
+  </text>
+  </view>
+ 
+</view>

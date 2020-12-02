@@ -1,2 +1,13 @@
 <!--pages/training/index.wxml-->
-<text>pages/training/index.wxml</text>
+
+<view class="container">
+  <view class="pass-text">
+  <text>一起去脑力世界探险吧</text>
+  </view>
+  <view class="pass-icon">
+  <image src="/pic/pass_pic/brain4.PNG"></image>
+  </view>
+  <button class="test-btn">开始测验</button>
+</view>
+
+

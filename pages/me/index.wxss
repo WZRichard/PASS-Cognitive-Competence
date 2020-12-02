@@ -1,1 +1,134 @@
 /* pages/me/index.wxss */
+page{
+  background: #ffffff;
+}
+
+.header-box {
+  background: #E06663;
+  /* padding: 32rpx; */
+  height: 240rpx;
+  display: flex;
+  align-items: center;
+  margin-bottom: 120rpx;
+}
+
+.menu-item{
+  display: flex ;
+  flex-direction: column;
+  width: 100%;
+  height: 550rpx;
+}
+.menu-box{
+  font:1px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  background-color: #fff;
+}
+.menu-box .icon{
+  flex: 1;
+  padding-top: 20rpx;
+  padding-bottom: 20rpx;
+  padding-left: 20rpx;
+  /* float: left; */
+ 
+}
+.menu-box image {
+  width: 40rpx;
+  height: 40rpx;
+}
+.menu-box .title{
+  flex: 8;
+  padding-top: 20rpx;
+  padding-bottom: 20rpx;
+  padding-left: 20rpx;
+  font: 13rpx ;
+  font-style: inherit;
+  /* float: left; */
+}
+.line{
+  border: 1rpx solid #ccc;
+  opacity: 0.2;
+}
+.menu-box .go-icon{
+  flex: 1;
+  padding-top: 20rpx;
+  padding-bottom: 20rpx;
+  float: right;
+}
+.feedback{
+  background-color: #E06663;
+  color:#ffffff;
+  font: normal;
+  font-size: 25rpx;
+}
+.avatar image{
+  width: 160rpx;
+  height: 160rpx;
+  border-radius: 50%;
+  margin-left: 30rpx;
+}
+.user-box{
+  display: flex;
+  flex-direction: row;
+}
+.user-info{
+  margin-left: 40rpx;
+  margin-top: 5rpx;
+  display: flex;
+  flex-direction: column;
+}
+.userinfo-name{
+  color: white;
+  font-weight:bold;
+  margin-bottom: 40rpx;
+  font-size: 36rpx;
+}
+.userinfo-title{
+  display: flex;
+  flex-direction: row;
+}
+.child-age{
+  display: flex;
+  border-radius: 30rpx;
+  background-color:#fc8c23;
+  opacity: 0.9;
+  width: 130rpx;
+  height: 46rpx;
+  text-align: center;
+  margin-right: 20rpx;
+}
+.child-age image{
+  width: 35rpx;
+  height: 35rpx;
+  padding-right: 15rpx;
+  padding-left: 15rpx;
+  padding-top: 6rpx;
+}
+.child-age text{
+  color: white;
+  padding-top: 6rpx;
+  font-size: 25rpx;
+}
+.user-level{
+  display: flex;
+  border-radius: 30rpx;
+  background-color:#fc8c23;
+  opacity: 0.9;
+  width: 200rpx;
+  height: 46rpx;
+  text-align: center;
+  margin-bottom: 10rpx;
+}
+.user-level image{
+  width: 35rpx;
+  height: 35rpx;
+  padding-right: 15rpx;
+  padding-left: 15rpx;
+  padding-top: 8rpx;
+}
+.user-level text{
+  color: white;
+  padding-top: 6rpx;
+  font-size: 25rpx;
+}

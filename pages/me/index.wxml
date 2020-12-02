@@ -1,2 +1,24 @@
 <!--pages/me/index.wxml-->
-<text>pages/me/index.wxml</text>
+<view class="header-box">
+  <view class="user-box">
+    <view class="avatar"><image src="/pic/pass_pic/同时性加工.jpg" mode="cover"></image></view>
+    <view class="user-info">
+      <view class="userinfo-name"><text>长颈鹿</text></view>
+      <view class="userinfo-title">
+        <view class="child-age"><image src="/pic/me_icon/儿童.png"></image><text>8岁</text></view>
+        <view class="user-level"><image src="/pic/me_icon/等级.png"></image><text>脑力学徒</text></view>
+      </view>
+    </view>
+  </view>
+</view>
+<view class="menu-item">
+    <block wx:for="{{menu_list}}" wx:key="id">
+      <view class="menu-box" bindtap="onItemClick" data-pageid="{{item.id}}">
+        <view class="icon" ><image src="{{item.icon}}"></image></view>
+        <view class="title">{{item.name}}</view>
+        <view class="go-icon"><image src="{{go_icon}}"></image></view>
+      </view>
+      <view class="line"></view>
+    </block>
+</view>
+<button open-type="feedback" class="feedback">意见反馈</button>

@@ -1,3 +1,5 @@
 {
-  "usingComponents": {}
+  "navigationBarTitleText": "测验",
+  "navigationBarBackgroundColor": "#13227a",
+  "navigationBarTextStyle": "white"
 }

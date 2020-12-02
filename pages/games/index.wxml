@@ -1,2 +1,17 @@
 <!--pages/games/index.wxml-->
-<text>pages/games/index.wxml</text>
+<view class="pass-container">
+  <block wx:for="{{pass_list}}" wx:key="id">
+    <view class="pass-box">
+      <view class="title"><text>{{item.name}}</text></view>
+      <view class="game-container">
+        <block wx:for="{{item.game_list}}" wx:for-item="gameItem">
+          <view class="game-box">
+            <view class="img-box"><image src="{{gameItem.imgSrc}}"></image></view>
+            <text>{{gameItem.name}}</text>
+          </view> 
+        </block> 
+      </view> 
+    </view>
+  </block>
+</view>
+

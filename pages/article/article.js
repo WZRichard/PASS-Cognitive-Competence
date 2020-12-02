@@ -1,5 +1,4 @@
-// pages/training/index.js
-const app = getApp()
+// pages/article/article.js
 Page({
 
   /**

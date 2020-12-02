@@ -1,1 +1,44 @@
 /* pages/performance/index.wxss */
+.scroll-wrapper {
+  white-space: nowrap;
+  -webkit-overflow-scrolling: touch;
+  height: 90rpx;
+  /* padding: 0 32rpx; */
+  text-align: center;
+  box-sizing: border-box;
+  
+}
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  color: transparent;
+}
+.navigate-item {
+  display: inline-block;
+  text-align: center;
+  height: 90rpx;
+  line-height: 90rpx;
+  margin: 0 16rpx;
+ 
+}
+.names {
+  font-size: 32rpx;
+  color: #3c3c3c;
+}
+
+.names.active {
+  color:#E06663;
+  font-weight: bold;
+  font-size: 34rpx;
+}
+.currtline {
+  margin: -8rpx auto 0 auto;
+  width: 100rpx;
+  height: 8rpx;
+  border-radius: 4rpx;
+}
+
+.currtline.active {
+  background: #E06663;
+  transition: all .3s;
+}

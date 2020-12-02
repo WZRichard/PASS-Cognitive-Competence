@@ -5,6 +5,23 @@ Page({
    * 页面的初始数据
    */
   data: {
+    currentTab: 0,
+    passList:[{
+      name:'ALL'
+    },
+    {
+      name:'P'
+    },
+    {
+      name:'A'
+    },
+    {
+      name:'S'
+    },
+    {
+      name:'S'
+    }
+  ]
 
   },
 
@@ -62,5 +79,12 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+  handleClick(e) {
+    let currentTab = e.currentTarget.dataset.index
+    console.log(currentTab)
+    this.setData({
+      currentTab
+    })
   }
 })

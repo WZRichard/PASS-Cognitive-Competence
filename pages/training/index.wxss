@@ -1,1 +1,19 @@
 /* pages/training/index.wxss */
+
+.pass-text{
+  border: 2rpx solid rgb(168, 165, 165);
+  border-radius: 15%;
+  padding: 15rpx; 
+}
+.pass-icon image{
+  margin-top: 40rpx;
+  width: 450rpx;
+  height: 320rpx;
+}
+.test-btn {
+  margin-top: 60rpx;
+  background-color: #E06663;
+  color: white;
+  font-weight: 400;
+  border-radius: 30px;
+}
