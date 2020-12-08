@@ -46,7 +46,7 @@ Page({
 
   set_row: function () {
     var new_row = [['', '', ''], ['', '', ''], ['', '', '']];
-    var cnt = 0;
+    var cnt = 0, row, col;
     while (cnt < this.data.difficulty[this.data.round - 1]) {
       row = this.getRadom_int(this.data.cnt_row, 0);
       col = this.getRadom_int(this.data.cnt_row, 0);
@@ -74,7 +74,7 @@ Page({
   },
 
   next_round: function () {
-    cnt_row = this.data.cnt_row == 2 && this.data.round == 2 ? this.data.cnt_row + 1 : this.data.cnt_row;
+    var cnt_row = this.data.cnt_row == 2 && this.data.round == 2 ? this.data.cnt_row + 1 : this.data.cnt_row;
     this.setData({
       cnt_row: cnt_row,
       round: this.data.round + 1, //一共8轮
@@ -237,17 +237,17 @@ Page({
     that.data.timer = setInterval(function () {//这里把setInterval赋值给变量名为timer的变量
       //在倒计时还未到0时，这中间可以做其他的事情，按项目需求来
       if (countDownNum == 0) {
+        clearInterval(that.data.timer);
+        //这里特别要注意，计时器是始终一直在走的，如果你的时间为0，那么就要关掉定时器！不然相当耗性能
+        //因为timer是存在data里面的，所以在关掉时，也要在data里取出后再关闭
+        // clearInterval(that.data.timer);
+        //关闭定时器之后，可作其他处理codes go here
         wx.showToast({
           title: '时间到！',
           duration: 2000,
           icon: 'none',
         })
         that.reset_all();
-        clearInterval(that.data.timer);
-        //这里特别要注意，计时器是始终一直在走的，如果你的时间为0，那么就要关掉定时器！不然相当耗性能
-        //因为timer是存在data里面的，所以在关掉时，也要在data里取出后再关闭
-        // clearInterval(that.data.timer);
-        //关闭定时器之后，可作其他处理codes go here
       } else {
         //每隔一秒countDownNum就减一，实现同步
         countDownNum--;

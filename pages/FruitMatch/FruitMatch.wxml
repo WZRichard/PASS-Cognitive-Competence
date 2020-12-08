@@ -32,8 +32,3 @@
     </view>
   </view>
 </view>
-
-<!-- <block wx:for="{{3}}">
-  <view class="cell"> {{index}}: </view>
-  <view> {{item}} </view>
-</block> -->

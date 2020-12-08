@@ -1,0 +1,86 @@
+/* pages/Matrix_pro/Matrix_pro.wxss */
+.background {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0px;
+  z-index: -1;
+}
+
+.progress {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.title {
+  text-align: center;
+}
+
+.title_image {
+  height: 90px;
+}
+
+.in_title_text {
+  position: relative;
+  top: -20px;
+}
+
+.in_title_begin {
+  margin: 20px;
+  font-size: 50px;
+}
+
+.in_title_begin_F {
+  margin-top: 50px;
+}
+
+.image {
+  height: 80px;
+}
+
+.image_Selection {
+  height: 100px;
+}
+
+.Question {
+  margin-top: 5px;
+  transition: all 1.2s;
+}
+
+.Question>view>text {
+  font-weight: bold;
+}
+
+.Question>view,
+.Selection>view {
+  display: flex;
+  justify-content: center;
+
+  font-size: 18px;
+}
+
+.Selection {
+  transition: all 1.2s;
+}
+
+.Question_detail {
+  margin-top: 23px;
+}
+
+.button {
+  margin: 15px 18px 15px 18px;
+  border-radius: 10rem;
+  border: 2px solid ;
+}
+
+.selector{
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.comfirm {
+  width: 100%;
+
+  position: absolute;
+  bottom: 0px;
+}
