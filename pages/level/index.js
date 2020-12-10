@@ -5,6 +5,8 @@ Page({
    * 页面的初始数据
    */
   data: {
+    child_icon:"cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/pass_pic/me_icon/儿童.png",
+    level_icon:"cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/pass_pic/me_icon/等级.png"
 
   },
 

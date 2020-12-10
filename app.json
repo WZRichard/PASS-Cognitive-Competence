@@ -1,17 +1,26 @@
 {
   "pages":[
+    "pages/login/login",
     "pages/training/index",
     "pages/index/index",
     "pages/logs/logs",
     "pages/games/index",
     "pages/me/index",
     "pages/performance/index",
+    "pages/message/sex/sex",
+    "pages/message/has/has",
+    "pages/message/edu/edu",
+    "pages/message/age/age",
+    "pages/message/message/message",
+    "components/select/select",
     "pages/about/index",
     "pages/feedback/index",
     "pages/level/index",
     "pages/introduction/index",
     "pages/article/article",
-    "pages/setting/index"
+    "pages/setting/index",
+    "pages/temp/index",
+    "pages/temp2/index"
 
   ],
   "window":{

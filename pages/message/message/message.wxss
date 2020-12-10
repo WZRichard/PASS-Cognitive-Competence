@@ -1,0 +1,31 @@
+/* pages/message/message/message.wxss */
+.message {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.image {
+  width: 248rpx;
+  height: 200rpx;
+  padding-top: 160rpx;
+}
+
+.texttips {
+  margin: -36rpx 100rpx 20rpx 100rpx;
+  border-radius: 30rpx;
+  padding: 28rpx 28rpx 70rpx 28rpx;
+  border: 2rpx solid rgb(168, 165, 165);
+}
+.tips {
+  font-size: 40rpx;
+}
+.start {
+  width: 300rpx;
+  margin-top: 100rpx;
+  background-color: #E06663;
+  color: white;
+  font-size: medium;
+  font-weight: 400;
+  border-radius: 30px;
+}

@@ -1,1 +1,43 @@
 /* pages/setting/index.wxss */
+.message {
+  margin-top: 30rpx;
+  width: 730rpx;
+  display: flex;
+  flex-direction: column;
+}
+.texttips {
+  margin: 8rpx;
+  border-bottom: 1rpx solid rgb(245, 245, 245);
+  padding-left: 15rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.tips {
+  flex:2;
+  font-size: 28rpx;
+}
+.texttips .select {
+  flex: 5;
+  padding:20rpx 20rpx;
+}
+.radio {
+  padding: 0 20rpx;
+}
+.radio radio {
+  transform:scale(0.85);
+}
+.button {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.save {
+  width: 200rpx;
+  margin: 100rpx 50rpx;
+  background-color: #E06663;
+  color: white;
+  font-size: small;
+  font-weight: 400;
+  border-radius: 10px;
+}

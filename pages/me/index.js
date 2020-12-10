@@ -1,43 +1,68 @@
 // pages/me/index.js
+const app = getApp()
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+      childAge: "",
+      childSex: "",
+      userInfo: {},
       menu_list:[
         {
           id:1,
           name:"排行榜",
-          icon:'/pic/me_icon/排行榜.png',
+          icon:'cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/pass_pic/me_icon/排行榜.png',
           pagePath:'/pages/level/index'
         },
         {
           id:2,
-          name:"PASS模型科普",
-          icon:'/pic/me_icon/科普.png',
-          pagePath:'/pages/introduction/index'
-        },
-        {
-          id:3,
           name:"关于我们",
-          icon:'/pic/me_icon/关于我们.png',
+          icon:'cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/pass_pic/me_icon/关于我们.png',
           pagePath:'/pages/about/index'
         },
         {
-          id:4,
+          id:3,
           name:"设置",
-          icon:'/pic/me_icon/设置.png',
+          icon:'cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/pass_pic/me_icon/设置.png',
           pagePath:'/pages/setting/index'
         }
+        // ,
+        // {
+        //   id:4,
+        //   name:"PASS模型科普",
+        //   icon:'cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/pass_pic/me_icon/科普.png',
+        //   pagePath:'/pages/temp2/index'
+        // }
       ],
-      go_icon:'/pic/me_icon/箭头右.png'
+      go_icon:'cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/pass_pic/me_icon/箭头右.png'
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    var that = this
+    this.setData({
+      userInfo: app.globalData.userInfo,
+    }),
+    wx.getStorage({
+      key: "childAge",
+      success: function(e){
+        that.setData({
+          childAge: e.data
+        })
+      }
+    }),
+    wx.getStorage({
+      key: "childSex",
+      success: function(e){
+        that.setData({
+          childSex: e.data
+        })
+      },
+    })
 
   },
 

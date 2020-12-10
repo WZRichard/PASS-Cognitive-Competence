@@ -1,4 +1,5 @@
 // pages/games/index.js////
+const app = getApp()
 Page({
 
   /**
@@ -15,13 +16,13 @@ Page({
             id:1,
             name:'计划连接',
             page_url:'',
-            imgSrc:'/pic/pass_pic/计划连接.png'
+            imgSrc:'cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/pass_pic/pass_pic/计划连接.png'
           },
           {
             id:2,
             name:'视觉搜索',
             page_url:'',
-            imgSrc:'/pic/pass_pic/视觉搜索.jpg'
+            imgSrc:'cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/pass_pic/pass_pic/视觉搜索.jpg'
           }
         ]
       },
@@ -34,13 +35,13 @@ Page({
             id:3,
             name:'颜色判别',
             page_url:'',
-            imgSrc:'/pic/pass_pic/颜色判别.png'
+            imgSrc:'cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/pass_pic/pass_pic/颜色判别.png'
           },
           {
             id:4,
             name:'接受的注意',
             page_url:'',
-            imgSrc:'/pic/pass_pic/接收注意.jpeg'
+            imgSrc:'cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/pass_pic/pass_pic/接收注意.jpeg'
           }
         ]
       },
@@ -53,13 +54,13 @@ Page({
             id:5,
             name:'矩阵问题',
             page_url:'',
-            imgSrc:'/pic/pass_pic/矩阵问题.jpg'
+            imgSrc:'cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/pass_pic/pass_pic/矩阵问题.jpg'
           },
           {
             id:6,
             name:'水果配对',
             page_url:'',
-            imgSrc:'/pic/pass_pic/水果配对.png'
+            imgSrc:'cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/pass_pic/pass_pic/水果配对.png'
           }
         ]
       },{
@@ -71,13 +72,13 @@ Page({
             id:7,
             name:'数字回忆',
             page_url:'',
-            imgSrc:'/pic/pass_pic/数字回忆.jpg'
+            imgSrc:'cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/pass_pic/pass_pic/数字回忆.jpg'
           },
           {
             id:8,
             name:'句子问题',
             page_url:'',
-            imgSrc:'/pic/pass_pic/句子问题.jpg'
+            imgSrc:'cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/pass_pic/pass_pic/句子问题.jpg'
           }
         ]
       }

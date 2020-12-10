@@ -1,30 +1,30 @@
 <!--pages/level/index.wxml-->
 <view class="level-container">
   <view class="pass-icon">
-    <image src="/pic/pass_pic/brain5.PNG"></image>
+    <image src="cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/pass_pic/pass_pic/brain5.PNG"></image>
   </view>
   <view class="separate-line"> 
-    <image src="/pic/me_icon/格子分割线.jpg"></image>
+    <image src="cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/pass_pic/me_icon/格子分割线.jpg"></image>
   </view>
   <view class="level"> 
     <block>
       <view class="level-box">
         <!-- <view class="level-container"> -->
-          <view class="level-icon"><image src="/pic/me_icon/冠军.png"></image></view>
-          <view class="avatar"><image src="/pic/pass_pic/同时性加工.jpg"></image></view>
+          <view class="level-icon"><image src="cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/pass_pic/me_icon/冠军.png"></image></view>
+          <view class="avatar"><image src="cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/pass_pic/pass_pic/同时性加工.jpg"></image></view>
           <view class="userinfo-name"><text>长颈鹿</text></view>
-          <view class="child-age"><image src="/pic/me_icon/儿童.png"></image><text>8岁</text></view>
-          <view class="pass-level"><image src="/pic/me_icon/等级.png"></image><text>等级 - A</text></view>
+          <view class="child-age"><image src="{{child_icon}}"></image><text>8岁</text></view>
+          <view class="pass-level"><image src="{{level_icon}}"></image><text>等级 - A</text></view>
         <!-- </view> -->
       </view>
       <view class="line"></view>
       <view class="level-box">
         <!-- <view class="level-container"> -->
           <view class="level-text"><text>5</text></view>
-          <view class="avatar"><image src="/pic/pass_pic/同时性加工.jpg" mode="cover"></image></view>
+          <view class="avatar"><image src="cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/pass_pic/pass_pic/同时性加工.jpg" mode="cover"></image></view>
           <view class="userinfo-name"><text>长颈鹿1111111</text></view>
-          <view class="child-age"><image src="/pic/me_icon/儿童.png"></image><text>8岁</text></view>
-          <view class="pass-level"><image src="/pic/me_icon/等级.png"></image><text>等级 - A</text></view>
+          <view class="child-age"><image src="{{child_icon}}"></image><text>8岁</text></view>
+          <view class="pass-level"><image src="{{level_icon}}"></image><text>等级 - A</text></view>
         <!-- </view> -->
       </view>
       <view class="line"></view>
@@ -33,8 +33,8 @@
 </view>
 <view class="my-level">
   <view class="level-text"><text>5</text></view>
-  <view class="avatar"><image src="/pic/pass_pic/同时性加工.jpg" mode="cover"></image></view>
+  <view class="avatar"><image src="cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/pass_pic/pass_pic/同时性加工.jpg" mode="cover"></image></view>
   <view class="userinfo-name"><text>长颈鹿1111111</text></view>
-  <view class="child-age"><image src="/pic/me_icon/儿童.png"></image><text>8岁</text></view>
-  <view class="pass-level"><image src="/pic/me_icon/等级.png"></image><text>等级 - A</text></view>
+  <view class="child-age"><image src="{{child_icon}}"></image><text>8岁</text></view>
+  <view class="pass-level"><image src="{{level_icon}}"></image><text>等级 - A</text></view>
 </view>

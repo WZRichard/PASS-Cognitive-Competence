@@ -1,11 +1,17 @@
 <!--pages/performance/index.wxml-->
-<scroll-view class="scroll-wrapper" scroll-x scroll-with-animation="true" scroll-into-view="item{{currentTab < 4 ? 0 : currentTab - 3}}">
+<!-- <scroll-view class="scroll-wrapper" scroll-x scroll-with-animation="true" scroll-into-view="item{{currentTab < 4 ? 0 : currentTab - 3}}">
 	<view class="navigate-item" id="item{{index}}" wx:for="{{passList}}" wx:key="index" data-index="{{index}}" bindtap="handleClick">
 		<view class="names {{currentTab === index ? 'active' : ''}}">{{item.name}}</view>
 		<view class="currtline {{currentTab === index ? 'active' : ''}}"></view>
 	</view>
-</scroll-view>
+</scroll-view> -->
 
 <!-- <swiper indicator-dots="{{false}}" bindchange="handleSwiper" current="{{currentTab}}">
 	
 </swiper> -->
+
+<view class="chart-container">
+  <ec-canvas id="mychart-dom-bar" canvas-id="mychart-bar" ec="{{ ec1 }}" ></ec-canvas>
+  <view class="line"></view>
+  <ec-canvas id="mychart-dom-bar" canvas-id="mychart-bar" ec="{{ ec2 }}" ></ec-canvas>
+</view>

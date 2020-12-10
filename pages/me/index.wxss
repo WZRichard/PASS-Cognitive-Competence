@@ -99,8 +99,8 @@ page{
   margin-right: 20rpx;
 }
 .child-age image{
-  width: 35rpx;
-  height: 35rpx;
+  width: 30rpx;
+  height: 30rpx;
   padding-right: 15rpx;
   padding-left: 15rpx;
   padding-top: 6rpx;
@@ -110,24 +110,24 @@ page{
   padding-top: 6rpx;
   font-size: 25rpx;
 }
-.user-level{
+.user-sex{
   display: flex;
   border-radius: 30rpx;
   background-color:#fc8c23;
   opacity: 0.9;
-  width: 200rpx;
+  width: 120rpx;
   height: 46rpx;
   text-align: center;
   margin-bottom: 10rpx;
 }
-.user-level image{
+.user-sex image{
   width: 35rpx;
   height: 35rpx;
   padding-right: 15rpx;
   padding-left: 15rpx;
-  padding-top: 8rpx;
+  padding-top: 6rpx;
 }
-.user-level text{
+.user-sex text{
   color: white;
   padding-top: 6rpx;
   font-size: 25rpx;

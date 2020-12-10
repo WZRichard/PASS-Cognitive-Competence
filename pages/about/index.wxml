@@ -1,6 +1,6 @@
 <view class="about-box">
   <view class="pass-icon">
-  <image src="/pic/pass_pic/brain1.PNG"></image>
+  <image src="cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/pass_pic/pass_pic/brain1.PNG"></image>
   </view>
   <view class="pass-title">
     <text>·PASS认知模型小程序·</text>
