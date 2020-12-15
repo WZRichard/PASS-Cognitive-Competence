@@ -1,0 +1,39 @@
+/* pages/RecieveAttention/RecieveAttention.wxss */
+
+.module {
+  width: 100%;
+  height: 100%;
+  position:fixed;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+.background {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0px;
+  /* background-size: 100% 100%; */
+  /* background-size: cover; */
+  /* background-color: #CCCCCC; */
+  z-index: -1;
+}
+
+.title{
+  height: 200rpx;
+}
+
+.start {
+  margin-top: 100rpx;
+  background-color: antiquewhite;
+  border-radius: 10rem;
+}
+
+.back {
+  margin-top: 40rpx;
+  background-color: antiquewhite;
+  border-radius: 10rem;
+}

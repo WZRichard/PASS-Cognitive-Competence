@@ -1,0 +1,13 @@
+<!--pages/RecieveAttention/index.wxml-->
+<view class="index">
+  <!-- 背景图 -->
+  <image class="background" src="./images/background.jpg" mode="aspectFill"></image>
+  <view class="module">
+    <!-- 标题 -->
+    <image class="title" src="./images/title.png" mode="heightFix"></image>
+    <view class="buttion">
+      <Button class="start" bindtap="tap_start">开始</Button>
+      <Button class="back" bindtap="tap_back">返回</Button>
+    </view>
+  </view>
+</view>

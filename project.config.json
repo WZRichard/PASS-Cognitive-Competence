@@ -32,9 +32,11 @@
     "useIsolateContext": true,
     "useCompilerModule": true,
     "userConfirmedUseCompilerModuleSwitch": false,
+    "userConfirmedBundleSwitch": false,
     "packNpmManually": false,
     "packNpmRelationList": [],
-    "minifyWXSS": true
+    "minifyWXSS": true,
+    "bundle": false
   },
   "compileType": "miniprogram",
   "libVersion": "2.13.1",
@@ -48,23 +50,30 @@
   "simulatorType": "wechat",
   "simulatorPluginLibVersion": {},
   "condition": {
-    "search": {
-      "list": []
-    },
-    "conversation": {
+    "plugin": {
       "list": []
     },
     "game": {
-      "list": []
-    },
-    "plugin": {
       "list": []
     },
     "gamePlugin": {
       "list": []
     },
     "miniprogram": {
-      "list": []
+      "list": [
+        {
+          "name": "接收注意",
+          "pathName": "pages/RecieveAttention/game",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/RecieveAttention/index",
+          "pathName": "pages/RecieveAttention/index",
+          "query": "",
+          "scene": null
+        }
+      ]
     }
   }
 }

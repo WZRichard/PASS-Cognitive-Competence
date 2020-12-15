@@ -1,0 +1,33 @@
+<!--pages/RecieveAttention/game.wxml-->
+<view class="game">
+  <!-- 背景图 -->
+  <image class="background" src="./images/background.jpg" mode="aspectFill"></image>
+  <!-- 剩余时间 -->
+  <view class="time">
+    <text>{{time}}s</text>
+  </view>
+  <!-- Question -->
+  <view class="Question">
+    <text>{{question}}</text>
+  </view>
+  <!-- n*n的格子 -->
+  <view>
+    <view class="line" wx:for="{{line}}" wx:key="idx" wx:for-index="idx">
+      <view class="unit" wx:for="{{column}}" wx:key="index" bindtap="tap_unit" data-index="{{index}}"
+        data-row="{{idx}}">
+        <image class="img" src="{{picture[idx][index]}}" mode="heightFix"></image>
+        <view class="text">
+          <text class="left"
+            style="font-style:{{style[idx][index][0]}};font-weight:{{weight[idx][index][0]}}">{{text[idx][index][0]}}</text>
+          <text decode="{{true}}">&nbsp;</text>
+          <text class="right"
+            style="font-style:{{style[idx][index][1]}};font-weight:{{weight[idx][index][1]}}">{{text[idx][index][1]}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="buttion">
+    <Button class="over" bindtap="tap_over">提交</Button>
+  </view>
+  <view class="white"> </view>
+</view>
