@@ -1,0 +1,88 @@
+<!--pages/jihualianjie/jihualianjie.wxml-->
+<!--showgamebox1-->
+<view class="{{showgamebox1?'gamebox1_show':'gamebox1_hidden'}}">
+  <view class="head">
+    <view class="question" bindtap="showQuestion" style="margin-top:{{mh}}vh">
+      {{text}}
+    </view>
+    <view class="text">{{text3}}</view>
+
+  </view>
+  <view class="bottom1">
+    <view class="bottomteststart" bindtap="btnStart">{{text2}}</view>
+    <view class="bottomquit" bindtap="btnQiut">退出</view>
+  </view>
+</view>
+<!--showgamebox2-->
+<view class="{{showgamebox2?'gamebox2_show':'gamebox2_hidden'}}">
+  <view class="head2">
+    <view class="question" bindtap="showQuestion" style="margin-top:{{mh}}vh">
+      {{text}}
+    </view>
+    <view class="hpart1">
+      <view class="timerow">
+        <view class='trow' style='width:{{progressWidth}}%'></view>
+      </view>
+      <view class="second">剩余{{leftsecond}}秒</view>
+    </view>
+  </view>
+  <view class="mainbody">
+    <view class='row' wx:for="{{num}}" wx:for-item="row" wx:key="row-key" wx:for-index="indexrow">
+      <view class="{{(currenta == indexrow*5+index) ? '.active-cell' : '.cell' }}" wx:for="{{num[indexrow]}}"
+        wx:for-item="cell" wx:key="cell-key" bindtap="onTap" data-index="{{index}}" data-row="{{indexrow}}"
+        style="transform: rotate({{jiao[indexrow*5+index]}});">
+        <view class="{{(currentb[indexrow*5+index] == 1) ? '.cell-con-lock' : '.cell-con' }}">
+          {{cell}}
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="buttom2">
+    <view class="{{showView1?'bottomitem1_show':'bottomitem1_hidden'}}" bindtap="btnTryagain">再试一次</view>
+    <view class="{{showView2?'bottomitem2_show':'bottomitem2_hidden'}}" bindtap="btnNext">{{nextlevel}}</view>
+    <view class="{{showView3?'bottomitem3_show':'bottomitem3_hidden'}}" bindtap="btnBack">{{back}}</view>
+  </view>
+</view>
+<!--showhomepage-->
+<view class="{{showhomepage ?'homepage_show':'homepage_hidden'}}" style="height:{{gameHeight-60}}rpx">
+  <view class="head-title">
+    <view class="title-cn">计 划 连 接</view>
+    <view class="title-en">plan to connect</view>
+  </view>
+  <view class="game-show">
+    <swiper indicator-dots="true" autoplay="true" interval="3000" duration="1000" circular="true">
+      <!-- style="height:{{gameHeight/3}}rpx" -->
+      <block wx:for="{{slideImgArr}}" wx:key="*this">
+        <swiper-item>
+          <image class="slide-image" src="{{item}}" mode="heightFix" />
+        </swiper-item>
+      </block>
+    </swiper>
+  </view>
+  <view class="info">
+    <view class="title2">
+      <icon class="info-icon">
+        <image
+          src="cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/Game_ FruitMatch/fruits-1.png">
+        </image>
+      </icon> 游戏介绍
+    </view>
+    <view class="content">
+      向被试呈示一纸，在其上散布其它数字或字母。要求被试把这些字母和（或）数字按顺序连接起来。较简单的型式是只连接数字或字母；更复杂的型式是交替连接数字和字母。
+    </view>
+  </view>
+  <view class="rule">
+    <view class="title2">
+      <icon class="info-icon">
+        <image
+          src="cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/Game_ FruitMatch/fruits-1.png">
+        </image>
+      </icon> 游戏规则
+    </view>
+    <view class="content">在游戏开始前给定连接顺序，开始后在游戏出现字母（A-Z）和数字（0-99），按顺序点击数字或字母。三轮，每轮限定时间100秒。</view>
+  </view>
+  
+  <view class="start" bindtap="btnAS">
+    <van-button round type="primary" block color="#7232dd"> 开始游戏 </van-button>
+  </view>
+</view>

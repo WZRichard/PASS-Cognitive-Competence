@@ -1,0 +1,75 @@
+<!--pages/zicihuiyi/zicihuiyi.wxml-->
+<view class="{{showgamebox?'gamebox_show':'gamebox_hidden'}}">
+  <view class="head">
+    
+    <view class="{{shownumbertoremember?'numbertoremember_show':'numbertoremember_hidden'}}" >{{numrem}}</view>
+    <view class="{{showWords?'word_show':'word_hidden'}}" >{{words}}</view>
+    <view class="{{shownumbertorshow?'numbertorshow_show':'numbertorshow_hidden'}}" style="color:{{numshowcolor}}">{{numshow}}</view>
+  </view>
+  <view class="middle">
+
+    
+    <view  class="{{showtimerow?'timerow_show':'timerow_hidden'}}">
+      <view class='row' style='width:{{progressWidth}}%'></view>
+    </view>
+
+    <input class="{{showInput?'input_show':'input_hidden'}}" type="number" bindinput="inputnum" value='{{inputValue}}' auto-focus ></input>
+
+    
+  </view>
+  
+  <view class="buttom"> 
+    <view class="{{showbtnstart?'btnstart_show':'btnstart_hidden'}}" bindtap="btnStart">开始</view>
+    <view class="{{showbtnback?'btnback_show':'btnback_hidden'}}" bindtap="btnQuit">退出</view>
+    <view class="{{showView?'submit_show':'submit_hidden'}}" bindtap="btnSubmit">提交</view>
+    <view class="{{showView1?'bottomitem1_show':'bottomitem1_hidden'}}" bindtap="btnTryagain">再试一次</view>
+    <view class="{{showView2?'bottomitem2_show':'bottomitem2_hidden'}}" bindtap="btnNext">{{nextlevel}}</view>
+    <view class="{{showView3?'bottomitem3_show':'bottomitem3_hidden'}}" bindtap="btnBack">返回</view>
+  </view>
+  <view class="bottom2">
+    <view class="{{showTip?'tip_show':'tip_hidden'}}" >你已经完成了挑战，继续游玩将不会影响加分</view>
+  </view>
+</view>
+<!--showhomepage-->
+<view class="{{showhomepage ?'homepage_show':'homepage_hidden'}}" style="height:{{gameHeight-60}}rpx">
+  <view class="head-title">
+    <view class="title-cn">数 字 回 忆</view>
+    <view class="title-en">recall number</view>
+  </view>
+  <view class="game-show">
+    <swiper indicator-dots="true" autoplay="true" interval="3000" duration="1000" circular="true">
+      <!-- style="height:{{gameHeight/3}}rpx" -->
+      <block wx:for="{{slideImgArr}}" wx:key="*this">
+        <swiper-item>
+          <image class="slide-image" src="{{item}}" mode="heightFix" />
+        </swiper-item>
+      </block>
+    </swiper>
+  </view>
+  <view class="info">
+    <view class="title2">
+      <icon class="info-icon">
+        <image
+          src="cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/Game_ FruitMatch/fruits-1.png">
+        </image>
+      </icon> 游戏介绍
+    </view>
+    <view class="content">
+      屏幕上会出现一串数字，记住数字，让玩家输入数字。从1个数字开始记忆，每通过一关，就会增加1位数字。一般人只能可靠地记住7位数字。
+    </view>
+  </view>
+  <view class="rule">
+    <view class="title2">
+      <icon class="info-icon">
+        <image
+          src="cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/Game_ FruitMatch/fruits-1.png">
+        </image>
+      </icon> 游戏规则
+    </view>
+    <view class="content">每一关都只有五秒时间记忆，五秒后数字消失，答案提交时间无限制。从1个数字开始记忆，每通过一关，就会增加1个数字。设定为10关。十轮，每轮限定时间5秒。</view>
+  </view>
+  
+  <view class="start" bindtap="btnAS">
+    <van-button round type="primary" block color="#7232dd"> 开始游戏 </van-button>
+  </view>
+</view>
