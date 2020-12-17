@@ -4,7 +4,7 @@
   <image class="background" src="./images/background.jpg" mode="aspectFill"></image>
   <!-- 剩余时间 -->
   <view class="time">
-    <text>{{time}}s</text>
+    <van-progress pivot-text="{{time}}s" color="#FFC0CB" percentage="{{time/1.2}}"></van-progress>
   </view>
   <!-- Question -->
   <view class="Question">

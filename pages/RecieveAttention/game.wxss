@@ -10,14 +10,16 @@
   /* background-color: #CCCCCC; */
   z-index: -1;
 }
-
+.time{
+  margin-top: 10rpx;
+  position: relative;
+}
 .Question {
   margin-top: 10rpx;
   margin-bottom: 60rpx;
   text-align: center;
   transition: 0.5s;
   position: relative;
-  transition: 0.5s;
 
   font-size: 40rpx;
 }

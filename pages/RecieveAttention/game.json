@@ -1,3 +1,5 @@
 {
-  "usingComponents": {}
+  "usingComponents": {
+    "van-progress":"/miniprogram_npm/vant-weapp/progress"
+  }
 }
