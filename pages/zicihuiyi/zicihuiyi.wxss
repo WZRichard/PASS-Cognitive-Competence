@@ -1,4 +1,5 @@
 /* pages/zicihuiyi/zicihuiyi.wxss */
+/*gamebox*/
 .gamebox_show {
   background-color: #546fb8;
   height: 100vh;

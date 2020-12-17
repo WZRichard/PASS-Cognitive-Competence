@@ -66,6 +66,14 @@ Page({
       gameHeight: rate * res.windowHeight,
     })
   },
+  btnQiut:function () {
+    this.setData({
+      showhomepage: true,
+      showgamebox1:false,
+      showgamebox2:false,
+    }),
+    this.resetElement();
+  },
   btnAS: function (e) {
     //当开始游戏按钮被点击时，隐藏视觉搜索介绍
     this.gameStart();
@@ -166,6 +174,7 @@ Page({
       pointer:10,
       progressWidth: 0, //进度100%
       progressTime: 10000,//进度条需要总时间s
+      text:"挑战失败",
      })
      return;
     }
@@ -214,7 +223,6 @@ Page({
       })
     }
   },
-
   btnNext:function(){
     this.setData({
       score:this.data.score+Math.floor(this.data.progressTime/100),
@@ -245,7 +253,6 @@ Page({
       });
     }
   },
-
   btnStart:function(){
     this.setData({
       text:"点击查看提示",
@@ -267,10 +274,12 @@ Page({
     this.setData({
       showgamebox1:true,
       showgamebox2:false,
+      showView2: false,
       text:this.data.question,
       mh:20,
     });
     this.resetElement();
+    this.gameStart();
   },
   resetElement:function () {
     this.setData({
@@ -285,5 +294,4 @@ Page({
       currenta:-1,
     });
   },
-
 })

@@ -84,6 +84,13 @@ Create.prototype = {
         numlist[a]=numlist[b];
         numlist[b]=x;
     }
+    var count = 0;
+    for(var i = 0; i < 10; i++){
+      if(numlist[i]==="")
+        count++;
+    }
+    if(count<5)
+       this.washList(numlist);
     return numlist;
   },
   createAngle(){

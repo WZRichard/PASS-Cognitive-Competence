@@ -68,7 +68,7 @@ Page({
       showhomepage: false,
       mTime: this.data.time * 1000,
       showbtnstart:true,
-      showbtnback:true,
+     // showbtnback:true,
       showgamebox:true,
     })
     this.drawActive();

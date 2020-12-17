@@ -49,6 +49,8 @@
   background-color: rgb(252, 224, 133);
   text-align: center;
   line-height: 40px;
+  margin-left: 20px;
+  margin-right: 20px;
 }
 
 .bottomquit{
@@ -262,6 +264,7 @@
 
 /*homepage*/
 .homepage_show{
+
   height: 100vh;
   position: relative;
   width: 100vw;
