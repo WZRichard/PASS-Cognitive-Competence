@@ -5,19 +5,21 @@
   height: 100%;
   position: fixed;
   top: 0px;
-  /* background-size: 100% 100%; */
-  /* background-size: cover; */
-  /* background-color: #CCCCCC; */
   z-index: -1;
 }
 
+.progress {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
 .title {
+  margin-top: 15px;
   text-align: center;
 }
 
 .title > image {
   height: 60px;
-  margin-top: 15px;
 }
 
 .in_title {
@@ -57,7 +59,7 @@
 
 .Question {
   margin-top: 50px;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
   text-align: center;
   transition: 0.5s;
 
@@ -85,15 +87,15 @@
 }
 
 .img {
-  height: 60px;
+  height: 80px;
   background-color: #eeeeee;
   transition: 0.5s;
 }
 
 .row {
   float: left;
-  width: 60px;
-  height: 60px;
+  width: 80px;
+  height: 80px;
   margin: 5px;
   border: 5px solid #ddd;
   background-color: #ffffff;
@@ -102,4 +104,115 @@
 .grid {
   display: flex;
   justify-content: center;
+}
+
+/* 修改2.0 游戏介绍 */
+.show2 {
+  margin-top: 80px;
+}
+
+.wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+
+}
+
+._img {
+  height:200px;
+}
+
+.game-info {
+  margin-left: 2%;
+  margin-right: 2%;
+}
+
+.head-title {
+  margin: 10px 0 0 10px;
+}
+
+.title-cn {
+  font-size: 50rpx;
+}
+
+.title-en {
+  font-size: 30rpx;
+  color: rgb(100, 100, 100);
+}
+
+.title2>image {
+  height: 25px;
+  width: 25px;
+  vertical-align: middle;
+}
+
+.title2 {
+  margin-top: 50rpx;
+  font-size: 35rpx;
+  height: 35rpx;
+  line-height: 35rpx;
+  font-weight: bold;
+}
+
+.info-icon {
+  display: flex;
+  align-content: center;
+}
+
+.swiper {
+  height: 200px;
+}
+
+.swiper-item {
+  height: 200px;
+}
+
+.swiper-item>view {
+  display: flex;
+  justify-content: center;
+}
+
+.swiper-image {
+  height: 200px;
+}
+
+.content {
+  margin: 10px 30px 0 30px;
+  font-size: 30rpx;
+  line-height: 45rpx;
+}
+
+.start {
+  width: 96%;
+  margin-bottom: 12px;
+
+  position: absolute;
+  bottom: 0px;
+}
+
+.start>van-button {
+  border-radius: 100rpx;
+}
+
+.helper {
+  position: absolute;
+  right: 30px;
+  top: 23px;
+}
+
+.helper1 {
+  text-align: right;
+  line-height: 25px;
+  font-size: 15px;
+  margin: 10px 10px;
+  color: rgb(63, 167, 32);
+}
+
+.helper2 {
+  margin-top: -25px;
+  text-align: center;
+  color: rgb(63, 167, 32);
+  font-size: 18px;
+  line-height: 40px;
 }

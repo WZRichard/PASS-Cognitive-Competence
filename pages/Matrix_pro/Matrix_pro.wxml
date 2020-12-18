@@ -2,7 +2,7 @@
 <view class="_container">
   <!-- 背景图 -->
   <image class="background"
-    src="cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/Background-1.jpg"
+    src="cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/Game_Martix/Background-1.jpg"
     mode="aspectFill"></image>
 
   <!-- Vant -->
@@ -18,7 +18,7 @@
   <view class="title">
     <view>
       <image class="title_image"
-        src="cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/Matrix-Title.png"></image>
+        src="cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/Game_Martix/Matrix-Title.png"></image>
     </view>
     <view hidden="{{round==0?false:true}}">
       <view class="in_title_begin in_title_begin_F">

@@ -75,6 +75,12 @@
           "pathName": "pages/Matrix_pro/Matrix_pro",
           "query": "",
           "scene": null
+        },
+        {
+          "name": "_FruitMatch",
+          "pathName": "pages/_ FruitMatch/_ FruitMatch",
+          "query": "",
+          "scene": null
         }
       ]
     }

@@ -1,12 +1,10 @@
 // pages/FruitMatch/FruitMatch.js
+import Toast from '../../miniprogram/miniprogram_npm/@vant/weapp/toast/toast/';
+
 Page({
   // 待填返回函数
-  tap_back: function () {
-    console.log("back");
-  },
-
   return_score: function () {
-    var score = 0, round = this.data.round-1;
+    var score = 0, round = this.data.round - 1;
     if (round < 2) {
       score = round * 0.75;
     } else if (round < 4) {
@@ -26,18 +24,24 @@ Page({
    */
   data: {
     cnt_row: 2, //行数（2或3）
-    round: 1, //一共8轮
+    round: 0, //一共8轮(初始化为0)
     difficulty: [2, 2, 3, 3, 4, 4, 5, 6], //关卡困难程度（有几种水果）
     row: [], //随机水果图片集
-    src: ['./data/apple.png', './data/banana.png', './data/grape.png', './data/pear.png', './data/strawberry.png', './data/watermelon.png'],
-    answer: './data/apple.png', //随即答案src
+    src: ['1', '2', '3', '4', '5', '6'],
+    answer: '1', //随即答案
     img_hidden: [[0, 0, 0], [0, 0, 0], [0, 0, 0]], //是否显示
     img_hidden_before: [], //保证所有水果都有被展示
-    opacity_Q: 0,
-    opacity_B: false,
-    timer: '',
+    question_begin: 0, //题目是否开始作答
+    overlay_show: false, //answer是否显示
+    timer: '', //计时器
     countDownNum: '10', //倒计时初始值(单位s)
     score: 0, //获得分数
+    cnt_image_loading: 0, //水果图片加载完毕后开始显示
+    slideImgArr: ['cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/Game_ FruitMatch/fruit2-1.png', 'cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/Game_ FruitMatch/fruit2-2.png', 'cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/Game_ FruitMatch/fruit2-3.png',], //游戏介绍界面图库
+    startGame: false, //是否开始游戏
+    popup_show: false, //帮助是否显示
+    helper_content: '方框中隐藏着不同的水果\n请尽可能多的记住它们', //帮助内容
+    helper_state: 0, //帮助状态
   },
 
   /**
@@ -45,27 +49,42 @@ Page({
    */
 
   set_row: function () {
+    let cnt_row = this.data.cnt_row == 2 && this.data.round == 2 ? this.data.cnt_row + 1 : this.data.cnt_row;
     var new_row = [['', '', ''], ['', '', ''], ['', '', '']];
     var cnt = 0, row, col;
     while (cnt < this.data.difficulty[this.data.round - 1]) {
-      row = this.getRadom_int(this.data.cnt_row, 0);
-      col = this.getRadom_int(this.data.cnt_row, 0);
+      row = this.getRadom_int(cnt_row, 0);
+      col = this.getRadom_int(cnt_row, 0);
       if (new_row[row][col] == '') {
         new_row[row][col] = this.data.src[cnt];
         cnt++;
       }
     }
-    while (cnt < this.data.cnt_row * this.data.cnt_row) {
-      row = this.getRadom_int(this.data.cnt_row, 0);
-      col = this.getRadom_int(this.data.cnt_row, 0);
+    console.log(this.data.round);
+    console.log(this.data.difficulty[this.data.round - 1]);
+    console.log("===" + new_row);
+    while (cnt < cnt_row * cnt_row) {
+      row = this.getRadom_int(cnt_row, 0);
+      col = this.getRadom_int(cnt_row, 0);
       if (new_row[row][col] == '') {
         new_row[row][col] = this.data.src[this.getRadom_int(this.data.difficulty[this.data.round - 1], 0)];
         cnt++;
       }
     }
 
+    // 返回未被修改的图片数量
+    let cnt_image_loading = this.data.cnt_image_loading;
+    let old_row = this.data.row;
+    for (let i = 0; i < this.data.row.length && i < cnt_row; i++) {
+      for (let j = 0; j < this.data.row[0].length && j < cnt_row; j++) {
+        if (old_row[i][j] === new_row[i][j]) {
+          cnt_image_loading++;
+        }
+      }
+    }
     this.setData({
       row: new_row,
+      cnt_image_loading: cnt_image_loading,
     })
   },
 
@@ -80,80 +99,80 @@ Page({
       round: this.data.round + 1, //一共8轮
       img_hidden: [[0, 0, 0], [0, 0, 0], [0, 0, 0]], //是否显示
       img_hidden_before: [], //保证所有水果都有被展示
-      opacity_Q: 0,
+      question_begin: 0,
       countDownNum: '10',
     })
 
     this.set_row();
-
-    this.begin();
   },
 
   tap_image: function (e) {
-    if (!this.data.opacity_Q) {
+    if (!this.data.question_begin) {
       return;
     }
 
     clearInterval(this.data.timer);
-    if (this.data.row[e.currentTarget.dataset.row][e.currentTarget.dataset.index] == this.data.answer) {
-      if (this.data.round == 8) {
+    if (this.data.helper_state > 0) {
+      if (this.data.row[e.currentTarget.dataset.row][e.currentTarget.dataset.index] == this.data.answer) {
         this.setData({
-          round: this.data.round + 1,
-        })
-        this.reset_all();
-        wx.showToast({
-          title: '恭喜您通关了！',
-          icon: 'none',
-          duration: 2000,
+          popup_show: true,
+          helper_state: 4,
+          helper_content: '恭喜您答对了\n继续您的挑战吧',
         })
       } else {
+        this.setData({
+          popup_show: true,
+          helper_state: 5,
+          helper_content: '抱歉答案错误\n再接再厉吧',
+        })
+      }
+    } else if (this.data.row[e.currentTarget.dataset.row][e.currentTarget.dataset.index] == this.data.answer) {
+      if (this.data.round == 8) {
         wx.showToast({
-          title: '正确 恭喜您！',
+          title: '恭喜您通关了',
           icon: 'none',
           duration: 2000,
         })
+
+        this.reset_all();
+      } else {
+        wx.showToast({
+          title: '正确 恭喜您',
+          icon: 'none',
+          duration: 2000,
+        })
+
         this.next_round();
       }
     } else {
+      Toast.fail('选错啦');
       this.reset_all();
-
-      var that = this;
-      wx.showModal({
-        title: '选错啦',
-        confirmText: '再来一次',
-        cancelText: '返回',
-        success(res) {
-          // if (res.confirm) {
-          //   console.log('用户点击确定')
-          // } else 
-          if (res.cancel) {
-            that.tap_back();
-          }
-        }
-      })
     }
   },
 
   reset_all: function () {
-    this.return_score();
+    if (this.data.help_next == 0) {
+      this.return_score();
+    }
 
     this.setData({
       cnt_row: 2, //行数（2或3）
-      round: 1, //一共8轮
+      round: 0, //一共8轮
       img_hidden: [[0, 0, 0], [0, 0, 0], [0, 0, 0]], //是否显示
       img_hidden_before: [], //保证所有水果都有被展示
-      opacity_Q: 0,
-      opacity_B: false,
+      question_begin: 0,
       countDownNum: '10',
+      startGame: 0,
+      helper_state: 0,
     })
-
-    this.set_row();
   },
 
-  random_hidden_show: function (isround2) {
+  random_show: function (isround2) {
     var pa = this.data.img_hidden, pb = this.data.img_hidden_before;
     var pc = [], cnt = 0;
 
+    // console.log("="+pa);
+    //取相反的值
     if (pb.length > 0) {
       for (let i = 0; i < pb.length; i++) {
         for (let j = 0; j < pb[0].length; j++) {
@@ -169,12 +188,13 @@ Page({
     for (; cnt < Math.pow(this.data.cnt_row, 2) / 2; cnt++) {
       while (true) {
         var pb = [this.getRadom_int(this.data.cnt_row, 0), this.getRadom_int(this.data.cnt_row, 0)], j;
+        //已经存在的话就不放入
         for (j = 0; j < pc.length; j++) {
-          if (pc[j][0] == pb[0] && pc[j][1] == pb[1]) {
+          if (pc[j][0] === pb[0] && pc[j][1] === pb[1]) {
             break;
           }
         }
-        if (j == pc.length) {
+        if (j === pc.length) {
           pc.push(pb);
           break;
         }
@@ -182,6 +202,7 @@ Page({
       pa[pc[cnt][0]][pc[cnt][1]] = 1;
     }
 
+    // console.log("=="+pa);
     var copy = [];
     if (!isround2) {
       copy = JSON.parse(JSON.stringify(pa));
@@ -193,9 +214,9 @@ Page({
   },
 
   hide_all: function () {
-    var pa = this.data.img_hidden;
-    for (let i = 0; i < this.data.cnt_row; i++) {
-      for (let j = 0; j < this.data.cnt_row; j++) {
+    let pa = this.data.img_hidden;
+    for (let i = 0; i < pa.length; i++) {
+      for (let j = 0; j < pa[0].length; j++) {
         pa[i][j] = 0;
       }
     }
@@ -205,65 +226,176 @@ Page({
     })
   },
 
-  begin: function () {
-    let that = this;
-    setTimeout(() => that.random_hidden_show(false), 1000);
-    setTimeout(() => that.hide_all(), 4000);
-    setTimeout(() => that.random_hidden_show(true), 5000);
-    setTimeout(() => that.hide_all(), 8000);
-    setTimeout(() => that.random_hidden_show(false), 9000);
-    setTimeout(() => that.hide_all(), 12000);
-    setTimeout(() => that.setData({
-      answer: that.data.row[that.getRadom_int(that.data.cnt_row, 0)][that.getRadom_int(that.data.cnt_row, 0)],
-      opacity_Q: 1,
+  image_loaded: function (e) {
+    var cnt_image_loading = this.data.cnt_image_loading + 1;
+    let round = this.data.round;
+
+    // console.log("="+cnt_image_loading);
+    if (round == 0) {
+      this.setData({
+        cnt_image_loading: 0,
+      })
+    } else if (cnt_image_loading == (round < 3 ? 4 : 9)) {
+      // console.log("loaded");
+      if (this.data.helper_state == 0) {
+        this.animation();
+      }
+      this.setData({
+        cnt_image_loading: 0,
+      })
+    } else {
+      this.setData({
+        cnt_image_loading: cnt_image_loading,
+      })
+    }
+  },
+
+  animation: function () {
+    let answer = this.data.row[this.getRadom_int(this.data.cnt_row, 0)][this.getRadom_int(this.data.cnt_row, 0)];
+
+    setTimeout(() => this.random_show(false), 1000);
+    setTimeout(() => this.hide_all(), 4000);
+    setTimeout(() => this.random_show(true), 5000);
+    setTimeout(() => this.hide_all(), 8000);
+    setTimeout(() => this.random_show(false), 9000);
+    setTimeout(() => this.hide_all(), 12000);
+    setTimeout(() => this.setData({
+      answer: answer,
+      question_begin: 1,
     }), 12500);
-    setTimeout(() => that.countDown(), 12500);
+    setTimeout(() => this.onClickShow(), 12500);
+    setTimeout(() => this.onClickHide(), 15500);
+    setTimeout(() => this.countDown(), 15500);
+
     clearTimeout();
   },
 
-  tap_button: function (e) {
-    this.setData({
-      opacity_B: true,
-    })
-    this.begin();
-  },
   /**
    * 计时器
    */
   countDown: function () {
     let that = this;
-    let countDownNum = that.data.countDownNum;//获取倒计时初始值
-    //如果将定时器设置在外面，那么用户就看不到countDownNum的数值动态变化，所以要把定时器存进data里面
-    that.data.timer = setInterval(function () {//这里把setInterval赋值给变量名为timer的变量
-      //在倒计时还未到0时，这中间可以做其他的事情，按项目需求来
-      if (countDownNum == 0) {
+    let countDownNum = that.data.countDownNum;
+    that.data.timer = setInterval(function () {
+      if (countDownNum <= 0) {
         clearInterval(that.data.timer);
-        //这里特别要注意，计时器是始终一直在走的，如果你的时间为0，那么就要关掉定时器！不然相当耗性能
-        //因为timer是存在data里面的，所以在关掉时，也要在data里取出后再关闭
-        // clearInterval(that.data.timer);
-        //关闭定时器之后，可作其他处理codes go here
-        wx.showToast({
-          title: '时间到！',
-          duration: 2000,
-          icon: 'none',
-        })
-        that.reset_all();
+        // console.log("over");
+        Toast.fail('时间到');
+        this.set_row();
       } else {
-        //每隔一秒countDownNum就减一，实现同步
-        countDownNum--;
-        //然后把countDownNum存进data，好让用户知道时间在倒计着
+        countDownNum = countDownNum - 0.05;
         that.setData({
           countDownNum: countDownNum,
         })
       }
-    }, 1000)
+    }, 50)
+  },
+
+  // 修改2.0
+  onClickShow() {
+    this.setData({ overlay_show: true });
+  },
+
+  onClickHide() {
+    this.setData({ overlay_show: false });
+  },
+
+  noop() { },
+
+  start: function (e) {
+    //当开始游戏按钮被点击时，隐藏视觉搜索介绍
+    this.setData({
+      round: 1,
+      cnt_row: 2,
+      startGame: true,
+    })
+    this.set_row();
+  },
+
+  helper: function () {
+    this.setData({
+      popup_show: true,
+      startGame: true,
+      helper_content: '方框中隐藏着不同的水果\n请尽可能多的记住它们',
+      helper_state: 1,
+
+      round: 1,
+      cnt_row: 2,
+    });
+
+    this.set_row();
+  },
+
+  help_next: function () {
+    let state = this.data.helper_state;
+    switch (state) {
+      case 1: {
+        this.setData({
+          popup_show: false,
+          helper_state: 2,
+        })
+        setTimeout(() => this.random_show(false), 1000);
+        setTimeout(() => this.hide_all(), 4000);
+        setTimeout(() => this.random_show(true), 5000);
+        setTimeout(() => this.hide_all(), 8000);
+        setTimeout(() => this.random_show(false), 9000);
+        setTimeout(() => this.hide_all(), 12000);
+        setTimeout(() => this.setData({
+          popup_show: true,
+          helper_content: '记住接下来展示的水果',
+        }), 12500);
+        clearTimeout();
+        break;
+      }
+      case 2: {
+        let answer = this.data.row[this.getRadom_int(this.data.cnt_row, 0)][this.getRadom_int(this.data.cnt_row, 0)];
+
+        this.setData({
+          popup_show: false,
+          answer: answer,
+          question_begin: 1,
+          helper_state: 3,
+        })
+        setTimeout(() => this.onClickShow(), 500);
+        setTimeout(() => this.onClickHide(), 3500);
+        setTimeout(() => this.setData({
+          popup_show: true,
+          helper_content: '在方框中找出一个相同的水果\n注意不要超时咯',
+        }), 3500);
+        clearTimeout();
+        break;
+      }
+      case 3: {
+        this.setData({
+          popup_show: false,
+        })
+        this.countDown()
+        break;
+      }
+      case 4: {
+        this.setData({
+          popup_show: false,
+          helper_state: -1,
+        })
+
+        this.next_round();
+        break;
+      }
+      case 5: {
+        this.setData({
+          popup_show: false,
+        })
+        this.reset_all();
+        break;
+      }
+    }
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.set_row();
+
   },
 
   /**
