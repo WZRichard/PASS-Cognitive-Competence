@@ -97,7 +97,7 @@ Create.prototype = {
     var que=[];
     for(var i = 0; i < this.size*this.size; i++){
       var ag = Math.floor(Math.random()*360);
-      que.push(ag+"deg");
+      que.push(ag);
     }
     return que;
   },

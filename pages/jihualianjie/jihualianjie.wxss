@@ -1,7 +1,49 @@
 /* pages/2048/2048.wxss */
+.bgimg1 {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  background-size: 100% 100%;
+  z-index: -1;
+}
+.bgimg2 {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  background-size: 100% 100%;
+  z-index: -1;
+  opacity: 0.8;
+  -webkit-filter:blur(3px);
+  -moz-filter:blur(3px);
+  -o-filter:blur(3px);
+  -ms-filter:blur(3px);
+  filter:blur(3px);
+}
+
+.tapbg{
+  width: 15vw;
+  height: 15vw;
+  position: fixed;
+  background-size: 100% 100%;
+  z-index: -1;
+  margin-top: -1.5vw;
+  margin-left: -1.5vw;
+}
+.tapbgno{
+  display: none;
+}
+.btnimg {
+  height: 90px;
+  width: 120px;
+  position: fixed;
+  background-size: 100% 100%;
+  z-index: -1;
+  border-radius: 10px;
+  filter: drop-shadow(15px 15px 5px #000000);
+}
+
 /*gamebox1 */
 .gamebox1_show {
-  background-color: #546fb8;
   height: 100vh;
   position: relative;
   width: 100vw;
@@ -35,39 +77,25 @@
   line-height: 40px;
   font-size: 30px;
 }
-
 .text{
-  margin-top: 20vh;
+  margin-top: 50px;
   color: #ffffff;
 }
 .bottomteststart {
-  font-weight: bold;
-  font-size: 20px;
-  border-radius: 10px;
-  height: 40px;
+  height: 90px;
   width: 120px;
-  background-color: rgb(252, 224, 133);
-  text-align: center;
-  line-height: 40px;
   margin-left: 20px;
   margin-right: 20px;
 }
 
 .bottomquit{
-  font-weight: bold;
-  font-size: 20px;
-  border-radius: 10px;
-  height: 40px;
+  height: 90px;
   width: 120px;
-  background-color: rgb(252, 224, 133);
-  text-align: center;
-  line-height: 40px;
   margin-left: 20px;
   margin-right: 20px;
 }
 /* gamebox2  */
 .gamebox2_show {
-  background-color: #546fb8;
   height: 100vh;
   width: 100vw;
   display: flex;
@@ -90,8 +118,8 @@
 .mainbody{
   height: 60vh;
   width: 90vw;
-  border: 2px solid #ffffff;
-  border-radius: 10px;
+  border: 3px solid #588fa5;
+  border-radius: 20px;
 }
 .buttom2 {
   display: flex;
@@ -147,9 +175,6 @@
 /* 矩阵部分*/
 
 .active-cell {
-  border: solid;
-  border-width: 1vw;
-  border-color: #aebe4d;
   width: 12vw;
   height: 12vw;
   margin-left: 3vw;
@@ -157,14 +182,12 @@
   margin-bottom: 3vw;
   margin-top: 3vw;
   float: left;
-  border-radius: 6vw;
+  border-radius: 12vw;
   box-sizing: border-box;
-  background: rgba(160, 68, 52, 0.7);
-  overflow: hidden;
+  color: #b32953;
 }
 
 .cell {
-  border: 1vw solid #546fb8;
   width: 12vw;
   height: 12vw;
   margin-left: 3vw;
@@ -172,36 +195,32 @@
   margin-bottom: 3vw;
   margin-top: 3vw;
   float: left;
-  border-radius: 6vw;
+  border-radius: 12vw;
   box-sizing: border-box;
-  background: #546fb8;
-  overflow: hidden;
+  color: #ffffff;
 }
 
 .cell-con {
-  width: 10vw;
-  height: 10vw;
-  line-height: 10vw;
+  width: 12vw;
+  height: 12vw;
+  line-height: 12vw;
   position: absolute;
-  font-size: 30px;
+  font-size: 26px;
   font-weight: bold;
   text-align: center;
-  overflow: hidden;
-  border-radius: 5vw;
-
+  border-radius: 12vw;
 }
 
 .cell-con-lock {
-  width: 10vw;
-  height: 10vw;
-  line-height: 10vw;
+  width: 12vw;
+  height: 12vw;
+  line-height: 12vw;
   position: absolute;
-  font-size: 30px;
+  font-size: 26px;
   font-weight: bold;
   text-align: center;
-  background: #189661;
-  overflow: hidden;
-  border-radius: 5vw;
+  border-radius: 12vw;
+  color: #92e678;
 }
 
 /*按钮部分*/
@@ -212,17 +231,10 @@
 }
 
 .bottomitem1_show {
-  font-weight: bold;
-  font-size: 20px;
-  border-radius: 10px;
-  height: 40px;
-  width: 100px;
-  background-color: rgb(252, 224, 133);
-  text-align: center;
-  line-height: 40px;
+  height: 90px;
+  width: 120px;
   margin-left: 20px;
   margin-right: 20px;
-  margin-top: 10px;
 }
 
 .bottomitem2_hidden {
@@ -230,17 +242,10 @@
 }
 
 .bottomitem2_show {
-  font-weight: bold;
-  font-size: 20px;
-  border-radius: 10px;
-  height: 40px;
-  width: 100px;
-  background-color: rgb(252, 224, 133);
-  text-align: center;
-  line-height: 40px;
+  height: 90px;
+  width: 120px;
   margin-left: 20px;
   margin-right: 20px;
-  margin-top: 10px;
 }
 
 .bottomitem3_hidden {
@@ -248,17 +253,10 @@
 }
 
 .bottomitem3_show {
-  font-weight: bold;
-  font-size: 20px;
-  border-radius: 10px;
-  height: 40px;
-  width: 100px;
-  background-color: rgb(252, 224, 133);
-  text-align: center;
-  line-height: 40px;
+  height: 90px;
+  width: 120px;
   margin-left: 20px;
   margin-right: 20px;
-  margin-top: 10px;
 }
 
 

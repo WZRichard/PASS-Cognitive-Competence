@@ -11,6 +11,7 @@ Page({
     numshow:"",
     input:"",
     inputValue:"",
+    marlt:0,
 
     mainbg:'cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/Game_RecallNumber/rnbg1.JPG',
 
@@ -26,8 +27,10 @@ Page({
     showWords:false,//提示的显示
     showTip:false,//游戏关卡大于10之后的显示
 
+    countdown:5,
     progressWidth:0,
-    progressTime:5,
+    progressTime:0,
+    jiao:30,
 
     numshowcolor:"#ffffff",
     score:0,//分数
@@ -208,7 +211,7 @@ Page({
     return str;
   },
   run: function (){//时间进度条
-   let totalProgressTime = 5;
+   let totalProgressTime = this.data.countdown;
    let progressWidth = this.data.progressWidth; //显示进度
    let progressTime = this.data.progressTime; //时间
   
@@ -220,7 +223,7 @@ Page({
       showInput: true,
      progressTime: totalProgressTime,  //进度条需要总时间s
      progressWidth: 0, //进度100%
-     progressTime: 5,
+     progressTime: this.data.countdown,
      showtimerow:false,
     })
     if(this.data.level>10){
@@ -231,10 +234,11 @@ Page({
     return;
    }
    progressTime--;
-   progressWidth = (totalProgressTime - progressTime) * (1 / 5)
+   progressWidth = (totalProgressTime - progressTime) * (1 / this.data.countdown)
    this.setData({
     progressWidth: progressWidth,
-    progressTime: progressTime
+    progressTime: progressTime,
+    marlt:progressWidth*1.5-5,
    })
   },
   showviewHidden:function() {

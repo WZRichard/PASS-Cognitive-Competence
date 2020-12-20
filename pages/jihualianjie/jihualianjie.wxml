@@ -1,6 +1,9 @@
 <!--pages/jihualianjie/jihualianjie.wxml-->
 <!--showgamebox1-->
 <view class="{{showgamebox1?'gamebox1_show':'gamebox1_hidden'}}">
+  <image class="bgimg1"
+    src="cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/Game_PlantoConnect/ptcbg1.jpg"
+    mode="aspectFill"></image>
   <view class="head">
     <view class="question" bindtap="showQuestion" style="margin-top:{{mh}}vh">
       {{text}}
@@ -9,12 +12,23 @@
 
   </view>
   <view class="bottom1">
-    <view class="bottomteststart" bindtap="btnStart">{{text2}}</view>
-    <view class="bottomquit" bindtap="btnQiut">退出</view>
+    <view class="bottomteststart" bindtap="btnStart">
+      <image class="btnimg"
+        src="cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/Game_PlantoConnect/buttonstart.png"
+        mode="aspectFill"></image>
+    </view>
+    <view class="bottomquit" bindtap="btnQiut">
+      <image class="btnimg"
+        src="cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/Game_PlantoConnect/buttonquit.png"
+        mode="aspectFill"></image>
+    </view>
   </view>
 </view>
 <!--showgamebox2-->
 <view class="{{showgamebox2?'gamebox2_show':'gamebox2_hidden'}}">
+  <image class="bgimg2"
+    src="cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/Game_PlantoConnect/ptcbg1.jpg"
+    mode="aspectFill"></image>
   <view class="head2">
     <view class="question" bindtap="showQuestion" style="margin-top:{{mh}}vh">
       {{text}}
@@ -30,7 +44,10 @@
     <view class='row' wx:for="{{num}}" wx:for-item="row" wx:key="row-key" wx:for-index="indexrow">
       <view class="{{(currenta == indexrow*5+index) ? '.active-cell' : '.cell' }}" wx:for="{{num[indexrow]}}"
         wx:for-item="cell" wx:key="cell-key" bindtap="onTap" data-index="{{index}}" data-row="{{indexrow}}"
-        style="transform: rotate({{jiao[indexrow*5+index]}});">
+        style="transform:rotate({{jiao[indexrow*5+index]}}deg)">
+        <image class="{{(currenta==indexrow*5+index||currentb[indexrow*5+index] == 1) ? '.tapbg' : '.tapbgno' }}"
+          src="cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/Game_PlantoConnect/tap1.png"
+          mode="aspectFill"></image>
         <view class="{{(currentb[indexrow*5+index] == 1) ? '.cell-con-lock' : '.cell-con' }}">
           {{cell}}
         </view>
@@ -38,9 +55,21 @@
     </view>
   </view>
   <view class="buttom2">
-    <view class="{{showView1?'bottomitem1_show':'bottomitem1_hidden'}}" bindtap="btnTryagain">再试一次</view>
-    <view class="{{showView2?'bottomitem2_show':'bottomitem2_hidden'}}" bindtap="btnNext">{{nextlevel}}</view>
-    <view class="{{showView3?'bottomitem3_show':'bottomitem3_hidden'}}" bindtap="btnBack">{{back}}</view>
+    <view class="{{showView1?'bottomitem1_show':'bottomitem1_hidden'}}" bindtap="btnTryagain">
+      <image class="btnimg"
+        src="cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/Game_PlantoConnect/buttontryagain.png"
+        mode="aspectFill"></image>
+    </view>
+    <view class="{{showView2?'bottomitem2_show':'bottomitem2_hidden'}}" bindtap="btnNext">
+      <image class="btnimg"
+        src="cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/Game_PlantoConnect/buttonnextlevel.png"
+        mode="aspectFill"></image>
+    </view>
+    <view class="{{showView3?'bottomitem3_show':'bottomitem3_hidden'}}" bindtap="btnBack">
+      <image class="btnimg"
+        src="cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/Game_PlantoConnect/buttonback.png"
+        mode="aspectFill"></image>
+    </view>
   </view>
 </view>
 <!--showhomepage-->
@@ -81,7 +110,7 @@
     </view>
     <view class="content">在游戏开始前给定连接顺序，开始后在游戏出现字母（A-Z）和数字（0-99），按顺序点击数字或字母。三轮，每轮限定时间100秒。</view>
   </view>
-  
+
   <view class="start" bindtap="btnAS">
     <van-button round type="primary" block color="#7232dd"> 开始游戏 </van-button>
   </view>

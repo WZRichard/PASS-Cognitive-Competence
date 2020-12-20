@@ -3,24 +3,35 @@
 .bgimg {
   width: 100%;
   height: 100%;
-  position:fixed; 
-  background-size:100% 100%;
+  position: fixed;
+  background-size: 100% 100%;
   z-index: -1;
   margin-top: 0px;
 }
-.btnimg{
-  display: bl;
+
+.btnimg {
   height: 120px;
   width: 90px;
-  position:fixed; 
-  background-size:100% 100%;
+  position: fixed;
+  background-size: 100% 100%;
   z-index: -1;
   border-radius: 10px;
   filter: drop-shadow(15px 15px 15px #000000);
 }
-.onload{
+
+.progressimg {
+  width: 20px;
+  height: 20px;
+  position: fixed;
+  background-size: 100% 100%;
+  margin-top: -10px;
+  transform: rotate(10deg);
+}
+
+.onload {
   display: none;
 }
+
 /*gamebox*/
 
 .gamebox_show {
@@ -33,40 +44,47 @@
   justify-content: space-between;
   box-sizing: border-box;
 }
-.gamebox_hidden{
+
+.gamebox_hidden {
   display: none;
 }
-.head{
+
+.head {
   width: 100vw;
   height: 27vh;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-.middle{
+
+.middle {
   width: 100vw;
   height: 23vh;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-.buttom{
+
+.buttom {
   display: flex;
   height: 20vh;
   width: max-content;
   align-items: center;
 }
-.bottom2{
+
+.bottom2 {
   flex-direction: column;
   display: flex;
   height: 20vh;
   width: 100vh;
   align-items: center;
 }
-.btnstart_hidden{
+
+.btnstart_hidden {
   display: none;
 }
-.btnstart_show{
+
+.btnstart_show {
   margin-top: 40px;
   font-weight: bold;
   font-size: 20px;
@@ -79,10 +97,12 @@
   margin-left: 20px;
   margin-right: 20px;
 }
-.btnback_hidden{
+
+.btnback_hidden {
   display: none;
 }
-.btnback_show{
+
+.btnback_show {
   margin-top: 40px;
   font-weight: bold;
   font-size: 20px;
@@ -95,9 +115,11 @@
   margin-left: 20px;
   margin-right: 20px;
 }
-.numbertoremember_hidden{
-  display:none;
+
+.numbertoremember_hidden {
+  display: none;
 }
+
 .numbertoremember_show {
   margin-top: 15vh;
   height: 60px;
@@ -106,9 +128,11 @@
   color: #ffffff;
   align-items: center;
 }
-.numbertorshow_hidden{
+
+.numbertorshow_hidden {
   display: none;
 }
+
 .numbertorshow_show {
   margin-top: 30px;
   height: 60px;
@@ -117,24 +141,28 @@
   color: #ffffff;
   align-items: center;
 }
-.word_hidden{
+
+.word_hidden {
   display: none;
 }
-.word_show{
+
+.word_show {
   margin-top: 10px;
   height: 20px;
   width: max-content;
   line-height: 20px;
   text-align: center;
   font-size: 18px;
-  color:white;
+  color: white;
 }
-.timerow_hidden{
+
+.timerow_hidden {
   display: none;
 }
+
 .timerow_show {
   border-radius: 6px;
-  border:1px solid #ffffff;
+  border: 1px solid #ffffff;
   margin-top: 50px;
   height: 6px;
   width: 150px;
@@ -142,13 +170,16 @@
   overflow: hidden;
   font-size: 40px;
 }
-.row{
-  height:100%;
-  background-color:#ffffff;
+
+.row {
+  height: 100%;
+  background-color: #ffffff;
 }
+
 .input_hidden {
   display: none;
 }
+
 .input_show {
   border: 5px;
   margin-top: 26px;
@@ -160,9 +191,11 @@
   text-align: center;
   color: #ffffff;
 }
+
 .submit_hidden {
   display: none;
 }
+
 .submit_show {
   margin-left: 20px;
   margin-right: 20px;
@@ -171,52 +204,59 @@
   width: 90px;
 }
 
-.bottomitem1_hidden{
+.bottomitem1_hidden {
   display: none;
 }
-.bottomitem1_show{
+
+.bottomitem1_show {
   margin-left: 20px;
   margin-right: 20px;
   margin-top: 40px;
   height: 120px;
   width: 90px;
 }
-.bottomitem2_hidden{
+
+.bottomitem2_hidden {
   display: none;
 }
-.bottomitem2_show{
+
+.bottomitem2_show {
   margin-left: 20px;
   margin-right: 20px;
   margin-top: 40px;
   height: 120px;
   width: 90px;
 }
-.bottomitem3_hidden{
+
+.bottomitem3_hidden {
   display: none;
 }
-.bottomitem3_show{
+
+.bottomitem3_show {
   margin-left: 20px;
   margin-right: 20px;
   margin-top: 40px;
   height: 120px;
   width: 90px;
 }
-.tip_show{
+
+.tip_show {
   margin-top: 30px;
   height: 20px;
   width: max-content;
   line-height: 20px;
   text-align: center;
   font-size: 12px;
-  color:white;
+  color: white;
 }
-.tip_hidden{
+
+.tip_hidden {
   display: none;
 }
 
 
 /*homepage*/
-.homepage_show{
+.homepage_show {
   height: 100vh;
   position: relative;
   width: 100vw;
@@ -227,11 +267,11 @@
   box-sizing: border-box;
 }
 
-.homepage_hidden{
+.homepage_hidden {
   display: none;
 }
 
-.game-show{
+.game-show {
   width: 70vw;
 }
 
@@ -239,18 +279,22 @@
   padding: 30rpx;
 }
 
-.head-title{
+.head-title {
   align-items: center;
 }
-.info{
+
+.info {
   width: 90vw;
 }
-.rule{
+
+.rule {
   width: 90vw;
 }
+
 .title-cn {
   font-size: 40rpx;
 }
+
 .title-en {
   font-size: 30rpx;
   color: rgb(100, 100, 100);
