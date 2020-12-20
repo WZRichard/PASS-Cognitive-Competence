@@ -1,37 +1,39 @@
 <!--pages/zicihuiyi/zicihuiyi.wxml-->
-<view class="{{showgamebox?'gamebox_show':'gamebox_hidden'}}">
-  <view class="head">
-    
-    <view class="{{shownumbertoremember?'numbertoremember_show':'numbertoremember_hidden'}}" >{{numrem}}</view>
-    <view class="{{showWords?'word_show':'word_hidden'}}" >{{words}}</view>
-    <view class="{{shownumbertorshow?'numbertorshow_show':'numbertorshow_hidden'}}" style="color:{{numshowcolor}}">{{numshow}}</view>
-  </view>
-  <view class="middle">
 
+<view class="{{showgamebox?'gamebox_show':'gamebox_hidden'}}">
+    <image class="bgimg" src="{{mainbg}}" mode="aspectFill"></image>
+    <view class="head">
+      <view class="{{shownumbertoremember?'numbertoremember_show':'numbertoremember_hidden'}}" >{{numrem}}</view>
+      <view class="{{showWords?'word_show':'word_hidden'}}" >{{words}}</view>
+      <view class="{{shownumbertorshow?'numbertorshow_show':'numbertorshow_hidden'}}" style="color:{{numshowcolor}}">{{numshow}}</view>
+    </view>
+    <view class="middle">
     
     <view  class="{{showtimerow?'timerow_show':'timerow_hidden'}}">
       <view class='row' style='width:{{progressWidth}}%'></view>
     </view>
 
     <input class="{{showInput?'input_show':'input_hidden'}}" type="number" bindinput="inputnum" value='{{inputValue}}' auto-focus ></input>
-
-    
   </view>
   
   <view class="buttom"> 
-    <view class="{{showbtnstart?'btnstart_show':'btnstart_hidden'}}" bindtap="btnStart">开始</view>
-    <view class="{{showbtnback?'btnback_show':'btnback_hidden'}}" bindtap="btnQuit">退出</view>
-    <view class="{{showView?'submit_show':'submit_hidden'}}" bindtap="btnSubmit">提交</view>
-    <view class="{{showView1?'bottomitem1_show':'bottomitem1_hidden'}}" bindtap="btnTryagain">再试一次</view>
-    <view class="{{showView2?'bottomitem2_show':'bottomitem2_hidden'}}" bindtap="btnNext">{{nextlevel}}</view>
-    <view class="{{showView3?'bottomitem3_show':'bottomitem3_hidden'}}" bindtap="btnBack">返回</view>
+    <view class="{{showView?'submit_show':'submit_hidden'}}" bindtap="btnSubmit"><image class="btnimg" src="cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/Game_RecallNumber/buttonsubmit.png" mode="aspectFill"></image>
+    </view>
+    <view class="{{showView1?'bottomitem1_show':'bottomitem1_hidden'}}" bindtap="btnTryagain"><image class="btnimg" src="cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/Game_RecallNumber/buttontryagain.png" mode="aspectFill"></image>
+    </view>
+    <view class="{{showView2?'bottomitem2_show':'bottomitem2_hidden'}}" bindtap="btnNext"><image class="btnimg" src="cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/Game_RecallNumber/buttonnextlevel.png" mode="aspectFill"></image>
+    </view>
+    <view class="{{showView3?'bottomitem3_show':'bottomitem3_hidden'}}" bindtap="btnBack"><image class="btnimg" src="cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/Game_RecallNumber/buttonback.png" mode="aspectFill"></image>
+    </view>
   </view>
   <view class="bottom2">
     <view class="{{showTip?'tip_show':'tip_hidden'}}" >你已经完成了挑战，继续游玩将不会影响加分</view>
   </view>
+  <image class="onload" src="cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/Game_RecallNumber/rnbg2.jpg"></image>
+  <image class="onload" src="cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/Game_RecallNumber/rnbg3.jpg"></image>
 </view>
 <!--showhomepage-->
-<view class="{{showhomepage ?'homepage_show':'homepage_hidden'}}" style="height:{{gameHeight-60}}rpx">
+<view class="{{showgamebox ?'homepage_hidden':'homepage_show'}}" style="height:{{gameHeight-60}}rpx">
   <view class="head-title">
     <view class="title-cn">数 字 回 忆</view>
     <view class="title-en">recall number</view>

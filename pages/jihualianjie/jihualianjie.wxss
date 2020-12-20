@@ -330,7 +330,7 @@
 
 .start {
   height: 40px;
-  width: 120px;
+  width: 80vw;
   line-height: 40px;
   font-size: 35rpx;
   text-align: center;

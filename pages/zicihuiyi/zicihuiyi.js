@@ -5,19 +5,18 @@ Page({
    * 页面的初始数据
    */
   data: {
-    number:"",
-    words:"",
-    numrem:"字词回忆",
+    number:"",//需要记忆的数字
+    words:"输入刚刚出现的数字",
+    numrem:"字词回忆",//数字显示
     numshow:"",
     input:"",
-    nextlevel:"下一关",
+    inputValue:"",
 
-    showhomepage:true,
-    showgamebox:false,
-    showbtnstart:false,//开始按钮的显示
-    showbtnback:false,
-    shownumbertoremember:true,//记忆数字的显示
-    shownumbertorshow:false,//输入数字的显示
+    mainbg:'cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/Game_RecallNumber/rnbg1.JPG',
+
+    showgamebox:false,//主界面和游戏界面的切换
+    shownumbertoremember:false,//记忆数字的显示
+    shownumbertorshow:false,//输入数字判断对错的显示
     showtimerow:false,//时间进度条的显示
     showInput:false,//输入框的显示
     showView: false,//提交按钮的显示
@@ -25,7 +24,7 @@ Page({
     showView2: false,//下一关按钮的显示
     showView3: false,//返回按钮的显示
     showWords:false,//提示的显示
-    showTip:false,
+    showTip:false,//游戏关卡大于10之后的显示
 
     progressWidth:0,
     progressTime:5,
@@ -65,13 +64,19 @@ Page({
   btnAS: function (e) {
     //当开始游戏按钮被点击时，隐藏视觉搜索介绍
     this.setData({
-      showhomepage: false,
       mTime: this.data.time * 1000,
-      showbtnstart:true,
      // showbtnback:true,
       showgamebox:true,
     })
     this.drawActive();
+    this.Initialize();
+    this.gemeStrat();
+    this.setData({
+      active:true,
+      shownumbertoremember:true,
+      shownumbertorshow:true,
+      showtimerow:true,
+    });
   },
   drawActive: function () {
     //设置定时器，一百毫秒执行一次
@@ -107,15 +112,18 @@ Page({
   btnBack:function(){//返回按钮
     this.showviewHidden();
     this.setData({
-      showbtnstart:true,
-      showbtnback:true,
+      //showbtnstart:true,
+      //showbtnback:true,
       numrem:"字词回忆",
       showTip:false,
-      progressTime: 5,
+      showgamebox:false,
     });
   },
 
   gemeStrat:function(){//某个关卡游戏开始
+    this.setData({
+      showtimerow:true,
+    })
     this.generateNumber();
     this.timer = setInterval(this.run, 10); //that.timer关键点
   },
@@ -127,61 +135,49 @@ Page({
       score:0,
     });
   },
-  btnStart:function(){//开始按钮
-    this.Initialize();
-    this.gemeStrat();
-    this.setData({
-      active:true,
-      showbtnstart:false,
-      shownumbertoremember:true,
-      shownumbertorshow:true,
-      showtimerow:true,
-      showbtnback:false,
-    });
-  },
+  //btnStart:function(){},//游戏内的开始按钮已经废弃
   btnSubmit:function(){//提交按钮
     this.setData({
       numrem: this.data.number,
-      inputValue:"",
       showWords:false,
       showView:false,
       showInput:false,
     });
-    if(this.data.number==this.data.input){
+    if(this.data.number===this.data.input){//输入正确
       if(this.data.level>=10){
         this.setData({
-          nextlevel:"继续",
           showTip:true,
         })
       }
-        this.setData({
+        this.setData({//答案字体为绿色
+        mainbg:'cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/Game_RecallNumber/rnbg2.jpg',
         showView2: true, 
         numshowcolor:"#00ff00",
         numshow: this.data.input,
         score:this.data.level*10,
       });
-    }else{
-      this.setData({
+    }else{//输入不正确
+      this.setData({//答案字体为红色
+        mainbg:'cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/Game_RecallNumber/rnbg3.jpg',
         showView1: true,
         numshowcolor:"#ff0000",
         numshow: this.data.input,
         showView3: true,
+        // 待补充   返回分数
       })
     }
   },
   btnNext:function(){//下一关按钮
     this.showviewHidden();
-    this.setData({
-      showtimerow:true,
-      progressTime: 5,
-    })
     this.data.level++; 
     this.gemeStrat();
+    this.setData({
+      mainbg:'cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/Game_RecallNumber/rnbg1.JPG',
+    });
   },
   btnTryagain:function(){//再试一次按钮
     this.setData({
       showTip:false,
-      showbtnstart:false,
       shownumbertoremember:true,
       shownumbertorshow:true,
       showtimerow:true,
@@ -219,15 +215,13 @@ Page({
    if (progressWidth === 100) {
     clearInterval(this.timer);
     this.setData({
-      second: "",
-      showWords:(true),
-      words: "输入刚刚出现的数字",
+      showWords:true,
       numrem:"",
       showInput: true,
      progressTime: totalProgressTime,  //进度条需要总时间s
      progressWidth: 0, //进度100%
      progressTime: 5,
-     showtimerow:(false),
+     showtimerow:false,
     })
     if(this.data.level>10){
       this.setData({
@@ -252,11 +246,11 @@ Page({
       numrem:"",
       numshow:"",
       input:"",
+      inputValue:"",
       showView:false,
       showView1:false,
       showView2:false,
       showView3:false, 
-      progressTime: 5,
     })
   },
 })
