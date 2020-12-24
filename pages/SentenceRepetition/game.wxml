@@ -1,0 +1,66 @@
+<!--pages/Matrix_pro/Matrix_pro.wxml-->
+<view class="game">
+  <van-toast id="van-toast" />
+  <van-dialog id="van-dialog" />
+  <!-- 背景图 -->
+  <image class="background"
+    src="cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/Game_RecieveAttention/background.jpg">
+  </image>
+  <!-- 剩余时间 -->
+  <view class="time" style="position:fixed; top:10;width: 750rpx;">
+    <van-progress pivot-text=" " color="#FFC0CB" percentage="{{time/0.1}}"></van-progress>
+    <image class="progressimg"
+      src="cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/Game_SentenceRepetition/progress.png"
+      mode="aspectFill" style="margin-left:{{75*time-20}}rpx"></image>
+  </view>
+  <!-- Title -->
+  <view class="in_title_text">
+    <van-divider contentPosition="center"
+      customStyle="color: #DEB887; border-color: #DEB887; font-size: 18px; font-weight: bold; margin-bottom:-5px">
+      第{{round}}关</van-divider>
+  </view>
+  <view class="model">
+    <view class="Question">
+      <view>
+        <text style="color:red">{{question}}</text>
+      </view>
+      <view>
+        <text>{{finalColor}}</text>
+      </view>
+      <view>
+        <van-icon name="down" size="20px" />
+        <text>请在下方的选项中选择一个正确选项</text>
+        <van-icon name="down" size="20px" />
+      </view>
+    </view>
+
+    <!-- Selection -->
+    <view class="Selection">
+      <van-button round type="{{selector==0?'warning':'info'}}" class="button" bindtap="select" data-selection="0"
+        style="border-color: {{selector==0?'rgb(255, 61, 3)':'rgb(221, 221, 221)'}}"><text class="selector">A
+          {{selectA}}色</text>
+      </van-button>
+
+      <van-button round type="{{selector==1?'warning':'info'}}" class="button" bindtap="select" data-selection="1"
+        style="border-color: {{selector==1?'rgb(255, 61, 3)':'rgb(221, 221, 221)'}}"><text class="selector">B
+          {{selectB}}色</text>
+      </van-button>
+
+      <van-button round type="{{selector==2?'warning':'info'}}" class="button" bindtap="select" data-selection="2"
+        style="border-color: {{selector==2?'rgb(255, 61, 3)':'rgb(221, 221, 221)'}}"><text class="selector">C
+          {{selectC}}色</text>
+      </van-button>
+
+      <van-button round type="{{selector==3?'warning':'info'}}" class="button" bindtap="select" data-selection="3"
+        style="border-color: {{selector==3?'rgb(255, 61, 3)':'rgb(221, 221, 221)'}}"><text class="selector">D
+          {{selectD}}色</text>
+      </van-button>
+    </view>
+
+    <!-- 确认 -->
+    <view>
+      <van-button plain disabled="{{selector===-1?true:false}}" icon="coupon-o" type="primary" bindtap="comfirm" block
+        class="confirm">确认</van-button>
+    </view>
+  </view>
+</view>

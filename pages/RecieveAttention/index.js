@@ -5,7 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    slideImgArr: ['cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/Game_RecieveAttention/help-1.png', 'cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/Game_RecieveAttention/help-2.png',], //游戏介绍界面图库
   },
 
   /**

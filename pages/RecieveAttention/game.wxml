@@ -1,10 +1,12 @@
 <!--pages/RecieveAttention/game.wxml-->
 <view class="game">
   <!-- 背景图 -->
-  <image class="background" src="./images/background.jpg" mode="aspectFill"></image>
+  <image class="background" src="cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/Game_RecieveAttention/background.jpg" mode="aspectFill"></image>
   <!-- 剩余时间 -->
-  <view class="time">
-    <van-progress pivot-text="{{time}}s" color="#FFC0CB" percentage="{{time/1.2}}"></van-progress>
+  <view class="time"style="position:fixed; top:10;width: 750rpx;">
+    <van-progress pivot-text=" " color="#FFC0CB" percentage="{{time/1.2}}"></van-progress>
+    <image class="progressimg"
+        src="cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/Game_RecieveAttention/progress.png" mode="aspectFill" style="margin-left:{{6.25*time-20}}rpx"></image>
   </view>
   <!-- Question -->
   <view class="Question">

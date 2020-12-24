@@ -18,5 +18,6 @@
   "homepage": "https://github.com/ABaLiLi/PASS-Model#readme",
   "dependencies": {
     "vant-weapp": "^0.5.29"
-  }
+  },
+  "devDependencies": {}
 }

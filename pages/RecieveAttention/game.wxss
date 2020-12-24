@@ -10,17 +10,21 @@
   /* background-color: #CCCCCC; */
   z-index: -1;
 }
-.time{
-  margin-top: 10rpx;
-  position: relative;
+
+.progressimg {
+  width: 40rpx;
+  height: 40rpx;
+  position: fixed;
+  margin-top: -30rpx;
+  transform: rotate(6deg);
 }
+
 .Question {
-  margin-top: 10rpx;
-  margin-bottom: 60rpx;
+  margin-top: 75rpx;
+  margin-bottom: 40rpx;
   text-align: center;
   transition: 0.5s;
   position: relative;
-
   font-size: 40rpx;
 }
 

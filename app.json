@@ -7,7 +7,9 @@
     "pages/me/index",
     "pages/performance/index",
     "pages/RecieveAttention/index",
-    "pages/RecieveAttention/game"
+    "pages/RecieveAttention/game",
+    "pages/SentenceRepetition/index",
+    "pages/SentenceRepetition/game"
   ],
   "window": {
     "backgroundTextStyle": "light",

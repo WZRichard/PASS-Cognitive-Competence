@@ -64,9 +64,9 @@ Page({
     var i = e.currentTarget.dataset.row;
     var j = e.currentTarget.dataset.index;
     let p = 'picture[' + i + '][' + j + ']';
-    if (this.data.picture[i][j] === './images/perfect.png') {
+    if (this.data.picture[i][j] === 'cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/Game_RecieveAttention/perfect.png') {
       this.setData({
-        [p]: './images/destroy.png'
+        [p]: 'cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/Game_RecieveAttention/destroy.png'
       });
       audio.play();
       if (this.data.answer[i][j] === 1) {
@@ -80,7 +80,7 @@ Page({
       }
     } else {
       this.setData({
-        [p]: './images/perfect.png'
+        [p]: 'cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/Game_RecieveAttention/perfect.png'
       });
       if (this.data.answer[i][j] === 1) {
         this.setData({
@@ -96,7 +96,7 @@ Page({
   /**
    * 点击提交事件
    */
-  tap_over:function(e){
+  tap_over: function (e) {
     this.gameOver();
   },
   /**
@@ -174,7 +174,7 @@ Page({
    * 设置一个定时器
    */
   countInterval: function () {
-    // 设置倒计时 定时器 每100毫秒执行一次，计数器count+1 ,耗时120秒绘一圈
+    // 设置倒计时 定时器 每1000毫秒执行一次，计数器count+1 ,共120秒
     this.timer = setInterval(() => {
       if (this.data.timerCount >= 120) {
         this.gameOver();
@@ -198,9 +198,9 @@ Page({
     console.log("正确的总数：" + this.data.totalRight);
     console.log("做对：" + this.data.rightCount);
     console.log("做错：" + this.data.wrongCount);
-    var score = (this.data.rightCount-this.data.wrongCount)/this.data.totalRight*((120+this.data.time)/120)*10
-    // if (score<2) score=2;
-    // if (score>10) score=10;
+    var score = (this.data.rightCount - this.data.wrongCount) / this.data.totalRight * ((120 + this.data.time) / 120) * 10
+    if (score<2) score=2;
+    if (score>10) score=10;
     console.log("分数：" + score);
     clearInterval(this.timer);
   },
@@ -225,7 +225,7 @@ Page({
       []
     ]
     while (i < 36) {
-      newPicture[i] = ['./images/perfect.png', './images/perfect.png', './images/perfect.png', './images/perfect.png', './images/perfect.png'];
+      newPicture[i] = ['cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/Game_RecieveAttention/perfect.png', 'cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/Game_RecieveAttention/perfect.png', 'cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/Game_RecieveAttention/perfect.png', 'cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/Game_RecieveAttention/perfect.png', 'cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/Game_RecieveAttention/perfect.png'];
       i++;
     }
     this.setData({

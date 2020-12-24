@@ -1,0 +1,10 @@
+{
+  "usingComponents": {
+    "van-dialog": "/miniprogram_npm/vant-weapp/dialog",
+    "van-toast": "/miniprogram_npm/vant-weapp/toast",
+    "van-progress": "/miniprogram_npm/vant-weapp/progress",
+    "van-icon": "/miniprogram_npm/vant-weapp/icon",
+    "van-divider":"/miniprogram_npm/vant-weapp/divider",
+    "van-button": "/miniprogram_npm/vant-weapp/button"
+  }
+}

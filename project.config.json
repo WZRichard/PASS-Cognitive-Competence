@@ -28,14 +28,14 @@
       "disablePlugins": [],
       "outputPath": ""
     },
-    "enableEngineNative": false,
     "bundle": false,
     "useIsolateContext": true,
     "useCompilerModule": true,
     "userConfirmedUseCompilerModuleSwitch": false,
-    "userConfirmedBundleSwitch": false,
     "packNpmManually": false,
     "packNpmRelationList": [],
+    "enableEngineNative": false,
+    "userConfirmedBundleSwitch": false,
     "minifyWXSS": true
   },
   "compileType": "miniprogram",
@@ -62,15 +62,15 @@
     "miniprogram": {
       "list": [
         {
-          "name": "接收注意",
-          "pathName": "pages/RecieveAttention/game",
+          "id": -1,
+          "name": "pages/SentenceRepetition/index",
+          "pathName": "pages/SentenceRepetition/index",
           "query": "",
           "scene": null
         },
         {
           "name": "pages/RecieveAttention/index",
           "pathName": "pages/RecieveAttention/index",
-          "query": "",
           "scene": null
         }
       ]
