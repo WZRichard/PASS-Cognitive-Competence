@@ -1,11 +1,11 @@
+
+<image class="bgimg" src="cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/images/wallpaper/test-wp.png" mode="aspectFill"></image>
 <view class="container">
-  <view class="pass-text">
-  <text>欢迎来到PASS脑力世界！</text>
+  <view class="test-btn">
+    <image class="btnimg"
+src="cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/images/button/start-test.png"
+mode="aspectFill"></image>
   </view>
-  <view class="pass-icon">
-  <image src="cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/pass_pic/pass_pic/brain4.PNG"></image>
-  </view>
-  <button class="test-btn">首次测验</button>
 </view>
 
 

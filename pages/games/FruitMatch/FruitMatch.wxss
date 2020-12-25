@@ -1,0 +1,207 @@
+/* pages/FruitMatch/FruitMatch.wxss */
+
+
+.progress {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.title {
+  margin-top: 15px;
+  text-align: center;
+}
+
+.title > image {
+  height: 60px;
+}
+
+.in_title {
+  position: absolute;
+  left: 25%;
+  top: 13%;
+
+  transition: 0.2s;
+}
+
+.in_title_text {
+  width: 163px;
+  padding: 5px;
+  border-radius: 10rem;
+  text-align: center;
+
+  font-size: 20px;
+}
+
+.in_title_button1 {
+  width: 100px;
+  margin-left: 45px;
+  z-index: 10;
+  margin-top: 50px;
+  background-color: antiquewhite;
+  border-radius: 10rem;
+}
+
+.in_title_button2 {
+  width: 100px;
+  margin-left: 45px;
+  z-index: 10;
+  margin-top: 20px;
+  background-color: antiquewhite;
+  border-radius: 10rem;
+}
+
+.Question {
+  margin-top: 50px;
+  margin-bottom: 20px;
+  text-align: center;
+  transition: 0.5s;
+
+  position: relative;
+  top: 5px;
+  transition: 0.5s;
+}
+
+
+.Question > view {
+  width: 60%;
+  padding: 5px;
+  margin: 5px auto;
+  border-radius: 10rem;
+  background-color: rgb(236, 236, 236);
+  text-align: center;
+}
+
+.Question > view > text {
+  font-size: 20px;
+}
+
+.img_Question {
+  border: 5px solid #ddd;
+}
+
+.img {
+  height: 80px;
+  background-color: #eeeeee;
+  transition: 0.5s;
+}
+
+.row {
+  float: left;
+  width: 80px;
+  height: 80px;
+  margin: 5px;
+  border: 5px solid #ddd;
+  background-color: #ffffff;
+}
+
+.grid {
+  display: flex;
+  justify-content: center;
+}
+
+/* 修改2.0 游戏介绍 */
+.show2 {
+  margin-top: 80px;
+}
+
+.wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+
+}
+
+._img {
+  height:200px;
+}
+
+.game-info {
+  padding: 30rpx;
+}
+
+.head-title {
+ text-align: center;
+ align-content: center;
+}
+
+.title-cn {
+  font-size: 40rpx;
+}
+
+.title-en {
+  font-size: 30rpx;
+  color: rgb(100, 100, 100);
+}
+
+
+
+
+
+.swiper {
+  height: 200px;
+}
+
+.swiper-item {
+  height: 200px;
+}
+
+.swiper-item>view {
+  display: flex;
+  justify-content: center;
+}
+
+.swiper-image {
+  height: 200px;
+}
+
+
+
+.info-icon image{
+  height: 35rpx;
+  width: 35rpx;
+}
+.title2{
+  margin-top: 30rpx;
+  font-size: 35rpx;
+  height: 35rpx;
+  line-height: 35rpx;
+}
+.content{
+  margin-top: 50rpx;
+  font-size: 30rpx;
+  line-height: 45rpx;
+  color: rgb(146, 15, 145)4;
+}
+.start{
+  height: 80rpx;
+  line-height: 80rpx;
+  font-size: 35rpx;
+  text-align: center;
+  margin: 18rpx 10rpx;
+  background-color: #c93c42;
+  color: white;
+  font-weight: 200;
+  border-radius: 100rpx;
+}
+.helper {
+  position: absolute;
+  right: 30px;
+  top: 23px;
+}
+
+.helper1 {
+  text-align: right;
+  line-height: 25px;
+  font-size: 15px;
+  margin: 10px 10px;
+  color: rgb(63, 167, 32);
+}
+
+.helper2 {
+  margin-top: -25px;
+  text-align: center;
+  color: rgb(63, 167, 32);
+  font-size: 18px;
+  line-height: 40px;
+}

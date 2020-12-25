@@ -1,4 +1,5 @@
 // pages/level/index.js
+const app = getApp()
 Page({
 
   /**
@@ -14,9 +15,28 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    var that = this
+    this.setData({
+      userInfo: app.globalData.userInfo,
+    }),
+    wx.getStorage({
+      key: "childAge",
+      success: function(e){
+        that.setData({
+          childAge: e.data
+        })
+      }
+    }),
+    wx.getStorage({
+      key: "childSex",
+      success: function(e){
+        that.setData({
+          childSex: e.data
+        })
+      },
+    })
 
   },
-
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

@@ -1,0 +1,13 @@
+{
+  "usingComponents": {
+    "van-dialog": "/miniprogram/miniprogram_npm/@vant/weapp/dialog/index",
+    "van-toast": "/miniprogram/miniprogram_npm/@vant/weapp/toast/index",
+    "van-progress": "/miniprogram/miniprogram_npm/@vant/weapp/progress/index",
+    "van-icon": "/miniprogram/miniprogram_npm/@vant/weapp/icon/index",
+    "van-divider":"/miniprogram/miniprogram_npm/@vant/weapp/divider/index",
+    "van-button": "/miniprogram/miniprogram_npm/@vant/weapp/button/index"
+  },
+  "navigationBarTitleText": "句子问题",
+  "navigationBarTextStyle": "white",
+  "navigationBarBackgroundColor": "#c93c42"
+}

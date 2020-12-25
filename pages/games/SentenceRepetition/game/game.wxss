@@ -1,0 +1,87 @@
+
+
+.bgimg1 {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  background-size: 100% 100%;
+  z-index: -1;
+  /* opacity: 0.8; */
+  /* -webkit-filter:blur(1px);
+  -moz-filter:blur(1px);
+  -o-filter:blur(1px);
+  -ms-filter:blur(1px);
+  filter:blur(1px); */
+
+}
+.progressimg {
+  width: 40rpx;
+  height: 40rpx;
+  position: fixed;
+  margin-top: -30rpx;
+  transform: rotate(6deg);
+}
+
+.in_title_text {
+  margin-top: 100rpx;
+}
+
+.model{
+    width: 100%;
+    height: 100%;
+    position:fixed;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+.time{
+  position:fixed; 
+  top:30rpx;
+  width: 750rpx;
+}
+.model>view{
+  margin-top:50rpx;
+}
+.Question {
+  transition: all 1.2s;
+}
+
+.Question>view{
+  margin-top: 50rpx;
+  display: flex;
+  justify-content: center;
+  font-size: 36rpx;
+  font-weight: bold;
+  flex-wrap: wrap;
+}
+.Selection{
+  display: flex;
+  /* flex-direction是用来控制里面的内容时水平呈现还是垂直呈现*/
+  flex-direction: row;
+  /* flex-wrap是用来控制能否换行，必须设置为能换行 */
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.button {
+  margin: 15rpx 18rpx 15rpx 18rpx;
+  border-radius: 10rem;
+  border: 4rpx solid ;
+  display: flex;
+  width: 40%;
+
+}
+
+.selector{
+  font-size: 36rpx;
+  font-weight: bold;
+}
+
+.comfirm {
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+}

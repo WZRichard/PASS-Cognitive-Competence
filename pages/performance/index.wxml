@@ -1,17 +1,22 @@
-<!--pages/performance/index.wxml-->
-<!-- <scroll-view class="scroll-wrapper" scroll-x scroll-with-animation="true" scroll-into-view="item{{currentTab < 4 ? 0 : currentTab - 3}}">
-	<view class="navigate-item" id="item{{index}}" wx:for="{{passList}}" wx:key="index" data-index="{{index}}" bindtap="handleClick">
-		<view class="names {{currentTab === index ? 'active' : ''}}">{{item.name}}</view>
-		<view class="currtline {{currentTab === index ? 'active' : ''}}"></view>
-	</view>
-</scroll-view> -->
-
-<!-- <swiper indicator-dots="{{false}}" bindchange="handleSwiper" current="{{currentTab}}">
-	
-</swiper> -->
-
 <view class="chart-container">
-  <ec-canvas id="mychart-dom-bar" canvas-id="mychart-bar" ec="{{ ec1 }}" ></ec-canvas>
-  <view class="line"></view>
-  <ec-canvas id="mychart-dom-bar" canvas-id="mychart-bar" ec="{{ ec2 }}" ></ec-canvas>
+<view class="btn" bindtap="powerDrawer" data-statu="open">PASS等级说明</view>  
+<view class="drawer_screen" bindtap="powerDrawer" data-statu="close" wx:if="{{showModalStatus}}">
+</view>  
+<!--content-->  
+<!--使用animation属性指定需要执行的动画-->  
+<view animation="{{animationData}}" class="drawer_box" wx:if="{{showModalStatus}}">  
+  <!--drawer content-->
+  <view class="drawer_content">
+    <image src="{{imgSrc}}"></image>
+  </view>
+</view> 
+<view class="title"><text>最新数据</text></view>
+	<view class="spirit">
+		<ec-canvas id="mychart-dom-bar" canvas-id="mychart-bar" ec="{{ ec1 }}" ></ec-canvas>
+	</view>
+	<view class="title"><text>PASS雷达</text></view>
+  <view class="radar">
+		<ec-canvas id="mychart-dom-bar" canvas-id="mychart-bar" ec="{{ ec2 }}" ></ec-canvas>
+	</view>
+ 
 </view>

@@ -1,4 +1,5 @@
 <!--pages/me/index.wxml-->
+
 <view class="header-box">
   <view class="user-box">
     <view class="avatar"><image src="{{userInfo.avatarUrl}}" mode="cover"></image></view>

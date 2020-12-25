@@ -2,7 +2,7 @@
 <view class="container">
   <view class="message">
     <!-- app图片需要上传云端 -->
-    <image class="image" src="cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/pass_pic/pass_pic/brain4.PNG"></image>
+    <image class="image" src="cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/images/logo/msg-logo.png"></image>
       <view class="texttips">
         <text class="tips"> 3.小朋友是否接触过认知模型？</text>
         <view class="select"> 

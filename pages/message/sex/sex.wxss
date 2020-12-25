@@ -40,7 +40,7 @@
 .button_select .back {
   margin-right: 50rpx;
   width: 200rpx;
-  background-color: #E06663;
+  background-color: #c93c42;
   color: white;
   font-size: small;
   font-weight: 400;
@@ -48,7 +48,7 @@
 }
 .button_select .next {
   width: 200rpx;
-  background-color: #E06663;
+  background-color: #c93c42;
   color: white;
   font-size: small;
   font-weight: 400;

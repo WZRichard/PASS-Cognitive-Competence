@@ -16,11 +16,19 @@
     "pages/about/index",
     "pages/feedback/index",
     "pages/level/index",
-    "pages/introduction/index",
-    "pages/article/article",
     "pages/setting/index",
-    "pages/temp/index",
-    "pages/temp2/index"
+    "pages/games/zicihuiyi/zicihuiyi",
+    "pages/games/jihualianjie/jihualianjie",
+    "pages/games/colorDiscrimination/index",
+    "pages/games/visualSearch/index",
+    "pages/games/Matrix_pro/Matrix_pro",
+    "pages/games/FruitMatch/FruitMatch",
+    "pages/games/_ FruitMatch/_ FruitMatch",
+    "pages/games/SentenceRepetition/index",
+    "pages/games/RecieveAttention/index",
+    "pages/games/RecieveAttention/game/game",
+    "pages/games/SentenceRepetition/game/game"
+    
 
   ],
   "window":{
@@ -30,34 +38,34 @@
     "navigationBarTextStyle":"black"
   },
   "tabBar": {
-    "color": "#707070",
-    "selectedColor": "#E06663",
+    "color": "#000000",
+    "selectedColor": "#172451",
     "borderStyle": "black",
     "backgroundColor": "#ffffff",
     "list": [
       {
         "pagePath": "pages/training/index",
         "text": "测验",
-        "iconPath": "pic/bar_icon/test.png",
-        "selectedIconPath": "pic/bar_icon/test_chosen.png"
+        "iconPath": "/tabbar/test.png",
+        "selectedIconPath": "/tabbar/test-chosen.png"
       },
       {
         "pagePath": "pages/performance/index",
         "text": "表现",
-        "iconPath": "pic/bar_icon/performance.png",
-        "selectedIconPath": "pic/bar_icon/performance_chosen.png"
+        "iconPath": "/tabbar/performance.png",
+        "selectedIconPath": "/tabbar/performance-chosen.png"
       },
       {
         "pagePath": "pages/games/index",
         "text": "游戏",
-        "iconPath": "pic/bar_icon/game.png",
-        "selectedIconPath": "pic/bar_icon/game_chosen.png"
+        "iconPath": "/tabbar/game-chosen.png",
+        "selectedIconPath": "/tabbar/game.png"
       },
       {
         "pagePath": "pages/me/index",
         "text": "我的",
-        "iconPath": "pic/bar_icon/me.png",
-        "selectedIconPath": "pic/bar_icon/me_chosen.png"
+        "iconPath": "/tabbar/me.png",
+        "selectedIconPath": "/tabbar/me-chosen.png"
       }
      
     ]

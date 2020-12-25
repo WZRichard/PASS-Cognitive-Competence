@@ -1,0 +1,103 @@
+<!--pages/FruitMatch/FruitMatch.wxml-->
+
+
+<van-toast id="van-toast" />
+
+<!-- helper -->
+<van-popup show="{{ popup_show }}" bind:close="onClose" position="bottom" custom-style="height: 30%;">
+  <view class="helper1" bindtap="help_next">
+    下一步
+    <van-icon name="play-circle-o" size="20px" style="vertical-align: middle;" />
+  </view>
+  <view class="helper2">
+    <text>
+      {{helper_content}}
+    </text>
+  </view>
+</van-popup>
+
+<!-- 前置 -->
+<view class="game-info" hidden="{{startGame}}">
+  <view class="helper" bindtap="helper">
+    <van-icon name="question-o" size="30px" color="#c93c42" />
+  </view>
+  <!-- title -->
+  <view class="head-title">
+    <view class="title-cn">水 果 配 对</view>
+    <view class="title-en">Fruit Match</view>
+  </view>
+  <view>
+    <swiper class="swiper" indicator-dots="true" autoplay="true" interval="3000" duration="1000" circular="true">
+      <!-- style="height:{{gameHeight/3}}rpx" -->
+      <block wx:for="{{slideImgArr}}" wx:key="*this">
+        <swiper-item class="swiper-item">
+          <view>
+            <image class="swiper-image" src="{{item}}" mode="heightFix" />
+          </view>
+        </swiper-item>
+      </block>
+    </swiper>
+  </view>
+  <view class="info">
+    <view class="title2">
+      <icon class="info-icon"><image src="cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/images/tabbar/game.png"></image></icon>  游戏介绍
+    </view>
+    <view class="content">
+      n*n的格子中随机会显示图案，给定3轮记忆，每轮随机翻出一半的格子，给3秒记忆时间；记忆结束后，屏幕出现5秒需要选择的图案，并在此时间内点击对应图案的任意一个格子。
+    </view>
+  </view>
+
+  <view class="rule">
+    <view class="title2">
+      <icon class="info-icon"><image src="cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/images/tabbar/game.png"></image></icon> 游戏规则
+    </view>
+    <view class="content">选出正确的图案即为通关。共有八关，前两关为2*2的格子，后六关为3*3的格子。每轮限定时间10秒。</view>
+  </view>
+  <view class="start" bindtap="start">开始游戏</view>
+
+</view>
+
+
+<!-- 游戏内容 -->
+<view class="_container" hidden="{{!startGame}}">
+
+  <!-- 倒计时 -->
+  <view class="progress" style="opacity: {{question_begin}};">
+    <van-progress percentage="{{countDownNum*100.0/10}}" color="#00FA9A" pivot-text="倒计时" show-pivot="false" />
+  </view>
+
+  <!-- 遮罩层 -->
+  <van-overlay show="{{ overlay_show }}">
+    <view class="wrapper">
+      <view>
+        <image class="_img"
+          src="cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/Game_ FruitMatch/fruits-{{answer}}.png"
+          mode="heightFix"></image>
+      </view>
+    </view>
+  </van-overlay>
+
+  <!-- Title -->
+  <view class="title">
+    <image
+      src="cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/Game_ FruitMatch/title.png"
+      mode="heightFix"></image>
+  </view>
+
+  <van-divider contentPosition="center"
+    customStyle="color: #DEB887; border-color: #DEB887; font-size: 18px; font-weight: bold; margin-bottom:-5px">
+    第{{round}}关</van-divider>
+
+  <!-- n*n的格子 -->
+  <view class="show2">
+    <view class="grid" wx:for="{{cnt_row}}" wx:key="idx" wx:for-index="idx">
+      <view class="row" wx:for="{{row[idx]}}" wx:key="index" bindtap="tap_image" data-index="{{index}}"
+        data-row="{{idx}}" wx:if="{{index < cnt_row}}">
+        <image class="img"
+          src="cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/Game_ FruitMatch/fruits-{{item}}.png"
+          mode="heightFix" style="opacity: {{img_hidden[idx][index]}};" bindload="image_loaded"></image>
+      </view>
+    </view>
+  </view>
+
+</view>

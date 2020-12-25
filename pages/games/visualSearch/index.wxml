@@ -1,0 +1,55 @@
+  <!--index.wxml-->
+  <view class="search-info" hidden="{{startGame}}" style="height:{{gameHeight-60}}rpx">
+    <view class="head-title">
+      <view class="title-cn">视 觉 搜 索</view>
+      <view class="title-en">visual search</view>
+    </view>
+    <view class="game-show">
+      <swiper indicator-dots="{{indicatorDots}}"
+        autoplay="{{autoplay}}" interval="{{interval}}" 
+        duration="{{duration}}" circular="{{circular}}" style="height:{{gameHeight/3}}rpx">
+        <block wx:for="{{slideImgArr}}" wx:key="*this">
+          <swiper-item>
+            <image class="slide-image" src="/images/{{item}}.png" mode="aspectFit"/>
+          </swiper-item>
+        </block>
+      </swiper>
+    </view>
+    <view class="info">
+      <view class="title2">
+        <icon class="info-icon"><image src="cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/images/tabbar/game.png"></image></icon>  游戏介绍
+      </view>
+      <view class="content">
+        向被试呈示一纸，纸上有标准刺激（如数字或字母），在其四周散布其它数字或字母。要被试通过视觉搜索，在散布的数字或字母中找到隐藏其中的与标准刺激相同的目标刺激。
+      </view>
+    </view>
+
+    <view class="rule">
+      <view class="title2">
+        <icon class="info-icon"><image src="cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/images/tabbar/game.png"></image></icon>  游戏规则</view>
+      <view class="content">给出标准刺激：1个字母（a-z）和1个数字（0-100）。找出所有标准刺激。做3轮。依次为4x4、5x5、6x6格子。每轮限定时间100秒。</view>
+    </view>
+    <view class="start" bindtap="start">开始游戏</view>
+  </view>
+
+  <view hidden="{{!startGame}}" class="search-game" style="height:{{gameHeight}}rpx">
+    <image class="bgimg" src="cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/images/tabbar/game.png" mode="aspectFill"></image>
+    <view class="progess">
+      <canvas class="progress_active" canvas-id="progress_active"></canvas>
+    </view>
+    <view class="question">请在找出字母对{{requestWord}}</view>
+    <view class="hint">{{hint}}</view>
+    <view class="allword" style="width:{{634+difficulty*6}}rpx">
+      
+      <view wx:for="{{wordArr}}"
+        class="word_item {{item.active==1 ? 'active_right':''}} {{item.active==2 ? 'active_wrong':''}}" 
+        wx:key="word" bindtap="clickWord" data-index="{{index}}" 
+        style="height:{{624/difficulty}}rpx;width:{{624/difficulty}}rpx;line-height:{{640/difficulty}}rpx;background-color:{{item.color}}">
+        {{item.text}}
+      </view>
+    </view>
+    <view class="next btn_item" bindtap="next" hidden="{{finish}}">下一题</view>
+    <view class="finish btn_item" hidden="{{!finish}}" bindtap="finish">完成</view>
+
+  </view>
+

@@ -3,8 +3,9 @@ page{
   background: #ffffff;
 }
 
+
 .header-box {
-  background: #E06663;
+  background: #c93c42;
   /* padding: 32rpx; */
   height: 240rpx;
   display: flex;
@@ -57,7 +58,7 @@ page{
   float: right;
 }
 .feedback{
-  background-color: #E06663;
+  background-color: #c93c42;
   color:#ffffff;
   font: normal;
   font-size: 25rpx;

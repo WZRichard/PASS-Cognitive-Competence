@@ -1,69 +1,101 @@
-/* .scroll-wrapper {
-  white-space: nowrap;
-  -webkit-overflow-scrolling: touch;
-  height: 90rpx;
-  text-align: center;
-  box-sizing: border-box;
-  
+page{
+  background-color: #172451;
 }
-::-webkit-scrollbar {
-  width: 0;
-  height: 0;
-  color: transparent;
+.title{
+  background-color: #c93c42;
+  font: 30rpx;
+  font-style: initial;
+  border-radius: 3rpx;
+  color: white;
+  margin-top: 50rpx;
+  margin-left: auto;
+  margin-right: auto;
+  width: 680rpx;
 }
-.navigate-item {
-  display: inline-block;
-  text-align: center;
-  height: 90rpx;
-  line-height: 90rpx;
-  margin: 0 16rpx;
- 
-}
-.names {
-  font-size: 32rpx;
-  color: #3c3c3c;
-}
-
-.names.active {
-  color:#E06663;
-  font-weight: bold;
-  font-size: 34rpx;
-}
-.currtline {
-  margin: -8rpx auto 0 auto;
-  width: 100rpx;
-  height: 8rpx;
-  border-radius: 4rpx;
-}
-
-.currtline.active {
-  background: #E06663;
-  transition: all .3s;
-} */
-/* pages/leida/index.wxss */
 .chart-container{
-  /* position: absolute; */
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
   display: flex;
   flex-direction: column;
   box-sizing: border-box;
   height: 100%;
-}
-ec-canvas{
-  margin-top: 50rpx;
-  width: 100%;
-  height: 800rpx;
-}
-.line{
-  border: 1rpx solid rgba(0,0,250,0.2);
-  opacity: 0.2;
-  width: 90%;
   text-align: center;
   align-content: center;
-  justify-content: center;
+}
+.level-info{
+  background-color: #c93c42;
+  font: 20rpx;
+  color: white;
+  margin-top: 50rpx;
   margin-left: auto;
   margin-right: auto;
+  width: 100rpx;
 }
+.spirit {
+  background-color: #fff;
+  margin-top: 50rpx;
+  margin-left: auto;
+  margin-right: auto;
+  width: 680rpx;
+  border-radius: 10rpx;
+  height: 600rpx;
+}
+.radar{
+  background-color: #fff;
+  margin-top: 50rpx;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 50rpx;
+  width: 680rpx;
+  border-radius: 10rpx;
+  height: 800rpx;
+
+}
+
+.btn {  
+  width: 40%;  
+  margin-top: 30rpx;
+  border-radius: 10rpx;  
+  text-align: center;  
+  margin-left: auto;
+  margin-right: auto;
+  background: #c93c42;  
+  color: #fff;  
+}  
+  
+/*mask*/  
+.drawer_screen {  
+  width: 100%;  
+  height: 100%;  
+  position: fixed;  
+  top: 0;  
+  left: 0;  
+  z-index: 1000;  
+  overflow: hidden;  
+  text-align: center;
+  align-content: center;
+  
+} 
+/* 模态框 */
+.drawer_box {  
+  width: 400rpx;  
+  height: 440rpx;
+  position: relative;  
+  top: 50%;  
+  z-index: 1001;  
+  background: #FFFFFF;  
+  margin-top: 30rpx;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 3px;  
+
+}  
+.drawer_content{
+  width: 100%;  
+  height: 100%;
+  border-radius: 10rpx;
+}
+.drawer_content image{ 
+  width: 400rpx;  
+  height: 440rpx;
+}
+
+

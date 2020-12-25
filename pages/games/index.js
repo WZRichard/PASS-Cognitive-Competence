@@ -8,77 +8,77 @@ Page({
   data: {
     pass_list: [
       {
-        id: 'plan',
+        id: '1',
         name: '计划(Plan)',
         open: false,
         game_list:[
           {
             id:1,
             name:'计划连接',
-            page_url:'',
-            imgSrc:'cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/pass_pic/pass_pic/计划连接.png'
+            page_url:'/pages/games/jihualianjie/jihualianjie',
+            imgSrc:'cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/images/gameCover/jhlj.png'
           },
           {
             id:2,
             name:'视觉搜索',
-            page_url:'',
-            imgSrc:'cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/pass_pic/pass_pic/视觉搜索.jpg'
+            page_url:'/pages/games/visualSearch/index',
+            imgSrc:'cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/images/gameCover/sjss.png'
           }
         ]
       },
       {
-        id: 'attention',
+        id: '2',
         name: '注意力(Attention)',
         open: false,
         game_list:[
           {
-            id:3,
+            id:1,
             name:'颜色判别',
-            page_url:'',
-            imgSrc:'cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/pass_pic/pass_pic/颜色判别.png'
+            page_url:'/pages/games/colorDiscrimination/index',
+            imgSrc:'cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/images/gameCover/yspb.png'
           },
           {
-            id:4,
+            id:2,
             name:'接受的注意',
-            page_url:'',
-            imgSrc:'cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/pass_pic/pass_pic/接收注意.jpeg'
+            page_url:'/pages/games/RecieveAttention/index',
+            imgSrc:'cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/images/gameCover/jsdzy.png'
           }
         ]
       },
       {
-        id: 'simultaneous_procession',
+        id: '3',
         name: '同时性加工(Simultaneous procession)',
         open: false,
         game_list:[
           {
-            id:5,
+            id:1,
             name:'矩阵问题',
-            page_url:'',
-            imgSrc:'cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/pass_pic/pass_pic/矩阵问题.jpg'
+            page_url:'/pages/games/Matrix_pro/Matrix_pro',
+            imgSrc:'cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/images/gameCover/jzwt.png'
           },
           {
-            id:6,
+            id:2,
             name:'水果配对',
-            page_url:'',
-            imgSrc:'cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/pass_pic/pass_pic/水果配对.png'
+            page_url:'/pages/games/FruitMatch/FruitMatch',
+            imgSrc:'cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/images/gameCover/sgpd.png'
           }
         ]
       },{
-        id: 'succesive_processing',
+        id: '4',
         name: '继时性加工(Succesive processing)',
         open: false,
         game_list:[
           {
-            id:7,
+            id:1,
             name:'数字回忆',
-            page_url:'',
-            imgSrc:'cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/pass_pic/pass_pic/数字回忆.jpg'
+            page_url:'/pages/games/zicihuiyi/zicihuiyi',
+            imgSrc:'cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/images/gameCover/szhy.png'
           },
           {
-            id:8,
+            id:2,
             name:'句子问题',
-            page_url:'',
-            imgSrc:'cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/pass_pic/pass_pic/句子问题.jpg'
+            page_url:'/pages/games/SentenceRepetition/index',
+            imgSrc:'cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/images/gameCover/juzi.png'
           }
         ]
       }
@@ -141,5 +141,18 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+  onItemClick: function (e) {
+    var blockId = e.currentTarget.dataset.blockid;
+    var pageId = e.currentTarget.dataset.pageid;
+    var pageUrl = this.data.pass_list[blockId-1].game_list[pageId-1].page_url;
+    console.log(e);
+    console.log(blockId)
+    console.log(pageId);
+    console.log(pageUrl)
+    
+    wx.navigateTo({
+      url: pageUrl
+    })
   }
 })

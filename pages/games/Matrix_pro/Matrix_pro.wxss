@@ -1,0 +1,140 @@
+/* pages/Matrix_pro/Matrix_pro.wxss */
+
+.head-title{
+  align-items: center;
+}
+.info{
+  width: 90vw;
+}
+.rule{
+  width: 90vw;
+}
+.title-cn {
+  font-size: 40rpx;
+}
+.title-en {
+  font-size: 30rpx;
+  color: rgb(100, 100, 100);
+}
+
+.slide-image {
+  width: 100%;
+  margin: 0 auto;
+}
+
+.info-icon image {
+  height: 35rpx;
+  width: 35rpx;
+}
+.background {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0px;
+  z-index: -1;
+}
+
+.progress {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.title {
+  text-align: center;
+}
+
+.title_image {
+  height: 90px;
+}
+
+.in_title_text {
+  position: relative;
+  top: -20px;
+}
+
+.in_title_begin {
+  margin: 20px;
+  font-size: 50px;
+}
+
+.in_title_begin_F {
+  margin-top: 50px;
+}
+
+.image {
+  height: 80px;
+}
+
+.image_Selection {
+  height: 100px;
+}
+
+.Question {
+  margin-top: 5px;
+  transition: all 1.2s;
+}
+
+.Question>view>text {
+  font-weight: bold;
+}
+
+.Question>view,
+.Selection>view {
+  display: flex;
+  justify-content: center;
+
+  font-size: 18px;
+}
+
+.Selection {
+  transition: all 1.2s;
+}
+
+.Question_detail {
+  margin-top: 23px;
+}
+
+.button {
+  margin: 15px 18px 15px 18px;
+  border-radius: 10rem;
+  border: 2px solid ;
+}
+
+.selector{
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.comfirm {
+  width: 100%;
+
+  position: absolute;
+  bottom: 0px;
+}
+
+.title2 {
+  margin-top: 30rpx;
+  font-size: 35rpx;
+  height: 35rpx;
+  line-height: 35rpx;
+}
+
+.content {
+  margin-top: 50rpx;
+  font-size: 30rpx;
+  line-height: 45rpx;
+  color: rgb(146, 15, 145)4;
+}
+
+.start {
+  height: 40px;
+  width: 80vw;
+  line-height: 40px;
+  font-size: 35rpx;
+  text-align: center;
+  margin: 50rpx 30rpx;
+  background-color: #c93c42;
+  color: white;
+  font-weight: 200;
+  border-radius: 100rpx;
+}
