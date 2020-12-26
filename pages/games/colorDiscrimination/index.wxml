@@ -18,7 +18,7 @@
   </view>
   <view class="info" style="height:{{gameHeight*0.25}}rpx">
     <view class="title2">
-      <icon class="info-icon"><image src="cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/images/tabbar/game-chosen.png" ></image></icon>  游戏介绍
+      <icon class="info-icon"><image src="cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/images/tabbar/game.png" ></image></icon>  游戏介绍
     </view>
     <view class="content">
       给定表示颜色的词语，比如蓝色。同时给词语的字体设定颜色，比如说灰色。让玩家判定词语的语义表示的颜色与语的字体设定颜色是否相同。考察玩家的注意力、反应力。测验得分是玩家的颜色判别游戏正确率
@@ -27,17 +27,19 @@
 
   <view class="rule">
     <view class="title2">
-      <icon class="info-icon"><image src="cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/images/tabbar/game-chosen.png" ></image></icon>  游戏规则</view>
+      <icon class="info-icon"><image src="cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/images/tabbar/game.png" ></image></icon>  游戏规则</view>
     <view class="content"> 游戏设定关卡是10关，每关5秒。</view>
   </view>
   <view class="start" bindtap="start">开始游戏</view>
 </view>
 <view hidden="{{!startGame}}" class="color-game" style="height:{{gameHeight}}rpx">
- 
+  <image class="bgimg" src="cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/images/wallpaper/game-wp2.png" mode="aspectFill"></image>
   <view class="progess">
     <canvas class="progress_active" canvas-id="progress_active"></canvas>
   </view>
-  <view class="question">第{{checkpoint+1}}题</view>
+  <view class="board">
+    <view class="game-box">
+    <view class="question">第{{checkpoint+1}}关</view>
   <view class="question_text">文字和颜色相同吗</view>
 
   <view class="color_content" style="color:{{colorRGB[colorGroup[checkpoint].color]}}; border:1rpx {{nowColor}} solid" hidden="{{!wordShow}}">{{colorFont[colorGroup[checkpoint].text]}}</view>
@@ -46,5 +48,8 @@
     <view class="same btn_item" bindtap="same">相同</view>
     <view class="not_same btn_item" bindtap="notSame">不相同</view>
   </view>
+  </view>
+  </view>
+  
   
 </view>

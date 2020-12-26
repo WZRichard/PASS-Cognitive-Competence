@@ -33,7 +33,7 @@
   </view>
 
   <view hidden="{{!startGame}}" class="search-game" style="height:{{gameHeight}}rpx">
-    <image class="bgimg" src="cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/images/tabbar/game.png" mode="aspectFill"></image>
+    <image class="bgimg" src="cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/images/wallpaper/game-wp2.png" mode="aspectFill"></image>
     <view class="progess">
       <canvas class="progress_active" canvas-id="progress_active"></canvas>
     </view>
