@@ -96,6 +96,7 @@ canvas{
   margin: 1rpx;
   text-align: center;
   border: 2rpx white solid;
+
   border-radius: 20rpx;
   color: white;
 }
