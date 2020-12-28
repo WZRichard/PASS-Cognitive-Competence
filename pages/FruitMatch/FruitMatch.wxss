@@ -9,8 +9,14 @@
 }
 
 .progress {
-  margin-top: 5px;
+  margin-top: 11px;
   margin-bottom: 5px;
+}
+
+.icon {
+  width: 50px;
+  position: absolute;
+  top: -12px;
 }
 
 .title {
@@ -116,24 +122,20 @@
   align-items: center;
   justify-content: center;
   height: 100%;
-
 }
 
 ._img {
   height:200px;
 }
 
-.game-info {
-  margin-left: 2%;
-  margin-right: 2%;
-}
 
 .head-title {
-  margin: 10px 0 0 10px;
+  align-items: center;
+  text-align: center;
 }
 
 .title-cn {
-  font-size: 50rpx;
+  font-size: 40rpx;
 }
 
 .title-en {
@@ -153,11 +155,6 @@
   height: 35rpx;
   line-height: 35rpx;
   font-weight: bold;
-}
-
-.info-icon {
-  display: flex;
-  align-content: center;
 }
 
 .swiper {
@@ -185,6 +182,8 @@
 
 .start {
   width: 96%;
+  margin-left: 2%;
+  margin-right: 2%;
   margin-bottom: 12px;
 
   position: absolute;
@@ -198,7 +197,7 @@
 .helper {
   position: absolute;
   right: 30px;
-  top: 23px;
+  top: 10px;
 }
 
 .helper1 {

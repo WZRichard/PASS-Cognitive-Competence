@@ -1,0 +1,127 @@
+.color-info{
+  padding: 30rpx;
+}
+.head-title{
+  align-items: center;
+  text-align: center;
+}
+.head-title .title-cn{
+  font-size: 40rpx;
+
+}
+.head-title .title-en{
+  font-size: 30rpx;
+  color: rgb(100, 100, 100);
+}
+/* 去除滚动条 */
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  color: transparent;
+}
+.slide-image{
+  width: 100%;
+  margin: 0 auto;
+}
+.info-icon image{
+  height: 35rpx;
+  width: 35rpx;
+}
+.title2{
+  margin-top: 30rpx;
+  font-size: 35rpx;
+  height: 35rpx;
+  line-height: 35rpx;
+}
+.content{
+  margin-top: 50rpx;
+  font-size: 30rpx;
+  line-height: 45rpx;
+  color: rgb(146, 15, 145)4;
+}
+.start{
+  height: 80rpx;
+  line-height: 80rpx;
+  font-size: 35rpx;
+  text-align: center;
+  margin: 50rpx 30rpx;
+  background-color:#c93c42;
+  color: white;
+  font-weight: 200;
+  border-radius: 100rpx;
+}
+.progress{
+  width: max-content;
+}
+canvas{
+  height: 100rpx;
+  width: 750rpx;
+}
+.question{
+  margin: 0 auto;
+  margin-top: 100rpx;
+  padding-top: 30rpx;
+  text-align: center;
+}
+.question_text{
+  margin: 0 auto;
+  text-align: center;
+  color: #004e66;
+  font-size: 40rpx;
+}
+.color_content{
+  width: 400rpx;
+  height: 400rpx;
+  font-size: 300rpx !important;
+  line-height: 400rpx !important;
+  text-align: center;
+  margin: 0 auto;
+  margin-top: 50rpx;
+  font-size: large;
+}
+.btn_group{
+  width: fit-content;
+  margin: 0 auto;
+  margin-top: 100rpx;
+}
+.btn_item{
+  height: 80rpx;
+  width: 250rpx;
+  line-height: 80rpx;
+  font-size: 35rpx;
+  text-align: center;
+  margin: 50rpx 30rpx;
+  background-color:#004e66;
+  color: white;
+  font-weight: 200;
+  border-radius: 100rpx;
+}
+
+.bgimg {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  background-size: 100% 100%;
+  z-index: -1;
+  margin-top: 0px;
+  /* -webkit-filter:blur(1px);
+  -moz-filter:blur(1px);
+  -o-filter:blur(1px);
+  -ms-filter:blur(1px);
+  filter:blur(1px); */
+}
+.game-box{
+  width: 80%;
+  height: 680rpx;
+  background-color: white;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 30rpx;
+
+}
+.board{
+  width: 100%;
+  height: 680rpx;
+  text-align: center;
+  align-content: center;
+}

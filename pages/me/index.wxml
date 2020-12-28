@@ -1,2 +1,25 @@
 <!--pages/me/index.wxml-->
-<text>pages/me/index.wxml</text>
+
+<view class="header-box">
+  <view class="user-box">
+    <view class="avatar"><image src="{{userInfo.avatarUrl}}" mode="cover"></image></view>
+    <view class="user-info">
+      <view class="userinfo-name"><text>{{userInfo.nickName}}</text></view>
+      <view class="userinfo-title">
+        <view class="child-age"><image src="cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/pass_pic/me_icon/年龄.png"></image><text>{{childAge}}</text></view>
+        <view class="user-sex"><image src="cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/pass_pic/me_icon/性别.png"></image><text>{{childSex}}</text></view>
+      </view>
+    </view>
+  </view>
+</view>
+<view class="menu-item">
+    <block wx:for="{{menu_list}}" wx:key="id">
+      <view class="menu-box" bindtap="onItemClick" data-pageid="{{item.id}}">
+        <view class="icon" ><image src="{{item.icon}}"></image></view>
+        <view class="title">{{item.name}}</view>
+        <view class="go-icon"><image src="{{go_icon}}"></image></view>
+      </view>
+      <view class="line"></view>
+    </block>
+</view>
+<button open-type="feedback" class="feedback">意见反馈</button>

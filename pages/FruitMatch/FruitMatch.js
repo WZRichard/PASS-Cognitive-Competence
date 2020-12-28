@@ -37,7 +37,7 @@ Page({
     countDownNum: '10', //倒计时初始值(单位s)
     score: 0, //获得分数
     cnt_image_loading: 0, //水果图片加载完毕后开始显示
-    slideImgArr: ['cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/Game_ FruitMatch/fruit2-1.png', 'cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/Game_ FruitMatch/fruit2-2.png', 'cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/Game_ FruitMatch/fruit2-3.png',], //游戏介绍界面图库
+    slideImgArr: ['cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/Game_ FruitMatch/Fruits_info_1.png', 'cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/Game_ FruitMatch/fruit2-2.png', 'cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/Game_ FruitMatch/fruit2-3.png',], //游戏介绍界面图库
     startGame: false, //是否开始游戏
     popup_show: false, //帮助是否显示
     helper_content: '方框中隐藏着不同的水果\n请尽可能多的记住它们', //帮助内容

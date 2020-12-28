@@ -1,0 +1,35 @@
+<!--pages/SentenceRepetition/index.wxml-->
+
+    <view class="head-title">
+      <view class="title-cn">句子问题</view>
+      <view class="title-en">Sentence Repetition</view>
+    </view>
+    <view>
+      <swiper class="swiper" indicator-dots="true" autoplay="true" interval="3000" duration="1000" circular="true">
+        <block wx:for="{{slideImgArr}}" wx:key="*this">
+          <swiper-item class="swiper-item">
+            <view>
+              <image class="swiper-image" src="{{item}}" mode="heightFix" />
+            </view>
+          </swiper-item>
+        </block>
+      </swiper>
+    </view>
+    <view class="info">
+      <view class="title2">
+        <icon class="info-icon"><image src="cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/images/tabbar/game.png"></image></icon>  游戏介绍
+      </view>
+      <view class="content">
+        句子重复（sentence repetition）让被试阅读含有颜色词的句子。这些颜色词有不同的词性。如“这个蓝色正在变成灰色”（The blue is graying）。然后要求继续回答以下问题：“哪个颜色正在变灰？”要正确回答必须对原句的句法有完全正确的理解。句法中显然有序列的因素，因而涉及到继时性的加工过程。
+      </view>
+    </view>
+
+    <view class="rule">
+      <view class="title2">
+        <icon class="info-icon"><image src="cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/images/tabbar/game.png"></image></icon>  游戏规则
+      </view>
+      <view class="content">
+        游戏分为ABCD四个选项，题目为单选题，要求选出正确的选项。一共五关，句子长度由短至长，每关10s，每过一关增加2分</view>
+    </view>
+    <view class="start" bindtap="tap_start">开始游戏</view>
+

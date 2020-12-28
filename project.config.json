@@ -4,7 +4,7 @@
     "ignore": []
   },
   "setting": {
-    "urlCheck": true,
+    "urlCheck": false,
     "es6": true,
     "enhance": false,
     "postcss": true,
@@ -28,17 +28,19 @@
       "disablePlugins": [],
       "outputPath": ""
     },
+    "enableEngineNative": false,
+    "bundle": false,
     "useIsolateContext": true,
     "useCompilerModule": true,
     "userConfirmedUseCompilerModuleSwitch": false,
-    "minifyWXSS": true,
     "packNpmManually": true,
     "packNpmRelationList": [
       {
         "packageJsonPath": "./miniprogram/package.json",
         "miniprogramNpmDistDir": "./miniprogram/"
       }
-    ]
+    ],
+    "minifyWXSS": true
   },
   "compileType": "miniprogram",
   "libVersion": "2.13.1",
@@ -51,6 +53,40 @@
   "isGameTourist": false,
   "simulatorType": "wechat",
   "simulatorPluginLibVersion": {},
+  "miniprogram": {
+    "list": [
+      {
+        "id": -1,
+        "name": "FruitMatch",
+        "pathName": "pages/games/FruitMatch/FruitMatch",
+        "query": "",
+        "scene": null
+      },
+      {
+        "name": "Matrix_pro",
+        "pathName": "pages/games/Matrix_pro/Matrix_pro",
+        "query": "",
+        "scene": null
+      },
+      {
+        "name": "_FruitMatch",
+        "pathName": "pages/games/_ FruitMatch/_ FruitMatch",
+        "query": "",
+        "scene": null
+      },
+      {
+        "name": "pages/games/SentenceRepetition/index",
+        "pathName": "pages/games/SentenceRepetition/index",
+        "query": "",
+        "scene": null
+      },
+      {
+        "name": "pages/games/RecieveAttention/index",
+        "pathName": "pages/games/RecieveAttention/index",
+        "scene": null
+      }
+    ]
+  },
   "condition": {
     "plugin": {
       "list": []
@@ -64,21 +100,14 @@
     "miniprogram": {
       "list": [
         {
-          "id": -1,
-          "name": "FruitMatch",
-          "pathName": "pages/FruitMatch/FruitMatch",
+          "name": "pages/games/index",
+          "pathName": "pages/games/index",
           "query": "",
           "scene": null
         },
         {
-          "name": "Matrix_pro",
-          "pathName": "pages/Matrix_pro/Matrix_pro",
-          "query": "",
-          "scene": null
-        },
-        {
-          "name": "_FruitMatch",
-          "pathName": "pages/_ FruitMatch/_ FruitMatch",
+          "name": "pages/games/Matrix_pro/Matrix_pro",
+          "pathName": "pages/games/Matrix_pro/Matrix_pro",
           "query": "",
           "scene": null
         }

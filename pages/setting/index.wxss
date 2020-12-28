@@ -1,0 +1,64 @@
+/* pages/setting/index.wxss */
+
+.bgimg {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  background-size: 100% 100%;
+  z-index: -1;
+  margin-top: 0px;
+  /* -webkit-filter:blur(1px);
+  -moz-filter:blur(1px);
+  -o-filter:blur(1px);
+  -ms-filter:blur(1px);
+  filter:blur(1px); */
+}
+.message {
+  margin-top: 30rpx;
+  width: 730rpx;
+  display: flex;
+  flex-direction: column;
+}
+.texttips {
+  margin: 8rpx;
+  border-bottom: 1rpx solid rgb(245, 245, 245);
+  padding-left: 15rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.tips {
+  color: white;
+  flex:2;
+  font-size: 28rpx;
+}
+.texttips .select {
+  flex: 5;
+  padding:20rpx 20rpx;
+  color: white;
+}
+.texttips .select-rect {
+  flex: 5;
+  padding:20rpx 20rpx;
+  color: #172451;
+}
+.radio {
+  padding: 0 20rpx;
+}
+.radio radio {
+  transform:scale(0.85);
+}
+.button {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.save {
+  width: 200rpx;
+  margin: 100rpx 50rpx;
+  background-color: #c93c42;
+  color: white;
+  font-size: small;
+  font-weight: 400;
+  border-radius: 10px;
+}

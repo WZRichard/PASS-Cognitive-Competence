@@ -25,6 +25,8 @@ Page({
     cnt_image_loading: 0, //有几张图片已经加载完成（初始化为0）
     question_hidden: true, //题目是否显示
     bingo_cnt: 0, //正确题目个数
+    slideImgArr: ['cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/Game_Martix/Matrix_info_2.png', 'cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/Game_Martix/Matrix_info_3.png', ], //游戏介绍界面
+    startGame: false, //是否开始游戏
   },
 
   /**
@@ -74,20 +76,20 @@ Page({
     // }
   },
 
-  restart: function () {
-    var question_index = this.random_question_index();
+  // restart: function () {
+  //   var question_index = this.random_question_index();
 
-    this.setData({
-      done_index: [], //已做题目下标
-      round: 0, //轮数 (初始化为0，0表示未开始)
-      selector: 0, //被选择选项（每一关初始化为0）
-      countDownNum: 30, //计时时长（单位s；总时长30s）
-      timer: null, //计时器
-      question_hidden: true,
-      round: 1,
-      question_index: question_index,
-    })
-  },
+  //   this.setData({
+  //     done_index: [], //已做题目下标
+  //     round: 0, //轮数 (初始化为0，0表示未开始)
+  //     selector: 0, //被选择选项（每一关初始化为0）
+  //     countDownNum: 30, //计时时长（单位s；总时长30s）
+  //     timer: null, //计时器
+  //     question_hidden: true,
+  //     round: 1,
+  //     question_index: question_index,
+  //   })
+  // },
 
   next_Question: function () {
     this.data.done_index.push(this.data.question_index);
@@ -156,11 +158,6 @@ Page({
   },
 
   start: function () {
-    var question_index = this.random_question_index();
-    this.setData({
-      round: 1,
-      question_index: question_index,
-    })
   },
 
   overtime: function () { //超时
@@ -179,12 +176,23 @@ Page({
         clearInterval(that.data.timer);
         that.overtime();
       } else {
-        countDownNum = countDownNum - 0.1;
+        countDownNum = countDownNum - 0.08;
         that.setData({
           countDownNum: countDownNum,
         })
       }
-    }, 100)
+    }, 80)
+  },
+
+  start: function (e) {
+    //当开始游戏按钮被点击时，隐藏视觉搜索介绍
+    var question_index = this.random_question_index();
+
+    this.setData({
+      startGame: true,
+      round: 1,
+      question_index: question_index,
+    })
   },
 
   /**
@@ -198,11 +206,11 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-    Toast.loading({
-      message: '加载中...',
-      forbidClick: true,
-      loadingType: 'spinner',
-    });
+    // Toast.loading({
+    //   message: '加载中...',
+    //   forbidClick: true,
+    //   loadingType: 'spinner',
+    // });
   },
 
   /**

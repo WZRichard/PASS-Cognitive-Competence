@@ -1,0 +1,22 @@
+<!--pages/message/sex/sex.wxml-->
+<view class="container">
+  <view class="message">
+    <!-- app图片需要上传云端 -->
+    <image class="image" src="cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/images/logo/msg-logo.png"></image>
+      <view class="texttips">
+        <text class="tips"> 2.小朋友的性别是： </text>
+        <view class="select"> 
+          <radio-group class="radio-group" bindchange="radioChange" data-id="{{item.id}}">
+            <label class="radio" wx:for="{{items}}">
+              <radio value="{{item.value}}" checked="{{item.checked}}">{{item.value}}</radio>
+            </label>
+          </radio-group>
+        </view>
+      </view>
+      <view class="button_select">
+        <button class="back" bindtap="goToAge"> 上一题 </button>
+        <button class="next" bindtap="goToHas"> 下一题 </button>
+      </view>
+  </view>
+</view>
+

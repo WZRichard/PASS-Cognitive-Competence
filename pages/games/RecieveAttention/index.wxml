@@ -1,0 +1,39 @@
+<!--pages/RecieveAttention/index.wxml-->
+
+
+
+<view class="head-title">
+      <view class="title-cn">接收的注意</view>
+      <view class="title-en">Receptive Attention</view>
+    </view>
+    <view class="game-show">
+      <swiper class="swiper" indicator-dots="true" autoplay="true" interval="3000" duration="1000" circular="true">
+        <block wx:for="{{slideImgArr}}" wx:key="*this">
+          <swiper-item class="swiper-item">
+            <view>
+              <image class="swiper-image" src="{{item}}" mode="heightFix" />
+            </view>
+          </swiper-item>
+        </block>
+      </swiper>
+    </view>
+
+    <view class="info">
+      <view class="title2">
+        <icon class="info-icon"><image src="cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/images/tabbar/game.png"></image></icon>  游戏介绍
+      </view>
+      <view class="content">
+        接收的注意（receptive attention）这类任务的刺激物为字母对，分为二种实验情景：一是选出所有同样字体的字母对，如对HN而不是对<text style="font-style:italic">H</text>
+        h作出反应；二是选出同样名称的字母对，如Aa。此测验涉及注意目标的改变，因而又称为注意转换测验。
+      </view>
+    </view>
+
+    <view class="rule">
+      <view class="title2">
+        <icon class="info-icon"><image src="cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/images/tabbar/game.png"></image></icon>  游戏规则
+      </view>
+      <view class="content">
+        游戏随机两种出题方式，一种为找出同样字体的字母对，字体为正常，斜体，加粗，加粗斜体四种。一种为找出大小写组合的字母对。一共180个随机字母对，限时120s，游戏上方有倒计时提示，可以提早提交,提交越早分数越高。</view>
+    </view>
+    <view class="start" bindtap="tap_start">开始游戏</view>
+   

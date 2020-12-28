@@ -1,0 +1,59 @@
+
+.head-title{
+  align-items: center;
+  text-align: center;
+}
+.head-title .title-cn{
+  font-size: 40rpx;
+
+}
+.head-title .title-en{
+  font-size: 30rpx;
+  color: rgb(100, 100, 100);
+}
+/* 去除滚动条 */
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  color: transparent;
+}
+
+
+.slide-image{
+  width: 100%;
+  margin: 0 auto;
+}
+.info-icon image{
+  height: 35rpx;
+  width: 35rpx;
+}
+.title2{
+  margin-top: 30rpx;
+  font-size: 35rpx;
+  height: 35rpx;
+  line-height: 35rpx;
+}
+.content{
+  margin-top: 50rpx;
+  font-size: 30rpx;
+  line-height: 45rpx;
+  color: rgb(146, 15, 145)4;
+}
+.start{
+  height: 80rpx;
+  line-height: 80rpx;
+  font-size: 35rpx;
+  text-align: center;
+  margin: 18rpx 10rpx;
+  background-color: #c93c42;
+  color: white;
+  font-weight: 200;
+  border-radius: 100rpx;
+}
+
+
+
+
+
+
+

@@ -1,0 +1,156 @@
+
+page{
+  background-color: #172451;
+}
+.level-container{
+ width: 100%;
+ height: 100%;
+ display: flex;
+ flex-direction: column;
+ /* text-align: center; */
+
+} 
+.pass-icon {
+  width: 100%;
+  height: 360rpx;
+  text-align: center;
+  margin-bottom: 10rpx;
+}
+.pass-icon image{
+  width: 700rpx;
+  height: 360rpx;
+}
+.level{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 80%;
+}
+.level-box{
+  width: 96%;
+  height: 110rpx;
+  background-color: #fff;
+  border: 2rpx solid white;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  flex-direction: row;
+
+}
+
+
+.level-icon{
+  width: 60rpx;
+  height: 60rpx;
+  margin-left: 20rpx;
+  margin-top: 22rpx;
+}
+.level-icon image{
+  width: 60rpx;
+  height: 60rpx;
+  
+}
+.level-text{
+  color: #E06663;
+  width: 50rpx;
+  height: 50rpx;
+  padding-left: 20rpx;
+  margin-top: 18rpx;
+}
+.level-text text{
+  font-size: 50rpx;
+  font-style: bold;
+}
+.avatar{
+  width: 50rpx;
+  height: 50rpx;
+  margin-left: 18rpx;
+  margin-top: 30rpx;
+}
+.avatar image{
+  width: 50rpx;
+  height: 50rpx;
+  border-radius: 50%;
+
+}
+.userinfo-name{
+  width: 150rpx;
+  height: 50rpx;
+  margin-left: 5rpx;
+  margin-top: 38rpx;
+  font-size: 25rpx;
+}
+.line{
+  border: 1rpx solid #ccc;
+  opacity: 0.7;
+  width: 96%;
+  text-align: center;
+  align-content: center;
+  justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+.child-age image{
+  width: 35rpx;
+  height: 35rpx;
+  padding-right: 15rpx;
+  padding-left: 15rpx;
+  padding-top: 6rpx;
+}
+.child-age text{
+  color: white;
+  padding-top: 6rpx;
+  font-size: 25rpx;
+}
+.pass-level{
+  display: flex;
+  border-radius: 30rpx;
+  background-color:#fc8c23;
+  opacity: 0.9;
+  width: 200rpx;
+  height: 46rpx;
+  text-align: center;
+  margin-top: 30rpx;
+  /* margin-bottom: 10rpx; */
+}
+.pass-level image{
+  width: 35rpx;
+  height: 35rpx;
+  padding-right: 15rpx;
+  padding-left: 15rpx;
+  padding-top: 8rpx;
+}
+.pass-level text{
+  color: white;
+  padding-top: 6rpx;
+  font-size: 25rpx;
+}
+.child-age{
+  display: flex;
+  border-radius: 30rpx;
+  background-color:#fc8c23;
+  opacity: 0.9;
+  width: 130rpx;
+  height: 46rpx;
+  text-align: center;
+  margin-right: 20rpx;
+  margin-left: 20rpx;
+  margin-top: 30rpx;
+}
+.my-level{
+  position: fixed;
+  width: 100%;
+  height: 120rpx;
+  bottom: 0;
+  display: flex;
+  flex-direction: row;
+  background-color:#ffffff;
+  border-top: 1rpx solid #fc8c23;
+  box-shadow: 20rpx 0 0 0 #fc8c23;
+  border-top-left-radius: 30rpx;
+  border-top-right-radius: 30rpx;
+}
+
+

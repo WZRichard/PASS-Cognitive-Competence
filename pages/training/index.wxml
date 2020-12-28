@@ -1,2 +1,11 @@
 <!--pages/training/index.wxml-->
-<text>pages/training/index.wxml</text>
+<image class="bgimg" src="cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/images/wallpaper/test-wp.png" mode="aspectFill"></image>
+<view class="container">
+  <view class="test-btn">
+    <image class="btnimg"
+src="cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/images/button/start-test.png"
+mode="aspectFill"></image>
+  </view>
+</view>
+
+

@@ -1,0 +1,9 @@
+{
+  "usingComponents": {
+    "van-progress":"/miniprogram/miniprogram_npm/@vant/weapp/progress/index"
+  },
+  "navigationBarTitleText": "接受的注意",
+  "navigationBarTextStyle": "white",
+  "navigationBarBackgroundColor": "#c93c42"
+  
+}

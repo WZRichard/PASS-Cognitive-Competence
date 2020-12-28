@@ -1,0 +1,16 @@
+<!--pages/message/age/age.wxml-->
+<view class="container">
+  <view class="message">
+    <!-- app图片需要上传云端 -->
+    <image class="image" src="cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/images/logo/msg-logo.png"></image>
+      <view class="texttips">
+        <text class="tips"> 1.小朋友的年龄是： </text>
+        <view class="select"> 
+          <Select prop-array='{{selectArray}}' bind:myget='getData'></Select>
+        </view>
+       
+      </view>
+      <button class="next" bindtap="goToSex"> 下一题 </button>
+  </view>
+</view>
+

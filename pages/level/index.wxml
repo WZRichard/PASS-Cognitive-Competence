@@ -1,0 +1,48 @@
+<!--pages/level/index.wxml-->
+<view class="level-container">
+  <view class="pass-icon">
+    <image src="cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/images/logo/level.png"></image>
+  </view>
+
+  <view class="level"> 
+    <block>
+      <view class="level-box">
+        <!-- <view class="level-container"> -->
+          <view class="level-icon"><image src="cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/pass_pic/me_icon/冠军.png"></image></view>
+          <view class="avatar"><image src="cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/pass_pic/pass_pic/同时性加工.jpg"></image></view>
+          <view class="userinfo-name"><text>长颈鹿</text></view>
+          <view class="child-age"><image src="{{child_icon}}"></image><text>10岁</text></view>
+          <view class="pass-level"><image src="{{level_icon}}"></image><text>等级 - A</text></view>
+        <!-- </view> -->
+      </view>
+      <view class="line"></view>
+      <view class="level-box">
+        <!-- <view class="level-container"> -->
+          <view class="level-icon"><image src="cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/pass_pic/me_icon/亚军.png"></image></view>
+          <view class="avatar"><image src="{{userInfo.avatarUrl}}"></image></view>
+          <view class="userinfo-name"><text>{{userInfo.nickName}}</text></view>
+          <view class="child-age"><image src="{{child_icon}}"></image><text>{{childAge}}</text></view>
+          <view class="pass-level"><image src="{{level_icon}}"></image><text>等级 - B</text></view>
+        <!-- </view> -->
+      </view>
+      <view class="line"></view>
+      <!-- <view class="level-box">
+       
+          <view class="level-text"><text>5</text></view>
+          <view class="avatar"><image src="cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/pass_pic/pass_pic/同时性加工.jpg" mode="cover"></image></view>
+          <view class="userinfo-name"><text>长颈鹿1111111</text></view>
+          <view class="child-age"><image src="{{child_icon}}"></image><text>10岁</text></view>
+          <view class="pass-level"><image src="{{level_icon}}"></image><text>等级 - A</text></view>
+       
+      </view>
+      <view class="line"></view> -->
+    </block>
+</view>
+</view>
+<view class="my-level">
+  <view class="level-text"><text>2</text></view>
+  <view class="avatar"><image src="{{userInfo.avatarUrl}}" mode="cover"></image></view>
+  <view class="userinfo-name"><text>{{userInfo.nickName}}</text></view>
+  <view class="child-age"><image src="{{child_icon}}"></image><text>{{childAge}}</text></view>
+  <view class="pass-level"><image src="{{level_icon}}"></image><text>等级 - B</text></view>
+</view>

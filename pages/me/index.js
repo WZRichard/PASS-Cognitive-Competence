@@ -1,17 +1,68 @@
 // pages/me/index.js
+const app = getApp()
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+      childAge: "",
+      childSex: "",
+      userInfo: {},
+      menu_list:[
+        {
+          id:1,
+          name:"排行榜",
+          icon:'cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/pass_pic/me_icon/排行榜.png',
+          pagePath:'/pages/level/index'
+        },
+        {
+          id:2,
+          name:"关于我们",
+          icon:'cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/pass_pic/me_icon/关于我们.png',
+          pagePath:'/pages/about/index'
+        },
+        {
+          id:3,
+          name:"设置",
+          icon:'cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/pass_pic/me_icon/设置.png',
+          pagePath:'/pages/setting/index'
+        }
+        // ,
+        // {
+        //   id:4,
+        //   name:"PASS模型科普",
+        //   icon:'cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/pass_pic/me_icon/科普.png',
+        //   pagePath:'/pages/temp2/index'
+        // }
+      ],
+      go_icon:'cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/pass_pic/me_icon/箭头右.png'
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    var that = this
+    this.setData({
+      userInfo: app.globalData.userInfo,
+    }),
+    wx.getStorage({
+      key: "childAge",
+      success: function(e){
+        that.setData({
+          childAge: e.data
+        })
+      }
+    }),
+    wx.getStorage({
+      key: "childSex",
+      success: function(e){
+        that.setData({
+          childSex: e.data
+        })
+      },
+    })
 
   },
 
@@ -62,5 +113,17 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+
+  onItemClick: function (e) {
+    var pageId=e.currentTarget.dataset.pageid;
+    var pageUrl = this.data.menu_list[pageId-1].pagePath
+    console.log(e);
+    console.log(pageId);
+    console.log(pageUrl)
+    wx.navigateTo({
+      url: pageUrl
+    })
   }
+
 })

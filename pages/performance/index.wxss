@@ -1,1 +1,101 @@
-/* pages/performance/index.wxss */
+page{
+  background-color: #172451;
+}
+.title{
+  background-color: #c93c42;
+  font: 30rpx;
+  font-style: initial;
+  border-radius: 3rpx;
+  color: white;
+  margin-top: 50rpx;
+  margin-left: auto;
+  margin-right: auto;
+  width: 680rpx;
+}
+.chart-container{
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  height: 100%;
+  text-align: center;
+  align-content: center;
+}
+.level-info{
+  background-color: #c93c42;
+  font: 20rpx;
+  color: white;
+  margin-top: 50rpx;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100rpx;
+}
+.spirit {
+  background-color: #fff;
+  margin-top: 50rpx;
+  margin-left: auto;
+  margin-right: auto;
+  width: 680rpx;
+  border-radius: 10rpx;
+  height: 600rpx;
+}
+.radar{
+  background-color: #fff;
+  margin-top: 50rpx;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 50rpx;
+  width: 680rpx;
+  border-radius: 10rpx;
+  height: 800rpx;
+
+}
+
+.btn {  
+  width: 40%;  
+  margin-top: 30rpx;
+  border-radius: 10rpx;  
+  text-align: center;  
+  margin-left: auto;
+  margin-right: auto;
+  background: #c93c42;  
+  color: #fff;  
+}  
+  
+/*mask*/  
+.drawer_screen {  
+  width: 100%;  
+  height: 100%;  
+  position: fixed;  
+  top: 0;  
+  left: 0;  
+  z-index: 1000;  
+  overflow: hidden;  
+  text-align: center;
+  align-content: center;
+  
+} 
+/* 模态框 */
+.drawer_box {  
+  width: 400rpx;  
+  height: 440rpx;
+  position: relative;  
+  top: 50%;  
+  z-index: 1001;  
+  background: #FFFFFF;  
+  margin-top: 30rpx;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 3px;  
+
+}  
+.drawer_content{
+  width: 100%;  
+  height: 100%;
+  border-radius: 10rpx;
+}
+.drawer_content image{ 
+  width: 400rpx;  
+  height: 440rpx;
+}
+
+

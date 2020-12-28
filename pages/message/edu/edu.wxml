@@ -1,0 +1,18 @@
+<!--pages/message/edu/edu.wxml-->
+<view class="container">
+  <view class="message">
+    <!-- app图片需要上传云端 -->
+    <image class="image" src="cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/images/logo/msg-logo.png"></image>
+      <view class="texttips">
+        <text class="tips"> 4.家长的学历是： </text>
+        <view class="select"> 
+          <Select prop-array='{{selectArray}}' bind:myget='getData'></Select>
+        </view>
+      </view>
+      <view class="button_select">
+        <button class="back" bindtap="goToHas"> 上一题 </button>
+        <button class="next" bindtap="goToIndex"> 完成 </button>
+      </view>
+  </view>
+</view>
+

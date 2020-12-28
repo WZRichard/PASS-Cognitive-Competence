@@ -1,0 +1,126 @@
+.search-info{
+  padding: 30rpx;
+}
+.head-title{
+  align-items: center;
+  text-align: center;
+}
+.head-title .title-cn{
+  font-size: 40rpx;
+
+}
+.head-title .title-en{
+  font-size: 30rpx;
+  color: rgb(100, 100, 100);
+}
+/* 去除滚动条 */
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  color: transparent;
+}
+.bgimg {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  background-size: 100% 100%;
+  z-index: -1;
+  margin-top: 0px;
+  /* -webkit-filter:blur(1px);
+  -moz-filter:blur(1px);
+  -o-filter:blur(1px);
+  -ms-filter:blur(1px);
+  filter:blur(1px); */
+}
+
+
+.slide-image{
+  width: 100%;
+  margin: 0 auto;
+}
+.info-icon image{
+  height: 35rpx;
+  width: 35rpx;
+}
+.title2{
+  margin-top: 30rpx;
+  font-size: 35rpx;
+  height: 35rpx;
+  line-height: 35rpx;
+}
+.content{
+  margin-top: 50rpx;
+  font-size: 30rpx;
+  line-height: 45rpx;
+  color: rgb(146, 15, 145)4;
+}
+.start{
+  height: 80rpx;
+  line-height: 80rpx;
+  font-size: 35rpx;
+  text-align: center;
+  margin: 18rpx 10rpx;
+  background-color: #c93c42;
+  color: white;
+  font-weight: 200;
+  border-radius: 100rpx;
+}
+.progress{
+  width: max-content;
+}
+canvas{
+  height: 100rpx;
+  width: 750rpx;
+}
+.question{
+  margin: 0 auto;
+  margin-top: 100rpx;
+  text-align: center;
+  color:#004e66;
+  font-size: 40rpx;
+  font-weight: bolder;
+ 
+}
+.hint{
+  margin: 20rpx auto;
+  text-align: center;
+  color:#004e66;
+}
+.allword{
+  height: fit-content;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+}
+.allword .word_item{
+  margin: 1rpx;
+  text-align: center;
+  border: 2rpx white solid;
+
+  border-radius: 20rpx;
+  color: white;
+}
+
+.allword .active_right{
+  background-color: white !important;
+  color: white;
+}
+.allword .active_wrong{
+  background-color: rgb(172, 81, 24)!important;
+  color: white;
+}
+.btn_item{
+  height: 80rpx;
+  width: 250rpx;
+  line-height: 80rpx;
+  font-size: 35rpx;
+  text-align: center;
+  margin: 0 auto;
+  margin-top: 30rpx;
+  background-color:#004e66;
+  color: white;
+  font-weight: 200;
+  border-radius: 100rpx;
+}
+
+

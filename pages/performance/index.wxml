@@ -1,2 +1,22 @@
-<!--pages/performance/index.wxml-->
-<text>pages/performance/index.wxml</text>
+<view class="chart-container">
+<view class="btn" bindtap="powerDrawer" data-statu="open">PASS等级说明</view>  
+<view class="drawer_screen" bindtap="powerDrawer" data-statu="close" wx:if="{{showModalStatus}}">
+</view>  
+<!--content-->  
+<!--使用animation属性指定需要执行的动画-->  
+<view animation="{{animationData}}" class="drawer_box" wx:if="{{showModalStatus}}">  
+  <!--drawer content-->
+  <view class="drawer_content">
+    <image src="{{imgSrc}}"></image>
+  </view>
+</view> 
+<view class="title"><text>最新数据</text></view>
+	<view class="spirit">
+		<ec-canvas id="mychart-dom-bar" canvas-id="mychart-bar" ec="{{ ec1 }}" ></ec-canvas>
+	</view>
+	<view class="title"><text>PASS雷达</text></view>
+  <view class="radar">
+		<ec-canvas id="mychart-dom-bar" canvas-id="mychart-bar" ec="{{ ec2 }}" ></ec-canvas>
+	</view>
+ 
+</view>

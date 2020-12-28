@@ -1,26 +1,77 @@
 <!--pages/Matrix_pro/Matrix_pro.wxml-->
-<view class="_container">
-  <!-- 背景图 -->
-  <image class="background"
-    src="cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/Game_Martix/Background-1.jpg"
-    mode="aspectFill"></image>
+<!-- 背景图 -->
+<image class="background" hidden="{{!startGame}}"
+  src="cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/images/wallpaper/game-wp2.png"
+  mode="aspectFill"></image>
 
-  <!-- Vant -->
-  <van-toast id="van-toast" />
-  <van-dialog id="van-dialog" />
+<!-- Vant -->
+<van-toast id="van-toast" />
+<van-dialog id="van-dialog" />
+
+<!-- 前置 -->
+<view class="game-info" hidden="{{startGame}}">
+  <view class="head-title">
+    <view class="title-cn">矩阵问题</view>
+    <view class="title-en">Matrix Problem</view>
+  </view>
+  <view>
+    <swiper class="swiper" indicator-dots="true" autoplay="true" interval="3000" duration="1000" circular="true">
+      <block wx:for="{{slideImgArr}}" wx:key="*this">
+        <swiper-item class="swiper-item">
+          <view>
+            <image class="swiper-image" src="{{item}}" mode="heightFix" />
+          </view>
+        </swiper-item>
+      </block>
+    </swiper>
+  </view>
+  <view class="info">
+    <view class="title2">
+      <image
+        src="cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/Game_ FruitMatch/fruits-1.png">
+      </image>
+      游戏介绍
+    </view>
+    <view class="content">
+      矩阵问题这是一项图形类比推理任务。要求被试在4个可供选择的图形中选取最适合的图形填入空白处，与原来的图形形成抽象的类比关系。完成这一任务的前提是必须把矩阵中的每一成分与其它成分相互联系起来，达到对它们彼此关系的综合理解，然后才能推断所缺的项目。
+    </view>
+  </view>
+
+  <view class="rule">
+    <view class="title2">
+      <image
+        src="cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/Game_ FruitMatch/fruits-4.png">
+      </image>
+      游戏规则
+    </view>
+    <view class="content">选出正确的答案即为通关。共有5关，按答对的的题目数量判断认知能力。</view>
+  </view>
+
+  <view class="start" bindtap="start">
+    <van-button round type="primary" block color="#7232dd"> 开始游戏 </van-button>
+  </view>
+</view>
+
+<!-- 游戏内容 -->
+<view class="_container" hidden="{{!startGame}}">
 
   <!-- 倒计时 -->
   <view class="progress" style="opacity: {{round==0?0:1}};">
-    <van-progress percentage="{{countDownNum*100.0/30}}" color="#00FA9A" pivot-text="倒计时" show-pivot="false" />
+    <van-progress percentage="{{countDownNum*100.0/30}}" color="rgb(241, 158, 194)" pivot-text=" " show-pivot="false" />
+    <image class="icon" mode="widthFix"
+      src="cloud://pass-model-7g3fo4ig00002b96.7061-pass-model7g3fo4ig00002b96-1304449250/images/tabbar/test-chosen.png"
+      style="left: {{countDownNum*100.0/30-9}}%"></image>
+      <!-- cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/Game_ FruitMatch/icons8-烟花-64.png -->
   </view>
 
   <!-- Title -->
   <view class="title">
     <view>
       <image class="title_image"
-        src="cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/Game_Martix/Matrix-Title.png"></image>
+        src="cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/Game_Martix/Matrix-Title.png">
+      </image>
     </view>
-    <view hidden="{{round==0?false:true}}">
+    <!-- <view hidden="{{round==0?false:true}}">
       <view class="in_title_begin in_title_begin_F">
         <van-button plain type="primary" icon="star-o" bindtap="start">开始</van-button>
       </view>
@@ -30,7 +81,7 @@
       <view class="in_title_begin">
         <van-button plain type="primary" icon="search" bindtap="">教程</van-button>
       </view>
-    </view>
+    </view> -->
     <view class="in_title_text" hidden="{{round==0?true:false}}">
       <van-divider contentPosition="center"
         customStyle="color: #DEB887; border-color: #DEB887; font-size: 18px; font-weight: bold; margin-bottom:-5px">
@@ -44,41 +95,44 @@
       <text>已知</text>
     </view>
     <view>
-      <image class="image" src="{{image_name_pre}}{{question_index}}-1.jpg" mode="heightFix" bindload="image_loaded" binderror="image_loading_error"></image>
+      <image class="image" src="{{image_name_pre}}{{question_index}}-1.jpg" mode="heightFix" bindload="image_loaded"
+        binderror="image_loading_error"></image>
     </view>
     <view style="margin-top: 5px;">
       <text>下图中</text>
       <van-icon name="question-o" size="20px" /> <text>处应该填什么呢？</text>
     </view>
     <view>
-      <image class="image" src="{{image_name_pre}}{{question_index}}-2.jpg" mode="heightFix" bindload="image_loaded" binderror="image_loading_error"></image>
+      <image class="image" src="{{image_name_pre}}{{question_index}}-2.jpg" mode="heightFix" bindload="image_loaded"
+        binderror="image_loading_error"></image>
     </view>
     <view class="Question_detail">
       <van-icon name="down" size="20px" />
       <text>请在下方的选项中选择一个正确选项</text>
       <van-icon name="down" size="20px" />
     </view>
+    <view>
+      <image class="image_Selection" src="{{image_name_pre}}{{question_index}}-3.jpg" mode="heightFix"
+        bindload="image_loaded" binderror="image_loading_error"></image>
+    </view>
   </view>
 
   <!-- Selection -->
   <view class="Selection" hidden="{{question_hidden}}">
     <view>
-      <image class="image_Selection" src="{{image_name_pre}}{{question_index}}-3.jpg" mode="heightFix" bindload="image_loaded" binderror="image_loading_error"></image>
-    </view>
-    <view>
-      <van-button round type="{{selector==1?'warning':'info'}}" class="button" bindtap="select" data-selection="1"
+      <van-button round type="{{selector==1?'danger':'info'}}" class="button" bindtap="select" data-selection="1"
         style="border-color: {{selector==1?'rgb(255, 61, 3)':'rgb(221, 221, 221)'}}"><text class="selector">A</text>
       </van-button>
 
-      <van-button round type="{{selector==2?'warning':'info'}}" class="button" bindtap="select" data-selection="2"
+      <van-button round type="{{selector==2?'danger':'info'}}" class="button" bindtap="select" data-selection="2"
         style="border-color: {{selector==2?'rgb(255, 61, 3)':'rgb(221, 221, 221)'}}"><text class="selector">B</text>
       </van-button>
 
-      <van-button round type="{{selector==3?'warning':'info'}}" class="button" bindtap="select" data-selection="3"
+      <van-button round type="{{selector==3?'danger':'info'}}" class="button" bindtap="select" data-selection="3"
         style="border-color: {{selector==3?'rgb(255, 61, 3)':'rgb(221, 221, 221)'}}"><text class="selector">C</text>
       </van-button>
 
-      <van-button round type="{{selector==4?'warning':'info'}}" class="button" bindtap="select" data-selection="4"
+      <van-button round type="{{selector==4?'danger':'info'}}" class="button" bindtap="select" data-selection="4"
         style="border-color: {{selector==4?'rgb(255, 61, 3)':'rgb(221, 221, 221)'}}"><text class="selector">D</text>
       </van-button>
     </view>
@@ -86,8 +140,12 @@
 
   <!-- 确认 -->
   <view hidden="{{question_hidden}}">
-    <van-button plain icon="coupon-o" type="primary" block class="comfirm" bindtap="comfirm" hidden="true"
-      style="opacity: {{selector==0?0.5:1}}">确认</van-button>
+    <!-- <van-button plain icon="coupon-o" type="primary" block class="comfirm" bindtap="comfirm" hidden="true"
+      style="opacity: {{selector==0?0.5:1}}">确认</van-button> -->
+
+    <image class="comfirm" bindtap="comfirm" 
+      src="cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/images/button/submit.png"
+      mode="heightFix"></image>
   </view>
 
 </view>

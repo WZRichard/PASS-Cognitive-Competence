@@ -1,8 +1,8 @@
 <!--pages/FruitMatch/FruitMatch.wxml-->
 
 <!-- 背景图 -->
-<image class="background"
-  src="cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/Game_Martix/Background-1.jpg"
+<image class="background"  hidden="{{!startGame}}" 
+  src="cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/images/wallpaper/game-wp1.png"
   mode="aspectFill"></image>
 <van-toast id="van-toast" />
 
@@ -31,7 +31,6 @@
   </view>
   <view>
     <swiper class="swiper" indicator-dots="true" autoplay="true" interval="3000" duration="1000" circular="true">
-      <!-- style="height:{{gameHeight/3}}rpx" -->
       <block wx:for="{{slideImgArr}}" wx:key="*this">
         <swiper-item class="swiper-item">
           <view>
@@ -43,11 +42,9 @@
   </view>
   <view class="info">
     <view class="title2">
-      <!-- <icon class="info-icon"> -->
       <image
         src="cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/Game_ FruitMatch/fruits-1.png">
       </image>
-      <!-- </icon>  -->
       游戏介绍
     </view>
     <view class="content">
@@ -79,7 +76,8 @@
 
   <!-- 倒计时 -->
   <view class="progress" style="opacity: {{question_begin}};">
-    <van-progress percentage="{{countDownNum*100.0/10}}" color="#00FA9A" pivot-text="倒计时" show-pivot="false" />
+    <van-progress percentage="{{countDownNum*100.0/10}}" color="rgb(241, 158, 194)" pivot-text=" " show-pivot="false" />
+    <image class="icon" mode="widthFix" src="cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/Game_ FruitMatch/icons8-烟花-64.png" style="left: {{countDownNum*100.0/10-9}}%"></image>
   </view>
 
   <!-- 遮罩层 -->

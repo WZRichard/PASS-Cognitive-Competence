@@ -1,0 +1,71 @@
+.wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.head-title {
+  align-items: center;
+  text-align: center;
+}
+
+.title-cn {
+  font-size: 40rpx;
+}
+
+.title-en {
+  font-size: 30rpx;
+  color: rgb(100, 100, 100);
+}
+
+.title2>image {
+  height: 25px;
+  width: 25px;
+  vertical-align: middle;
+}
+
+.title2 {
+  margin-top: 50rpx;
+  font-size: 35rpx;
+  height: 35rpx;
+  line-height: 35rpx;
+  font-weight: bold;
+}
+
+.swiper {
+  height: 200px;
+}
+
+.swiper-item {
+  height: 200px;
+}
+
+.swiper-item>view {
+  display: flex;
+  justify-content: center;
+}
+
+.swiper-image {
+  height: 200px;
+}
+
+.content {
+  margin: 10px 30px 0 30px;
+  font-size: 30rpx;
+  line-height: 45rpx;
+}
+
+.start {
+  width: 96%;
+  margin-left: 2%;
+  margin-right: 2%;
+  margin-bottom: 12px;
+
+  position: absolute;
+  bottom: 0px;
+}
+
+.start>van-button {
+  border-radius: 100rpx;
+}
