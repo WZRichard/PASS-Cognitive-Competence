@@ -1,35 +1,128 @@
 <!--pages/SentenceRepetition/index.wxml-->
-
-    <view class="head-title">
-      <view class="title-cn">句子问题</view>
-      <view class="title-en">Sentence Repetition</view>
+<!-- 首页 -->
+<view class="index" hidden="{{round==0?false:true}}">
+  <view class="head-title">
+    <view class="title-cn">句子问题</view>
+    <view class="title-en">Sentence Repetition</view>
+  </view>
+  <view>
+    <swiper class="swiper" indicator-dots="true" autoplay="true" interval="3000" duration="1000" circular="true">
+      <block wx:for="{{slideImgArr}}" wx:key="*this">
+        <swiper-item class="swiper-item">
+          <view>
+            <image class="swiper-image" src="{{item}}" mode="heightFix" />
+          </view>
+        </swiper-item>
+      </block>
+    </swiper>
+  </view>
+  <view class="info">
+    <view class="title2">
+      <icon class="info-icon">
+        <image
+          src="cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/images/tabbar/game.png">
+        </image>
+      </icon> 游戏介绍
     </view>
+    <view class="content">
+      句子重复（sentence repetition）让被试阅读含有颜色词的句子。这些颜色词有不同的词性。如“这个蓝色正在变成灰色”（The blue is
+      graying）。然后要求继续回答以下问题：“哪个颜色正在变灰？”要正确回答必须对原句的句法有完全正确的理解。句法中显然有序列的因素，因而涉及到继时性的加工过程。
+    </view>
+  </view>
+
+  <view class="rule">
+    <view class="title2">
+      <icon class="info-icon">
+        <image
+          src="cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/images/tabbar/game.png">
+        </image>
+      </icon> 游戏规则
+    </view>
+    <view class="content">
+      游戏分为ABCD四个选项，题目为单选题，要求选出正确的选项。一共五关，句子长度由短至长，每关10s，每过一关增加2分</view>
+  </view>
+  <view class="start" bindtap="tap_start">开始游戏</view>
+</view>
+<!-- 游戏主体 -->
+<view class="game" hidden="{{round==0?true:false}}">
+  <image class="bgimg"
+    src="cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/images/wallpaper/game-wp2.png">
+  </image>
+  <van-toast id="van-toast" />
+  <van-dialog id="van-dialog" />
+  <!-- 剩余时间 -->
+  <view class="time">
+    <van-progress pivot-text=" " stroke-width="12" color="#004e66" percentage="{{time/0.1}}"></van-progress>
+    <image class="progressimg"
+      src="cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/images/tabbar/test-chosen.png"
+      mode="aspectFill" style="margin-left:{{60*time-20}}rpx"></image>
+  </view>
+  <!-- Title -->
+  <view class="in_title_text">
+    <van-divider contentPosition="center"
+      customStyle="color: #000000; border-color: #000000; font-size: 18px; font-weight: bold;">
+      第{{round}}关</van-divider>
+  </view>
+  <view class="model">
+    <view class="Question">
+      <view>
+        <text style="color:#004e66; text-decoration:underline">{{question}}</text>
+      </view>
+      <view>
+        <text style="color:#004e66">{{finalColor}}</text>
+      </view>
+      <view>
+        <van-icon name="down" size="20px" />
+        <text style="color:#004e66">请在下方的选项中选择一个正确选项</text>
+        <van-icon name="down" size="20px" />
+      </view>
+    </view>
+
+    <!-- Selection -->
+    <view class="Selection">
+      <van-button round size="large" type="default" class="button" bindtap="select" data-selection="0"
+        color="{{selector==0?'pink':'#004e66'}}"
+        style="border-color: {{selector==0?'rgb(255, 61, 3)':'rgb(000, 000, 000)'}}"><text class="selector">A
+          {{selectA}}色</text>
+      </van-button>
+
+      <van-button round size="large" type="default" class="button" bindtap="select" data-selection="1"
+        color="{{selector==1?'pink':'#004e66'}}"
+        style="border-color: {{selector==1?'rgb(255, 61, 3)':'rgb(000, 000, 000)'}}"><text class="selector">B
+          {{selectB}}色</text>
+      </van-button>
+
+      <van-button round size="large" type="default" class="button" bindtap="select" data-selection="2"
+        color="{{selector==2?'pink':'#004e66'}}"
+        style="border-color: {{selector==2?'rgb(255, 61, 3)':'rgb(000, 000, 000)'}}"><text class="selector">C
+          {{selectC}}色</text>
+      </van-button>
+
+      <van-button round size="large" type="default" class="button" bindtap="select" data-selection="3"
+        color="{{selector==3?'pink':'#004e66'}}"
+        style="border-color: {{selector==3?'rgb(255, 61, 3)':'rgb(000, 000, 000)'}}"><text class="selector">D
+          {{selectD}}色</text>
+      </van-button>
+    </view>
+
+    <!-- 确认 -->
+    <!-- <view>
+      <van-button plain disabled="{{selector===-1?true:false}}" icon="coupon-o" type="primary" bindtap="comfirm" block
+        class="confirm">确认</van-button>
+    </view> -->
     <view>
-      <swiper class="swiper" indicator-dots="true" autoplay="true" interval="3000" duration="1000" circular="true">
-        <block wx:for="{{slideImgArr}}" wx:key="*this">
-          <swiper-item class="swiper-item">
-            <view>
-              <image class="swiper-image" src="{{item}}" mode="heightFix" />
-            </view>
-          </swiper-item>
-        </block>
-      </swiper>
+      <image class="confirm"
+        src="cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/images/button/confirm.png"
+        bindtap="confirm" mode="heightFix"></image>
     </view>
-    <view class="info">
-      <view class="title2">
-        <icon class="info-icon"><image src="cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/images/tabbar/game.png"></image></icon>  游戏介绍
+    <van-overlay show="{{scoreShow}}">
+      <view class="wrapper">
+        <view>
+          <image class="_img"
+            src="{{scoreImg}}"
+            mode="heightFix"></image>
+        </view>
       </view>
-      <view class="content">
-        句子重复（sentence repetition）让被试阅读含有颜色词的句子。这些颜色词有不同的词性。如“这个蓝色正在变成灰色”（The blue is graying）。然后要求继续回答以下问题：“哪个颜色正在变灰？”要正确回答必须对原句的句法有完全正确的理解。句法中显然有序列的因素，因而涉及到继时性的加工过程。
-      </view>
-    </view>
-
-    <view class="rule">
-      <view class="title2">
-        <icon class="info-icon"><image src="cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/images/tabbar/game.png"></image></icon>  游戏规则
-      </view>
-      <view class="content">
-        游戏分为ABCD四个选项，题目为单选题，要求选出正确的选项。一共五关，句子长度由短至长，每关10s，每过一关增加2分</view>
-    </view>
-    <view class="start" bindtap="tap_start">开始游戏</view>
-
+    </van-overlay>
+  </view>
+</view>

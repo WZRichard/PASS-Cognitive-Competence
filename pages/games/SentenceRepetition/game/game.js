@@ -346,19 +346,19 @@ Page({
   },
 
   overtime: function () { //超时
-    // Toast.fail('超时啦');
+    Toast.fail('超时啦');
     this.clearTimer();
-    Dialog.alert({
-      message: '超时啦',
-      // theme: 'round-button',
-    }).then(() => {
-      if (this.data.round < this.data.cnt_round) {
-        this.next_Question();
-      } else {
-        Toast.success('闯关成功');
-        this.gameOver();
-      }
-    });
+    // Dialog.alert({
+    //   message: '超时啦',
+    //   // theme: 'round-button',
+    // }).then(() => {
+    //   if (this.data.round < this.data.cnt_round) {
+    //     this.next_Question();
+    //   } else {
+    //     Toast.success('闯关成功');
+    //     this.gameOver();
+    //   }
+    // });
   },
 
   clearTimer: function () {
@@ -420,14 +420,14 @@ Page({
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-    clearInterval(this.timer);
+    this.clearTimer();
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-    clearInterval(this.timer);
+    this.clearTimer();
   },
 
   /**

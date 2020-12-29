@@ -1,5 +1,15 @@
 <!--pages/zicihuiyi/zicihuiyi.wxml-->
 
+<van-overlay show="{{score_show}}">
+  <view class="wrapper">
+    <view>
+      <image class="_img"
+        src="{{scorelevel}}"
+        mode="heightFix"></image>
+    </view>
+  </view>
+</van-overlay>
+
 <view class="{{showgamebox?'gamebox_show':'gamebox_hidden'}}">
   <image class="bgimg" src="{{mainbg}}" mode="aspectFill"></image>
   <view class="head">
@@ -12,7 +22,7 @@
 
     <view class="{{showtimerow?'timerow_show':'timerow_hidden'}}">
       <image class="progressimg"
-        src="cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/Game_RecallNumber/progress.png"
+        src="cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/images/tabbar/test-chosen.png"
         mode="aspectFill" style="margin-left:{{marlt}}px"></image>
       <view class='row' style='width:{{progressWidth}}%'>
       </view>
@@ -47,12 +57,7 @@
   <view class="bottom2">
     <view class="{{showTip?'tip_show':'tip_hidden'}}">你已经完成了挑战，继续游玩将不会影响加分</view>
   </view>
-  <image class="onload"
-    src="cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/Game_RecallNumber/rnbg2.jpg">
-  </image>
-  <image class="onload"
-    src="cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/Game_RecallNumber/rnbg3.jpg">
-  </image>
+
 </view>
 <!--showhomepage-->
 <view class="{{showgamebox ?'homepage_hidden':'homepage_show'}}" style="height:{{gameHeight-60}}rpx">

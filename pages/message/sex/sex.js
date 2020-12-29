@@ -42,12 +42,6 @@ Page({
     this.setData({
       hasSex: true
     });
-    // console.log(e.detail)
-    // wx.showToast({
-    //   title: e.detail.value,
-    //   icon: 'none',
-    //   duration: 1500
-    // })
   },
   onLoad: function (options) {
     

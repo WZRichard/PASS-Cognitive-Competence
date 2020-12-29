@@ -55,7 +55,9 @@
 }
 canvas{
   height: 100rpx;
-  width: 750rpx;
+  width: 600rpx;
+  margin: 0 auto;
+  
 }
 .question{
   margin: 0 auto;
@@ -124,4 +126,10 @@ canvas{
   height: 680rpx;
   text-align: center;
   align-content: center;
+}
+.gradeImg{
+  width:550rpx;
+  height:550rpx;
+  margin: 0 auto;
+  
 }

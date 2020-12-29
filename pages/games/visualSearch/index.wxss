@@ -70,7 +70,9 @@
 }
 canvas{
   height: 100rpx;
-  width: 750rpx;
+  width: 600rpx;
+  margin: 0 auto;
+  
 }
 .question{
   margin: 0 auto;
@@ -122,5 +124,9 @@ canvas{
   font-weight: 200;
   border-radius: 100rpx;
 }
-
-
+.gradeImg{
+  width:550rpx;
+  height:550rpx;
+  margin: 0 auto;
+  
+}

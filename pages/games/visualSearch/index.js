@@ -4,7 +4,10 @@ const app = getApp()
 
 Page({
   data: {
-    slideImgArr: ['instance01','instance02','instance03'],//之后再插入游戏图片
+    slideImgArr: [
+      'cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/images/games/visualSearch/instance01.png',
+      'cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/images/games/visualSearch/instance02.png',
+      'cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/images/games/visualSearch/instance03.png'],//之后再插入游戏图片
     indicatorDots: true, // 是否显示面板指示点
     autoplay: true,      // 是否自动切换
     circular: true,      // 是否采用衔接滑动
@@ -31,8 +34,16 @@ Page({
     totalWrong:0,//1～3轮总共选错的
     totalRequest:0,//1～3轮总共需要找到的（标准答案总数）
 
+    length:570,
+    rightRate:0,//正确率
+    score:0,//分数
+    grade:'',//等级
+    gradeImg:'',
 
-    
+    gradeShow:false,
+
+    testFlag:0,
+
   },
 
   onLoad: function () {//页面打开时执行的操作
@@ -122,23 +133,34 @@ Page({
     var timer = setInterval(function(){
       //现在的长度/原来的长度
       //(this2.data.time*1000-this2.data.mTime)/(this2.data.time*1000)
-      var length = 50+(700-50)*(this2.data.mTime)/(this2.data.time*1000);
+      var length = 570*(this2.data.mTime)/(this2.data.time*1000);
       var currentTime = this2.data.mTime-100;
       this2.setData({
         mTime:currentTime
       });
-      if(length>50){
-        var lineWidth = 5/this2.data.rate;//px
+      if(length>0){
+        //进度条粗细
+        var lineWidth = 10/this2.data.rate;//px
         var ctx = wx.createCanvasContext('progress_active');//不需要'#'
+        
         ctx.setLineCap('butt');
         ctx.setLineWidth(lineWidth);
         ctx.setStrokeStyle('#ffffff');
         ctx.beginPath();
-        ctx.moveTo(50/this2.data.rate, 20);
-        ctx.lineTo(length/this2.data.rate, 20);
+        ctx.moveTo(0, 80/this2.data.rate);
+        ctx.lineTo(length/this2.data.rate, 80/this2.data.rate);
         ctx.stroke();
         ctx.draw();
+        this2.setData({
+          length:length
+        })
+      }else{
+        clearInterval(this2.data.timer);
+        this2.getScore();
+        this2.getGrade();
+        this2.showGrade();
       }
+      
       
     },100);
     this2.setData({
@@ -165,7 +187,14 @@ Page({
       arr[id].active = 2;
       wrong++
     }
-    var hint='如果觉得选完了，就点击"下一题"吧！'
+    var d = this.data.difficulty;
+    var hint;
+    if(d==4||d==5){
+      hint='如果觉得选完了，就点击"下一题"吧！'
+    }else{
+      hint='如果觉得选完了，就点击"完成"吧！'
+    }
+    
     this.setData({
       wordArr:arr,
       totalRight:right,
@@ -175,9 +204,9 @@ Page({
     
   },
   next:function(){
-    clearInterval(this.data.timer);
     var d = this.data.difficulty;
     var this2 = this;
+    clearInterval(this2.data.timer);
     wx.showModal({
       title: '是否进入下一轮',
       content: '进入下一轮后，你将无法修改本轮答案',
@@ -185,29 +214,7 @@ Page({
         if (res.confirm) {//这里是点击了确定以后
           console.log('用户点击确定');
           this2.upgrade();
-          
-        } else {//这里是点击了取消以后
-          console.log('用户点击取消');
-        }
-      }
-    });
-    this.drawActive();
-    
-  },
-  finish:function(){
-    clearInterval(this.data.timer);
-    var this2 = this;
-    wx.showModal({
-      title: '是否结束本轮',
-      content: '结束后，你将无法修改本轮答案',
-      success: function (res) {
-        if (res.confirm) {//这里是点击了确定以后
-          console.log('用户点击确定');
-          var useTime = (this2.data.time*1000-this2.data.mTime)/1000
-          console.log(useTime)
-          console.log('resuqest:'+this2.data.totalRequest);
-          console.log('right:'+this2.data.totalRight);
-          console.log('wrong:'+this2.data.totalWrong);
+          this2.drawActive();
         } else {//这里是点击了取消以后
           console.log('用户点击取消');
           this2.drawActive();
@@ -215,6 +222,70 @@ Page({
       }
     });
     
+    
+  },
+  finish:function(){
+    var this2 = this;
+    clearInterval(this2.data.timer);
+    wx.showModal({
+      title: '是否结束本轮',
+      content: '结束后，你将无法修改本轮答案',
+      success: function (res) {
+        if (res.confirm) {//这里是点击了确定以后
+          console.log('用户点击确定');
+          this2.getScore();
+          this2.getGrade();
+          this2.showGrade();
+        } else {//这里是点击了取消以后
+          console.log('用户点击取消');
+          this2.drawActive();
+        }
+      }
+    });
+    
+  },
+  getScore:function(){
+    var useTime = (this.data.time*1000-this.data.mTime)/1000
+    console.log(useTime)
+    console.log('resuqest:'+this.data.totalRequest);
+    console.log('right:'+this.data.totalRight);
+    console.log('wrong:'+this.data.totalWrong);
+    var rightRate = 1.0*(this.data.totalRight-this.data.totalWrong)/this.data.totalRequest;
+    var score =rightRate*(this.data.time-useTime+20)/this.data.time*100;
+    console.log('分数 :'+score);
+    this.setData({
+      rightRate:rightRate,
+      score:score
+    })
+  },
+  getGrade:function(){
+    var score = this.data.score;
+    var grade = '';
+    var gradeImg = '';
+    if(score>=90)
+    { 
+      grade = 'A'; 
+      gradeImg = 'cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/images/level/level-A.png'
+    }else if(score<90&&score>=75) {
+      grade = 'B'; 
+      gradeImg = 'cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/images/level/level-B.png'
+    }else if(score<75&&score>=60) { 
+      grade = 'C'; 
+      gradeImg = 'cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/images/level/level-C.png'
+    }else{ 
+      grade = 'D'; 
+      gradeImg = 'cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/images/level/level-D.png'
+    }
+    this.setData({
+      grade:grade,
+      gradeImg:gradeImg
+    })
+    console.log("等级："+grade);
+  },
+  showGrade:function(){
+    this.setData({
+      gradeShow:true
+    })
   },
   upgrade:function(){
     var d = this.data.difficulty;
@@ -229,7 +300,32 @@ Page({
         hint:'如果觉得选完了，就点击"完成"吧！'
       })
     }
+  },
+  gradeConfirm:function(){//点击确定后
+    //跳转到游戏界面
+    if(this.data.testFlag==0)
+    {
+      wx.reLaunch({
+        url: '/pages/games/index',
+      })
+    }else if(this.data.testFlag==1){
+      wx.redirectTo({
+        url: '/pages/games/visualSearch/index?testFlag=1',
+      })
+    }else{
+      wx.reLaunch({
+        url: '/pages/training/index',
+      })
+    }
+  },
+  onHide:function(){
+    clearInterval(this.data.timer);
+  },
+  onUnload:function(){
+    clearInterval(this.data.timer);
   }
+  
 },
+
   
 )

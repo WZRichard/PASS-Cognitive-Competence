@@ -1,4 +1,14 @@
 <!--pages/jihualianjie/jihualianjie.wxml-->
+<van-overlay show="{{score_show}}">
+  <view class="wrapper">
+    <view>
+      <image class="_img"
+        src="{{scorelevel}}"
+        mode="heightFix"></image>
+    </view>
+  </view>
+</van-overlay>
+
 <!--showgamebox1-->
 <view class="{{showgamebox1?'gamebox1_show':'gamebox1_hidden'}}">
   <!-- <image class="bgimg1"
@@ -17,14 +27,14 @@
   <view class="bottom1">
     <view class="bottomteststart" bindtap="btnStart">
       <image class="btnimg"
-        src="cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/Game_PlantoConnect/buttonstart.png"
+        src="cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/images/button/confirm.png"
         mode="aspectFill"></image>
     </view>
-    <view class="bottomquit" bindtap="btnQiut">
+   <!-- <view class="bottomquit" bindtap="btnQiut">
       <image class="btnimg"
         src="cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/Game_PlantoConnect/buttonquit.png"
         mode="aspectFill"></image>
-    </view>
+    </view> -->
   </view>
 </view>
 <!--showgamebox2-->
@@ -41,6 +51,9 @@
     </view>
     <view class="hpart1">
       <view class="timerow">
+        <image class="progressimg"
+        src="cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/images/tabbar/test-chosen.png"
+        mode="aspectFill" style="margin-left:{{marlt}}px"></image>
         <view class='trow' style='width:{{progressWidth}}%'></view>
       </view>
     </view>
@@ -51,7 +64,7 @@
         wx:for-item="cell" wx:key="cell-key" bindtap="onTap" data-index="{{index}}" data-row="{{indexrow}}"
         style="transform:rotate({{jiao[indexrow*5+index]}}deg)">
         <image class="{{(currenta==indexrow*5+index||currentb[indexrow*5+index] == 1) ? '.tapbg' : '.tapbgno' }}"
-          src="cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/Game_PlantoConnect/tap1.png"
+          src="cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/Game_PlantoConnect/33333.png"
           mode="aspectFill"></image>
         <view class="{{(currentb[indexrow*5+index] == 1) ? '.cell-con-lock' : '.cell-con' }}">
           {{cell}}

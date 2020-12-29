@@ -1,39 +1,99 @@
 <!--pages/RecieveAttention/index.wxml-->
+<!-- 首页 -->
+<view class="index" hidden="{{type==-1?false:true}}">
+  <!-- 背景图 -->
+  <view class="head-title">
+    <view class="title-cn">接收的注意</view>
+    <view class="title-en">Receptive Attention</view>
+  </view>
+  <view class="game-show">
+    <swiper class="swiper" indicator-dots="true" autoplay="true" interval="3000" duration="1000" circular="true">
+      <block wx:for="{{slideImgArr}}" wx:key="*this">
+        <swiper-item class="swiper-item">
+          <view>
+            <image class="swiper-image" src="{{item}}" mode="heightFix" />
+          </view>
+        </swiper-item>
+      </block>
+    </swiper>
+  </view>
 
-
-
-<view class="head-title">
-      <view class="title-cn">接收的注意</view>
-      <view class="title-en">Receptive Attention</view>
+  <view class="info">
+    <view class="title2">
+      <icon class="info-icon">
+        <image
+          src="cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/images/tabbar/game.png">
+        </image>
+      </icon> 游戏介绍
     </view>
-    <view class="game-show">
-      <swiper class="swiper" indicator-dots="true" autoplay="true" interval="3000" duration="1000" circular="true">
-        <block wx:for="{{slideImgArr}}" wx:key="*this">
-          <swiper-item class="swiper-item">
-            <view>
-              <image class="swiper-image" src="{{item}}" mode="heightFix" />
-            </view>
-          </swiper-item>
-        </block>
-      </swiper>
+    <view class="content">
+      接收的注意（receptive attention）这类任务的刺激物为字母对，分为二种实验情景：一是选出所有同样字体的字母对，如对HN而不是对<text style="font-style:italic">H</text>
+      h作出反应；二是选出同样名称的字母对，如Aa。此测验涉及注意目标的改变，因而又称为注意转换测验。
     </view>
+  </view>
 
-    <view class="info">
-      <view class="title2">
-        <icon class="info-icon"><image src="cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/images/tabbar/game.png"></image></icon>  游戏介绍
+  <view class="rule">
+    <view class="title2">
+      <icon class="info-icon">
+        <image
+          src="cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/images/tabbar/game.png">
+        </image>
+      </icon> 游戏规则
+    </view>
+    <view class="content">
+      游戏随机两种出题方式，一种为找出同样字体的字母对，字体为正常，斜体，加粗，加粗斜体四种。一种为找出大小写组合的字母对。一共180个随机字母对，限时120s，游戏上方有倒计时提示，可以提早提交,提交越早分数越高。</view>
+  </view>
+  <view class="start" bindtap="tap_start">开始游戏</view>
+</view>
+<!-- 游戏主体 -->
+<view class="game" hidden="{{type==-1?true:false}}">
+  <!-- 背景图 -->
+  <image class="background"
+    src="cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/images/wallpaper/game-wp1.png"
+    mode="widthFix"></image>
+  <view class="head">
+    <!-- 剩余时间 -->
+    <view class="time">
+      <van-progress pivot-text=" " stroke-width="12" color="#004e66" percentage="{{time/1.2}}"></van-progress>
+      <image class="progressimg"
+        src="cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/images/tabbar/test-chosen.png"
+        mode="aspectFill" style="margin-left:{{5*time-20}}rpx"></image>
+    </view>
+  <!-- Question -->
+  <view class="Question">
+    <text>{{question}}</text>
+  </view>
+ </view>
+  <!-- n*n的格子 -->
+  <view style="margin-top: 200rpx">
+    <view class="line" wx:for="{{line}}" wx:key="idx" wx:for-index="idx">
+      <view class="unit" wx:for="{{column}}" wx:key="index" bindtap="tap_unit" data-index="{{index}}"
+        data-row="{{idx}}">
+        <image class="img" src="{{picture[idx][index]}}" mode="heightFix"></image>
+        <view class="text">
+          <text class="left"
+            style="font-style:{{style[idx][index][0]}};font-weight:{{weight[idx][index][0]}}">{{text[idx][index][0]}}</text>
+          <text decode="{{true}}">&nbsp;</text>
+          <text class="right"
+            style="font-style:{{style[idx][index][1]}};font-weight:{{weight[idx][index][1]}}">{{text[idx][index][1]}}</text>
+        </view>
       </view>
-      <view class="content">
-        接收的注意（receptive attention）这类任务的刺激物为字母对，分为二种实验情景：一是选出所有同样字体的字母对，如对HN而不是对<text style="font-style:italic">H</text>
-        h作出反应；二是选出同样名称的字母对，如Aa。此测验涉及注意目标的改变，因而又称为注意转换测验。
-      </view>
     </view>
-
-    <view class="rule">
-      <view class="title2">
-        <icon class="info-icon"><image src="cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/images/tabbar/game.png"></image></icon>  游戏规则
-      </view>
-      <view class="content">
-        游戏随机两种出题方式，一种为找出同样字体的字母对，字体为正常，斜体，加粗，加粗斜体四种。一种为找出大小写组合的字母对。一共180个随机字母对，限时120s，游戏上方有倒计时提示，可以提早提交,提交越早分数越高。</view>
+  </view>
+  <view>
+      <image class="confirm"
+        src="cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/images/button/confirm.png"
+        bindtap="tap_over" mode="heightFix"></image>
     </view>
-    <view class="start" bindtap="tap_start">开始游戏</view>
-   
+  <view class="white"> </view>
+ 
+    <van-overlay show="{{scoreShow}}">
+      <view class="wrapper">
+        <view>
+          <image class="_img"
+            src="{{scoreImg}}"
+            mode="heightFix"></image>
+        </view>
+      </view>
+    </van-overlay>
+</view>

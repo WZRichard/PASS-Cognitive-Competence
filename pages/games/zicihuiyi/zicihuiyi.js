@@ -13,6 +13,10 @@ Page({
     inputValue:"",
     marlt:0,
 
+
+    score_show:false,
+    scorelevel:"",
+
     // mainbg:'cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/Game_RecallNumber/rnbg1.JPG',
     mainbg:'cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/images/wallpaper/game-wp3.png',
     showgamebox:false,//主界面和游戏界面的切换
@@ -37,7 +41,7 @@ Page({
     level:1,
 
 
-     slideImgArr: ['cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/Game_RecallNumber/rn1.png', 'cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/Game_RecallNumber/rn1.png','cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/Game_RecallNumber/rn1.png'], //游戏介绍界面
+     slideImgArr: ['cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/Game_RecallNumber/rnA.png','cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/Game_RecallNumber/rnB.png','cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/Game_RecallNumber/rnC.png'], //游戏介绍界面
     indicatorDots: true, // 是否显示面板指示点
     autoplay: true,      // 是否自动切换
     circular: true,      // 是否采用衔接滑动
@@ -50,6 +54,9 @@ Page({
     time: '100',//限定时间100s
     mTime: 100000,//以毫秒为单位
     timer: null,
+
+    countTime:3,
+    testFlag:0,
   },
   
   onLoad: function () {
@@ -111,7 +118,6 @@ Page({
       timer: timer
     })
   },
-
   btnBack:function(){//返回按钮
     this.showviewHidden();
     this.setData({
@@ -122,7 +128,6 @@ Page({
       showgamebox:false,
     });
   },
-
   gemeStrat:function(){//某个关卡游戏开始
     this.setData({
       showtimerow:true,
@@ -130,7 +135,6 @@ Page({
     this.generateNumber();
     this.timer = setInterval(this.run, 10); //that.timer关键点
   },
-
   Initialize:function(){//初始化界面
     this.showviewHidden();
     this.setData({
@@ -153,7 +157,7 @@ Page({
         })
       }
         this.setData({//答案字体为绿色
-        mainbg:'cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/Game_RecallNumber/rnbg2.jpg',
+        //mainbg:'cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/Game_RecallNumber/rnbg2.jpg',
         showView2: true, 
         numshowcolor:"#00ff00",
         numshow: this.data.input,
@@ -161,22 +165,59 @@ Page({
       });
     }else{//输入不正确
       this.setData({//答案字体为红色
-        mainbg:'cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/Game_RecallNumber/rnbg3.jpg',
-        showView1: true,
+        //mainbg:'cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/Game_RecallNumber/rnbg3.jpg',
+        //showView1: true,
         numshowcolor:"#ff0000",
         numshow: this.data.input,
-        showView3: true,
+        //showView3: true,
         // 待补充   返回分数
       })
+      this.gameOver();
     }
+  },
+  gameOver:function(){
+    if(this.data.score>=90){
+      this.setData({
+        scorelevel:"cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/images/level/level-A.png",
+      });
+    }else if(this.data.score>=75){
+      this.setData({
+        scorelevel:"cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/images/level/level-B.png",
+      });
+    }else if(this.data.score>=60){
+      this.setData({
+        scorelevel:"cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/images/level/level-C.png",
+      });
+    }else{
+      this.setData({
+        scorelevel:"cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/images/level/level-D.png",
+      });
+    }
+    this.setData({
+      score_show:true,
+    });
+    this.timer2 = setInterval(this.run2, 1000);
+  },
+  run2:function(){
+    let counttime = this.data.countTime;
+    if(counttime===0){
+       clearInterval(this.timer2);
+       this.setData({
+        countTime:3,
+        score_show:false,
+      });
+      this.btnBack();
+    }
+    counttime--;
+    this.setData({
+      countTime: counttime,
+    }); 
   },
   btnNext:function(){//下一关按钮
     this.showviewHidden();
     this.data.level++; 
     this.gemeStrat();
-    this.setData({
-      mainbg:'cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/Game_RecallNumber/rnbg1.JPG',
-    });
+    //this.setData({mainbg:'cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/Game_RecallNumber/rnbg1.JPG',});
   },
   btnTryagain:function(){//再试一次按钮
     this.setData({

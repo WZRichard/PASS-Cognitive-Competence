@@ -1,4 +1,4 @@
-
+/* 首页 */
 .head-title{
   align-items: center;
   text-align: center;
@@ -18,11 +18,23 @@
   color: transparent;
 }
 
-
-.slide-image{
-  width: 100%;
-  margin: 0 auto;
+.swiper {
+  height: 200px;
 }
+
+.swiper-item {
+  height: 200px;
+}
+
+.swiper-item>view {
+  display: flex;
+  justify-content: center;
+}
+
+.swiper-image {
+  height: 200px;
+}
+
 .info-icon image{
   height: 35rpx;
   width: 35rpx;
@@ -32,12 +44,15 @@
   font-size: 35rpx;
   height: 35rpx;
   line-height: 35rpx;
+  margin-left: 30rpx;
 }
 .content{
   margin-top: 50rpx;
   font-size: 30rpx;
   line-height: 45rpx;
   color: rgb(146, 15, 145)4;
+  margin-left: 100rpx;
+  margin-right: 100rpx;
 }
 .start{
   height: 80rpx;
@@ -51,9 +66,96 @@
   border-radius: 100rpx;
 }
 
+/* 游戏主体 */
+.background {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0rpx;
+  z-index: -1;
+}
 
+.progressimg {
+  width: 40rpx;
+  height: 40rpx;
+  position: fixed;
+  margin-top: -30rpx;
+  transform: rotate(6deg);
+}
 
+.head{
+  position:fixed; 
+  top:0rpx;
+  width: 750rpx;
+  z-index: 1;
+  background: url('https://7061-pass-model-7g3fo4ig00002b96-1304449250.tcb.qcloud.la/images/wallpaper/game-wp1.png?sign=b10d97b2d91960da4fbaf12108c07c68&t=1609175549');
+  background-size: cover;
+}
 
+.time{
+  margin-top:30rpx;
+  width: 600rpx;
+  margin-left:75rpx;
+}
 
+.Question {
+  margin-top: 75rpx;
+  /* margin-bottom: 40rpx; */
+  text-align: center;
+  font-size: 40rpx;
+}
 
+.line {
+  display: flex;
+  justify-content: center;
+}
 
+.unit {
+  float: left;
+  width: 100rpx;
+  height: 100rpx;
+  margin: 10rpx;
+  position: relative;
+}
+
+.img {
+  height: 100rpx;
+  transition: 0.5s;
+}
+
+.text {
+  font-size: 40rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  left: 0;
+  top: 0px;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  text-align: center
+}
+
+.confirm{
+  height: 20%;
+  position: absolute;
+  left: 37%; 
+}
+
+.wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+._img {
+  height:200px;
+}
+
+.white {
+  width: 100%;
+  height: 10%;
+  position: absolute;
+}

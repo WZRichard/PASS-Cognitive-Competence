@@ -10,7 +10,7 @@
         duration="{{duration}}" circular="{{circular}}" style="height:{{gameHeight/3}}rpx">
         <block wx:for="{{slideImgArr}}" wx:key="*this">
           <swiper-item>
-            <image class="slide-image" src="/images/{{item}}.png" mode="aspectFit"/>
+            <image class="slide-image" src="{{item}}" mode="aspectFit"/>
           </swiper-item>
         </block>
       </swiper>
@@ -35,7 +35,9 @@
   <view hidden="{{!startGame}}" class="search-game" style="height:{{gameHeight}}rpx">
     <image class="bgimg" src="cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/images/wallpaper/game-wp2.png" mode="aspectFill"></image>
     <view class="progess">
-      <canvas class="progress_active" canvas-id="progress_active"></canvas>
+      <canvas class="progress_active" canvas-id="progress_active">
+        <image src="cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/images/tabbar/test-chosen.png" style="width:40rpx;height:40rpx;margin-top:60rpx;margin-left:{{length}}rpx" ></image>
+      </canvas>
     </view>
     <view class="question">请在找出字母对{{requestWord}}</view>
     <view class="hint">{{hint}}</view>
@@ -50,6 +52,12 @@
     </view>
     <view class="next btn_item" bindtap="next" hidden="{{finish}}">下一题</view>
     <view class="finish btn_item" hidden="{{!finish}}" bindtap="finish">完成</view>
+
+    <modal hidden="{{!gradeShow}}" bindconfirm="gradeConfirm" no-cancel="true">
+      <view>
+        <image class="gradeImg" src="{{gradeImg}}"   mode='aspectFill'></image>
+      </view>
+    </modal>
 
   </view>
 

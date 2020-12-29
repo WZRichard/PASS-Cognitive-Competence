@@ -54,6 +54,11 @@ Page({
     wx.getSetting({
       success: (res) => {
         if (res.authSetting['scope.userInfo']) {
+          wx.getUserInfo({
+            success: res => {
+              app.globalData.userInfo = res.userInfo
+            }
+          })
           wx.reLaunch({
             url: '../message/message/message',
           })

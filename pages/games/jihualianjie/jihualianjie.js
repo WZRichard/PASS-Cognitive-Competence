@@ -12,12 +12,15 @@ Page({
     text:"计划连接",
     text2:"开始测试",
     text3:"按从小到大的顺序点击数字",//规则
-    back:"返回",
 
     currenta:-1,
     currentb: [],
     level:1,
     mh:20,
+    marlt:0,
+
+    score_show:false,
+    scorelevel:"cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/images/tabbar/test-chosen.png",
 
     question:[],//问题
     pointer:0,//指针
@@ -25,19 +28,19 @@ Page({
     showgamebox2:false,
     showView1: false,//再试一次按钮的显示
     showView2: false,//下一关按钮的显示
-    showView3: true,//返回按钮的显示
-    nextlevel:"下一关",
+    showView3: false,//返回按钮的显示(已删除)
     leftsecond:0,
     progressWidth:0,
     progressTime:10000,//10ms
     countTime:3,
+    countTime2:2,
 
     score:0,
 
     jiao:[],//旋转的角度
 
 
-    slideImgArr: ['cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/Game_PlantoConnect/ptc1.png', 'cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/Game_PlantoConnect/ptc1.png','cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/Game_PlantoConnect/ptc1.png'], //游戏介绍界面
+    slideImgArr: ['cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/Game_PlantoConnect/ptcA.png','cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/Game_PlantoConnect/ptcB.png'], //游戏介绍界面
     indicatorDots: true, // 是否显示面板指示点
     autoplay: true,      // 是否自动切换
     circular: true,      // 是否采用衔接滑动
@@ -50,6 +53,8 @@ Page({
     time: '100',//限定时间100s
     mTime: 100000,//以毫秒为单位
     timer: null,
+
+    testFlag:0,
   },
   /**
    * 生命周期函数--监听页面加载
@@ -115,7 +120,31 @@ Page({
       timer: timer
     })
   },
-
+  gameOver:function(){
+    if(this.data.level===3){
+      if(this.data.score>=90){
+        this.setData({
+          scorelevel:"cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/images/level/level-A.png",
+        });
+      }else if(this.data.score>=75){
+        this.setData({
+          scorelevel:"cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/images/level/level-B.png",
+        });
+      }else if(this.data.score>=60){
+        this.setData({
+          scorelevel:"cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/images/level/level-C.png",
+        });
+      }else{
+        this.setData({
+          scorelevel:"cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/images/level/level-D.png",
+        });
+      }
+    }
+    this.setData({
+      score_show:true,
+    });
+    this.timer3 = setInterval(this.run3, 1000);
+  },
   gameStart:function(){ 
     let create = new Create(this.data.size,this.data.level);
     let list = [];
@@ -135,7 +164,6 @@ Page({
       jiao:this.data.create.angle,
     });  
   },
-
   showQuestion:function(){
     if(this.data.text==="点击查看提示"){
       this.setData({
@@ -148,6 +176,24 @@ Page({
     else{
       return ;
     }
+  },
+  run3:function(){
+    let counttime = this.data.countTime2;
+    if(counttime===0){
+       clearInterval(this.timer3);
+       this.setData({
+        countTime2:3,
+        score_show:false,
+      });
+      if(this.data.level===3)
+       this.btnQiut();
+      else
+        this.btnNext();
+    }
+    counttime--;
+    this.setData({
+      countTime2: counttime,
+    }); 
   },
   run2:function(){
     let counttime = this.data.countTime;
@@ -175,7 +221,9 @@ Page({
       progressWidth: 0, //进度100%
       progressTime: 10000,//进度条需要总时间s
       text:"挑战失败",
+      level:3,
      })
+     this.gameOver();
      return;
     }
     progressTime--;
@@ -185,7 +233,7 @@ Page({
      progressWidth: progressWidth,
      progressTime: progressTime,
      leftsecond: time,
-     marlt:progressWidth,
+     marlt:progressWidth*3-5,
     })
   },
   onTap: function (e) {
@@ -199,19 +247,22 @@ Page({
       });
       this.data.pointer++;
       if(this.data.pointer===8){
-        if(this.data.level<3){
+        this.setData({
+          score:this.data.score+(Math.floor(this.data.progressTime/100)/3),
+        });
+        this.gameOver();
+        /*if(this.data.level<3){
           this.setData({
-            showView2:true,
+            //showView2:true,
             score:this.data.score+Math.floor(this.data.progressTime/100),
           });
         }
         if(this.data.level>=3){
            this.setData({
-            back:"完成测试",
-            showView2:false,
+            //showView2:false,
             score:this.data.score+Math.floor(this.data.progressTime/100),
           });
-        }
+        }*/
         if(this.data.progressTime>0)
           clearInterval(this.timer);
       }
@@ -237,7 +288,7 @@ Page({
         mh:20,
         showgamebox1:true,
         showgamebox2:false,
-        showView2:false,
+        //showView2:false,
       }); 
       this.resetElement();
       this.data.level++;
@@ -263,7 +314,6 @@ Page({
     });
     this.timer = setInterval(this.run, 10);
   },
-  
   btnBack:function() {
     this.setData({
       score:this.data.score+Math.floor(this.data.progressTime/100),
@@ -275,7 +325,7 @@ Page({
     this.setData({
       showgamebox1:true,
       showgamebox2:false,
-      showView2: false,
+      //showView2: false,
       text:this.data.question,
       mh:20,
     });

@@ -37,11 +37,16 @@ Page({
     countDownNum: '10', //倒计时初始值(单位s)
     score: 0, //获得分数
     cnt_image_loading: 0, //水果图片加载完毕后开始显示
-    slideImgArr: ['cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/Game_ FruitMatch/fruit2-1.png', 'cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/Game_ FruitMatch/fruit2-2.png', 'cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/Game_ FruitMatch/fruit2-3.png',], //游戏介绍界面图库
+    slideImgArr: ['cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/Game_ FruitMatch/Fruits_info_1.png', 'cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/Game_ FruitMatch/fruit2-2.png', 'cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/Game_ FruitMatch/fruit2-3.png',], //游戏介绍界面图库
     startGame: false, //是否开始游戏
     popup_show: false, //帮助是否显示
     helper_content: '方框中隐藏着不同的水果\n请尽可能多的记住它们', //帮助内容
     helper_state: 0, //帮助状态
+    level_image: ["cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/images/level/level-A.png", "cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/images/level/level-B.png", "cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/images/level/level-C.png", "cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/images/level/level-D.png"],
+    level_show: false,
+    level: 0,
+
+    testFlag:0,
   },
 
   /**
@@ -60,9 +65,9 @@ Page({
         cnt++;
       }
     }
-    console.log(this.data.round);
-    console.log(this.data.difficulty[this.data.round - 1]);
-    console.log("===" + new_row);
+    // console.log(this.data.round);
+    // console.log(this.data.difficulty[this.data.round - 1]);
+    // console.log("===" + new_row);
     while (cnt < cnt_row * cnt_row) {
       row = this.getRadom_int(cnt_row, 0);
       col = this.getRadom_int(cnt_row, 0);
@@ -128,11 +133,11 @@ Page({
       }
     } else if (this.data.row[e.currentTarget.dataset.row][e.currentTarget.dataset.index] == this.data.answer) {
       if (this.data.round == 8) {
-        wx.showToast({
-          title: '恭喜您通关了',
-          icon: 'none',
-          duration: 2000,
-        })
+        // wx.showToast({
+        //   title: '恭喜您通关了',
+        //   icon: 'none',
+        //   duration: 2000,
+        // })
 
         this.reset_all();
       } else {
@@ -145,15 +150,37 @@ Page({
         this.next_round();
       }
     } else {
-      Toast.fail('选错啦');
+      // Toast.fail('选错啦');
       this.reset_all();
     }
   },
 
   reset_all: function () {
-    if (this.data.help_next == 0) {
+    if (this.data.helper_state == 0) {
       this.return_score();
     }
+    console.log(this.data.helper_state);
+
+    var score = this.data.score*10, level;
+    if (score >= 90) {
+      level=1;
+    } else if (score < 90 && score >= 75) {
+      level=2;
+    } else if (score < 75 && score >= 60) {
+      level=3;
+    } else {
+      level=4;
+    }
+
+    console.log(score);
+
+    this.setData({
+      level_show: true,
+      level: level-1,
+    })
+
+    setTimeout(() => this.exit(), 2500);
+    clearTimeout();
 
     this.setData({
       cnt_row: 2, //行数（2或3）
@@ -162,9 +189,35 @@ Page({
       img_hidden_before: [], //保证所有水果都有被展示
       question_begin: 0,
       countDownNum: '10',
-      startGame: 0,
-      helper_state: 0,
     })
+
+    if (this.data.helper_state!=0 ) {
+      this.setData({
+        startGame: 0,
+        helper_state: 0,
+      })
+    }
+  },
+
+  exit: function() {
+    this.setData({
+      level_show: false,
+    })
+
+    if(this.data.testFlag==0)
+    {
+      wx.reLaunch({
+        url: '/pages/games/index',
+      })
+    }else if(this.data.testFlag==1){
+      wx.redirectTo({
+        url: '/pages/games/visualSearch/index?testFlag=1',
+      })
+    }else{
+      wx.reLaunch({
+        url: '/pages/training/index',
+      })
+    }
   },
 
   random_show: function (isround2) {
@@ -279,9 +332,9 @@ Page({
     that.data.timer = setInterval(function () {
       if (countDownNum <= 0) {
         clearInterval(that.data.timer);
-        // console.log("over");
-        Toast.fail('时间到');
-        this.set_row();
+        // Toast.fail('时间到');
+        
+        that.reset_all();
       } else {
         countDownNum = countDownNum - 0.05;
         that.setData({
@@ -421,7 +474,7 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-
+    clearInterval(this.data.timer);
   },
 
   /**

@@ -1,9 +1,24 @@
 /* pages/FruitMatch/FruitMatch.wxss */
 
+.background {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0px;
+  z-index: -1;
+}
 
 .progress {
-  margin-top: 5px;
+  margin-top: 11px;
   margin-bottom: 5px;
+  margin-left: 15%;
+  width: 70%;
+}
+
+.icon {
+  width: 40px;
+  position: absolute;
+  top: -8px;
 }
 
 .title {
@@ -109,7 +124,6 @@
   align-items: center;
   justify-content: center;
   height: 100%;
-
 }
 
 ._img {
@@ -117,12 +131,12 @@
 }
 
 .game-info {
-  padding: 30rpx;
+  margin-top: 10px;
 }
 
 .head-title {
- text-align: center;
- align-content: center;
+  align-items: center;
+  text-align: center;
 }
 
 .title-cn {
@@ -134,9 +148,19 @@
   color: rgb(100, 100, 100);
 }
 
+.title2>image {
+  height: 25px;
+  width: 25px;
+  vertical-align: middle;
+}
 
-
-
+.title2 {
+  margin-top: 50rpx;
+  font-size: 35rpx;
+  height: 35rpx;
+  line-height: 35rpx;
+  font-weight: bold;
+}
 
 .swiper {
   height: 200px;
@@ -155,39 +179,30 @@
   height: 200px;
 }
 
-
-
-.info-icon image{
-  height: 35rpx;
-  width: 35rpx;
-}
-.title2{
-  margin-top: 30rpx;
-  font-size: 35rpx;
-  height: 35rpx;
-  line-height: 35rpx;
-}
-.content{
-  margin-top: 50rpx;
+.content {
+  margin: 10px 30px 0 30px;
   font-size: 30rpx;
   line-height: 45rpx;
-  color: rgb(146, 15, 145)4;
 }
-.start{
-  height: 80rpx;
-  line-height: 80rpx;
-  font-size: 35rpx;
-  text-align: center;
-  margin: 18rpx 10rpx;
-  background-color: #c93c42;
-  color: white;
-  font-weight: 200;
+
+.start {
+  width: 96%;
+  margin-left: 2%;
+  margin-right: 2%;
+  margin-bottom: 12px;
+
+  position: absolute;
+  bottom: 0px;
+}
+
+.start>van-button {
   border-radius: 100rpx;
 }
+
 .helper {
   position: absolute;
   right: 30px;
-  top: 23px;
+  top: 10px;
 }
 
 .helper1 {

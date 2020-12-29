@@ -1,5 +1,4 @@
 // pages/Matrix_pro/Matrix_pro.js
-
 import Toast from '../../../miniprogram/miniprogram_npm/@vant/weapp/toast/toast/';
 import Dialog from '../../../miniprogram/miniprogram_npm/@vant/weapp/dialog/dialog';
 
@@ -26,6 +25,13 @@ Page({
     cnt_image_loading: 0, //有几张图片已经加载完成（初始化为0）
     question_hidden: true, //题目是否显示
     bingo_cnt: 0, //正确题目个数
+    slideImgArr: ['cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/Game_Martix/Matrix_info_2.png', 'cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/Game_Martix/Matrix_info_3.png',], //游戏介绍界面
+    startGame: false, //是否开始游戏
+    level_image: ["cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/images/level/level-A.png", "cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/images/level/level-B.png", "cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/images/level/level-C.png", "cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/images/level/level-D.png"],
+    level_show: false,
+    level: 0,
+    
+    testFlag:0,
   },
 
   /**
@@ -40,15 +46,17 @@ Page({
     }
 
     clearInterval(this.data.timer);
+    // console.log(this.data.selector);
+    // console.log(this.data.answer[this.data.question_index - 1]);
     if (this.data.selector == this.data.answer[this.data.question_index - 1]) { //答案正确
       this.setData({
-        bingo_cnt: this.data.bingo_cnt+1,
+        bingo_cnt: this.data.bingo_cnt + 1,
       })
     }
     if (this.data.round < this.data.cnt_round) {
       this.next_Question();
     } else {
-      Toast.success('闯关成功');
+      // Toast.success('闯关成功');
       this.rebegin();
     }
 
@@ -75,20 +83,20 @@ Page({
     // }
   },
 
-  restart: function () {
-    var question_index = this.random_question_index();
+  // restart: function () {
+  //   var question_index = this.random_question_index();
 
-    this.setData({
-      done_index: [], //已做题目下标
-      round: 0, //轮数 (初始化为0，0表示未开始)
-      selector: 0, //被选择选项（每一关初始化为0）
-      countDownNum: 30, //计时时长（单位s；总时长30s）
-      timer: null, //计时器
-      question_hidden: true,
-      round: 1,
-      question_index: question_index,
-    })
-  },
+  //   this.setData({
+  //     done_index: [], //已做题目下标
+  //     round: 0, //轮数 (初始化为0，0表示未开始)
+  //     selector: 0, //被选择选项（每一关初始化为0）
+  //     countDownNum: 30, //计时时长（单位s；总时长30s）
+  //     timer: null, //计时器
+  //     question_hidden: true,
+  //     round: 1,
+  //     question_index: question_index,
+  //   })
+  // },
 
   next_Question: function () {
     this.data.done_index.push(this.data.question_index);
@@ -139,6 +147,28 @@ Page({
   },
 
   rebegin: function () {
+    var score = this.data.bingo_cnt * 100.0 / this.data.cnt_round
+    var level;
+    if (score >= 90) {
+      level=1;
+    } else if (score < 90 && score >= 75) {
+      level=2;
+    } else if (score < 75 && score >= 60) {
+      level=3;
+    } else {
+      level=4;
+    }
+
+    console.log(score);
+
+    this.setData({
+      level_show: true,
+      level: level-1,
+    })
+
+    setTimeout(() => this.exit(), 2500);
+    clearTimeout();
+
     this.setData({
       done_index: [], //已做题目下标
       round: 0, //轮数 (初始化为0，0表示未开始)
@@ -150,6 +180,27 @@ Page({
     });
   },
 
+  exit: function() {
+    this.setData({
+      level_show: false,
+    })
+
+    if(this.data.testFlag==0)
+    {
+      wx.reLaunch({
+        url: '/pages/games/index',
+      })
+    }else if(this.data.testFlag==1){
+      wx.redirectTo({
+        url: '/pages/games/visualSearch/index?testFlag=1',
+      })
+    }else{
+      wx.reLaunch({
+        url: '/pages/training/index',
+      })
+    }
+  },
+
   select: function (e) {
     this.setData({
       selector: e.currentTarget.dataset.selection,
@@ -157,16 +208,12 @@ Page({
   },
 
   start: function () {
-    var question_index = this.random_question_index();
-    this.setData({
-      round: 1,
-      question_index: question_index,
-    })
   },
 
   overtime: function () { //超时
     Toast.fail('超时啦');
-    this.rebegin();
+
+    this.next_Question();
   },
 
   /**
@@ -180,12 +227,23 @@ Page({
         clearInterval(that.data.timer);
         that.overtime();
       } else {
-        countDownNum = countDownNum - 0.1;
+        countDownNum = countDownNum - 0.08;
         that.setData({
           countDownNum: countDownNum,
         })
       }
-    }, 100)
+    }, 80)
+  },
+
+  start: function (e) {
+    //当开始游戏按钮被点击时，隐藏视觉搜索介绍
+    var question_index = this.random_question_index();
+
+    this.setData({
+      startGame: true,
+      round: 1,
+      question_index: question_index,
+    })
   },
 
   /**
@@ -199,11 +257,11 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-    Toast.loading({
-      message: '加载中...',
-      forbidClick: true,
-      loadingType: 'spinner',
-    });
+    // Toast.loading({
+    //   message: '加载中...',
+    //   forbidClick: true,
+    //   loadingType: 'spinner',
+    // });
   },
 
   /**
@@ -224,7 +282,7 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-
+    clearInterval(this.data.timer);
   },
 
   /**

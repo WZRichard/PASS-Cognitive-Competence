@@ -3,7 +3,9 @@
 const app = getApp()
 Page({
   data:{
-    slideImgArr: ['colorDis01','colorDis02'],//之后再插入游戏图片
+    slideImgArr: [
+      'cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/images/games/colorDis/colorDis01.png',
+      'cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/images/games/colorDis/colorDis02.png'],//之后再插入游戏图片
     indicatorDots: true, // 是否显示面板指示点
     autoplay: true,      // 是否自动切换
     circular: true,      // 是否采用衔接滑动
@@ -26,6 +28,16 @@ Page({
     checkBtn:null,
 
     wordShow:true,
+    length:570,
+
+    rightRate:0,//正确率
+    score:0,//分数
+    grade:'',//等级
+    gradeImg:'',
+
+    gradeShow:false,
+
+    testFlag:0,
 
 
   },
@@ -37,7 +49,6 @@ Page({
     this.setData({
       rate:rate,
       gameHeight : rate*res.windowHeight,
-
     })
     this.createColorGroup();
   },
@@ -97,22 +108,30 @@ Page({
     var timer = setInterval(function(){
       //现在的长度/原来的长度
       //(this2.data.time*1000-this2.data.mTime)/(this2.data.time*1000)
-      var length = 50+(700-50)*(this2.data.mTime)/(this2.data.time*1000);
+      var length = 570*(this2.data.mTime)/(this2.data.time*1000);
       var currentTime = this2.data.mTime-100;
       this2.setData({
         mTime:currentTime
       });
-      if(length>50){
-        var lineWidth = 5/this2.data.rate;//px
+      if(length>0){
+        var lineWidth = 10/this2.data.rate;//px
         var ctx = wx.createCanvasContext('progress_active');//不需要'#'
         ctx.setLineCap('butt');
         ctx.setLineWidth(lineWidth);
-        ctx.setStrokeStyle('#E06663');
+        ctx.setStrokeStyle('#ffffff');
         ctx.beginPath();
-        ctx.moveTo(50/this2.data.rate, 20);
-        ctx.lineTo(length/this2.data.rate, 20);
+        ctx.moveTo(0, 80/this2.data.rate);
+        ctx.lineTo(length/this2.data.rate, 80/this2.data.rate);
         ctx.stroke();
         ctx.draw();
+        this2.setData({
+          length:length
+        })
+      }else{
+        clearInterval(this2.data.timer);
+        this2.getScore();
+        this2.getGrade();
+        this2.showGrade();
       }
     },100);
     this2.setData({
@@ -161,24 +180,25 @@ Page({
     }
     if(count==10){
       clearInterval(this.data.timer);
-      var useTime = (this.data.time*1000-this.data.mTime)/1000
+      
       wx.showModal({
         title: '提示',
         content:'你已完成颜色判别的所有题目！',
         showCancel: false,
         success: function (res) {
           if (res.confirm) {
-            //点击确定按钮
+            this2.getScore();
+            this2.getGrade();
+            this2.showGrade();
           } else if (res.cancel) {
             //点击取消按钮
           }
         }
       })
-      console.log(useTime)
-      this.getScore();
     }
   },
   getScore:function(){
+    var useTime = (this.data.time*1000-this.data.mTime)/1000
     var group = this.data.colorGroup;
     var answer = this.data.answerArr;
     var score = 0;
@@ -189,6 +209,63 @@ Page({
         score++;
       }
     }
+    console.log(useTime);
+    score = 0.1*score*(this.data.time-useTime+20)/this.data.time*100;
     console.log(score);
+    this.setData({
+      score:score
+    })
+  },
+  getGrade:function(){
+    var score = this.data.score;
+    var grade = '';
+    var gradeImg = '';
+    if(score>=90)
+    { 
+      grade = 'A'; 
+      gradeImg = 'cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/images/level/level-A.png'
+    }else if(score<90&&score>=75) {
+      grade = 'B'; 
+      gradeImg = 'cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/images/level/level-B.png'
+    }else if(score<75&&score>=60) { 
+      grade = 'C'; 
+      gradeImg = 'cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/images/level/level-C.png'
+    }else{ 
+      grade = 'D'; 
+      gradeImg = 'cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/images/level/level-D.png'
+    }
+    this.setData({
+      grade:grade,
+      gradeImg:gradeImg
+    })
+    console.log("等级："+grade);
+  },
+  showGrade:function(){
+    this.setData({
+      gradeShow:true
+    })
+  },
+  gradeConfirm:function(){//点击确定后
+    //跳转到游戏界面
+    if(this.data.testFlag==0)
+    {
+      wx.reLaunch({
+        url: '/pages/games/index',
+      })
+    }else if(this.data.testFlag==1){
+      wx.redirectTo({
+        url: '/pages/games/visualSearch/index?testFlag=1',
+      })
+    }else{
+      wx.reLaunch({
+        url: '/pages/training/index',
+      })
+    }
+  },
+  onHide:function(){
+    clearInterval(this.data.timer);
+  },
+  onUnload:function(){
+    clearInterval(this.data.timer);
   }
 })
