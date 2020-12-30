@@ -20,7 +20,7 @@
     <view class="title2">
       <icon class="info-icon">
         <image
-          src="cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/images/tabbar/game.png">
+          src="https://qbkeass.cn/images/tabbar/game.png">
         </image>
       </icon> 游戏介绍
     </view>
@@ -34,7 +34,7 @@
     <view class="title2">
       <icon class="info-icon">
         <image
-          src="cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/images/tabbar/game.png">
+          src="https://qbkeass.cn/images/tabbar/game.png">
         </image>
       </icon> 游戏规则
     </view>
@@ -46,7 +46,7 @@
 <!-- 游戏主体 -->
 <view class="game" hidden="{{round==0?true:false}}">
   <image class="bgimg"
-    src="cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/images/wallpaper/game-wp2.png">
+    src="https://qbkeass.cn/images/wallpaper/game-wp2.png">
   </image>
   <van-toast id="van-toast" />
   <van-dialog id="van-dialog" />
@@ -54,7 +54,7 @@
   <view class="time">
     <van-progress pivot-text=" " stroke-width="12" color="#004e66" percentage="{{time/0.1}}"></van-progress>
     <image class="progressimg"
-      src="cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/images/tabbar/test-chosen.png"
+      src="https://qbkeass.cn/images/tabbar/test-chosen.png"
       mode="aspectFill" style="margin-left:{{60*time-20}}rpx"></image>
   </view>
   <!-- Title -->
@@ -112,7 +112,7 @@
     </view> -->
     <view>
       <image class="confirm"
-        src="cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/images/button/confirm.png"
+        src="https://qbkeass.cn/images/button/confirm.png"
         bindtap="confirm" mode="heightFix"></image>
     </view>
     <van-overlay show="{{scoreShow}}">

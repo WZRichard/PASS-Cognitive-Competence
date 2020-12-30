@@ -36,7 +36,7 @@ page{
   margin-right: auto;
   width: 680rpx;
   border-radius: 10rpx;
-  height: 600rpx;
+  height: 630rpx;
 }
 .radar{
   background-color: #fff;

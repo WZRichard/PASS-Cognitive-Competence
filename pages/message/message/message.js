@@ -19,7 +19,10 @@ Page({
   },
 
   onLoad: function (options) {
-
+    var that = this
+    this.setData({
+      userInfo: app.globalData.userInfo,
+    })
   },
 
 })

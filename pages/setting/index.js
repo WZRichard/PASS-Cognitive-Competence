@@ -30,7 +30,10 @@ Page({
       { "id": "4","text": "专科" },
       { "id": "5","text": "本科及以上" },
     ],
-    hasEdu: false
+    hasEdu: false,
+    childAge: "",
+    childSex: "",
+    parentEdu: ""
   },
   //事件处理函数
   bindViewTap: function() {
@@ -39,28 +42,37 @@ Page({
     })
   },
   goToMe() {
-    if(this.data.hasAge == true) {
-      wx.setStorage({key: "childAge", data: app.globalData.message.childAge})
-    }
-    if(this.data.hasSex == true) {
-      wx.setStorage({key: "childSex", data: app.globalData.message.childSex})
-    }
-    if(this.data.hasIf == true) {
-      wx.setStorage({key: "childHas", data: app.globalData.message.childHas})
-    }
-    if(this.data.hasEdu == true) {
-      wx.setStorage({key: "parentEdu", data: app.globalData.message.parentEdu})
-    }
-    wx.reLaunch({
-      url: '/pages/me/index',
+    var that = this
+    wx.request({
+      url: 'https://qbkeass.cn/pass/userUpdate.php',
+      data: {
+        "wx_id": app.globalData.openid,
+        "child_age": parseInt(that.data.childAge),
+        "parents_edu": String(that.data.parentEdu),
+        "child_sex": String(that.data.childSex)
+      },
+      method: 'POST', 
+      header:{
+        'content-type': 'application/x-www-form-urlencoded;charset=utf-8' 
+      },
+      success: function(res){
+        console.log(res.data)
+      }
+    })
+    wx.reLaunch({ 
+      url: '../me/index'
     })
   },
   //数据倒入后台
   radioChange1: function(e) {
     app.globalData.message.childSex = e.detail.value
+    wx.setStorage({
+      key:"childSex",
+      data:e.detail.value
+    })
     this.setData({
-      hasSex: true
-    });
+      childSex: e.detail.value
+    })
   },
   radioChange2: function(e) {
     app.globalData.message.childHas = e.detail.value
@@ -70,18 +82,50 @@ Page({
   },
   getData1:function(e){
     app.globalData.message.childAge = e.detail.text
+    wx.setStorage({
+      key:"childAge",
+      data:e.detail.text
+    })
     this.setData({
-      hasAge: true
-    });
+      childAge: e.detail.text
+    })
   },
   getData2:function(e){
     app.globalData.message.parentEdu = e.detail.text
+    wx.setStorage({
+      key:"parentEdu",
+      data:e.detail.text
+    })
     this.setData({
-      hasEdu: true
-    });
+      parentEdu: e.detail.text
+    })
   },
   onLoad: function (options) {
-    
+    var that = this;
+    wx.getStorage({
+      key: "childAge",
+      success: function(e){
+        that.setData({
+          childAge: e.data
+        })
+      }
+    }),
+    wx.getStorage({
+      key: "childSex",
+      success: function(e){
+        that.setData({
+          childSex: e.data
+        })
+      }
+    }),
+    wx.getStorage({
+      key: "parentEdu",
+      success: function(e){
+        that.setData({
+          parentEdu: e.data
+        })
+      }
+    })
   },
 
 })

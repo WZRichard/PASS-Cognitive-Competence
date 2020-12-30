@@ -8,6 +8,7 @@ Page({
   data: {
     //testFlag=0游戏库玩家自主练习, testFlag=1玩家进行测验, testFlag=2玩家进行首次测验
     testFlag: 0,
+    bgimg:'https://qbkeass.cn/images/wallpaper/test-wp.png',
   },
 
   /**
@@ -75,7 +76,6 @@ Page({
     //  /pages/games/zicihuiyi/zicihuiyi
     // /pages/games/FruitMatch/FruitMatch
     //  /pages/games/RecieveAttention/index
-
     this.setData({
      testFlag:true,
     })

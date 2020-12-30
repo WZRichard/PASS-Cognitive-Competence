@@ -15,7 +15,7 @@
     src="cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/Game_PlantoConnect/ptcbg1.jpg"
     mode="aspectFill"></image> -->
   <image class="bgimg1"
-    src="cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/images/wallpaper/game-wp1.png"
+    src="https://qbkeass.cn/images/wallpaper/game-wp1.png"
     mode="aspectFill"></image>
   <view class="head">
     <view class="question" bindtap="showQuestion" style="margin-top:{{mh}}vh">
@@ -27,7 +27,7 @@
   <view class="bottom1">
     <view class="bottomteststart" bindtap="btnStart">
       <image class="btnimg"
-        src="cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/images/button/confirm.png"
+        src="https://qbkeass.cn/images/button/confirm.png"
         mode="aspectFill"></image>
     </view>
    <!-- <view class="bottomquit" bindtap="btnQiut">
@@ -43,7 +43,7 @@
     src="cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/Game_PlantoConnect/ptcbg1.jpg"
     mode="aspectFill"></image> -->
     <image class="bgimg2"
-    src="cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/images/wallpaper/game-wp1.png"
+    src="https://qbkeass.cn/images/wallpaper/game-wp1.png"
     mode="aspectFill"></image>
   <view class="head2">
     <view class="question" bindtap="showQuestion" style="margin-top:{{mh}}vh">
@@ -52,7 +52,7 @@
     <view class="hpart1">
       <view class="timerow">
         <image class="progressimg"
-        src="cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/images/tabbar/test-chosen.png"
+        src="https://qbkeass.cn/images/tabbar/test-chosen.png"
         mode="aspectFill" style="margin-left:{{marlt}}px"></image>
         <view class='trow' style='width:{{progressWidth}}%'></view>
       </view>
@@ -64,7 +64,7 @@
         wx:for-item="cell" wx:key="cell-key" bindtap="onTap" data-index="{{index}}" data-row="{{indexrow}}"
         style="transform:rotate({{jiao[indexrow*5+index]}}deg)">
         <image class="{{(currenta==indexrow*5+index||currentb[indexrow*5+index] == 1) ? '.tapbg' : '.tapbgno' }}"
-          src="cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/Game_PlantoConnect/33333.png"
+          src="https://qbkeass.cn/images/icon/circle.png"
           mode="aspectFill"></image>
         <view class="{{(currentb[indexrow*5+index] == 1) ? '.cell-con-lock' : '.cell-con' }}">
           {{cell}}
@@ -73,12 +73,12 @@
     </view>
   </view>
   <view class="buttom2">
-    <view class="{{showView1?'bottomitem1_show':'bottomitem1_hidden'}}" bindtap="btnTryagain">
+    <!-- <view class="{{showView1?'bottomitem1_show':'bottomitem1_hidden'}}" bindtap="btnTryagain">
       <image class="btnimg"
         src="cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/Game_PlantoConnect/buttontryagain.png"
         mode="aspectFill"></image>
-    </view>
-    <view class="{{showView2?'bottomitem2_show':'bottomitem2_hidden'}}" bindtap="btnNext">
+    </view> -->
+    <!-- <view class="{{showView2?'bottomitem2_show':'bottomitem2_hidden'}}" bindtap="btnNext">
       <image class="btnimg"
         src="cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/Game_PlantoConnect/buttonnextlevel.png"
         mode="aspectFill"></image>
@@ -87,7 +87,7 @@
       <image class="btnimg"
         src="cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/Game_PlantoConnect/buttonback.png"
         mode="aspectFill"></image>
-    </view>
+    </view> -->
   </view>
 </view>
 <!--showhomepage-->
@@ -110,7 +110,7 @@
     <view class="title2">
       <icon class="info-icon">
         <image
-          src="cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/images/tabbar/game.png">
+          src="https://qbkeass.cn/images/tabbar/game.png">
         </image>
       </icon> 游戏介绍
     </view>
@@ -122,7 +122,7 @@
     <view class="title2">
       <icon class="info-icon">
         <image
-          src="cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/images/tabbar/game.png">
+          src="https://qbkeass.cn/images/tabbar/game.png">
         </image>
       </icon> 游戏规则
     </view>
@@ -130,6 +130,6 @@
   </view>
 
   <view class="start" bindtap="btnAS">
-    <van-button round type="primary" block color="#7232dd"> 开始游戏 </van-button>
+    <van-button round type="primary" block color="#c93c42"> 开始游戏 </van-button>
   </view>
 </view>

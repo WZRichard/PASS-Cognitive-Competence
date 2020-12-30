@@ -1,5 +1,5 @@
 <!--pages/setting/index.wxml-->
-<image class="bgimg" src="/christamas_pokerman/wp6.png" mode="aspectFill"></image>
+<image class="bgimg" src="https://qbkeass.cn/images/wallpaper/wp2.png" mode="aspectFill"></image>
 <view class="container">
   <view class="message">
     <view class="texttips">

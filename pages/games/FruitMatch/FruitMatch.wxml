@@ -2,7 +2,7 @@
 
 <!-- 背景图 -->
 <image class="background" hidden="{{!startGame}}"
-  src="cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/images/wallpaper/game-wp1.png"
+  src="https://qbkeass.cn/images/wallpaper/game-wp1.png"
   mode="aspectFill"></image>
 <van-toast id="van-toast" />
 
@@ -53,7 +53,7 @@
   <view class="info">
     <view class="title2">
       <image
-        src="cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/Game_ FruitMatch/fruits-1.png">
+        src="https://qbkeass.cn/images/tabbar/game.png">
       </image>
       游戏介绍
     </view>
@@ -66,7 +66,7 @@
     <view class="title2">
       <!-- <icon class="info-icon"> -->
       <image
-        src="cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/Game_ FruitMatch/fruits-4.png">
+        src="https://qbkeass.cn/images/tabbar/game.png">
       </image>
       <!-- </icon>  -->
       游戏规则
@@ -75,7 +75,7 @@
   </view>
 
   <view class="start" bindtap="start">
-    <van-button round type="primary" block color="#004e66"> 开始游戏 </van-button>
+    <van-button round type="primary" block color="#c93c42"> 开始游戏 </van-button>
   </view>
 
 </view>
@@ -86,9 +86,9 @@
 
   <!-- 倒计时 -->
   <view class="progress" style="opacity: {{question_begin}};">
-    <van-progress percentage="{{countDownNum*100.0/10}}" color="rgb(182, 46, 175)" pivot-text=" " show-pivot="false"  stroke-width="12px" />
+    <van-progress percentage="{{countDownNum*100.0/10}}" color="#004e66" pivot-text=" " show-pivot="false"  stroke-width="12px" />
     <image class="icon" mode="widthFix"
-      src="cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/images/tabbar/test-chosen.png"
+      src="https://qbkeass.cn/images/tabbar/test-chosen.png"
       style="left: {{countDownNum*70.0/10-9+15}}%"></image>
   </view>
 
@@ -97,7 +97,7 @@
     <view class="wrapper">
       <view>
         <image class="_img"
-          src="cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/Game_ FruitMatch/fruits-{{answer}}.png"
+          src="https://qbkeass.cn/images/games/fruitMatch/fruits-{{answer}}.png"
           mode="heightFix"></image>
       </view>
     </view>
@@ -105,13 +105,13 @@
 
   <!-- Title -->
   <view class="title">
-    <image
+    <!-- <image
       src="cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/Game_ FruitMatch/title.png"
-      mode="heightFix"></image>
+      mode="heightFix"></image> -->
   </view>
 
   <van-divider contentPosition="center"
-    customStyle="color: #DEB887; border-color: #DEB887; font-size: 18px; font-weight: bold; margin-bottom:-5px">
+    customStyle="color: #004e66; border-color: #004e66; font-size: 18px; font-weight: bold; margin-bottom:-5px">
     第{{round}}关</van-divider>
 
   <!-- n*n的格子 -->
@@ -120,7 +120,7 @@
       <view class="row" wx:for="{{row[idx]}}" wx:key="index" bindtap="tap_image" data-index="{{index}}"
         data-row="{{idx}}" wx:if="{{index < cnt_row}}">
         <image class="img"
-          src="cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/Game_ FruitMatch/fruits-{{item}}.png"
+          src="https://qbkeass.cn/images/games/fruitMatch/fruits-{{item}}.png"
           mode="heightFix" style="opacity: {{img_hidden[idx][index]}};" bindload="image_loaded"></image>
       </view>
     </view>

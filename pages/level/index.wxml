@@ -1,31 +1,29 @@
 <!--pages/level/index.wxml-->
 <view class="level-container">
   <view class="pass-icon">
-    <image src="cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/images/logo/level.png"></image>
+    <image src="https://qbkeass.cn/images/logo/level.png"></image>
   </view>
 
   <view class="level"> 
-    <block>
+    <block wx:for="{{level_list}}" wx:key="level">
       <view class="level-box">
-          <!-- <view class="level-icon" wx:if={{item.id==1}}><image src="cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/pass_pic/me_icon/亚军.png"></image></view>
-          <view class="level-icon" wx:elif={{item.id==2}}><image src="cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/pass_pic/me_icon/亚军.png"></image></view>
-          <view class="level-icon" wx:elif={{item.id==3}}><image src="cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/pass_pic/me_icon/亚军.png"></image></view>
-          <view class="level-icon" wx:else><text>4</text></view> -->
-
-          <view class="level-icon"><image src="cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/images/icon/1.png"></image></view>
-          <view class="avatar"><image src="{{userInfo.avatarUrl}}"></image></view>
-          <view class="userinfo-name"><text>{{userInfo.nickName}}</text></view>
-          <view class="child-age"><image src="{{child_icon}}"></image><text>{{childAge}}</text></view>
-          <view class="pass-level"><image src="{{level_icon}}"></image><text>等级 - B</text></view>
+          <view class="level-icon" wx:if="{{item.level=='1'}}"><image src="https://qbkeass.cn/images/icon/1.png"></image></view>
+          <view class="level-icon" wx:elif="{{item.level=='2'}}"><image src="https://qbkeass.cn/images/icon/2.png"></image></view>
+          <view class="level-icon" wx:elif="{{item.level=='3'}}"><image src="https://qbkeass.cn/images/icon/3.png"></image></view>
+          <view class="level-icon" wx:else><text>{{item.level}}</text></view>
+          <view class="avatar"><image src="{{item.wx_avatar}}"></image></view>
+          <view class="userinfo-name"><text>{{item.wx_name}}</text></view>
+          <view class="child-age"><image src="{{child_icon}}"></image><text>{{item.child_age}}</text></view>
+          <view class="pass-level"><image src="{{level_icon}}"></image><text>总分数: {{item.all_pass}}</text></view>
       </view>
       <view class="line"></view>
     </block>
 </view>
 </view>
 <view class="my-level">
-  <view class="level-text"><text>2</text></view>
+  <view class="level-text"><text>{{mylevel}}</text></view>
   <view class="avatar"><image src="{{userInfo.avatarUrl}}" mode="cover"></image></view>
   <view class="userinfo-name"><text>{{userInfo.nickName}}</text></view>
   <view class="child-age"><image src="{{child_icon}}"></image><text>{{childAge}}</text></view>
-  <view class="pass-level"><image src="{{level_icon}}"></image><text>等级 - B</text></view>
+  <view class="pass-level"><image src="{{level_icon}}"></image><text>总分数: {{allPass}}</text></view>
 </view>

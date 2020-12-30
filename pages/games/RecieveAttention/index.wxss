@@ -60,10 +60,11 @@
   font-size: 35rpx;
   text-align: center;
   margin: 18rpx 10rpx;
-  background-color: #c93c42;
   color: white;
   font-weight: 200;
   border-radius: 100rpx;
+  text-align: center;
+  align-content: center;
 }
 
 /* 游戏主体 */

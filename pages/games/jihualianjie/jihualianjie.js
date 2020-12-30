@@ -18,6 +18,7 @@ Page({
     level:1,
     mh:20,
     marlt:0,
+    istimeout:false,
 
     score_show:false,
     scorelevel:"cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/images/tabbar/test-chosen.png",
@@ -33,14 +34,14 @@ Page({
     progressWidth:0,
     progressTime:10000,//10ms
     countTime:3,
-    countTime2:2,
+    countTimenext:3,
 
     score:0,
 
     jiao:[],//旋转的角度
 
 
-    slideImgArr: ['cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/Game_PlantoConnect/ptcA.png','cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/Game_PlantoConnect/ptcB.png'], //游戏介绍界面
+    slideImgArr: ['https://qbkeass.cn/images/games/planToConnect/ptcA.png','https://qbkeass.cn/images/games/planToConnect/ptcB.png'], //游戏介绍界面
     indicatorDots: true, // 是否显示面板指示点
     autoplay: true,      // 是否自动切换
     circular: true,      // 是否采用衔接滑动
@@ -53,13 +54,29 @@ Page({
     time: '100',//限定时间100s
     mTime: 100000,//以毫秒为单位
     timer: null,
-
     testFlag:0,
   },
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function () {
+  exit:function () {
+    console.log(this.data.score);
+    console.log('exit');
+    this.resetElement();
+    if(this.data.testFlag==0)
+    {
+      wx.switchTab({
+        url: '/pages/games/index',
+      })
+    }else if(this.data.testFlag==1){
+      wx.redirectTo({
+        url: '/pages/games/SentenceRepetition/index?testFlag=1',
+      })
+    }else{
+      wx.redirectTo({
+        url: '/pages/games/SentenceRepetition/index?testFlag=2',
+      })
+    }
+  },
+  onLoad: function (option) {
+    console.log('onLoad');
     //页面打开时执行的操作
     //每个手机的屏幕宽度是750rpx 分辨率不一致
     //所有手机在小程序中的宽:真实宽度=小程序在页面中的高度:真实高度
@@ -69,17 +86,20 @@ Page({
     this.setData({
       rate: rate,
       gameHeight: rate * res.windowHeight,
+      testFlag: option.testFlag,
     })
+    console.log(this.data.testFlag)
   },
-  btnQiut:function () {
+  /*btnQiut:function () {
     this.setData({
       showhomepage: true,
       showgamebox1:false,
       showgamebox2:false,
     }),
     this.resetElement();
-  },
+  },*/
   btnAS: function (e) {
+    console.log('btnAS');
     //当开始游戏按钮被点击时，隐藏视觉搜索介绍
     this.gameStart();
     this.setData({
@@ -121,31 +141,37 @@ Page({
     })
   },
   gameOver:function(){
-    if(this.data.level===3){
+    var that = this
+    console.log('gameOver');
+    if(this.data.level===3||this.data.istimeout===true){
       if(this.data.score>=90){
         this.setData({
-          scorelevel:"cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/images/level/level-A.png",
+          scorelevel:"https://qbkeass.cn/images/level/level-A.png",
         });
       }else if(this.data.score>=75){
         this.setData({
-          scorelevel:"cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/images/level/level-B.png",
+          scorelevel:"https://qbkeass.cn/images/level/level-B.png",
         });
       }else if(this.data.score>=60){
         this.setData({
-          scorelevel:"cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/images/level/level-C.png",
+          scorelevel:"https://qbkeass.cn/images/level/level-C.png",
         });
       }else{
         this.setData({
-          scorelevel:"cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/images/level/level-D.png",
+          scorelevel:"https://qbkeass.cn/images/level/level-D.png",
         });
       }
     }
+    wx.setStorage({key: "hasJihua", data: true})
+    wx.setStorage({key: "jihua", data: that.data.score})
     this.setData({
       score_show:true,
+      countTimenext:3,
     });
     this.timer3 = setInterval(this.run3, 1000);
   },
   gameStart:function(){ 
+    console.log('gameStart');
     let create = new Create(this.data.size,this.data.level);
     let list = [];
     let len = this.data.size*this.data.size; 
@@ -165,6 +191,7 @@ Page({
     });  
   },
   showQuestion:function(){
+    console.log('showQuestion');
     if(this.data.text==="点击查看提示"){
       this.setData({
         countTime:3,
@@ -178,21 +205,23 @@ Page({
     }
   },
   run3:function(){
-    let counttime = this.data.countTime2;
+    let counttime = this.data.countTimenext;
+    console.log(counttime);
     if(counttime===0){
        clearInterval(this.timer3);
        this.setData({
-        countTime2:3,
         score_show:false,
       });
-      if(this.data.level===3)
-       this.btnQiut();
-      else
+      if(this.data.level===3||this.data.istimeout===true){
+        this.exit();
+      }else{
+        console.log('next step success');
         this.btnNext();
+      }
     }
     counttime--;
     this.setData({
-      countTime2: counttime,
+      countTimenext: counttime,
     }); 
   },
   run2:function(){
@@ -221,7 +250,7 @@ Page({
       progressWidth: 0, //进度100%
       progressTime: 10000,//进度条需要总时间s
       text:"挑战失败",
-      level:3,
+      istimeout:true,
      })
      this.gameOver();
      return;
@@ -246,23 +275,11 @@ Page({
         currenta: e.currentTarget.dataset.row*5+e.currentTarget.dataset.index,//按钮CSS变化
       });
       this.data.pointer++;
-      if(this.data.pointer===8){
+      if(this.data.pointer===this.data.question.length){
         this.setData({
-          score:this.data.score+(Math.floor(this.data.progressTime/100)/3),
+          score:this.data.score+(Math.floor(this.data.progressTime/300)),
         });
         this.gameOver();
-        /*if(this.data.level<3){
-          this.setData({
-            //showView2:true,
-            score:this.data.score+Math.floor(this.data.progressTime/100),
-          });
-        }
-        if(this.data.level>=3){
-           this.setData({
-            //showView2:false,
-            score:this.data.score+Math.floor(this.data.progressTime/100),
-          });
-        }*/
         if(this.data.progressTime>0)
           clearInterval(this.timer);
       }
@@ -276,9 +293,7 @@ Page({
     }
   },
   btnNext:function(){
-    this.setData({
-      score:this.data.score+Math.floor(this.data.progressTime/100),
-    });
+    console.log('btnNext');
     if(this.data.progressTime>0)
       clearInterval(this.timer);
     if(this.data.level>=3){
@@ -305,7 +320,9 @@ Page({
       });
     }
   },
+
   btnStart:function(){
+    console.log('btnStart');
     this.setData({
       text:"点击查看提示",
       showgamebox1:false,
@@ -314,7 +331,7 @@ Page({
     });
     this.timer = setInterval(this.run, 10);
   },
-  btnBack:function() {
+ /* btnBack:function() {
     this.setData({
       score:this.data.score+Math.floor(this.data.progressTime/100),
       level:1,
@@ -331,18 +348,18 @@ Page({
     });
     this.resetElement();
     this.gameStart();
-  },
+  },*/
   resetElement:function () {
+    console.log('resetElement');
     this.setData({
       question:[],
       pointer:0,
-
+      istimeout:false,
       leftsecond:0,
       progressWidth:0,
       progressTime:10000,
-      countTime:3,
-
       currenta:-1,
     });
   },
+ 
 })

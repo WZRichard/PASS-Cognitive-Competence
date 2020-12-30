@@ -1,11 +1,12 @@
 // pages/games/index.js
+const app = getApp()
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    slideImgArr: ['cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/Game_RecieveAttention/help-1.png', 'cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/Game_RecieveAttention/help-2.png', ], //游戏介绍界面图库
+    slideImgArr: ['https://qbkeass.cn/images/games/receiveAttention/help-1.png', 'https://qbkeass.cn/images/games/receiveAttention/help-2.png', ], //游戏介绍界面图库
     // 问题文字表述
     question: '',
     // 剩余时间
@@ -57,19 +58,27 @@ Page({
     // 分数图片
     scoreImg: "",
     testFlag:0,
+    yanse:0 ,
+    jihua:0, 
+    juzi:0, 
+    shijue:0, 
+    juzhen:0, 
+    zici:0, 
+    shuiguo:0, 
+    jieshou:0
   },
   /**
    * 点击字母对事件
    */
   tap_unit: function (e) {
     var audio = wx.createInnerAudioContext();
-    audio.src = './audio/destroy.wav';
+    // audio.src = './audio/destroy.wav';
     var i = e.currentTarget.dataset.row;
     var j = e.currentTarget.dataset.index;
     let p = 'picture[' + i + '][' + j + ']';
-    if (this.data.picture[i][j] === 'cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/Game_RecieveAttention/perfect.png') {
+    if (this.data.picture[i][j] === 'https://qbkeass.cn/images/games/receiveAttention/perfect.png') {
       this.setData({
-        [p]: 'cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/Game_RecieveAttention/destroy.png'
+        [p]: 'https://qbkeass.cn/images/games/receiveAttention/destroy.png'
       });
       audio.play();
       if (this.data.answer[i][j] === 1) {
@@ -83,7 +92,7 @@ Page({
       }
     } else {
       this.setData({
-        [p]: 'cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/Game_RecieveAttention/perfect.png'
+        [p]: 'https://qbkeass.cn/images/games/receiveAttention/perfect.png'
       });
       if (this.data.answer[i][j] === 1) {
         this.setData({
@@ -193,6 +202,7 @@ Page({
    * 游戏结束
    */
   gameOver: function () {
+    var that = this
     console.log("正确的总数：" + this.data.totalRight);
     console.log("做对：" + this.data.rightCount);
     console.log("做错：" + this.data.wrongCount);
@@ -200,21 +210,24 @@ Page({
     if (score < 2) score = 2;
     if (score > 10) score = 10;
     score = score * 10;
+    that.setData({
+      jieshou: score
+    })
     if (score >= 90) {
       this.setData({
-        scoreImg: "cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/images/level/level-A.png"
+        scoreImg: "https://qbkeass.cn/images/level/level-A.png"
       })
     } else if (score < 90 && score >= 75) {
       this.setData({
-        scoreImg: "cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/images/level/level-B.png"
+        scoreImg: "https://qbkeass.cn/images/level/level-B.png"
       })
     } else if (score < 75 && score >= 60) {
       this.setData({
-        scoreImg: "cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/images/level/level-C.png"
+        scoreImg: "https://qbkeass.cn/images/level/level-C.png"
       })
     } else {
       this.setData({
-        scoreImg: "cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/images/level/level-D.png"
+        scoreImg: "https://qbkeass.cn/images/level/level-D.png"
       })
     }
     console.log("分数：" + score);
@@ -222,20 +235,163 @@ Page({
       scoreShow: true
     });
     this.sleep(3000).then(() => {
-      if(this.data.testFlag==0)
-    {
-      wx.reLaunch({
-        url: '/pages/games/index',
-      })
-    }else if(this.data.testFlag==1){
-      wx.redirectTo({
-        url: '/pages/games/visualSearch/index?testFlag=1',
-      })
-    }else{
-      wx.reLaunch({
-        url: '/pages/training/index',
-      })
-    }
+        if(this.data.testFlag==0)
+      {
+        wx.reLaunch({
+          url: '/pages/games/index',
+        })
+      }
+      else if(this.data.testFlag==2){
+        wx.setStorage({
+          key: "hasFirstTraining",
+          data: true
+        })
+        var p = parseInt((that.data.jihua + that.data.shijue)/2+0.5);
+        var a = parseInt((that.data.yanse + that.data.jieshou)/2+0.5);
+        var s1 = parseInt((that.data.juzhen + that.data.shuiguo)/2+0.5);
+        var s2 = parseInt((that.data.zici + that.data.juzi)/2+0.5);
+        var all_pass = parseInt(p+a+s1+s2);
+        wx.request({
+          url: 'https://qbkeass.cn/pass/firstTest.php',
+          data: {
+            'wx_id' : app.globalData.openid,
+            'p': p,
+            'a': a,
+            's1': s1,
+            's2': s2,
+            'all_pass': all_pass
+          },
+          method: 'GET',
+          header:{
+            'content-type': 'application/x-www-form-urlencoded;charset=utf-8' 
+          },
+          success: function(res){
+            console.log(res.data)
+          }
+        }),
+        wx.request({
+          url: 'https://qbkeass.cn/pass/getNew.php',
+          data: {
+            'wx_id' : app.globalData.openid
+          },
+          method: 'GET',
+          header:{
+            'content-type': 'application/x-www-form-urlencoded;charset=utf-8' 
+          },
+          success: function(res){
+            var newlist = []
+            newlist.push(parseInt(res.data.p))
+            newlist.push(parseInt(res.data.a))
+            newlist.push(parseInt(res.data.s1))
+            newlist.push(parseInt(res.data.s2))
+            app.globalData.newList = newlist
+          }
+        })
+        wx.request({
+          url: 'https://qbkeass.cn/pass/getOrigin.php',
+          data: {
+            'wx_id' : app.globalData.openid
+          },
+          method: 'GET',
+          header:{
+            'content-type': 'application/x-www-form-urlencoded;charset=utf-8' 
+          },
+          success: function(res){
+            var originlist = []
+            originlist.push(parseInt(res.data.p))
+            originlist.push(parseInt(res.data.a))
+            originlist.push(parseInt(res.data.s1))
+            originlist.push(parseInt(res.data.s2))
+            app.globalData.originList = originlist
+          }
+        })
+        wx.request({
+          url: 'https://qbkeass.cn/pass/getBest.php',
+          data: {
+            'wx_id' : app.globalData.openid
+          },
+          method: 'GET',
+          header:{
+            'content-type': 'application/x-www-form-urlencoded;charset=utf-8' 
+          },
+          success: function(res){
+            var bestlist = []
+            bestlist.push(parseInt(res.data.p))
+            bestlist.push(parseInt(res.data.a))
+            bestlist.push(parseInt(res.data.s1))
+            bestlist.push(parseInt(res.data.s2))
+            app.globalData.bestList = bestlist
+          }
+        })
+        
+        wx.reLaunch({
+          url: '/pages/training/index',
+        })
+      }
+      else{
+        var p = parseInt((that.data.jihua + that.data.shijue)/2+0.5);
+        var a = parseInt((that.data.yanse + that.data.jieshou)/2+0.5);
+        var s1 = parseInt((that.data.juzhen + that.data.shuiguo)/2+0.5);
+        var s2 = parseInt((that.data.zici + that.data.juzi)/2+0.5);
+        var all_pass = parseInt(p+a+s1+s2);
+        wx.request({
+          url: 'https://qbkeass.cn/pass/newTest.php',
+          data: {
+            'wx_id' : app.globalData.openid,
+            'p': p,
+            'a': a,
+            's1': s1,
+            's2': s2,
+            'all_pass': all_pass
+          },
+          method: 'GET',
+          header:{
+            'content-type': 'application/x-www-form-urlencoded;charset=utf-8' 
+          },
+          success: function(res){
+            console.log(res.data)
+          }
+        }),
+        wx.request({
+          url: 'https://qbkeass.cn/pass/getNew.php',
+          data: {
+            'wx_id' : app.globalData.openid
+          },
+          method: 'GET',
+          header:{
+            'content-type': 'application/x-www-form-urlencoded;charset=utf-8' 
+          },
+          success: function(res){
+            var newlist = []
+            newlist.push(parseInt(res.data.p))
+            newlist.push(parseInt(res.data.a))
+            newlist.push(parseInt(res.data.s1))
+            newlist.push(parseInt(res.data.s2))
+            app.globalData.newList = newlist
+          }
+        })
+        wx.request({
+          url: 'https://qbkeass.cn/pass/getBest.php',
+          data: {
+            'wx_id' : app.globalData.openid
+          },
+          method: 'GET',
+          header:{
+            'content-type': 'application/x-www-form-urlencoded;charset=utf-8' 
+          },
+          success: function(res){
+            var bestlist = []
+            bestlist.push(parseInt(res.data.p))
+            bestlist.push(parseInt(res.data.a))
+            bestlist.push(parseInt(res.data.s1))
+            bestlist.push(parseInt(res.data.s2))
+            app.globalData.bestList = bestlist
+          }
+        })
+        wx.reLaunch({
+          url: '/pages/training/index',
+        })
+      }
     })
     console.log("分数：" + score);
     clearInterval(this.timer);
@@ -269,7 +425,7 @@ Page({
       []
     ]
     while (i < 36) {
-      newPicture[i] = ['cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/Game_RecieveAttention/perfect.png', 'cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/Game_RecieveAttention/perfect.png', 'cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/Game_RecieveAttention/perfect.png', 'cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/Game_RecieveAttention/perfect.png', 'cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/Game_RecieveAttention/perfect.png'];
+      newPicture[i] = ['https://qbkeass.cn/images/games/receiveAttention/perfect.png', 'https://qbkeass.cn/images/games/receiveAttention/perfect.png', 'https://qbkeass.cn/images/games/receiveAttention/perfect.png', 'https://qbkeass.cn/images/games/receiveAttention/perfect.png', 'https://qbkeass.cn/images/games/receiveAttention/perfect.png'];
       i++;
     }
     this.setData({
@@ -282,8 +438,36 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
-
+  onLoad: function (option) {
+    var that = this
+    console.log(option)
+    this.setData({
+      testFlag:option.testFlag,
+    })
+    console.log(this.data.testFlag)
+    if(this.data.testFlag==2 || this.data.testFlag==1){
+      wx.getStorage({key: "yanse",success: function(e){
+        that.setData({yanse:parseInt(e.data)})
+      }})
+      wx.getStorage({key: "jihua",success: function(e){
+        that.setData({jihua:parseInt(e.data)})
+      }})
+      wx.getStorage({key: "juzi",success: function(e){
+        that.setData({juzi:parseInt(e.data)})
+      }})
+      wx.getStorage({key: "shijue",success: function(e){
+        that.setData({yanse:parseInt(e.data)})
+      }})
+      wx.getStorage({key: "juzhen",success: function(e){
+        that.setData({juzhen:parseInt(e.data)})
+      }})
+      wx.getStorage({key: "zici",success: function(e){
+        that.setData({zici:parseInt(e.data)})
+      }})
+      wx.getStorage({key: "shuiguo",success: function(e){
+        that.setData({shuiguo:parseInt(e.data)})
+      }})
+    }
   },
 
   /**

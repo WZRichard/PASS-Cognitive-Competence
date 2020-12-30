@@ -1,7 +1,7 @@
 <!--pages/Matrix_pro/Matrix_pro.wxml-->
 <!-- 背景图 -->
 <image class="background" hidden="{{!startGame}}"
-  src="cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/images/wallpaper/game-wp2.png"
+  src="https://qbkeass.cn/images/wallpaper/game-wp2.png"
   mode="aspectFill"></image>
 
 <!-- Vant -->
@@ -37,7 +37,7 @@
   <view class="info">
     <view class="title2">
       <image
-        src="cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/Game_ FruitMatch/fruits-1.png">
+        src="https://qbkeass.cn/images/tabbar/game.png">
       </image>
       游戏介绍
     </view>
@@ -49,7 +49,7 @@
   <view class="rule">
     <view class="title2">
       <image
-        src="cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/Game_ FruitMatch/fruits-4.png">
+        src="https://qbkeass.cn/images/tabbar/game.png">
       </image>
       游戏规则
     </view>
@@ -57,7 +57,7 @@
   </view>
 
   <view class="start" bindtap="start">
-    <van-button round type="primary" block color="#004e66"> 开始游戏 </van-button>
+    <van-button round type="primary" block color="#c93c42"> 开始游戏 </van-button>
   </view>
 </view>
 
@@ -66,9 +66,9 @@
 
   <!-- 倒计时 -->
   <view class="progress" style="opacity: {{round==0?0:1}};">
-    <van-progress percentage="{{countDownNum*100.0/30}}" color="rgb(241, 158, 194)" pivot-text=" " show-pivot="false" stroke-width="12px" />
+    <van-progress percentage="{{countDownNum*100.0/30}}" color="#004e66" pivot-text=" " show-pivot="false" stroke-width="12px" />
     <image class="icon" mode="widthFix"
-      src="cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/images/tabbar/test-chosen.png"
+      src="https://qbkeass.cn/images/tabbar/test-chosen.png"
       style="left: {{countDownNum*70.0/30-9+15}}%"></image>
       <!-- cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/Game_ FruitMatch/icons8-烟花-64.png -->
   </view>
@@ -76,9 +76,10 @@
   <!-- Title -->
   <view class="title">
     <view>
-      <image class="title_image"
+      <!-- <image class="title_image"
         src="cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/Game_Martix/Matrix-Title.png">
-      </image>
+      </image> -->
+      
     </view>
     <!-- <view hidden="{{round==0?false:true}}">
       <view class="in_title_begin in_title_begin_F">
@@ -93,7 +94,7 @@
     </view> -->
     <view class="in_title_text" hidden="{{round==0?true:false}}">
       <van-divider contentPosition="center"
-        customStyle="color: #DEB887; border-color: #DEB887; font-size: 18px; font-weight: bold; margin-bottom:-5px">
+        customStyle="color: #004e66; border-color: #004e66; font-size: 18px; font-weight: bold; margin-bottom:-5px">
         第{{round}}关</van-divider>
     </view>
   </view>
@@ -130,19 +131,19 @@
   <view class="Selection" hidden="{{question_hidden}}">
     <view>
       <van-button round type="{{selector==1?'danger':'info'}}" class="button" bindtap="select" data-selection="1"
-        style="border-color: {{selector==1?'rgb(255, 61, 3)':'rgb(221, 221, 221)'}}"><text class="selector">A</text>
+       ><text class="selector">A</text>
       </van-button>
 
       <van-button round type="{{selector==2?'danger':'info'}}" class="button" bindtap="select" data-selection="2"
-        style="border-color: {{selector==2?'rgb(255, 61, 3)':'rgb(221, 221, 221)'}}"><text class="selector">B</text>
+        ><text class="selector">B</text>
       </van-button>
 
       <van-button round type="{{selector==3?'danger':'info'}}" class="button" bindtap="select" data-selection="3"
-        style="border-color: {{selector==3?'rgb(255, 61, 3)':'rgb(221, 221, 221)'}}"><text class="selector">C</text>
+       ><text class="selector">C</text>
       </van-button>
 
       <van-button round type="{{selector==4?'danger':'info'}}" class="button" bindtap="select" data-selection="4"
-        style="border-color: {{selector==4?'rgb(255, 61, 3)':'rgb(221, 221, 221)'}}"><text class="selector">D</text>
+       ><text class="selector">D</text>
       </van-button>
     </view>
   </view>
@@ -153,7 +154,7 @@
       style="opacity: {{selector==0?0.5:1}}">确认</van-button> -->
 
     <image class="comfirm" bindtap="comfirm" 
-      src="cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/images/button/submit.png"
+      src="https://qbkeass.cn/images/button/submit.png"
       mode="heightFix"></image>
   </view>
 

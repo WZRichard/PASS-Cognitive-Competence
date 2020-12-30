@@ -28,9 +28,9 @@ Create.prototype = {
         j = x;
       }
     }else{
-      var j = Math.floor(Math.random()*11);
+      var j = Math.floor(Math.random()*8);
       for(var i = 0; i < 4; i++){
-        var x = j + Math.floor(Math.random()*5)+1;
+        var x = j + Math.floor(Math.random()*6)+1;
         numlist3.push(char[x]);
         j = x;
       }

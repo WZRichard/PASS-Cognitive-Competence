@@ -109,7 +109,7 @@ page{
   border-radius: 30rpx;
   background-color:#fc8c23;
   opacity: 0.9;
-  width: 200rpx;
+  width: 220rpx;
   height: 46rpx;
   text-align: center;
   margin-top: 30rpx;

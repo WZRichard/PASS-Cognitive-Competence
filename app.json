@@ -23,13 +23,9 @@
     "pages/games/visualSearch/index",
     "pages/games/Matrix_pro/Matrix_pro",
     "pages/games/FruitMatch/FruitMatch",
-    "pages/games/_ FruitMatch/_ FruitMatch",
     "pages/games/SentenceRepetition/index",
-    "pages/games/RecieveAttention/index",
-    "pages/games/RecieveAttention/game/game",
-    "pages/games/SentenceRepetition/game/game"
-    
-
+    "pages/games/RecieveAttention/index"
+  
   ],
   "window":{
     "backgroundTextStyle":"light",
@@ -72,6 +68,13 @@
   },
   "sitemapLocation": "sitemap.json",
   "usingComponents": {
-    "van-overlay": "/miniprogram/miniprogram_npm/@vant/weapp/overlay/index"
+    "van-dialog": "/miniprogram/miniprogram_npm/@vant/weapp/dialog/index",
+    "van-toast": "/miniprogram/miniprogram_npm/@vant/weapp/toast/index",
+    "van-divider": "/miniprogram/miniprogram_npm/@vant/weapp/divider/index",
+    "van-progress": "/miniprogram/miniprogram_npm/@vant/weapp/progress/index",
+    "van-icon": "/miniprogram/miniprogram_npm/@vant/weapp/icon/index",
+    "van-button": "/miniprogram/miniprogram_npm/@vant/weapp/button/index",
+    "van-overlay": "/miniprogram/miniprogram_npm/@vant/weapp/overlay/index",
+    "van-popup": "/miniprogram/miniprogram_npm/@vant/weapp/popup/index"
   }
 }

@@ -143,7 +143,7 @@
 .button {
   margin: 15rpx 18rpx 15rpx 18rpx;
   border-radius: 10rem;
-  border: 4rpx solid ;
+  /* border: 4rpx solid ; */
   display: flex;
   width: 40%;
   /* height: 80rpx;

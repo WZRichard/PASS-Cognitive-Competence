@@ -366,7 +366,6 @@
   font-size: 35rpx;
   text-align: center;
   margin: 50rpx 30rpx;
-  background-color: #c93c42;
   color: white;
   font-weight: 200;
   border-radius: 100rpx;

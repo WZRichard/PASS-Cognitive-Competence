@@ -6,7 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    slideImgArr: ['cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/Game_SentenceRepetition/help-1.png', 'cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/Game_SentenceRepetition/help-2.png', ], //游戏介绍界面图库
+    slideImgArr: ['https://qbkeass.cn/images/games/sentenceQusetion/help-1.png', 'https://qbkeass.cn/images/games/sentenceQusetion/help-2.png', ], //游戏介绍界面图库
     color: ["红", "橙", "黄", "绿", "青", "蓝", "紫", "黑", "灰", "白", "棕", "粉"], //所有颜色
     colorCount: 12, //颜色总数
     answer: 0, //当前题目答案
@@ -412,19 +412,19 @@ Page({
     var score = this.data.rightCount * 2 * 10;
     if (score >= 90) {
       this.setData({
-        scoreImg:"cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/images/level/level-A.png"
+        scoreImg:"https://qbkeass.cn/images/level/level-A.png"
       })
     } else if (score < 90 && score >= 75) {
       this.setData({
-        scoreImg:"cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/images/level/level-B.png"
+        scoreImg:"https://qbkeass.cn/images/level/level-B.png"
       })
     } else if (score < 75 && score >= 60) {
       this.setData({
-        scoreImg:"cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/images/level/level-C.png"
+        scoreImg:"https://qbkeass.cn/images/level/level-C.png"
       })
     } else {
       this.setData({
-        scoreImg:"cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/images/level/level-D.png"
+        scoreImg:"https://qbkeass.cn/images/level/level-D.png"
       })
     }
     console.log("分数：" + score);
@@ -434,19 +434,19 @@ Page({
     });
     this.sleep(3000).then(() => {
       if(this.data.testFlag==0)
-    {
-      wx.reLaunch({
-        url: '/pages/games/index',
-      })
-    }else if(this.data.testFlag==1){
-      wx.redirectTo({
-        url: '/pages/games/visualSearch/index?testFlag=1',
-      })
-    }else{
-      wx.reLaunch({
-        url: '/pages/training/index',
-      })
-    }
+      {
+        wx.switchTab({
+          url: '/pages/games/index',
+        })
+      }else if(this.data.testFlag==1){
+        wx.redirectTo({
+          url: '/pages/games/visualSearch/index?testFlag=1',
+        })
+      }else{
+        wx.redirectTo({
+          url: '/pages/games/visualSearch/index?testFlag=2',
+        })
+      }
     })
 
   },
@@ -459,7 +459,12 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: function (option) {
+    console.log(option)//可以打印一下option看查看参数
+    this.setData({
+        testFlag:option.testFlag,
+    })
+    console.log(this.data.testFlag)
 
   },
 

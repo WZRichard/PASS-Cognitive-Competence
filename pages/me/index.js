@@ -13,19 +13,19 @@ Page({
         {
           id:1,
           name:"排行榜",
-          icon:'cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/pass_pic/me_icon/排行榜.png',
+          icon:'https://qbkeass.cn/images/icon/level.png',
           pagePath:'/pages/level/index'
         },
         {
           id:2,
           name:"关于我们",
-          icon:'cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/pass_pic/me_icon/关于我们.png',
+          icon:'https://qbkeass.cn/images/icon/about.png',
           pagePath:'/pages/about/index'
         },
         {
           id:3,
           name:"设置",
-          icon:'cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/pass_pic/me_icon/设置.png',
+          icon:'https://qbkeass.cn/images/icon/setting.png',
           pagePath:'/pages/setting/index'
         }
         // ,
@@ -36,7 +36,7 @@ Page({
         //   pagePath:'/pages/temp2/index'
         // }
       ],
-      go_icon:'cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/pass_pic/me_icon/箭头右.png'
+      go_icon:'https://qbkeass.cn/images/icon/to-right.png'
   },
 
   /**

@@ -30,7 +30,7 @@
     "bundle": false
   },
   "compileType": "miniprogram",
-  "libVersion": "2.13.1",
+  "libVersion": "2.13.2",
   "appid": "wxb2ef199bacb83d5e",
   "projectname": "PASS%E8%AE%A4%E7%9F%A5%E6%A8%A1%E5%9E%8B",
   "debugOptions": {
@@ -52,12 +52,6 @@
       {
         "name": "Matrix_pro",
         "pathName": "pages/games/Matrix_pro/Matrix_pro",
-        "query": "",
-        "scene": null
-      },
-      {
-        "name": "_FruitMatch",
-        "pathName": "pages/games/_ FruitMatch/_ FruitMatch",
         "query": "",
         "scene": null
       },
@@ -96,6 +90,18 @@
           "id": -1,
           "name": "pages/games/zicihuiyi/zicihuiyi",
           "pathName": "pages/games/zicihuiyi/zicihuiyi",
+          "scene": null
+        },
+        {
+          "name": "pages/games/index",
+          "pathName": "pages/games/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/games/Matrix_pro/Matrix_pro",
+          "pathName": "pages/games/Matrix_pro/Matrix_pro",
+          "query": "",
           "scene": null
         }
       ]

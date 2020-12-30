@@ -65,7 +65,7 @@ Page({
         }
       })
       wx.reLaunch({
-        url: '/pages/training/index'
+        url: '/pages/index/index'
       })
     }
     

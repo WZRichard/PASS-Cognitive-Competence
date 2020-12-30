@@ -130,3 +130,13 @@ canvas{
   margin: 0 auto;
   
 }
+.wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+._img {
+  height:200px;
+}

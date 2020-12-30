@@ -22,7 +22,7 @@
     <view class="title2">
       <icon class="info-icon">
         <image
-          src="cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/images/tabbar/game.png">
+          src="https://qbkeass.cn/images/tabbar/game.png">
         </image>
       </icon> 游戏介绍
     </view>
@@ -36,27 +36,29 @@
     <view class="title2">
       <icon class="info-icon">
         <image
-          src="cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/images/tabbar/game.png">
+          src="https://qbkeass.cn/images/tabbar/game.png">
         </image>
       </icon> 游戏规则
     </view>
     <view class="content">
       游戏随机两种出题方式，一种为找出同样字体的字母对，字体为正常，斜体，加粗，加粗斜体四种。一种为找出大小写组合的字母对。一共180个随机字母对，限时120s，游戏上方有倒计时提示，可以提早提交,提交越早分数越高。</view>
   </view>
-  <view class="start" bindtap="tap_start">开始游戏</view>
+  <view class="start" bindtap="tap_start">
+    <van-button round type="primary" block color="#c93c42"> 开始游戏 </van-button>
+  </view>
 </view>
 <!-- 游戏主体 -->
 <view class="game" hidden="{{type==-1?true:false}}">
   <!-- 背景图 -->
   <image class="background"
-    src="cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/images/wallpaper/game-wp1.png"
+    src="https://qbkeass.cn/images/wallpaper/game-wp1.png"
     mode="widthFix"></image>
   <view class="head">
     <!-- 剩余时间 -->
     <view class="time">
       <van-progress pivot-text=" " stroke-width="12" color="#004e66" percentage="{{time/1.2}}"></van-progress>
       <image class="progressimg"
-        src="cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/images/tabbar/test-chosen.png"
+        src="https://qbkeass.cn/images/tabbar/test-chosen.png"
         mode="aspectFill" style="margin-left:{{5*time-20}}rpx"></image>
     </view>
   <!-- Question -->
@@ -82,7 +84,7 @@
   </view>
   <view>
       <image class="confirm"
-        src="cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/images/button/confirm.png"
+        src="https://qbkeass.cn/images/button/confirm.png"
         bindtap="tap_over" mode="heightFix"></image>
     </view>
   <view class="white"> </view>

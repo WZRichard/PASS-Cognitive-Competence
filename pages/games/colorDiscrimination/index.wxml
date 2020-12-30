@@ -18,7 +18,7 @@
   </view>
   <view class="info" style="height:{{gameHeight*0.25}}rpx">
     <view class="title2">
-      <icon class="info-icon"><image src="cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/images/tabbar/game.png" ></image></icon>  游戏介绍
+      <icon class="info-icon"><image src="https://qbkeass.cn/images/tabbar/game.png" ></image></icon>  游戏介绍
     </view>
     <view class="content">
       给定表示颜色的词语，比如蓝色。同时给词语的字体设定颜色，比如说灰色。让玩家判定词语的语义表示的颜色与语的字体设定颜色是否相同。考察玩家的注意力、反应力。测验得分是玩家的颜色判别游戏正确率
@@ -27,16 +27,16 @@
 
   <view class="rule">
     <view class="title2">
-      <icon class="info-icon"><image src="cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/images/tabbar/game.png" ></image></icon>  游戏规则</view>
+      <icon class="info-icon"><image src="https://qbkeass.cn/images/tabbar/game.png" ></image></icon>  游戏规则</view>
     <view class="content"> 游戏设定关卡是10关，每关5秒。</view>
   </view>
   <view class="start" bindtap="start">开始游戏</view>
 </view>
 <view hidden="{{!startGame}}" class="color-game" style="height:{{gameHeight}}rpx">
-  <image class="bgimg" src="cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/images/wallpaper/game-wp2.png" mode="aspectFill"></image>
+  <image class="bgimg" src="https://qbkeass.cn/images/wallpaper/game-wp2.png" mode="aspectFill"></image>
   <view class="progess">
     <canvas class="progress_active" canvas-id="progress_active">
-      <image src="cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/images/tabbar/test-chosen.png" style="width:40rpx;height:40rpx;margin-top:60rpx;margin-left:{{length}}rpx" ></image>
+      <image src="https://qbkeass.cn/images/tabbar/test-chosen.png" style="width:40rpx;height:40rpx;margin-top:60rpx;margin-left:{{length}}rpx" ></image>
     </canvas>
   </view>
   <view class="board">
@@ -52,10 +52,20 @@
       </view>
     </view>
   </view>
-  <modal hidden="{{!gradeShow}}" bindconfirm="gradeConfirm" no-cancel="true">
+  <!-- <modal hidden="{{!gradeShow}}" bindconfirm="gradeConfirm" no-cancel="true">
       <view>
         <image class="gradeImg" src="{{gradeImg}}"   mode='aspectFill'></image>
       </view>
-  </modal>
+  </modal> -->
+  <van-overlay show="{{score_show}}">
+  <view class="wrapper">
+    <view>
+      <image class="_img"
+        src="{{gradeImg}}"
+        mode="heightFix"></image>
+    </view>
+  </view>
+</van-overlay>
   
 </view>
+

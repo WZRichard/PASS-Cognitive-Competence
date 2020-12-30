@@ -37,15 +37,14 @@ Page({
     countDownNum: '10', //倒计时初始值(单位s)
     score: 0, //获得分数
     cnt_image_loading: 0, //水果图片加载完毕后开始显示
-    slideImgArr: ['cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/Game_ FruitMatch/Fruits_info_1.png', 'cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/Game_ FruitMatch/fruit2-2.png', 'cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/Game_ FruitMatch/fruit2-3.png',], //游戏介绍界面图库
+    slideImgArr: ['https://qbkeass.cn/images/games/fruitMatch/Fruits_info_1.png', 'https://qbkeass.cn/images/games/fruitMatch/fruit2-2.png', 'https://qbkeass.cn/images/games/fruitMatch/fruit2-3.png',], //游戏介绍界面图库
     startGame: false, //是否开始游戏
     popup_show: false, //帮助是否显示
     helper_content: '方框中隐藏着不同的水果\n请尽可能多的记住它们', //帮助内容
     helper_state: 0, //帮助状态
-    level_image: ["cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/images/level/level-A.png", "cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/images/level/level-B.png", "cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/images/level/level-C.png", "cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/images/level/level-D.png"],
+    level_image: ["https://qbkeass.cn/images/level/level-A.png", "https://qbkeass.cn/images/level/level-B.png", "https://qbkeass.cn/images/level/level-C.png", "https://qbkeass.cn/images/level/level-D.png"],
     level_show: false,
     level: 0,
-
     testFlag:0,
   },
 
@@ -171,6 +170,8 @@ Page({
     } else {
       level=4;
     }
+    wx.setStorage({key: "hasShuiguo", data: true})
+    wx.setStorage({key: "shuiguo", data: score})
 
     console.log(score);
 
@@ -181,6 +182,19 @@ Page({
 
     setTimeout(() => this.exit(), 2500);
     clearTimeout();
+
+    if (this.data.helper_state!=0 ) {
+      this.setData({
+        startGame: 0,
+        helper_state: 0,
+      })
+    }
+  },
+
+  exit: function() {
+    this.setData({
+      level_show: false,
+    })
 
     this.setData({
       cnt_row: 2, //行数（2或3）
@@ -197,28 +211,43 @@ Page({
         helper_state: 0,
       })
     }
-  },
-
-  exit: function() {
-    this.setData({
-      level_show: false,
-    })
 
     if(this.data.testFlag==0)
     {
-      wx.reLaunch({
+      wx.switchTab({
         url: '/pages/games/index',
       })
     }else if(this.data.testFlag==1){
       wx.redirectTo({
-        url: '/pages/games/visualSearch/index?testFlag=1',
+        url: '/pages/games/RecieveAttention/index?testFlag=1',
       })
     }else{
-      wx.reLaunch({
-        url: '/pages/training/index',
+      wx.redirectTo({
+        url: '/pages/games/RecieveAttention/index?testFlag=2',
       })
     }
   },
+
+  // exit: function() {
+  //   this.setData({
+  //     level_show: false,
+  //   })
+
+  //   if(this.data.testFlag==0)
+  //   {
+  //     wx.reLaunch({
+  //       url: '/pages/games/index',
+  //     })
+  //   }else if(this.data.testFlag==1){
+  //     wx.redirectTo({
+  //       url: '/pages/games/visualSearch/index?testFlag=1',
+  //     })
+  //   }else{
+  //     wx.reLaunch({
+  //       url: '/pages/training/index',
+  //     })
+  //   }
+  // },
 
   random_show: function (isround2) {
     var pa = this.data.img_hidden, pb = this.data.img_hidden_before;
@@ -447,8 +476,12 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
-
+  onLoad: function (option) {
+    console.log(option)
+    this.setData({
+      testFlag:option.testFlag,
+    })
+    console.log(this.data.testFlag)
   },
 
   /**

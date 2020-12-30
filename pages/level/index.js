@@ -6,9 +6,13 @@ Page({
    * 页面的初始数据
    */
   data: {
-    child_icon:"cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/pass_pic/me_icon/儿童.png",
-    level_icon:"cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/pass_pic/me_icon/等级.png"
-
+    child_icon:"https://qbkeass.cn/images/icon/child.png",
+    level_icon:"https://qbkeass.cn/images/icon/level2.png",
+    level_list:[],
+    userInfo:{},
+    childAge:"",
+    mylevel: "",
+    allPass:""
   },
 
   /**
@@ -27,13 +31,42 @@ Page({
         })
       }
     }),
-    wx.getStorage({
-      key: "childSex",
-      success: function(e){
-        that.setData({
-          childSex: e.data
-        })
+    wx.request({
+      url: 'https://qbkeass.cn/pass/getLevel.php',
+      data: {
+        'wx_id' : app.globalData.openid
       },
+      method: 'GET',
+      header:{
+        'content-type': 'application/x-www-form-urlencoded;charset=utf-8' 
+      },
+      success: function(res){
+        that.setData({
+          mylevel: res.data.level,
+          allPass: res.data.all_pass
+        })
+      }
+    }),
+    wx.request({
+      url: 'https://qbkeass.cn/pass/getTop20.php',
+      header:{
+        'content-type': 'application/x-www-form-urlencoded;charset=utf-8' 
+      },
+      success: function(res){
+        console.log("start")
+        var i= 101;
+        var list=[];
+        for(i=101;i<121;i++) {
+          if(res.data[i] != undefined) {
+              list.push(res.data[i])
+              console.log(res.data[i])
+          }
+        }
+        that.setData({
+          level_list:list
+        })
+        console.log(that.data.level_list)
+      }
     })
 
   },

@@ -9,8 +9,8 @@
 }
 
 .progress {
-  margin-top: 11px;
-  margin-bottom: 5px;
+  margin-top: 18px;
+  margin-bottom: 20px;
   margin-left: 15%;
   width: 70%;
 }
@@ -18,7 +18,7 @@
 .icon {
   width: 40px;
   position: absolute;
-  top: -8px;
+  top: 0px;
 }
 
 .title {
@@ -105,7 +105,8 @@
   width: 80px;
   height: 80px;
   margin: 5px;
-  border: 5px solid #ddd;
+  border-radius: 15%;
+  border: 5px solid #ffffff;
   background-color: #ffffff;
 }
 
@@ -116,7 +117,7 @@
 
 /* 修改2.0 游戏介绍 */
 .show2 {
-  margin-top: 80px;
+  margin-top: 120px;
 }
 
 .wrapper {
@@ -210,13 +211,13 @@
   line-height: 25px;
   font-size: 15px;
   margin: 10px 10px;
-  color: rgb(63, 167, 32);
+  color:#004e66;
 }
 
 .helper2 {
   margin-top: -25px;
   text-align: center;
-  color: rgb(63, 167, 32);
+  color: #004e66;
   font-size: 18px;
   line-height: 40px;
 }

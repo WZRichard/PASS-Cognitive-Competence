@@ -12,11 +12,11 @@
 </view> 
 <view class="title"><text>最新数据</text></view>
 	<view class="spirit">
-		<ec-canvas id="mychart-dom-bar" canvas-id="mychart-bar" ec="{{ ec1 }}" ></ec-canvas>
+		<ec-canvas id="mychart-dom-bar1" canvas-id="mychart-bar-1" ec="{{ ec1 }}" ></ec-canvas>
 	</view>
 	<view class="title"><text>PASS雷达</text></view>
   <view class="radar">
-		<ec-canvas id="mychart-dom-bar" canvas-id="mychart-bar" ec="{{ ec2 }}" ></ec-canvas>
+		<ec-canvas id="mychart-dom-bar2" canvas-id="mychart-bar-2" ec="{{ ec2 }}" ></ec-canvas>
 	</view>
  
 </view>

@@ -15,14 +15,14 @@ Page({
           {
             id:1,
             name:'计划连接',
-            page_url:'/pages/games/jihualianjie/jihualianjie',
-            imgSrc:'cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/images/gameCover/jhlj.png'
+            page_url:'/pages/games/jihualianjie/jihualianjie?testFlag=0',
+            imgSrc:'https://qbkeass.cn/images/gameCover/jhlj.png'
           },
           {
             id:2,
             name:'视觉搜索',
-            page_url:'/pages/games/visualSearch/index',
-            imgSrc:'cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/images/gameCover/sjss.png'
+            page_url:'/pages/games/visualSearch/index?testFlag=0',
+            imgSrc:'https://qbkeass.cn/images/gameCover/sjss.png'
           }
         ]
       },
@@ -34,14 +34,14 @@ Page({
           {
             id:1,
             name:'颜色判别',
-            page_url:'/pages/games/colorDiscrimination/index',
-            imgSrc:'cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/images/gameCover/yspb.png'
+            page_url:'/pages/games/colorDiscrimination/index?testFlag=0',
+            imgSrc:'https://qbkeass.cn/images/gameCover/yspb.png'
           },
           {
             id:2,
             name:'接受的注意',
-            page_url:'/pages/games/RecieveAttention/index',
-            imgSrc:'cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/images/gameCover/jsdzy.png'
+            page_url:'/pages/games/RecieveAttention/index?testFlag=0',
+            imgSrc:'https://qbkeass.cn/images/gameCover/jsdzy.png'
           }
         ]
       },
@@ -53,14 +53,14 @@ Page({
           {
             id:1,
             name:'矩阵问题',
-            page_url:'/pages/games/Matrix_pro/Matrix_pro',
-            imgSrc:'cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/images/gameCover/jzwt.png'
+            page_url:'/pages/games/Matrix_pro/Matrix_pro?testFlag=0',
+            imgSrc:'https://qbkeass.cn/images/gameCover/jzwt.png'
           },
           {
             id:2,
             name:'水果配对',
-            page_url:'/pages/games/FruitMatch/FruitMatch',
-            imgSrc:'cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/images/gameCover/sgpd.png'
+            page_url:'/pages/games/FruitMatch/FruitMatch?testFlag=0',
+            imgSrc:'https://qbkeass.cn/images/gameCover/sgpd.png'
           }
         ]
       },{
@@ -71,14 +71,14 @@ Page({
           {
             id:1,
             name:'数字回忆',
-            page_url:'/pages/games/zicihuiyi/zicihuiyi',
-            imgSrc:'cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/images/gameCover/szhy.png'
+            page_url:'/pages/games/zicihuiyi/zicihuiyi?testFlag=0',
+            imgSrc:'https://qbkeass.cn/images/gameCover/szhy.png'
           },
           {
             id:2,
             name:'句子问题',
-            page_url:'/pages/games/SentenceRepetition/index',
-            imgSrc:'cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/images/gameCover/juzi.png'
+            page_url:'/pages/games/SentenceRepetition/index?testFlag=0',
+            imgSrc:'https://qbkeass.cn/images/gameCover/juzi.png'
           }
         ]
       }

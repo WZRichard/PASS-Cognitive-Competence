@@ -18,7 +18,7 @@ Page({
     scorelevel:"",
 
     // mainbg:'cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/Game_RecallNumber/rnbg1.JPG',
-    mainbg:'cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/images/wallpaper/game-wp3.png',
+    mainbg:'https://qbkeass.cn/images/wallpaper/game-wp3.png',
     showgamebox:false,//主界面和游戏界面的切换
     shownumbertoremember:false,//记忆数字的显示
     shownumbertorshow:false,//输入数字判断对错的显示
@@ -41,7 +41,7 @@ Page({
     level:1,
 
 
-     slideImgArr: ['cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/Game_RecallNumber/rnA.png','cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/Game_RecallNumber/rnB.png','cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/Game_RecallNumber/rnC.png'], //游戏介绍界面
+     slideImgArr: ['https://qbkeass.cn/images/games/recallNumber/rnA.png','https://qbkeass.cn/images/games/recallNumber/rnB.png','https://qbkeass.cn/images/games//recallNumber/rnC.png'], //游戏介绍界面
     indicatorDots: true, // 是否显示面板指示点
     autoplay: true,      // 是否自动切换
     circular: true,      // 是否采用衔接滑动
@@ -58,8 +58,29 @@ Page({
     countTime:3,
     testFlag:0,
   },
+
+  exit:function () {
+    console.log(this.data.score);
+    console.log('exit');
+    this.showviewHidden();
+    if(this.data.testFlag==0)
+    {
+      wx.switchTab({
+        url: '/pages/games/index',
+      })
+    }else if(this.data.testFlag==1){
+      wx.redirectTo({
+        url: '/pages/games/FruitMatch/FruitMatch?testFlag=1',
+      })
+    }else{
+      wx.redirectTo({
+        url: '/pages/games/FruitMatch/FruitMatch?testFlag=2',
+      })
+    }
+  },
   
-  onLoad: function () {
+  onLoad: function (option) {
+    console.log('onLoad');
     //页面打开时执行的操作
     //每个手机的屏幕宽度是750rpx 分辨率不一致
     //所有手机在小程序中的宽:真实宽度=小程序在页面中的高度:真实高度
@@ -69,9 +90,12 @@ Page({
     this.setData({
       rate: rate,
       gameHeight: rate * res.windowHeight,
+      testFlag:option.testFlag,
     })
+    console.log(this.data.testFlag);
   },
   btnAS: function (e) {
+    console.log('btnAS');
     //当开始游戏按钮被点击时，隐藏视觉搜索介绍
     this.setData({
       mTime: this.data.time * 1000,
@@ -119,6 +143,7 @@ Page({
     })
   },
   btnBack:function(){//返回按钮
+    console.log('btnBack');
     this.showviewHidden();
     this.setData({
       //showbtnstart:true,
@@ -129,6 +154,7 @@ Page({
     });
   },
   gemeStrat:function(){//某个关卡游戏开始
+    console.log('gemeStrat');
     this.setData({
       showtimerow:true,
     })
@@ -136,6 +162,7 @@ Page({
     this.timer = setInterval(this.run, 10); //that.timer关键点
   },
   Initialize:function(){//初始化界面
+    console.log('Initialize');
     this.showviewHidden();
     this.setData({
       level:1,
@@ -144,6 +171,7 @@ Page({
   },
   //btnStart:function(){},//游戏内的开始按钮已经废弃
   btnSubmit:function(){//提交按钮
+    console.log('btnSubmit');
     this.setData({
       numrem: this.data.number,
       showWords:false,
@@ -176,23 +204,27 @@ Page({
     }
   },
   gameOver:function(){
+    var that = this
+    console.log('gameOver');
     if(this.data.score>=90){
       this.setData({
-        scorelevel:"cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/images/level/level-A.png",
+        scorelevel:"https://qbkeass.cn/images/level/level-A.png",
       });
     }else if(this.data.score>=75){
       this.setData({
-        scorelevel:"cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/images/level/level-B.png",
+        scorelevel:"https://qbkeass.cn/images/level/level-B.png",
       });
     }else if(this.data.score>=60){
       this.setData({
-        scorelevel:"cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/images/level/level-C.png",
+        scorelevel:"https://qbkeass.cn/images/level/level-C.png",
       });
     }else{
       this.setData({
-        scorelevel:"cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/images/level/level-D.png",
+        scorelevel:"https://qbkeass.cn/images/level/level-D.png",
       });
     }
+    wx.setStorage({key: "hasZici", data: true})
+    wx.setStorage({key: "zici", data: that.data.score})
     this.setData({
       score_show:true,
     });
@@ -206,7 +238,8 @@ Page({
         countTime:3,
         score_show:false,
       });
-      this.btnBack();
+      //this.btnBack();
+      this.exit();
     }
     counttime--;
     this.setData({
@@ -214,6 +247,7 @@ Page({
     }); 
   },
   btnNext:function(){//下一关按钮
+    console.log('btnNext');
     this.showviewHidden();
     this.data.level++; 
     this.gemeStrat();
@@ -240,6 +274,7 @@ Page({
     }
   },
   generateNumber:function(){//生成随机数字
+    console.log('generateNumber');
     let str="";
     var j=this.data.level;
     for(var i=0;i<j;i++){

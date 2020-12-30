@@ -4,8 +4,8 @@ const app = getApp()
 Page({
   data:{
     slideImgArr: [
-      'cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/images/games/colorDis/colorDis01.png',
-      'cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/images/games/colorDis/colorDis02.png'],//之后再插入游戏图片
+      'https://qbkeass.cn/images/games/colorDis01.png',
+      'https://qbkeass.cn/images/games/colorDis02.png'],//之后再插入游戏图片
     indicatorDots: true, // 是否显示面板指示点
     autoplay: true,      // 是否自动切换
     circular: true,      // 是否采用衔接滑动
@@ -38,10 +38,11 @@ Page({
     gradeShow:false,
 
     testFlag:0,
+    score_show:false,
 
 
   },
-  onLoad: function () {//页面打开时执行的操作
+  onLoad: function (option) {//页面打开时执行的操作
     //每个手机的屏幕宽度是750rpx 分辨率不一致
     //所有手机在小程序中的宽:真实宽度=小程序在页面中的高度:真实高度
     var res = wx.getSystemInfoSync();
@@ -49,6 +50,7 @@ Page({
     this.setData({
       rate:rate,
       gameHeight : rate*res.windowHeight,
+      testFlag: option.testFlag
     })
     this.createColorGroup();
   },
@@ -218,21 +220,35 @@ Page({
   },
   getGrade:function(){
     var score = this.data.score;
+    wx.setStorage({key: "hasYanse", data: true})
+    wx.getStorage({
+      key: 'hasYanse',
+      success: function(e){
+        console.log(e.data)
+      }
+    })
+    wx.setStorage({key: "yanse", data: score})
+    wx.getStorage({
+      key: 'yanse',
+      success: function(e){
+        console.log(e.data)
+      }
+    })
     var grade = '';
     var gradeImg = '';
     if(score>=90)
     { 
       grade = 'A'; 
-      gradeImg = 'cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/images/level/level-A.png'
+      gradeImg = 'https://qbkeass.cn/images/level/level-A.png'
     }else if(score<90&&score>=75) {
       grade = 'B'; 
-      gradeImg = 'cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/images/level/level-B.png'
+      gradeImg = 'https://qbkeass.cn/images/level/level-B.png'
     }else if(score<75&&score>=60) { 
       grade = 'C'; 
-      gradeImg = 'cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/images/level/level-C.png'
+      gradeImg = 'https://qbkeass.cn/images/level/level-C.png'
     }else{ 
       grade = 'D'; 
-      gradeImg = 'cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/images/level/level-D.png'
+      gradeImg = 'https://qbkeass.cn/images/level/level-D.png'
     }
     this.setData({
       grade:grade,
@@ -242,10 +258,12 @@ Page({
   },
   showGrade:function(){
     this.setData({
-      gradeShow:true
+      gradeShow:true,
+      score_show:true,
     })
+    setTimeout(() => this.exit(), 2500);
   },
-  gradeConfirm:function(){//点击确定后
+  exit:function(){//点击确定后
     //跳转到游戏界面
     if(this.data.testFlag==0)
     {
@@ -254,11 +272,11 @@ Page({
       })
     }else if(this.data.testFlag==1){
       wx.redirectTo({
-        url: '/pages/games/visualSearch/index?testFlag=1',
+        url: '/pages/games/jihualianjie/jihualianjie?testFlag=1',
       })
     }else{
-      wx.reLaunch({
-        url: '/pages/training/index',
+      wx.redirectTo({
+        url: '/pages/games/jihualianjie/jihualianjie?testFlag=2',
       })
     }
   },

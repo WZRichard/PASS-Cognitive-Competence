@@ -12,22 +12,22 @@ Page({
    * 页面的初始数据
    */
   data: {
-    image_name_pre: "cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/Game_Martix/Matrix-", //图片地址头部
-    cnt_question: 6, //题目集题目总个数
+    image_name_pre: "https://qbkeass.cn/images/games/matrixPro/Matrix-", //图片地址头部
+    cnt_question: 13, //题目集题目总个数
     question_index: 1, //待做题目下标
     done_index: [], //已做题目下标
     round: 0, //轮数 (初始化为0，0表示未开始)
     cnt_round: 5, //总轮数
-    answer: [1, 3, 3, 3, 3, 1], //题目答案集(1:A; 2:B; 3:C; 4:D)
+    answer: [1, 3, 3, 3, 3, 1, 4, 2, 4, 4, 4, 4, 3], //题目答案集(1:A; 2:B; 3:C; 4:D)
     selector: 0, //被选择选项（每一关初始化为0）
     countDownNum: 30, //计时时长（单位s；总时长30s）
     timer: null, //计时器
     cnt_image_loading: 0, //有几张图片已经加载完成（初始化为0）
     question_hidden: true, //题目是否显示
     bingo_cnt: 0, //正确题目个数
-    slideImgArr: ['cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/Game_Martix/Matrix_info_2.png', 'cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/Game_Martix/Matrix_info_3.png',], //游戏介绍界面
+    slideImgArr: ['https://qbkeass.cn/images/games/matrixPro/Matrix_info_2.png', 'https://qbkeass.cn/images/games/matrixPro/Matrix_info_3.png',], //游戏介绍界面
     startGame: false, //是否开始游戏
-    level_image: ["cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/images/level/level-A.png", "cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/images/level/level-B.png", "cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/images/level/level-C.png", "cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/images/level/level-D.png"],
+    level_image: ["https://qbkeass.cn/images/level/level-A.png", "https://qbkeass.cn/images/level/level-B.png", "https://qbkeass.cn/images/level/level-C.png", "https://qbkeass.cn/images/level/level-D.png"],
     level_show: false,
     level: 0,
     
@@ -168,35 +168,32 @@ Page({
 
     setTimeout(() => this.exit(), 2500);
     clearTimeout();
-
-    this.setData({
-      done_index: [], //已做题目下标
-      round: 0, //轮数 (初始化为0，0表示未开始)
-      selector: 0, //被选择选项（每一关初始化为0）
-      countDownNum: 30, //计时时长（单位s；总时长30s）
-      timer: null, //计时器
-      question_hidden: true,
-      bingo_cnt: 0,
-    });
   },
 
   exit: function() {
     this.setData({
       level_show: false,
+      //   done_index: [], //已做题目下标
+      //   round: 0, //轮数 (初始化为0，0表示未开始)
+      //   selector: 0, //被选择选项（每一关初始化为0）
+      //   countDownNum: 30, //计时时长（单位s；总时长30s）
+      //   timer: null, //计时器
+      //   question_hidden: true,
+      //   bingo_cnt: 0,
     })
 
     if(this.data.testFlag==0)
     {
-      wx.reLaunch({
+      wx.switchTab({
         url: '/pages/games/index',
       })
     }else if(this.data.testFlag==1){
       wx.redirectTo({
-        url: '/pages/games/visualSearch/index?testFlag=1',
+        url: '/pages/games/zicihuiyi/zicihuiyi?testFlag=1',
       })
     }else{
-      wx.reLaunch({
-        url: '/pages/training/index',
+      wx.redirectTo({
+        url: '/pages/games/zicihuiyi/zicihuiyi?testFlag=2',
       })
     }
   },
@@ -249,7 +246,11 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: function (option) {
+    console.log(option)
+    this.setData({
+       testFlag:option.testFlag
+      })
 
   },
 
