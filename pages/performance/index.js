@@ -327,7 +327,7 @@ Page({
                           bestlist.push(parseInt(res.data.a))
                           bestlist.push(parseInt(res.data.s1))
                           bestlist.push(parseInt(res.data.s2))
-                          app.globalData.bestList = bestlist
+                          app.globalData.highestList = bestlist
                         }
                       })
                       _this.init_two(app.globalData.newList,app.globalData.originList, app.globalData.highestList,app.globalData.sysWidth);
