@@ -1,5 +1,5 @@
 <view class="chart-container">
-<view class="btn" bindtap="powerDrawer" data-statu="open">PASS等级说明</view>  
+<view class="btn" bindtap="powerDrawer" data-statu="open"><text>PASS等级说明</text><image class='click' src="https://qbkeass.cn/images/icon/click.png"></image></view>  
 <view class="drawer_screen" bindtap="powerDrawer" data-statu="close" wx:if="{{showModalStatus}}">
 </view>  
 <!--content-->  
@@ -10,7 +10,7 @@
     <image src="{{imgSrc}}"></image>
   </view>
 </view> 
-<view class="title"><text>最新数据</text></view>
+	<view class="title"><text>最新数据</text></view>
 	<view class="spirit">
 		<ec-canvas id="mychart-dom-bar1" canvas-id="mychart-bar-1" ec="{{ ec1 }}" ></ec-canvas>
 	</view>
@@ -18,5 +18,43 @@
   <view class="radar">
 		<ec-canvas id="mychart-dom-bar2" canvas-id="mychart-bar-2" ec="{{ ec2 }}" ></ec-canvas>
 	</view>
- 
+	<view class="title"><text>PASS能力分析报告</text></view>
+	<view class="analyse">
+		<view class="content">
+			<view class="head-info">
+				<text>· 根据最近的测验数据，我们给出以下分析和建议 ·</text>
+			</view>
+			<text>\n</text>
+			<view class="info">
+				<text>· 探险者(你)的计划能力为</text>
+				<text class='level'>{{passAnalysis[0].level}}</text>
+				<text>\n</text>
+				<text class='level-comment'>{{passAnalysis[0].passAdvice}}探险者经过一段时间的脑力探险，和最初测验相比，你的能力{{passAnalysis[0].comment1}}。在努力创造自己的最高记录之后，现在的你，计划能力{{passAnalysis[0].comment2}}。</text>
+			</view>
+			<text>\n</text>
+			<view class="info">
+				<text>· 探险者(你)的注意力为</text>
+				<text class='level'>{{passAnalysis[1].level}}</text>
+				<text>\n</text>
+				<text class='level-comment'>{{passAnalysis[1].passAdvice}}探险者现在的你，回看最初的测验，你的能力{{passAnalysis[1].comment1}}。与自己曾经创造的最高记录相比，你的注意力{{passAnalysis[1].comment2}}。</text>
+			</view>
+			<text>\n</text>
+			<view class="info">
+				<text>· 探险者(你)的同时性加工能力为</text>
+				<text class='level'>{{passAnalysis[2].level}}</text>
+				<text>\n</text>
+				<text class='level-comment'>{{passAnalysis[2].passAdvice}}探险者现在的你，和最初测验相比，你的能力{{passAnalysis[2].comment1}}。而和自己的最高记录相比，你的同时性加工能力{{passAnalysis[2].comment2}}。</text>
+
+			</view>
+			<text>\n</text>
+			<view class="info">
+				<text>· 探险者(你)的继时性能力为</text>
+				<text class='level'>{{passAnalysis[3].level}}</text>
+				<text>\n</text>
+				<text class='level-comment'>{{passAnalysis[3].passAdvice}}探险者现在的你，和最初测验相比，你的能力{{passAnalysis[3].comment1}}。与自己曾经创造的最高记录相比，你的继时性能力{{passAnalysis[3].comment2}}。</text>
+			</view>	
+			<text>\n</text>
+			
+		</view>
+	</view>
 </view>

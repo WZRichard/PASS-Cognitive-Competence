@@ -69,12 +69,6 @@
     ]
   },
   "condition": {
-    "search": {
-      "list": []
-    },
-    "conversation": {
-      "list": []
-    },
     "plugin": {
       "list": []
     },
@@ -90,6 +84,7 @@
           "id": -1,
           "name": "pages/games/zicihuiyi/zicihuiyi",
           "pathName": "pages/games/zicihuiyi/zicihuiyi",
+          "query": "",
           "scene": null
         },
         {
@@ -102,6 +97,11 @@
           "name": "pages/games/Matrix_pro/Matrix_pro",
           "pathName": "pages/games/Matrix_pro/Matrix_pro",
           "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/games/SentenceRepetition/index",
+          "pathName": "pages/games/SentenceRepetition/index",
           "scene": null
         }
       ]

@@ -44,7 +44,6 @@ Page({
    * 提交
    */
   confirm: function () {
-    if (this.data.selector === 0) return;
     this.clearTimer();
     if (this.data.selector == this.data.answer) { //答案正确
       this.setData({
@@ -361,13 +360,13 @@ Page({
   },
 
   overtime: function () { //超时
-    Toast.fail('超时啦');
+    this.clearTimer();
     if (this.data.round < this.data.cnt_round) {
+      Toast.fail('超时啦');
       this.next_Question();
     } else {
       this.gameOver();
-    }
-    this.clearTimer();
+    }    
     // Dialog.alert({
     //   message: '超时啦',
     //   // theme: 'round-button',
@@ -428,11 +427,13 @@ Page({
       })
     }
     console.log("分数：" + score);
-    this.clearTimer();
     this.setData({
       scoreShow: true
     });
     this.sleep(3000).then(() => {
+      this.setData({
+        scoreShow: false
+      });
       if(this.data.testFlag==0)
       {
         wx.switchTab({

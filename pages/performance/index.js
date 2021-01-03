@@ -287,7 +287,37 @@ Page({
           ec2: {
                 lazyLoad: true
             },
-            timer:'',    
+          timer:'', 
+          passAnalysis:[], 
+          passInfo:[
+            {
+              id:0,
+              name:'计划能力',
+              game1:'【计划连接】',
+              game2:'【视觉搜索】',
+              
+          },
+          {
+            id:1,
+            name:'注意力',
+            game1:'【颜色判别】',
+            game2:'【接受的注意】',
+           },
+           {
+            id:2,
+            name:'同时性加工',
+            game1:'【矩阵问题】',
+            game2:'【水果配对】',
+           
+           },
+           {
+            id:3,
+            name:'继时性加工',
+            game1:'【数字回忆】',
+            game2:'【句子问题】',
+           },
+        ]  
+
         },
       onLoad: function (options) {
           var _this = this;
@@ -331,6 +361,7 @@ Page({
                         }
                       })
                       _this.init_two(app.globalData.newList,app.globalData.originList, app.globalData.highestList,app.globalData.sysWidth);
+                      _this.init_analyse(app.globalData.newList,app.globalData.originList, app.globalData.highestList)
                   }, 60000)
           })
       },
@@ -339,6 +370,8 @@ Page({
           this.twoComponent = this.selectComponent('#mychart-dom-bar2');
           this.init_one(app.globalData.newList),
           this.init_two(app.globalData.newList,app.globalData.originList,app.globalData.highestList,app.globalData.sysWidth)
+          this.init_analyse(app.globalData.newList,app.globalData.originList, app.globalData.highestList)
+          console.log(this.data.passAnalysis)
       },
       onUnload: function () {
           clearInterval(this.data.timer)
@@ -366,6 +399,65 @@ Page({
               this.chart = chart;
               return chart;
           });
+      },
+      init_analyse: function(newList, originList, highestList){
+        var passJson = [];
+        for(var i=0; i<4;i++){
+          var score = newList[i];
+          var level = this.getLevel(score);
+          var comment1, comment2, passAdvice;
+          var row = {};
+          if(score-originList[i]>7){
+            comment1 = '有所进步';
+          }else if(Math.abs(score-originList[i])<=7){
+            comment1 = '基本保持原有水平';
+          }else{
+            comment1 = '有所退步';
+          }
+          if(score-highestList[i]>7){
+            comment2 = '达到新的高度，超越自己';
+          }else if(Math.abs(score-highestList[i])<=7){
+            comment2 = '基本保持原有水平';
+          }else{
+            comment2 = '有所退步';
+          }
+          if(level=='A'){
+            passAdvice = '这项能力非常优秀请继续保持！';
+          }else if(level=='B')
+          {
+            passAdvice = '这项能力较为优秀，希望探险者继续努力，多加练习'+this.data.passInfo[i].game1+'、'+this.data.passInfo[i].game2+'，更上一层楼！';
+          }else if(level=='C')
+          {
+            passAdvice = '这项能力比较一般，需要探险者付出比较多的汗水与精力！请多加练习'+this.data.passInfo[i].game1+'、'+this.data.passInfo[i].game2+'，提高能力！';
+          }else{
+            passAdvice = '这项能力较弱，但不要灰心，多加练习'+this.data.passInfo[i].game1+'、'+this.data.passInfo[i].game2+'，提升能力等级！';
+          }
+          console.log(score);
+          row.id = i;
+          row.score = score;
+          row.level = level;
+          row.comment1 = comment1;
+          row.comment2 = comment2;
+          row.passAdvice = passAdvice;
+          passJson.push(row);
+
+        }
+        this.setData({
+          passAnalysis:passJson,
+        })
+      },
+      getLevel(score){
+        if(score>=90){
+          return "A";
+        }else if(score<90&&score>=75)
+        {
+          return 'B';
+        }else if(score<75&&score>=60)
+        {
+          return "C";
+        }else{
+          return "D";
+        }
       },
  
    powerDrawer: function (e) {

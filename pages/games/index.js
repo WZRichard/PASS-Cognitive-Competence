@@ -142,6 +142,7 @@ Page({
   onShareAppMessage: function () {
 
   },
+  //跳转到小游戏页面
   onItemClick: function (e) {
     var blockId = e.currentTarget.dataset.blockid;
     var pageId = e.currentTarget.dataset.pageid;

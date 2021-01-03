@@ -3,21 +3,20 @@
   width: 100%;
   height: 100%;
   position: fixed;
-  top: 0px;
+  top: 0;
   z-index: -1;
 }
 
 .progress {
-  margin-top: 11px;
-  margin-bottom: 5px;
+  margin-top: 18rpx;
   margin-left: 15%;
   width: 70%;
 }
 
 .icon {
-  width: 40px;
+  width: 80rpx;
   position: absolute;
-  top: -8px;
+  top: -16rpx;
 }
 
 .title {
@@ -25,32 +24,28 @@
 }
 
 .title_image {
-  height: 90px;
-}
-
-.in_title_text {
-  margin-top: 20px;
+  height: 180rpx;
 }
 
 .in_title_begin {
-  margin: 20px;
-  font-size: 50px;
+  margin: 40rpx;
+  font-size: 100rpx;
 }
 
 .in_title_begin_F {
-  margin-top: 50px;
+  margin-top: 100rpx;
 }
 
 .image {
-  height: 80px;
+  height: 160rpx;
 }
 
 .image_Selection {
-  height: 100px;
+  height: 200rpx;
 }
 
 .Question {
-  margin-top: 40px;
+  margin-top: 15rpx;
   transition: all 1.2s;
 }
 
@@ -63,7 +58,7 @@
   display: flex;
   justify-content: center;
 
-  font-size: 18px;
+  font-size: 36rpx;
 }
 
 .Selection {
@@ -71,31 +66,49 @@
 }
 
 .Question_detail {
-  margin-top: 23px;
+  margin-top: 30rpx;
 }
 
 .button {
-  margin: 15px 18px 15px 18px;
+  margin: 30rpx 36rpx 30rpx 36rpx;
   border-radius: 10rem;
   /* border: 2px solid ; */
 }
 
+.button_active {
+  color: pink;
+}
+
+.button_none {
+  color: #004e66;
+}
+
 .selector{
-  font-size: 18px;
+  font-size: 36rpx;
   font-weight: bold;
 }
 
 .comfirm {
+  width: 100%;
+
+  display: flex;
+  justify-content: center;
+}
+
+.comfirm>image {
   /* width: 100%;
 
   position: absolute;
   bottom: 0px; */
 
-  height: 88px;
+  height: 180rpx;
 
-  position: absolute;
-  bottom: 20px;
-  left: 42%;
+  /* position: relative;
+  top: -10rpx; */
+
+  /* position: absolute; */
+  /* bottom: 10rpx; */
+  /* left: 41%; */
 }
 
 
@@ -114,8 +127,8 @@
 }
 
 .title2>image {
-  height: 25px;
-  width: 25px;
+  height: 50rpx;
+  width: 50rpx;
   vertical-align: middle;
 }
 
@@ -128,11 +141,11 @@
 }
 
 .swiper {
-  height: 200px;
+  height: 400rpx;
 }
 
 .swiper-item {
-  height: 200px;
+  height: 400rpx;
 }
 
 .swiper-item>view {
@@ -141,16 +154,16 @@
 }
 
 .swiper-image {
-  height: 200px;
+  height: 400rpx;
 }
 
 .content {
-  margin: 10px 30px 0 30px;
+  margin: 20rpx 60rpx 0 60rpx;
   font-size: 30rpx;
   line-height: 45rpx;
 }
 
-.start {
+/* .start {
   width: 96%;
   margin-left: 2%;
   margin-right: 2%;
@@ -161,10 +174,22 @@
 
 .start>van-button {
   border-radius: 100rpx;
+} */
+.start{
+  height: 80rpx;
+  line-height: 80rpx;
+  font-size: 35rpx;
+  text-align: center;
+  margin: 26rpx 10rpx 48rpx 10rpx;
+  color: white;
+  font-weight: 200;
+  border-radius: 100rpx;
+  text-align: center;
+  align-content: center;
 }
 
 .game-info {
-  margin-top: 10px;
+  margin: 20rpx 18rpx 20rpx 18rpx;
 }
 
 .wrapper {
@@ -175,5 +200,5 @@
 }
 
 ._img {
-  height:200px;
+  height:400rpx;
 }

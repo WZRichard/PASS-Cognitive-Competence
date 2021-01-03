@@ -10,7 +10,7 @@
           <view class="level-icon" wx:if="{{item.level=='1'}}"><image src="https://qbkeass.cn/images/icon/1.png"></image></view>
           <view class="level-icon" wx:elif="{{item.level=='2'}}"><image src="https://qbkeass.cn/images/icon/2.png"></image></view>
           <view class="level-icon" wx:elif="{{item.level=='3'}}"><image src="https://qbkeass.cn/images/icon/3.png"></image></view>
-          <view class="level-icon" wx:else><text>{{item.level}}</text></view>
+          <view class="level-icon-text" wx:else><text>{{item.level}}</text></view>
           <view class="avatar"><image src="{{item.wx_avatar}}"></image></view>
           <view class="userinfo-name"><text>{{item.wx_name}}</text></view>
           <view class="child-age"><image src="{{child_icon}}"></image><text>{{item.child_age}}</text></view>
@@ -21,7 +21,10 @@
 </view>
 </view>
 <view class="my-level">
-  <view class="level-text"><text>{{mylevel}}</text></view>
+  <view class="level-icon" wx:if="{{mylevel=='1'}}"><image src="https://qbkeass.cn/images/icon/1.png"></image></view>
+  <view class="level-icon" wx:elif="{{mylevel=='2'}}"><image src="https://qbkeass.cn/images/icon/2.png"></image></view>
+  <view class="level-icon" wx:elif="{{mylevel=='3'}}"><image src="https://qbkeass.cn/images/icon/3.png"></image></view>
+  <view class="level-icon-text" wx:else><text>{{mylevel}}</text></view>
   <view class="avatar"><image src="{{userInfo.avatarUrl}}" mode="cover"></image></view>
   <view class="userinfo-name"><text>{{userInfo.nickName}}</text></view>
   <view class="child-age"><image src="{{child_icon}}"></image><text>{{childAge}}</text></view>

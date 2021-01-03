@@ -325,7 +325,7 @@ Page({
         })
         
         wx.reLaunch({
-          url: '/pages/training/index',
+          url: '/pages/performance/index',
         })
       }
       else{
@@ -389,7 +389,7 @@ Page({
           }
         })
         wx.reLaunch({
-          url: '/pages/training/index',
+          url: '/pages/performance/index',
         })
       }
     })

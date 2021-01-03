@@ -1,7 +1,6 @@
 <!--pages/Matrix_pro/Matrix_pro.wxml-->
 <!-- 背景图 -->
-<image class="background" hidden="{{!startGame}}"
-  src="https://qbkeass.cn/images/wallpaper/game-wp2.png"
+<image class="background" hidden="{{!startGame}}" src="https://qbkeass.cn/images/wallpaper/game-wp2.png"
   mode="aspectFill"></image>
 
 <!-- Vant -->
@@ -10,9 +9,7 @@
 <van-overlay show="{{level_show}}">
   <view class="wrapper">
     <view>
-      <image class="_img"
-        src="{{level_image[level]}}"
-        mode="heightFix"></image>
+      <image class="_img" src="{{level_image[level]}}" mode="heightFix"></image>
     </view>
   </view>
 </van-overlay>
@@ -36,8 +33,7 @@
   </view>
   <view class="info">
     <view class="title2">
-      <image
-        src="https://qbkeass.cn/images/tabbar/game.png">
+      <image src="https://qbkeass.cn/images/tabbar/game.png">
       </image>
       游戏介绍
     </view>
@@ -48,14 +44,16 @@
 
   <view class="rule">
     <view class="title2">
-      <image
-        src="https://qbkeass.cn/images/tabbar/game.png">
+      <image src="https://qbkeass.cn/images/tabbar/game.png">
       </image>
       游戏规则
     </view>
     <view class="content">选出正确的答案即为通关。共有5关，按答对的的题目数量判断认知能力。</view>
   </view>
 
+  <!-- <view class="start" bindtap="start">
+    <van-button round type="primary" block color="#c93c42"> 开始游戏 </van-button>
+  </view> -->
   <view class="start" bindtap="start">
     <van-button round type="primary" block color="#c93c42"> 开始游戏 </van-button>
   </view>
@@ -66,22 +64,21 @@
 
   <!-- 倒计时 -->
   <view class="progress" style="opacity: {{round==0?0:1}};">
-    <van-progress percentage="{{countDownNum*100.0/30}}" color="#004e66" pivot-text=" " show-pivot="false" stroke-width="12px" />
-    <image class="icon" mode="widthFix"
-      src="https://qbkeass.cn/images/tabbar/test-chosen.png"
+    <van-progress percentage="{{countDownNum*100.0/30}}" color="#004e66" pivot-text=" " show-pivot="false"
+      stroke-width="12px" />
+    <image class="icon" mode="widthFix" src="https://qbkeass.cn/images/tabbar/test-chosen.png"
       style="left: {{countDownNum*70.0/30-9+15}}%"></image>
-      <!-- cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/Game_ FruitMatch/icons8-烟花-64.png -->
+    <!-- cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/Game_ FruitMatch/icons8-烟花-64.png -->
   </view>
 
   <!-- Title -->
   <view class="title">
-    <view>
-      <!-- <image class="title_image"
+    <!-- <view>
+      <image class="title_image"
         src="cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/Game_Martix/Matrix-Title.png">
-      </image> -->
-      
+      </image>
     </view>
-    <!-- <view hidden="{{round==0?false:true}}">
+    <view hidden="{{round==0?false:true}}">
       <view class="in_title_begin in_title_begin_F">
         <van-button plain type="primary" icon="star-o" bindtap="start">开始</van-button>
       </view>
@@ -117,9 +114,9 @@
         binderror="image_loading_error"></image>
     </view>
     <view class="Question_detail">
-      <van-icon name="down" size="20px" />
+      <van-icon name="down" size="40rpx" />
       <text>请在下方的选项中选择一个正确选项</text>
-      <van-icon name="down" size="20px" />
+      <van-icon name="down" size="40rpx" />
     </view>
     <view>
       <image class="image_Selection" src="{{image_name_pre}}{{question_index}}-3.jpg" mode="heightFix"
@@ -130,32 +127,30 @@
   <!-- Selection -->
   <view class="Selection" hidden="{{question_hidden}}">
     <view>
-      <van-button round type="{{selector==1?'danger':'info'}}" class="button" bindtap="select" data-selection="1"
-       ><text class="selector">A</text>
+      <van-button round type="default" color="{{selector==1?'pink':'#004e66'}}" class="button" bindtap="select" data-selection="1"><text
+          class="selector">A</text>
       </van-button>
 
-      <van-button round type="{{selector==2?'danger':'info'}}" class="button" bindtap="select" data-selection="2"
-        ><text class="selector">B</text>
+      <van-button round type="default" color="{{selector==2?'pink':'#004e66'}}" class="button" bindtap="select" data-selection="2"><text
+          class="selector">B</text>
       </van-button>
 
-      <van-button round type="{{selector==3?'danger':'info'}}" class="button" bindtap="select" data-selection="3"
-       ><text class="selector">C</text>
+      <van-button round type="default" color="{{selector==3?'pink':'#004e66'}}" class="button" bindtap="select" data-selection="3"><text
+          class="selector">C</text>
       </van-button>
 
-      <van-button round type="{{selector==4?'danger':'info'}}" class="button" bindtap="select" data-selection="4"
-       ><text class="selector">D</text>
+      <van-button round type="default" color="{{selector==4?'pink':'#004e66'}}" class="button" bindtap="select" data-selection="4"><text
+          class="selector">D</text>
       </van-button>
     </view>
   </view>
 
   <!-- 确认 -->
-  <view hidden="{{question_hidden}}">
+  <view hidden="{{question_hidden}}" class="comfirm">
     <!-- <van-button plain icon="coupon-o" type="primary" block class="comfirm" bindtap="comfirm" hidden="true"
       style="opacity: {{selector==0?0.5:1}}">确认</van-button> -->
 
-    <image class="comfirm" bindtap="comfirm" 
-      src="https://qbkeass.cn/images/button/submit.png"
-      mode="heightFix"></image>
+    <image bindtap="comfirm" src="https://qbkeass.cn/images/button/submit.png" mode="heightFix"></image>
   </view>
 
 </view>

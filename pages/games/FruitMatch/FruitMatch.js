@@ -1,23 +1,15 @@
 // pages/FruitMatch/FruitMatch.js
 import Toast from '../../../miniprogram/miniprogram_npm/@vant/weapp/toast/toast/';
 
-Page({
-  // 待填返回函数
-  return_score: function () {
-    var score = 0, round = this.data.round - 1;
-    if (round < 2) {
-      score = round * 0.75;
-    } else if (round < 4) {
-      score = 1.5 + (round - 2) * 1.25;
-    } else {
-      score = 4 + (round - 4) * 1.5;
-    }
+let subOp = null
+let demoOp = {
+  steps: null,
+  controller: null,
+}
+let countDownTimer = null //计时器
+let cnt_image_loading = 0
 
-    console.log(score);
-    this.setData({
-      score: score,
-    })
-  },
+Page({
 
   /**
    * 页面的初始数据
@@ -36,16 +28,17 @@ Page({
     timer: '', //计时器
     countDownNum: '10', //倒计时初始值(单位s)
     score: 0, //获得分数
-    cnt_image_loading: 0, //水果图片加载完毕后开始显示
+    // cnt_image_loading: 0, //水果图片加载完毕后开始显示
     slideImgArr: ['https://qbkeass.cn/images/games/fruitMatch/Fruits_info_1.png', 'https://qbkeass.cn/images/games/fruitMatch/fruit2-2.png', 'https://qbkeass.cn/images/games/fruitMatch/fruit2-3.png',], //游戏介绍界面图库
     startGame: false, //是否开始游戏
     popup_show: false, //帮助是否显示
     helper_content: '方框中隐藏着不同的水果\n请尽可能多的记住它们', //帮助内容
     helper_state: 0, //帮助状态
+    binggo_cnt: 0,
     level_image: ["https://qbkeass.cn/images/level/level-A.png", "https://qbkeass.cn/images/level/level-B.png", "https://qbkeass.cn/images/level/level-C.png", "https://qbkeass.cn/images/level/level-D.png"],
     level_show: false,
     level: 0,
-    testFlag:0,
+    testFlag: 0,
   },
 
   /**
@@ -53,7 +46,7 @@ Page({
    */
 
   set_row: function () {
-    let cnt_row = this.data.cnt_row == 2 && this.data.round == 2 ? this.data.cnt_row + 1 : this.data.cnt_row;
+    var cnt_row = this.data.cnt_row;
     var new_row = [['', '', ''], ['', '', ''], ['', '', '']];
     var cnt = 0, row, col;
     while (cnt < this.data.difficulty[this.data.round - 1]) {
@@ -77,7 +70,7 @@ Page({
     }
 
     // 返回未被修改的图片数量
-    let cnt_image_loading = this.data.cnt_image_loading;
+    // let cnt_image_loading = this.data.cnt_image_loading;
     let old_row = this.data.row;
     for (let i = 0; i < this.data.row.length && i < cnt_row; i++) {
       for (let j = 0; j < this.data.row[0].length && j < cnt_row; j++) {
@@ -86,9 +79,17 @@ Page({
         }
       }
     }
+
+    if (cnt_image_loading == (this.data.round < 3 ? 4 : 9)) {
+      this.set_row();
+      return;
+    }
+
+    console.log(new_row);
     this.setData({
       row: new_row,
-      cnt_image_loading: cnt_image_loading,
+      img_hidden_before: [], //保证所有水果都有被展示
+      // cnt_image_loading: cnt_image_loading,
     })
   },
 
@@ -98,16 +99,23 @@ Page({
 
   next_round: function () {
     var cnt_row = this.data.cnt_row == 2 && this.data.round == 2 ? this.data.cnt_row + 1 : this.data.cnt_row;
-    this.setData({
-      cnt_row: cnt_row,
-      round: this.data.round + 1, //一共8轮
-      img_hidden: [[0, 0, 0], [0, 0, 0], [0, 0, 0]], //是否显示
-      img_hidden_before: [], //保证所有水果都有被展示
-      question_begin: 0,
-      countDownNum: '10',
-    })
+    console.log("cnt_row=" + cnt_row);
 
-    this.set_row();
+    var __subOp = setInterval(() => {
+      this.hide_all();
+      clearInterval(__subOp);
+    }, 1000);
+
+    subOp = setInterval(() => {
+      this.setData({
+        cnt_row: cnt_row,
+        round: this.data.round + 1, //一共8轮
+        question_begin: 0,
+        countDownNum: '10',
+      })
+      this.set_row();
+      clearInterval(subOp);
+    }, 2400);
   },
 
   tap_image: function (e) {
@@ -115,13 +123,20 @@ Page({
       return;
     }
 
-    clearInterval(this.data.timer);
+    var img_hidden = this.data.img_hidden
+    img_hidden[e.currentTarget.dataset.row][e.currentTarget.dataset.index] = 1
+    this.setData({
+      img_hidden: img_hidden,
+    })
+
+    clearInterval(countDownTimer);
     if (this.data.helper_state > 0) {
       if (this.data.row[e.currentTarget.dataset.row][e.currentTarget.dataset.index] == this.data.answer) {
         this.setData({
           popup_show: true,
           helper_state: 4,
           helper_content: '恭喜您答对了\n继续您的挑战吧',
+          binggo_cnt: this.data.binggo_cnt + 1,
         })
       } else {
         this.setData({
@@ -131,67 +146,66 @@ Page({
         })
       }
     } else if (this.data.row[e.currentTarget.dataset.row][e.currentTarget.dataset.index] == this.data.answer) {
+
+      this.setData({
+        binggo_cnt: this.data.binggo_cnt + 1,
+      });
+
       if (this.data.round == 8) {
-        // wx.showToast({
-        //   title: '恭喜您通关了',
-        //   icon: 'none',
-        //   duration: 2000,
-        // })
-
-        this.reset_all();
+        var _subOp = setInterval(() => {
+          Toast("恭喜您 通关了");
+          this.reset_all();
+          clearInterval(_subOp);
+        }, 900);
       } else {
-        wx.showToast({
-          title: '正确 恭喜您',
-          icon: 'none',
-          duration: 2000,
-        })
-
-        this.next_round();
+        var _subOp = setInterval(() => {
+          Toast("正确 恭喜您");
+          this.next_round();
+          clearInterval(_subOp);
+        }, 900);
       }
     } else {
-      // Toast.fail('选错啦');
-      this.reset_all();
+      var _subOp = setInterval(() => {
+        Toast("选错啦");
+        this.reset_all();
+        clearInterval(_subOp);
+      }, 900);
     }
   },
 
   reset_all: function () {
-    if (this.data.helper_state == 0) {
-      this.return_score();
-    }
-    console.log(this.data.helper_state);
 
-    var score = this.data.score*10, level;
+    this.get_score();
+    var score = this.data.score, level;
+    wx.setStorage({ key: "hasShuiguo", data: true })
+    wx.setStorage({ key: "shuiguo", data: score })
+
     if (score >= 90) {
-      level=1;
+      level = 1;
     } else if (score < 90 && score >= 75) {
-      level=2;
+      level = 2;
     } else if (score < 75 && score >= 60) {
-      level=3;
+      level = 3;
     } else {
-      level=4;
+      level = 4;
     }
-    wx.setStorage({key: "hasShuiguo", data: true})
-    wx.setStorage({key: "shuiguo", data: score})
-
     console.log(score);
 
-    this.setData({
-      level_show: true,
-      level: level-1,
-    })
-
-    setTimeout(() => this.exit(), 2500);
-    clearTimeout();
-
-    if (this.data.helper_state!=0 ) {
+    var _subOp = setInterval(() => {
       this.setData({
-        startGame: 0,
-        helper_state: 0,
+        level_show: true,
+        level: level - 1,
       })
-    }
+      clearInterval(_subOp);
+    }, 2000);
+
+    subOp = setInterval(() => {
+      this.exit();
+      clearInterval(subOp);
+    }, 5000);
   },
 
-  exit: function() {
+  exit: function () {
     this.setData({
       level_show: false,
     })
@@ -205,49 +219,35 @@ Page({
       countDownNum: '10',
     })
 
-    if (this.data.helper_state!=0 ) {
-      this.setData({
-        startGame: 0,
-        helper_state: 0,
-      })
-    }
-
-    if(this.data.testFlag==0)
-    {
+    if (this.data.testFlag == 0) {
       wx.switchTab({
         url: '/pages/games/index',
       })
-    }else if(this.data.testFlag==1){
+    } else if (this.data.testFlag == 1) {
       wx.redirectTo({
         url: '/pages/games/RecieveAttention/index?testFlag=1',
       })
-    }else{
+    } else {
       wx.redirectTo({
         url: '/pages/games/RecieveAttention/index?testFlag=2',
       })
     }
   },
 
-  // exit: function() {
-  //   this.setData({
-  //     level_show: false,
-  //   })
+  get_score: function () {
+    var score = 0, binggo_cnt = this.data.binggo_cnt;
+    if (binggo_cnt < 2) {
+      score = binggo_cnt * 0.75;
+    } else if (binggo_cnt < 4) {
+      score = 1.5 + (binggo_cnt - 2) * 1.25;
+    } else {
+      score = 4 + (binggo_cnt - 4) * 1.5;
+    }
 
-  //   if(this.data.testFlag==0)
-  //   {
-  //     wx.reLaunch({
-  //       url: '/pages/games/index',
-  //     })
-  //   }else if(this.data.testFlag==1){
-  //     wx.redirectTo({
-  //       url: '/pages/games/visualSearch/index?testFlag=1',
-  //     })
-  //   }else{
-  //     wx.reLaunch({
-  //       url: '/pages/training/index',
-  //     })
-  //   }
-  // },
+    this.setData({
+      score: score * 10,
+    })
+  },
 
   random_show: function (isround2) {
     var pa = this.data.img_hidden, pb = this.data.img_hidden_before;
@@ -284,7 +284,7 @@ Page({
       pa[pc[cnt][0]][pc[cnt][1]] = 1;
     }
 
-    // console.log("=="+pa);
+    console.log("==" + pa);
     var copy = [];
     if (!isround2) {
       copy = JSON.parse(JSON.stringify(pa));
@@ -296,95 +296,120 @@ Page({
   },
 
   hide_all: function () {
-    let pa = this.data.img_hidden;
-    for (let i = 0; i < pa.length; i++) {
-      for (let j = 0; j < pa[0].length; j++) {
-        pa[i][j] = 0;
-      }
-    }
-
     this.setData({
-      img_hidden: pa,
+      img_hidden: [[0, 0, 0], [0, 0, 0], [0, 0, 0]],
+      // img_hidden: [[1, 1, 1], [1, 1, 1], [1, 1, 1]],
     })
   },
 
-  image_loaded: function (e) {
-    var cnt_image_loading = this.data.cnt_image_loading + 1;
-    let round = this.data.round;
+  image_loaded: function () {
+    cnt_image_loading++
+    var round = this.data.round;
+    console.log("loading image:" + cnt_image_loading);
 
-    // console.log("="+cnt_image_loading);
     if (round == 0) {
-      this.setData({
-        cnt_image_loading: 0,
-      })
+      cnt_image_loading = 0
     } else if (cnt_image_loading == (round < 3 ? 4 : 9)) {
-      // console.log("loaded");
+      cnt_image_loading = 0
       if (this.data.helper_state == 0) {
-        this.animation();
+        subOp = setInterval(() => {
+          this.animation();
+          clearInterval(subOp);
+        }, 800);
       }
-      this.setData({
-        cnt_image_loading: 0,
-      })
-    } else {
-      this.setData({
-        cnt_image_loading: cnt_image_loading,
-      })
     }
+    // console.log(cnt_image_loading);
   },
 
   animation: function () {
-    let answer = this.data.row[this.getRadom_int(this.data.cnt_row, 0)][this.getRadom_int(this.data.cnt_row, 0)];
 
-    setTimeout(() => this.random_show(false), 1000);
-    setTimeout(() => this.hide_all(), 4000);
-    setTimeout(() => this.random_show(true), 5000);
-    setTimeout(() => this.hide_all(), 8000);
-    setTimeout(() => this.random_show(false), 9000);
-    setTimeout(() => this.hide_all(), 12000);
-    setTimeout(() => this.setData({
-      answer: answer,
-      question_begin: 1,
-    }), 12500);
-    setTimeout(() => this.onClickShow(), 12500);
-    setTimeout(() => this.onClickHide(), 15500);
-    setTimeout(() => this.countDown(), 15500);
+    demoOp.steps = [{
+      func: () => this.random_show(false),
+      playtime: 1500
+    }, {
+      func: () => this.hide_all(),
+      playtime: 1500
+    }, {
+      func: () => this.random_show(true),
+      playtime: 1500
+    }, {
+      func: () => this.hide_all(),
+      playtime: 1500
+    }, {
+      func: () => this.random_show(false),
+      playtime: 1500
+    }, {
+      func: () => this.hide_all(),
+      playtime: 1500
+    }, {
+      func: () => this.onClickShow(),
+      playtime: 1500
+    }, {
+      func: () => {
+        this.onClickHide()
+        this.countDown()
+      }
+    }]
+    this.syncOperation(demoOp)
+  },
 
-    clearTimeout();
+  syncOperation: function (op) {
+    if (op && op.steps) {
+      let stepIdx = 0;
+      clearTimeout(op.controller);
+
+      function play() {
+        if (stepIdx < op.steps.length) {
+          op.steps[stepIdx].func();
+          op.controller = setTimeout(play, op.steps[stepIdx++].playtime);
+        }
+      }
+
+      play();
+    }
   },
 
   /**
    * 计时器
    */
   countDown: function () {
-    let that = this;
-    let countDownNum = that.data.countDownNum;
-    that.data.timer = setInterval(function () {
+    let countDownNum = this.data.countDownNum;
+    countDownTimer = setInterval(() => {
       if (countDownNum <= 0) {
-        clearInterval(that.data.timer);
-        // Toast.fail('时间到');
-        
-        that.reset_all();
+        clearInterval(countDownTimer)
+
+        this.reset_all();
       } else {
-        countDownNum = countDownNum - 0.05;
-        that.setData({
+        countDownNum = countDownNum - 1
+
+        this.setData({
           countDownNum: countDownNum,
         })
+        // console.log(countDownNum)
       }
-    }, 50)
+    }, 1000)
   },
 
   // 修改2.0
   onClickShow() {
-    this.setData({ overlay_show: true });
+    var answer = this.data.row[this.getRadom_int(this.data.cnt_row, 0)][this.getRadom_int(this.data.cnt_row, 0)];
+
+    this.setData({
+      overlay_show: true,
+      answer: answer,
+    });
   },
 
   onClickHide() {
-    this.setData({ overlay_show: false });
+    this.setData({
+      overlay_show: false,
+      question_begin: 1,
+    });
   },
 
-  noop() { },
+  // noop() { },
 
-  start: function (e) {
+  start: function () {
     //当开始游戏按钮被点击时，隐藏视觉搜索介绍
     this.setData({
       round: 1,
@@ -416,17 +441,32 @@ Page({
           popup_show: false,
           helper_state: 2,
         })
-        setTimeout(() => this.random_show(false), 1000);
-        setTimeout(() => this.hide_all(), 4000);
-        setTimeout(() => this.random_show(true), 5000);
-        setTimeout(() => this.hide_all(), 8000);
-        setTimeout(() => this.random_show(false), 9000);
-        setTimeout(() => this.hide_all(), 12000);
-        setTimeout(() => this.setData({
-          popup_show: true,
-          helper_content: '记住接下来展示的水果',
-        }), 12500);
-        clearTimeout();
+        demoOp.steps = [{
+          func: () => this.random_show(false),
+          playtime: 1500
+        }, {
+          func: () => this.hide_all(),
+          playtime: 1500
+        }, {
+          func: () => this.random_show(true),
+          playtime: 1500
+        }, {
+          func: () => this.hide_all(),
+          playtime: 1500
+        }, {
+          func: () => this.random_show(false),
+          playtime: 1500
+        }, {
+          func: () => this.hide_all(),
+          playtime: 1500
+        }, {
+          func: () => this.setData({
+            popup_show: true,
+            helper_content: '记住接下来展示的水果',
+          }),
+          playtime: 500
+        }]
+        this.syncOperation(demoOp)
         break;
       }
       case 2: {
@@ -438,13 +478,20 @@ Page({
           question_begin: 1,
           helper_state: 3,
         })
-        setTimeout(() => this.onClickShow(), 500);
-        setTimeout(() => this.onClickHide(), 3500);
-        setTimeout(() => this.setData({
-          popup_show: true,
-          helper_content: '在方框中找出一个相同的水果\n注意不要超时咯',
-        }), 3500);
-        clearTimeout();
+        demoOp.steps = [{
+          func: () => this.onClickShow(),
+          playtime: 1500
+        }, {
+          func: () => {
+            this.onClickHide()
+            this.setData({
+              popup_show: true,
+              helper_content: '在方框中找出一个相同的水果\n注意不要超时咯',
+            })
+          },
+          playtime: 1500
+        }]
+        this.syncOperation(demoOp)
         break;
       }
       case 3: {
@@ -457,7 +504,7 @@ Page({
       case 4: {
         this.setData({
           popup_show: false,
-          helper_state: -1,
+          helper_state: 0,
         })
 
         this.next_round();
@@ -477,11 +524,11 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (option) {
-    console.log(option)
+    console.log(option);
     this.setData({
-      testFlag:option.testFlag,
+      testFlag: option.testFlag,
     })
-    console.log(this.data.testFlag)
+    console.log(this.data.testFlag);
   },
 
   /**
@@ -507,7 +554,9 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-    clearInterval(this.data.timer);
+    clearTimeout(demoOp.controller)
+    clearInterval(countDownTimer);
+    clearInterval(subOp);
   },
 
   /**

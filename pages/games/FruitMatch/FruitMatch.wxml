@@ -20,7 +20,7 @@
 <van-popup show="{{ popup_show }}" bind:close="onClose" position="bottom" custom-style="height: 30%;">
   <view class="helper1" bindtap="help_next">
     下一步
-    <van-icon name="play-circle-o" size="20px" style="vertical-align: middle;" />
+    <van-icon name="play-circle-o" size="40rpx" style="vertical-align: middle;" />
   </view>
   <view class="helper2">
     <text>
@@ -32,7 +32,7 @@
 <!-- 前置 -->
 <view class="game-info" hidden="{{startGame}}">
   <view class="helper" bindtap="helper">
-    <van-icon name="question-o" size="30px" color="rgb(212, 185, 32)" />
+    <van-icon name="question-o" size="60rpx" color="rgb(212, 185, 32)" />
   </view>
   <!-- title -->
   <view class="head-title">
@@ -74,6 +74,9 @@
     <view class="content">选出正确的图案即为通关。共有八关，前两关为2*2的格子，后六关为3*3的格子。每轮限定时间10秒。</view>
   </view>
 
+  <!-- <view class="start" bindtap="start">
+    <van-button round type="primary" block color="#c93c42"> 开始游戏 </van-button>
+  </view> -->
   <view class="start" bindtap="start">
     <van-button round type="primary" block color="#c93c42"> 开始游戏 </van-button>
   </view>
@@ -86,10 +89,10 @@
 
   <!-- 倒计时 -->
   <view class="progress" style="opacity: {{question_begin}};">
-    <van-progress percentage="{{countDownNum*100.0/10}}" color="#004e66" pivot-text=" " show-pivot="false"  stroke-width="12px" />
+    <van-progress percentage="{{countDownNum*100.0/10}}" color="#004e66" pivot-text=" " show-pivot="false" stroke-width="24rpx" />
     <image class="icon" mode="widthFix"
       src="https://qbkeass.cn/images/tabbar/test-chosen.png"
-      style="left: {{countDownNum*70.0/10-9+15}}%"></image>
+      style="left: {{countDownNum*70.0/10+11}}%"></image>
   </view>
 
   <!-- 遮罩层 -->
@@ -111,7 +114,7 @@
   </view>
 
   <van-divider contentPosition="center"
-    customStyle="color: #004e66; border-color: #004e66; font-size: 18px; font-weight: bold; margin-bottom:-5px">
+    customStyle="color: #004e66; border-color: #004e66; font-size: 36rpx; font-weight: bold; margin-bottom:-10rpx">
     第{{round}}关</van-divider>
 
   <!-- n*n的格子 -->
@@ -119,9 +122,9 @@
     <view class="grid" wx:for="{{cnt_row}}" wx:key="idx" wx:for-index="idx">
       <view class="row" wx:for="{{row[idx]}}" wx:key="index" bindtap="tap_image" data-index="{{index}}"
         data-row="{{idx}}" wx:if="{{index < cnt_row}}">
-        <image class="img"
+        <image class="img {{img_hidden[idx][index] ? 'img_show' : 'img_hide'}}"
           src="https://qbkeass.cn/images/games/fruitMatch/fruits-{{item}}.png"
-          mode="heightFix" style="opacity: {{img_hidden[idx][index]}};" bindload="image_loaded"></image>
+          mode="heightFix" bindload="image_loaded" wx:if="{{item}}"></image>
       </view>
     </view>
   </view>

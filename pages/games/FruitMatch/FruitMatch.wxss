@@ -4,33 +4,33 @@
   width: 100%;
   height: 100%;
   position: fixed;
-  top: 0px;
+  top: 0;
   z-index: -1;
 }
 
 .progress {
-  margin-top: 18px;
-  margin-bottom: 20px;
+  margin-top: 36rpx;
+  margin-bottom: 40rpx;
   margin-left: 15%;
   width: 70%;
 }
 
 .icon {
-  width: 40px;
+  width: 80rpx;
   position: absolute;
-  top: 0px;
+  top: 0;
 }
 
 .title {
-  margin-top: 15px;
+  margin-top: 30rpx;
   text-align: center;
 }
 
 .title > image {
-  height: 60px;
+  height: 120rpx;
 }
 
-.in_title {
+/* .in_title {
   position: absolute;
   left: 25%;
   top: 13%;
@@ -88,25 +88,38 @@
 
 .Question > view > text {
   font-size: 20px;
-}
+} 
 
 .img_Question {
   border: 5px solid #ddd;
-}
+} */
 
 .img {
-  height: 80px;
+  height: 160rpx;
   background-color: #eeeeee;
-  transition: 0.5s;
+}
+
+.img_show {
+  opacity: 1;
+  transform: rotateX(0deg);
+  
+  transition: 0.8s ease-out;
+}
+
+.img_hide {
+  opacity: 0;
+  transform: rotateX(-90deg);
+  
+  transition: 0.8s ease-in;
 }
 
 .row {
   float: left;
-  width: 80px;
-  height: 80px;
-  margin: 5px;
+  width: 160rpx;
+  height: 160rpx;
+  margin: 10rpx;
   border-radius: 15%;
-  border: 5px solid #ffffff;
+  border: 10rpx solid #ffffff;
   background-color: #ffffff;
 }
 
@@ -117,7 +130,7 @@
 
 /* 修改2.0 游戏介绍 */
 .show2 {
-  margin-top: 120px;
+  margin-top: 251rpx;
 }
 
 .wrapper {
@@ -128,11 +141,11 @@
 }
 
 ._img {
-  height:200px;
+  height:400rpx;
 }
 
 .game-info {
-  margin-top: 10px;
+  margin: 20rpx 18rpx 20rpx 18rpx;
 }
 
 .head-title {
@@ -150,8 +163,8 @@
 }
 
 .title2>image {
-  height: 25px;
-  width: 25px;
+  height: 50rpx;
+  width: 50rpx;
   vertical-align: middle;
 }
 
@@ -164,11 +177,11 @@
 }
 
 .swiper {
-  height: 200px;
+  height: 400rpx;
 }
 
 .swiper-item {
-  height: 200px;
+  height: 400rpx;
 }
 
 .swiper-item>view {
@@ -177,16 +190,16 @@
 }
 
 .swiper-image {
-  height: 200px;
+  height: 400rpx;
 }
 
 .content {
-  margin: 10px 30px 0 30px;
+  margin: 20rpx 60rpx 0 60rpx;
   font-size: 30rpx;
   line-height: 45rpx;
 }
 
-.start {
+/* .start {
   width: 96%;
   margin-left: 2%;
   margin-right: 2%;
@@ -198,26 +211,39 @@
 
 .start>van-button {
   border-radius: 100rpx;
+} */
+
+.start{
+  height: 80rpx;
+  line-height: 80rpx;
+  font-size: 35rpx;
+  text-align: center;
+  margin: 26rpx 10rpx 48rpx 10rpx;
+  color: white;
+  font-weight: 200;
+  border-radius: 100rpx;
+  text-align: center;
+  align-content: center;
 }
 
 .helper {
   position: absolute;
-  right: 30px;
-  top: 10px;
+  right: 60rpx;
+  top: 20rpx;
 }
 
 .helper1 {
   text-align: right;
-  line-height: 25px;
-  font-size: 15px;
-  margin: 10px 10px;
+  line-height: 50rpx;
+  font-size: 30rpx;
+  margin: 20rpx 20rpx;
   color:#004e66;
 }
 
 .helper2 {
-  margin-top: -25px;
+  margin-top: -20px;
   text-align: center;
   color: #004e66;
-  font-size: 18px;
-  line-height: 40px;
+  font-size: 36rpx;
+  line-height: 80rpx;
 }

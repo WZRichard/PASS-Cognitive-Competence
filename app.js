@@ -130,7 +130,7 @@ App({
                       })
                     },
                     fail: function(e){
-                      // 未进行厨师测试，跳转到测试页面
+                      // 未进行初始测试，跳转到测试页面
                       wx.reLaunch({
                         // url: '/pages/training/index',
                         url: '/pages/index/index',
