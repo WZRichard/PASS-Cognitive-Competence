@@ -325,7 +325,7 @@ Page({
         })
         
         wx.reLaunch({
-          url: '/pages/performance/index',
+          url: '/pages/training/index',
         })
       }
       else{
@@ -389,7 +389,7 @@ Page({
           }
         })
         wx.reLaunch({
-          url: '/pages/performance/index',
+          url: '/pages/training/index',
         })
       }
     })
@@ -480,8 +480,10 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
-
+  onShow: function (option) {
+    if(this.data.testFlag==2){
+      wx.hideHomeButton();
+    }
   },
 
   /**

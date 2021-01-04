@@ -20,24 +20,26 @@
         <icon class="info-icon"><image src="https://qbkeass.cn/images/tabbar/game.png"></image></icon>  游戏介绍
       </view>
       <view class="content">
-        向被试呈示一纸，纸上有标准刺激（如数字或字母），在其四周散布其它数字或字母。要被试通过视觉搜索，在散布的数字或字母中找到隐藏其中的与标准刺激相同的目标刺激。
+        屏幕上给定所需要寻找的2个字母的组合，称为目标刺激，在目标刺激四周散布其它字母。要求玩家通过视觉搜索，在屏幕上散布的所有字母中找到所有的目标刺激。
       </view>
     </view>
 
     <view class="rule">
       <view class="title2">
         <icon class="info-icon"><image src="https://qbkeass.cn/images/tabbar/game.png"></image></icon>  游戏规则</view>
-      <view class="content">给出标准刺激：1个字母（a-z）和1个数字（0-100）。找出所有标准刺激。做3轮。依次为4x4、5x5、6x6格子。每轮限定时间100秒。</view>
+      <view class="content">给出目标刺激：2个字母（a-z）。找出所有目标刺激。做3轮。依次为4x4、5x5、6x6格子。限定时间100秒。根据正确率以及完成时间给出游戏等级。</view>
     </view>
     <view class="start" bindtap="start">开始游戏</view>
   </view>
 
   <view hidden="{{!startGame}}" class="search-game" style="height:{{gameHeight}}rpx">
     <image class="bgimg" src="https://qbkeass.cn/images/wallpaper/game-wp2.png" mode="aspectFill"></image>
-    <view class="progess">
-      <canvas class="progress_active" canvas-id="progress_active">
-        <image src="https://qbkeass.cn/images/tabbar/test-chosen.png" style="width:40rpx;height:40rpx;margin-top:60rpx;margin-left:{{length}}rpx" ></image>
-      </canvas>
+    <view class="timerow">
+        <image class="progress_img"
+        src="https://qbkeass.cn/images/tabbar/test-chosen.png" 
+        mode="aspectFill"
+        style="margin-left:{{marginLeft}}rpx" ></image>
+        <view class="trow" style="width:{{progressWidth}}%"></view>
     </view>
     <view class="question">请在找出字母对{{requestWord}}</view>
     <view class="hint">{{hint}}</view>

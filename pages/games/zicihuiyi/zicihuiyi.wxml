@@ -11,11 +11,11 @@
 </van-overlay>
 
 <view class="{{showgamebox?'gamebox_show':'gamebox_hidden'}}">
-  <image class="bgimg" src="{{mainbg}}" mode="aspectFill"></image>
+  <image class="bgimg" src="https://qbkeass.cn/images/wallpaper/game-wp4.png" mode="aspectFill"></image>
   <view class="head">
-    <view class="{{shownumbertoremember?'numbertoremember_show':'numbertoremember_hidden'}}">{{numrem}}</view>
+    <view class="{{shownumbertoremember?'numbertoremember_show':'numbertoremember_hidden'}}" style=" font-size:{{fontsize}}px">{{numrem}}</view>
     <view class="{{showWords?'word_show':'word_hidden'}}">{{words}}</view>
-    <view class="{{shownumbertorshow?'numbertorshow_show':'numbertorshow_hidden'}}" style="color:{{numshowcolor}}">
+    <view class="{{shownumbertorshow?'numbertorshow_show':'numbertorshow_hidden'}}" style="color:{{numshowcolor}}; font-size:{{fontsize}}px">
       {{numshow}}</view>
   </view>
   <view class="middle">
@@ -23,7 +23,7 @@
     <view class="{{showtimerow?'timerow_show':'timerow_hidden'}}">
       <image class="progressimg"
         src="https://qbkeass.cn/images/tabbar/test-chosen.png"
-        mode="aspectFill" style="margin-left:{{marlt}}px"></image>
+        mode="aspectFill" style="margin-left:{{marlt}}px;  transform: rotate({{jiao}}deg);"></image>
       <view class='row' style='width:{{progressWidth}}%'>
       </view>
     </view>
@@ -87,7 +87,7 @@
     <view class="title2">
       <icon class="info-icon"><image src="https://qbkeass.cn/images/tabbar/game.png"></image></icon>  游戏介绍
     </view>
-    <view class="content">每一关都只有五秒时间记忆，五秒后数字消失，答案提交时间无限制。从1个数字开始记忆，每通过一关，就会增加1个数字。设定为10关。十轮，每轮限定时间5秒。</view>
+    <view class="content">每一关都只有5秒时间记忆，5秒后数字消失，答案提交时间无限制。从1个数字开始记忆，每通过一关，就会增加1个数字。设定为10关。十轮，每轮限定时间5秒。根据通关数给出游戏等级。</view>
   </view>
 
   <view class="start" bindtap="btnAS">

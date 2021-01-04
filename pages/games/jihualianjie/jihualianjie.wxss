@@ -64,7 +64,6 @@
   position: fixed;
   background-size: 100% 100%;
   margin-top: -10px;
-  transform: rotate(10deg);
 }
 /*gamebox1 */
 .gamebox1_show {

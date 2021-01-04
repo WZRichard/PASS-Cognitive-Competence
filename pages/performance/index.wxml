@@ -29,21 +29,27 @@
 				<text>· 探险者(你)的计划能力为</text>
 				<text class='level'>{{passAnalysis[0].level}}</text>
 				<text>\n</text>
-				<text class='level-comment'>{{passAnalysis[0].passAdvice}}探险者经过一段时间的脑力探险，和最初测验相比，你的能力{{passAnalysis[0].comment1}}。在努力创造自己的最高记录之后，现在的你，计划能力{{passAnalysis[0].comment2}}。</text>
+				<text class='level-comment'>计划是数学学习中必须的部分。在数学问题的解决中，计划负责对如何解题做出决策，在解题的过程中对其表现进行调控，提取并运用某些数学事实，评估答案的正确性。</text>
+				<text class='level-comment1'>根据测验结果探险者你的{{passAnalysis[0].passAdvice}}</text>
+				<!-- <text class='level-comment' wx:if="{{reTest=='1'}}">探险者经过一段时间的脑力探险，和最初测验相比，你的能力{{passAnalysis[0].comment1}}。在努力创造自己的最高记录之后，现在的你，计划能力{{passAnalysis[0].comment2}}。</text> -->
 			</view>
 			<text>\n</text>
 			<view class="info">
 				<text>· 探险者(你)的注意力为</text>
 				<text class='level'>{{passAnalysis[1].level}}</text>
 				<text>\n</text>
-				<text class='level-comment'>{{passAnalysis[1].passAdvice}}探险者现在的你，回看最初的测验，你的能力{{passAnalysis[1].comment1}}。与自己曾经创造的最高记录相比，你的注意力{{passAnalysis[1].comment2}}。</text>
+				<text class='level-comment'>注意控制是智力行为的本质成分之一。</text>
+				<text class='level-comment1'>根据测验结果探险者你的{{passAnalysis[1].passAdvice}}</text>
+				<!-- <text class='level-comment' wx:if="{{reTest=='1'}}">探险者现在的你，回看最初的测验，你的能力{{passAnalysis[1].comment1}}。与自己曾经创造的最高记录相比，你的注意力{{passAnalysis[1].comment2}}。</text> -->
 			</view>
 			<text>\n</text>
 			<view class="info">
 				<text>· 探险者(你)的同时性加工能力为</text>
 				<text class='level'>{{passAnalysis[2].level}}</text>
 				<text>\n</text>
-				<text class='level-comment'>{{passAnalysis[2].passAdvice}}探险者现在的你，和最初测验相比，你的能力{{passAnalysis[2].comment1}}。而和自己的最高记录相比，你的同时性加工能力{{passAnalysis[2].comment2}}。</text>
+				<text class='level-comment'>同时性加工是在加工输入信息片段时，把它们之间的关系形成一个单一的或整合的编码，包括推理、一般流体智力与长时记忆。</text>
+				<text class='level-comment1'>根据测验结果探险者你的{{passAnalysis[2].passAdvice}}</text>
+				<!-- <text class='level-comment' wx:if="{{reTest=='1'}}">探险者现在的你，和最初测验相比，你的能力{{passAnalysis[2].comment1}}。而和自己的最高记录相比，你的同时性加工能力{{passAnalysis[2].comment2}}。</text> -->
 
 			</view>
 			<text>\n</text>
@@ -51,7 +57,9 @@
 				<text>· 探险者(你)的继时性能力为</text>
 				<text class='level'>{{passAnalysis[3].level}}</text>
 				<text>\n</text>
-				<text class='level-comment'>{{passAnalysis[3].passAdvice}}探险者现在的你，和最初测验相比，你的能力{{passAnalysis[3].comment1}}。与自己曾经创造的最高记录相比，你的继时性能力{{passAnalysis[3].comment2}}。</text>
+				<text class='level-comment'>继时性加工是将刺激整合成一个特定序列从而形成一个链状层级的心理过程。继时性加工的作用在于将刺激整合成一个特定的序列，它对序列信息的获得、贮存和提取有着重要影响。</text>
+				<text class='level-comment1'>根据测验结果探险者你的{{passAnalysis[3].passAdvice}}</text>
+				<!-- <text class='level-comment' wx:if="{{reTest=='1'}}">探险者现在的你，和最初测验相比，你的能力{{passAnalysis[3].comment1}}。与自己曾经创造的最高记录相比，你的继时性能力{{passAnalysis[3].comment2}}。</text> -->
 			</view>	
 			<text>\n</text>
 			

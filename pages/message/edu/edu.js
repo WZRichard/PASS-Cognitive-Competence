@@ -84,5 +84,9 @@ Page({
       })
     }
   },
+  onShow: function () {
+    wx.hideHomeButton();
+  },
+
 
 })

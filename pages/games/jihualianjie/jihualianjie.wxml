@@ -53,7 +53,7 @@
       <view class="timerow">
         <image class="progressimg"
         src="https://qbkeass.cn/images/tabbar/test-chosen.png"
-        mode="aspectFill" style="margin-left:{{marlt}}px"></image>
+        mode="aspectFill" style="margin-left:{{marlt}}px;  transform: rotate({{jiao2}}deg);"></image>
         <view class='trow' style='width:{{progressWidth}}%'></view>
       </view>
     </view>
@@ -115,7 +115,7 @@
       </icon> 游戏介绍
     </view>
     <view class="content">
-      向被试呈示一纸，在其上散布其它数字或字母。要求被试把这些字母和（或）数字按顺序连接起来。较简单的型式是只连接数字或字母；更复杂的型式是交替连接数字和字母。
+      屏幕上散布数字或字母。要求玩家把这些字母或数字按一定的顺序连接起来。比较简单的关卡是连接数字或字母；较难的关卡是交替连接数字和字母。
     </view>
   </view>
   <view class="rule">
@@ -126,7 +126,7 @@
         </image>
       </icon> 游戏规则
     </view>
-    <view class="content">在游戏开始前给定连接顺序，开始后在游戏出现字母（A-Z）和数字（0-99），按顺序点击数字或字母。三轮，每轮限定时间100秒。</view>
+    <view class="content">在游戏开始前给出连接顺序，开始后在游戏出现字母（A-Z）和数字（0-99），按给出的顺序点击数字或字母。三轮，每轮限定时间100秒。完成时间越短，游戏等级越高。</view>
   </view>
 
   <view class="start" bindtap="btnAS">

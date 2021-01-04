@@ -10,7 +10,6 @@ Page({
     size:5,
     num: [],
     text:"计划连接",
-    text2:"开始测试",
     text3:"按从小到大的顺序点击数字",//规则
 
     currenta:-1,
@@ -30,7 +29,6 @@ Page({
     showView1: false,//再试一次按钮的显示
     showView2: false,//下一关按钮的显示
     showView3: false,//返回按钮的显示(已删除)
-    leftsecond:0,
     progressWidth:0,
     progressTime:10000,//10ms
     countTime:3,
@@ -39,7 +37,7 @@ Page({
     score:0,
 
     jiao:[],//旋转的角度
-
+    jiao2:20,
 
     slideImgArr: ['https://qbkeass.cn/images/games/planToConnect/ptcA.png','https://qbkeass.cn/images/games/planToConnect/ptcB.png'], //游戏介绍界面
     indicatorDots: true, // 是否显示面板指示点
@@ -77,9 +75,6 @@ Page({
   },
   onLoad: function (option) {
     console.log('onLoad');
-    //页面打开时执行的操作
-    //每个手机的屏幕宽度是750rpx 分辨率不一致
-    //所有手机在小程序中的宽:真实宽度=小程序在页面中的高度:真实高度
     var res = wx.getSystemInfoSync();
     var rate = 750 / res.windowWidth;
     console.log(rate * res.windowHeight);
@@ -90,17 +85,8 @@ Page({
     })
     console.log(this.data.testFlag)
   },
-  /*btnQiut:function () {
-    this.setData({
-      showhomepage: true,
-      showgamebox1:false,
-      showgamebox2:false,
-    }),
-    this.resetElement();
-  },*/
   btnAS: function (e) {
     console.log('btnAS');
-    //当开始游戏按钮被点击时，隐藏视觉搜索介绍
     this.gameStart();
     this.setData({
       showhomepage: false,
@@ -111,13 +97,8 @@ Page({
     this.drawActive();
   },
   drawActive: function () {
-    //设置定时器，一百毫秒执行一次
-    //一百毫秒执行一次，要在mTime时间内画一条线
-    //比如100000ms，要进行100000/100=1000次画,1000次画满（700-50)/1000
     var this2 = this;
     var timer = setInterval(function () {
-      //现在的长度/原来的长度
-      //(this2.data.time*1000-this2.data.mTime)/(this2.data.time*1000)
       var length = 50 + (700 - 50) * (this2.data.mTime) / (this2.data.time * 1000);
       var currentTime = this2.data.mTime - 100;
       this2.setData({
@@ -143,6 +124,8 @@ Page({
   gameOver:function(){
     var that = this
     console.log('gameOver');
+    console.log(this.data.score);
+    console.log(this.data.progressTime)
     if(this.data.level===3||this.data.istimeout===true){
       if(this.data.score>=90){
         this.setData({
@@ -196,8 +179,9 @@ Page({
       this.setData({
         countTime:3,
         text : this.data.create.question,
-        score:this.data.score-5,
+        score:this.data.score-(1),
       });  
+      console.log(this.data.score);
       this.timer2 = setInterval(this.run2, 1000);
     }
     else{
@@ -257,11 +241,14 @@ Page({
     }
     progressTime--;
     progressWidth = (totalProgressTime - progressTime) * (1 / 100)
-    var time = Math.floor(progressTime/100);
+    if(progressTime%70===0){
+      this.setData({
+        jiao2:this.data.jiao2*-1,
+      })
+    }
     this.setData({
      progressWidth: progressWidth,
      progressTime: progressTime,
-     leftsecond: time,
      marlt:progressWidth*3-5,
     })
   },
@@ -277,8 +264,9 @@ Page({
       this.data.pointer++;
       if(this.data.pointer===this.data.question.length){
         this.setData({
-          score:this.data.score+(Math.floor(this.data.progressTime/300)),
+          score:this.data.score+(Math.floor((this.data.progressTime*0.8+2000)/300)),
         });
+
         this.gameOver();
         if(this.data.progressTime>0)
           clearInterval(this.timer);
@@ -288,8 +276,9 @@ Page({
     }else{
       this.setData({
         currenta: e.currentTarget.dataset.row*5+e.currentTarget.dataset.index,//按钮CSS变化
-        score:this.data.score--,
+        score:this.data.score-(0.2),
       })
+      console.log(this.data.score);
     }
   },
   btnNext:function(){
@@ -331,35 +320,21 @@ Page({
     });
     this.timer = setInterval(this.run, 10);
   },
- /* btnBack:function() {
-    this.setData({
-      score:this.data.score+Math.floor(this.data.progressTime/100),
-      level:1,
-    });
-    if(this.data.progressTime>0)
-      clearInterval(this.timer);
-    this.gameStart();
-    this.setData({
-      showgamebox1:true,
-      showgamebox2:false,
-      //showView2: false,
-      text:this.data.question,
-      mh:20,
-    });
-    this.resetElement();
-    this.gameStart();
-  },*/
   resetElement:function () {
     console.log('resetElement');
     this.setData({
       question:[],
       pointer:0,
       istimeout:false,
-      leftsecond:0,
       progressWidth:0,
       progressTime:10000,
       currenta:-1,
     });
+  },
+  onShow: function (option) {
+    if(this.data.testFlag==2){
+      wx.hideHomeButton();
+    }
   },
  
 })

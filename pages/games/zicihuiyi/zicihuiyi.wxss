@@ -36,7 +36,7 @@
   position: fixed;
   background-size: 100% 100%;
   margin-top: -10px;
-  transform: rotate(10deg);
+
 }
 
 .onload {
@@ -135,7 +135,6 @@
   margin-top: 15vh;
   height: 60px;
   width: max-content;
-  font-size: 60px;
   color: #ffffff;
   align-items: center;
 }
@@ -148,7 +147,6 @@
   margin-top: 30px;
   height: 60px;
   width: max-content;
-  font-size: 60px;
   color: #ffffff;
   align-items: center;
 }

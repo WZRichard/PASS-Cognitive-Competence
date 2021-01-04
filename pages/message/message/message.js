@@ -24,5 +24,8 @@ Page({
       userInfo: app.globalData.userInfo,
     })
   },
+  onShow: function () {
+    wx.hideHomeButton();
+  },
 
 })

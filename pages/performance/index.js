@@ -288,6 +288,7 @@ Page({
                 lazyLoad: true
             },
           timer:'', 
+          reTest:0,
           passAnalysis:[], 
           passInfo:[
             {
@@ -321,6 +322,7 @@ Page({
         },
       onLoad: function (options) {
           var _this = this;
+
           this.setData({                    //每隔一分钟刷新一次
               timer: setInterval(function () {
                       wx.request({
@@ -362,7 +364,7 @@ Page({
                       })
                       _this.init_two(app.globalData.newList,app.globalData.originList, app.globalData.highestList,app.globalData.sysWidth);
                       _this.init_analyse(app.globalData.newList,app.globalData.originList, app.globalData.highestList)
-                  }, 60000)
+                  }, 60000),
           })
       },
       onReady: function () {               //这一步是一定要注意的
@@ -370,7 +372,7 @@ Page({
           this.twoComponent = this.selectComponent('#mychart-dom-bar2');
           this.init_one(app.globalData.newList),
           this.init_two(app.globalData.newList,app.globalData.originList,app.globalData.highestList,app.globalData.sysWidth)
-          this.init_analyse(app.globalData.newList,app.globalData.originList, app.globalData.highestList)
+          this.init_analyse(app.globalData.newList,app.globalData.originList, app.globalData.highestList,)
           console.log(this.data.passAnalysis)
       },
       onUnload: function () {
@@ -422,15 +424,15 @@ Page({
             comment2 = '有所退步';
           }
           if(level=='A'){
-            passAdvice = '这项能力非常优秀请继续保持！';
+            passAdvice = '这项能力「非常优秀」请继续保持！相信你在这个能力的发展上一定有自己的心得';
           }else if(level=='B')
           {
-            passAdvice = '这项能力较为优秀，希望探险者继续努力，多加练习'+this.data.passInfo[i].game1+'、'+this.data.passInfo[i].game2+'，更上一层楼！';
+            passAdvice = '这项能力「较为优秀」，希望探险者继续努力，更上一层楼！';
           }else if(level=='C')
           {
-            passAdvice = '这项能力比较一般，需要探险者付出比较多的汗水与精力！请多加练习'+this.data.passInfo[i].game1+'、'+this.data.passInfo[i].game2+'，提高能力！';
+            passAdvice = '这项能力「比较一般」，需要探险者付出比较多的汗水与精力！请多加练习'+this.data.passInfo[i].game1+'、'+this.data.passInfo[i].game2+'，提高能力！';
           }else{
-            passAdvice = '这项能力较弱，但不要灰心，多加练习'+this.data.passInfo[i].game1+'、'+this.data.passInfo[i].game2+'，提升能力等级！';
+            passAdvice = '这项能力「较弱」，但不要灰心，多加练习'+this.data.passInfo[i].game1+'、'+this.data.passInfo[i].game2+'，提升能力等级！';
           }
           console.log(score);
           row.id = i;
@@ -440,7 +442,6 @@ Page({
           row.comment2 = comment2;
           row.passAdvice = passAdvice;
           passJson.push(row);
-
         }
         this.setData({
           passAnalysis:passJson,

@@ -96,7 +96,7 @@ Create.prototype = {
   createAngle(){
     var que=[];
     for(var i = 0; i < this.size*this.size; i++){
-      var ag = Math.floor(Math.random()*360);
+      var ag = Math.floor(Math.random()*180-90);
       que.push(ag);
     }
     return que;

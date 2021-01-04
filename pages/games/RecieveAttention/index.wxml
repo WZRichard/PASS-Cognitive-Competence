@@ -27,8 +27,8 @@
       </icon> 游戏介绍
     </view>
     <view class="content">
-      接收的注意（receptive attention）这类任务的刺激物为字母对，分为二种实验情景：一是选出所有同样字体的字母对，如对HN而不是对<text style="font-style:italic">H</text>
-      h作出反应；二是选出同样名称的字母对，如Aa。此测验涉及注意目标的改变，因而又称为注意转换测验。
+      接收的注意游戏，分为二种游戏情景：一是选出所有同样字体的字母对，如对HN而不是对<text style="font-style:italic">H</text>
+      h作出反应；二是选出同样名称的字母对，如Aa。
     </view>
   </view>
 
@@ -41,7 +41,7 @@
       </icon> 游戏规则
     </view>
     <view class="content">
-      游戏随机两种出题方式，一种为找出同样字体的字母对，字体为正常，斜体，加粗，加粗斜体四种。一种为找出大小写组合的字母对。一共180个随机字母对，限时120s，游戏上方有倒计时提示，可以提早提交,提交越早分数越高。</view>
+      游戏随机两种出题方式，一种为找出同样字体的字母对，字体为正常，斜体，加粗，加粗斜体四种。一种为找出大小写组合的字母对。一共180个随机字母对，限时120s，游戏上方有倒计时提示，可以提早提交,提交越早分数越高，游戏等级越高。</view>
   </view>
   <view class="start" bindtap="tap_start">
     <van-button round type="primary" block color="#c93c42"> 开始游戏 </van-button>

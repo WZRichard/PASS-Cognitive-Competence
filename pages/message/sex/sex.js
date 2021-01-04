@@ -46,5 +46,8 @@ Page({
   onLoad: function (options) {
     
   },
+  onShow: function () {
+    wx.hideHomeButton();
+  },
 
 })

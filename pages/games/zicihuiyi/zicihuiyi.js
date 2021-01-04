@@ -17,8 +17,6 @@ Page({
     score_show:false,
     scorelevel:"",
 
-    // mainbg:'cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/Game_RecallNumber/rnbg1.JPG',
-    mainbg:'https://qbkeass.cn/images/wallpaper/game-wp3.png',
     showgamebox:false,//主界面和游戏界面的切换
     shownumbertoremember:false,//记忆数字的显示
     shownumbertorshow:false,//输入数字判断对错的显示
@@ -31,15 +29,14 @@ Page({
     showWords:false,//提示的显示
     showTip:false,//游戏关卡大于10之后的显示
 
-    countdown:5,
     progressWidth:0,
-    progressTime:0,
-    jiao:30,
+    progressTime:500,
+    jiao:20,
 
     numshowcolor:"#ffffff",
     score:0,//分数
     level:1,
-
+    fontsize:60,
 
      slideImgArr: ['https://qbkeass.cn/images/games/recallNumber/rnA.png','https://qbkeass.cn/images/games/recallNumber/rnB.png','https://qbkeass.cn/images/games//recallNumber/rnC.png'], //游戏介绍界面
     indicatorDots: true, // 是否显示面板指示点
@@ -96,10 +93,8 @@ Page({
   },
   btnAS: function (e) {
     console.log('btnAS');
-    //当开始游戏按钮被点击时，隐藏视觉搜索介绍
     this.setData({
       mTime: this.data.time * 1000,
-     // showbtnback:true,
       showgamebox:true,
     })
     this.drawActive();
@@ -146,8 +141,6 @@ Page({
     console.log('btnBack');
     this.showviewHidden();
     this.setData({
-      //showbtnstart:true,
-      //showbtnback:true,
       numrem:"字词回忆",
       showTip:false,
       showgamebox:false,
@@ -155,11 +148,21 @@ Page({
   },
   gemeStrat:function(){//某个关卡游戏开始
     console.log('gemeStrat');
+    if(this.data.level>5){
+      this.setData({
+        fontsize:40,
+      })
+    }
     this.setData({
       showtimerow:true,
     })
     this.generateNumber();
-    this.timer = setInterval(this.run, 10); //that.timer关键点
+    this.startRun();
+  },
+  startRun(){
+    let that=this;
+    that.timer = setInterval(that.run,10); //that.timer关键点
+    console.log('run');
   },
   Initialize:function(){//初始化界面
     console.log('Initialize');
@@ -169,7 +172,6 @@ Page({
       score:0,
     });
   },
-  //btnStart:function(){},//游戏内的开始按钮已经废弃
   btnSubmit:function(){//提交按钮
     console.log('btnSubmit');
     this.setData({
@@ -185,7 +187,6 @@ Page({
         })
       }
         this.setData({//答案字体为绿色
-        //mainbg:'cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/Game_RecallNumber/rnbg2.jpg',
         showView2: true, 
         numshowcolor:"#00ff00",
         numshow: this.data.input,
@@ -193,12 +194,8 @@ Page({
       });
     }else{//输入不正确
       this.setData({//答案字体为红色
-        //mainbg:'cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/Game_RecallNumber/rnbg3.jpg',
-        //showView1: true,
         numshowcolor:"#ff0000",
         numshow: this.data.input,
-        //showView3: true,
-        // 待补充   返回分数
       })
       this.gameOver();
     }
@@ -238,7 +235,6 @@ Page({
         countTime:3,
         score_show:false,
       });
-      //this.btnBack();
       this.exit();
     }
     counttime--;
@@ -251,18 +247,7 @@ Page({
     this.showviewHidden();
     this.data.level++; 
     this.gemeStrat();
-    //this.setData({mainbg:'cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/Game_RecallNumber/rnbg1.JPG',});
   },
-  btnTryagain:function(){//再试一次按钮
-    this.setData({
-      showTip:false,
-      shownumbertoremember:true,
-      shownumbertorshow:true,
-      showtimerow:true,
-    });
-    this.Initialize();
-    this.gemeStrat();
-  }, 
   inputnum: function (e) {//输入框内容
     this.setData({
       input: e.detail.value,
@@ -287,31 +272,35 @@ Page({
     return str;
   },
   run: function (){//时间进度条
-   let totalProgressTime = this.data.countdown;
-   let progressWidth = this.data.progressWidth; //显示进度
-   let progressTime = this.data.progressTime; //时间
-  
+   let that = this;
+   let totalProgressTime = 500;
+   let progressWidth = that.data.progressWidth; //显示进度
+   let progressTime = that.data.progressTime; //时间
    if (progressWidth === 100) {
-    clearInterval(this.timer);
-    this.setData({
+    clearInterval(that.timer);
+    that.setData({
       showWords:true,
       numrem:"",
       showInput: true,
      progressTime: totalProgressTime,  //进度条需要总时间s
      progressWidth: 0, //进度100%
-     progressTime: this.data.countdown,
      showtimerow:false,
     })
-    if(this.data.level>10){
-      this.setData({
+    if(that.data.level>10){
+      that.setData({
         showTip:true,
       })
     }
     return;
    }
    progressTime--;
-   progressWidth = (totalProgressTime - progressTime) * (1 / this.data.countdown)
-   this.setData({
+   if(progressTime%40===0){
+    that.setData({
+        jiao:that.data.jiao*-1,
+     })
+   }
+   progressWidth = (totalProgressTime - progressTime) * (1/5);
+   that.setData({
     progressWidth: progressWidth,
     progressTime: progressTime,
     marlt:progressWidth*1.5-5,
@@ -331,6 +320,12 @@ Page({
       showView1:false,
       showView2:false,
       showView3:false, 
+      marlt:0,
     })
+  },
+  onShow: function (option) {
+    if(this.data.testFlag==2){
+      wx.hideHomeButton();
+    }
   },
 })
