@@ -210,14 +210,14 @@ Page({
       level_show: false,
     })
 
-    this.setData({
-      cnt_row: 2, //行数（2或3）
-      round: 0, //一共8轮
-      img_hidden: [[0, 0, 0], [0, 0, 0], [0, 0, 0]], //是否显示
-      img_hidden_before: [], //保证所有水果都有被展示
-      question_begin: 0,
-      countDownNum: '10',
-    })
+    // this.setData({
+    //   cnt_row: 2, //行数（2或3）
+    //   round: 0, //一共8轮
+    //   img_hidden: [[0, 0, 0], [0, 0, 0], [0, 0, 0]], //是否显示
+    //   img_hidden_before: [], //保证所有水果都有被展示
+    //   question_begin: 0,
+    //   countDownNum: '10',
+    // })
 
     if (this.data.testFlag == 0) {
       wx.switchTab({
