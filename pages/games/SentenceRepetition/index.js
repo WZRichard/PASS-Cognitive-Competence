@@ -17,16 +17,16 @@ Page({
     selectC: "",
     selectD: "",
     round: 0, //轮数 (初始化为0，0表示未开始)
-    cnt_round: 5, //总轮数
+    cntRound: 5, //总轮数
     selector: -1, //被选择选项（每一关初始化为-1）
-    time: 10, //剩余时间
+    time: 7, //剩余时间
     timerCount: 0, // 定时器计数器
     timer: null, //计时器
     rightCount: 0, //正确题目个数
     scoreShow: false, //等级显示
     scoreImg: "",
 
-    testFlag:0,
+    testFlag: 0,
   },
 
   /**
@@ -51,7 +51,7 @@ Page({
       })
     }
 
-    if (this.data.round < this.data.cnt_round) {
+    if (this.data.round < this.data.cntRound) {
       this.next_Question();
     } else {
       this.gameOver();
@@ -70,21 +70,35 @@ Page({
     var selects = [];
     for (var i = 0; i < 4; i++) {
       var color = this.random_color();
-      while (color === color1 || selects.indexOf(color) != -1) {
+      while (color === color1 || color === color2 || selects.indexOf(color) != -1) {
         color = this.random_color();
       }
       selects.push(color);
     }
-    var index = parseInt(Math.random() * 4);
-    selects[index] = color1;
+    if (Math.random < 0.5) {
+      var index = parseInt(Math.random() * 4);
+      selects[index] = color1;
+      var b = parseInt(Math.random * 3 + 1)
+      selects[(index + b) % 4] = color2;
+      this.setData({
+        finalColor: "问： 哪个颜色正在变" + this.data.color[color2],
+      })
+    } else {
+      var index = parseInt(Math.random() * 4);
+      selects[index] = color2;
+      var b = parseInt(Math.random * 3 + 1)
+      selects[(index + b) % 4] = color1;
+      this.setData({
+        finalColor: "问： " + this.data.color[color1] + "色正在变哪个颜色",
+      })
+    }
     this.setData({
       question: "这个" + this.data.color[color1] + "色正在变为" + this.data.color[color2] + "色",
-      finalColor: "问： 哪个颜色正在变" + this.data.color[color2],
       answer: index,
-      selectA: this.data.color[selects[0]],
-      selectB: this.data.color[selects[1]],
-      selectC: this.data.color[selects[2]],
-      selectD: this.data.color[selects[3]],
+      selectA: this.data.color[selects[0]] + "色",
+      selectB: this.data.color[selects[1]] + "色",
+      selectC: this.data.color[selects[2]] + "色",
+      selectD: this.data.color[selects[3]] + "色",
     })
   },
 
@@ -92,37 +106,6 @@ Page({
    * 第二关
    */
   round2: function () {
-    var color1 = this.random_color();
-    var color2 = this.random_color();
-    while (color2 === color1) {
-      color2 = this.random_color();
-    }
-    var color3 = this.random_color();
-    var selects = [];
-    for (var i = 0; i < 4; i++) {
-      var color = this.random_color();
-      while (color === color1 || color === color2 || selects.indexOf(color) != -1) {
-        color = this.random_color();
-      }
-      selects.push(color);
-    }
-    var index = parseInt(Math.random() * 4);
-    selects[index] = color1;
-    this.setData({
-      question: this.data.color[color1] + this.data.color[color2] + "变成" + this.data.color[color3] + "色",
-      finalColor: "问： 哪个颜色正在变" + this.data.color[color3],
-      answer: index,
-      selectA: this.data.color[selects[0]] + this.data.color[color2],
-      selectB: this.data.color[selects[1]] + this.data.color[color2],
-      selectC: this.data.color[selects[2]] + this.data.color[color2],
-      selectD: this.data.color[selects[3]] + this.data.color[color2],
-    })
-  },
-
-  /**
-   * 第三关
-   */
-  round3: function () {
     var color1 = this.random_color();
     var color2 = this.random_color();
     while (color2 === color1) {
@@ -165,10 +148,68 @@ Page({
     }
     this.setData({
       question: this.data.color[color1] + this.data.color[color2] + "变成" + this.data.color[color3] + "色\n" + this.data.color[color4] + this.data.color[color2] + "变成" + this.data.color[color5] + "色\n",
-      selectA: this.data.color[selects[0]] + this.data.color[color2],
-      selectB: this.data.color[selects[1]] + this.data.color[color2],
-      selectC: this.data.color[selects[2]] + this.data.color[color2],
-      selectD: this.data.color[selects[3]] + this.data.color[color2],
+      selectA: this.data.color[selects[0]] + this.data.color[color2] + "色",
+      selectB: this.data.color[selects[1]] + this.data.color[color2] + "色",
+      selectC: this.data.color[selects[2]] + this.data.color[color2] + "色",
+      selectD: this.data.color[selects[3]] + this.data.color[color2] + "色",
+    })
+  },
+
+  /**
+   * 第三关
+   */
+  round3: function () {
+    var color1 = this.random_color();
+    var color2 = this.random_color();
+    while (color2 === color1) {
+      color2 = this.random_color();
+    }
+    var color3 = this.random_color();
+    while (color3 === color1 || color3 === color2) {
+      color3 = this.random_color();
+    }
+    var color4 = this.random_color();
+    while (color4 === color1 || color4 === color2 || color4 === color3) {
+      color4 = this.random_color();
+    }
+    var index1 = parseInt(Math.random() * 4);
+    var index2 = parseInt(Math.random() * 4);
+    while (index2 === index1) {
+      index2 = parseInt(Math.random() * 4);
+    }
+    var index3 = parseInt(Math.random() * 4);
+    while (index3 === index1 || index3 === index2) {
+      index3 = parseInt(Math.random() * 4);
+    }
+    var index4 = parseInt(Math.random() * 4);
+    while (index4 === index1 || index4 === index2 || index4 === index3) {
+      index4 = parseInt(Math.random() * 4);
+    }
+    var selects = [];
+    if (Math.random < 0.5) {
+      selects[index1] = "把" + this.data.color[color2] + this.data.color[color3] + "色变成" + this.data.color[color4] + "色";
+      selects[index2] = "把" + this.data.color[color3] + this.data.color[color2] + "色变成" + this.data.color[color4] + "色";
+      selects[index3] = "把" + this.data.color[color3] + this.data.color[color2] + "色变成" + this.data.color[color1] + "色";
+      selects[index4] = "把" + this.data.color[color2] + this.data.color[color3] + "色变成" + this.data.color[color1] + "色";
+      this.setData({
+        finalColor: "问： " + this.data.color[color1] + "色正在做什么？",
+      })
+    } else {
+      selects[index1] = this.data.color[color1] + "色把" + this.data.color[color2] + this.data.color[color3] + "色";
+      selects[index2] = this.data.color[color1] + "色把" + this.data.color[color3] + this.data.color[color2] + "色";
+      selects[index3] = this.data.color[color4] + "色把" + this.data.color[color2] + this.data.color[color3] + "色";
+      selects[index4] = this.data.color[color4] + "色把" + this.data.color[color3] + this.data.color[color2] + "色";
+      this.setData({
+        finalColor: "问： 什么颜色把什么颜色变成" + this.data.color[4] + "色？",
+      })
+    }
+    this.setData({
+      question: this.data.color[color1] + "色把" + this.data.color[color2] + this.data.color[color3] + "色变成" + this.data.color[color4] + "色",
+      answer: index1,
+      selectA: selects[0],
+      selectB: selects[1],
+      selectC: selects[2],
+      selectD: selects[3],
     })
   },
 
@@ -187,57 +228,48 @@ Page({
       color4 = this.random_color();
     }
     var color5 = this.random_color();
-    while (color5 === color3) {
+    while (color5 === color1 || color5 === color2 || color5 === color4) {
       color5 = this.random_color();
     }
     var color6 = this.random_color();
-    while (color6 === color1 || color6 === color2 || color6 === color4) {
+    while (color6 === color3) {
       color6 = this.random_color();
     }
-    var color7 = this.random_color();
-    while (color7 === color3 || color7 === color5) {
-      color7 = this.random_color();
-    }
-    var selects = [-1, -1, -1, -1];
     var index1 = parseInt(Math.random() * 4);
-    selects[index1] = color1;
+    var index2 = parseInt(Math.random() * 4);
+    while (index2 === index1) {
+      index2 = parseInt(Math.random() * 4);
+    }
+    var index3 = parseInt(Math.random() * 4);
+    while (index3 === index1 || index3 === index2) {
+      index3 = parseInt(Math.random() * 4);
+    }
     var index4 = parseInt(Math.random() * 4);
-    while (selects[index4] != -1) {
+    while (index4 === index1 || index4 === index2 || index4 === index3) {
       index4 = parseInt(Math.random() * 4);
     }
-    selects[index4] = color4;
-    var index6 = parseInt(Math.random() * 4);
-    while (selects[index6] != -1) {
-      index6 = parseInt(Math.random() * 4);
-    }
-    selects[index6] = color6;
-    var color = this.random_color();
-    while (color === color2 || selects.indexOf(color) != -1)
-      color = this.random_color();
-    selects[selects.indexOf(-1)] = color;
-    var ran = Math.random();
-    if (ran < 0.33) {
+    var selects = [];
+    selects[index1] = this.data.color[color1] + "色的" + this.data.color[color2] + "色";
+    selects[index2] = this.data.color[color2] + "色的" + this.data.color[color1] + "色";
+    selects[index3] = this.data.color[color4] + "色的" + this.data.color[color5] + "色";
+    selects[index4] = this.data.color[color5] + "色的" + this.data.color[color4] + "色";
+    if (Math.random < 0.5) {
       this.setData({
-        finalColor: "问： 哪个颜色正在变" + this.data.color[color3],
+        finalColor: "问： 谁是" + this.data.color[color3] + "的",
         answer: index1,
-      })
-    } else if (ran < 0.66) {
-      this.setData({
-        finalColor: "问： 哪个颜色正在变" + this.data.color[color5],
-        answer: index4,
       })
     } else {
       this.setData({
-        finalColor: "问： 哪个颜色正在变" + this.data.color[color7],
-        answer: index6,
+        finalColor: "问： 谁是" + this.data.color[color6] + "的",
+        answer: index3,
       })
     }
     this.setData({
-      question: this.data.color[color1] + this.data.color[color2] + "变成" + this.data.color[color3] + "色\n" + this.data.color[color4] + this.data.color[color2] + "变成" + this.data.color[color5] + "色\n" + this.data.color[color6] + this.data.color[color2] + "变成" + this.data.color[color7] + "色\n",
-      selectA: this.data.color[selects[0]] + this.data.color[color2],
-      selectB: this.data.color[selects[1]] + this.data.color[color2],
-      selectC: this.data.color[selects[2]] + this.data.color[color2],
-      selectD: this.data.color[selects[3]] + this.data.color[color2],
+      question: this.data.color[color1] + "色的" + this.data.color[color2] + "色是" + this.data.color[color3] + "色的，\n而这些" + this.data.color[color4] + "色的" + this.data.color[color5] + "色是" + this.data.color[color6] + "色的",
+      selectA: selects[0],
+      selectB: selects[1],
+      selectC: selects[2],
+      selectD: selects[3],
     })
   },
 
@@ -251,73 +283,58 @@ Page({
       color2 = this.random_color();
     }
     var color3 = this.random_color();
+    while (color3 === color1 || color3 === color2) {
+      color3 = this.random_color();
+    }
     var color4 = this.random_color();
-    while (color4 === color1 || color4 === color2) {
+    while (color4 === color1 || color4 === color2 || color4 === color3) {
       color4 = this.random_color();
     }
     var color5 = this.random_color();
-    while (color5 === color3) {
+    while (color5 === color1 || color5 === color2 || color5 === color3 || color5 === color4) {
       color5 = this.random_color();
     }
     var color6 = this.random_color();
-    while (color6 === color1 || color6 === color2 || color6 === color4) {
+    while (color6 === color1 || color6 === color2 || color6 === color3 || color6 === color4 || color6 === color5) {
       color6 = this.random_color();
     }
-    var color7 = this.random_color();
-    while (color7 === color3 || color7 === color5) {
-      color7 = this.random_color();
-    }
-    var color8 = this.random_color();
-    while (color8 === color1 || color8 === color2 || color8 === color4 || color8 === color6) {
-      color8 = this.random_color();
-    }
-    var color9 = this.random_color();
-    while (color9 === color3 || color9 === color5 || color9 === color7) {
-      color9 = this.random_color();
-    }
-    var selects = [-1, -1, -1, -1];
     var index1 = parseInt(Math.random() * 4);
-    selects[index1] = color1;
+    var index2 = parseInt(Math.random() * 4);
+    while (index2 === index1) {
+      index2 = parseInt(Math.random() * 4);
+    }
+    var index3 = parseInt(Math.random() * 4);
+    while (index3 === index1 || index3 === index2) {
+      index3 = parseInt(Math.random() * 4);
+    }
     var index4 = parseInt(Math.random() * 4);
-    while (selects[index4] != -1) {
+    while (index4 === index1 || index4 === index2 || index4 === index3) {
       index4 = parseInt(Math.random() * 4);
     }
-    selects[index4] = color4;
-    var index6 = parseInt(Math.random() * 4);
-    while (selects[index6] != -1) {
-      index6 = parseInt(Math.random() * 4);
-    }
-    selects[index6] = color6;
-    var index8 = selects.indexOf(-1);
-    selects[index8] = color8;
-    var ran = Math.random();
-    if (ran < 0.25) {
+    var selects = [];
+    selects[index1] = this.data.color[color2] + "色中";
+    selects[index2] = this.data.color[color5] + "色中";
+    if (Math.random < 0.5) {
+      selects[index3] = this.data.color[color1] + "色中";
+      selects[index4] = this.data.color[color3] + "色中";
       this.setData({
-        finalColor: "问： 哪个颜色正在变" + this.data.color[color3],
-        answer: index1,
-      })
-    } else if (ran < 0.5) {
-      this.setData({
-        finalColor: "问： 哪个颜色正在变" + this.data.color[color5],
-        answer: index4,
-      })
-    } else if (ran < 0.75) {
-      this.setData({
-        finalColor: "问： 哪个颜色正在变" + this.data.color[color7],
-        answer: index6,
+        finalColor: "问： " + this.data.color[color4] + "色在哪里" + this.data.color[color6] + "色着？",
+        answer: index2,
       })
     } else {
+      selects[index3] = this.data.color[color4] + "色中";
+      selects[index4] = this.data.color[color6] + "色中";
       this.setData({
-        finalColor: "问： 哪个颜色正在变" + this.data.color[color9],
-        answer: index8,
+        finalColor: "问： " + this.data.color[color1] + "色在哪里" + this.data.color[color3] + "色着？",
+        answer: index1,
       })
     }
     this.setData({
-      question: this.data.color[color1] + this.data.color[color2] + "变成" + this.data.color[color3] + "色\n" + this.data.color[color4] + this.data.color[color2] + "变成" + this.data.color[color5] + "色\n" + this.data.color[color6] + this.data.color[color2] + "变成" + this.data.color[color7] + "色\n" + this.data.color[color8] + this.data.color[color2] + "变成" + this.data.color[color9] + "色\n",
-      selectA: this.data.color[selects[0]] + this.data.color[color2],
-      selectB: this.data.color[selects[1]] + this.data.color[color2],
-      selectC: this.data.color[selects[2]] + this.data.color[color2],
-      selectD: this.data.color[selects[3]] + this.data.color[color2],
+      question: "当" + this.data.color[color1] + "色在" + this.data.color[color2] + "色中" + this.data.color[color3] + "色的时候，\n" + this.data.color[color4] + "色在" + this.data.color[color5] + "色中" + this.data.color[color6] + "色着",
+      selectA: selects[0],
+      selectB: selects[1],
+      selectC: selects[2],
+      selectD: selects[3],
     })
   },
 
@@ -328,7 +345,7 @@ Page({
     this.setData({
       selector: -1,
       round: this.data.round + 1,
-      time: 10,
+      time: 7,
       answer: 0,
       colorSelect: [],
       question: "",
@@ -361,23 +378,12 @@ Page({
 
   overtime: function () { //超时
     this.clearTimer();
-    if (this.data.round < this.data.cnt_round) {
+    if (this.data.round < this.data.cntRound) {
       Toast.fail('超时啦');
       this.next_Question();
     } else {
       this.gameOver();
-    }    
-    // Dialog.alert({
-    //   message: '超时啦',
-    //   // theme: 'round-button',
-    // }).then(() => {
-    //   if (this.data.round < this.data.cnt_round) {
-    //     this.next_Question();
-    //   } else {
-    //     Toast.success('闯关成功');
-    //     this.gameOver();
-    //   }
-    // });
+    }
   },
 
   clearTimer: function () {
@@ -390,9 +396,9 @@ Page({
    * 设置一个定时器
    */
   countInterval: function () {
-    // 设置倒计时 定时器 每1000毫秒执行一次，计数器count+1 ,共
+    // 设置倒计时 定时器 每1000毫秒执行一次，计数器count+1
     this.timer = setInterval(() => {
-      if (this.data.timerCount >= 10) {
+      if (this.data.timerCount >= 7) {
         this.overtime();
       } else {
         this.data.timerCount++;
@@ -411,19 +417,19 @@ Page({
     var score = this.data.rightCount * 2 * 10;
     if (score >= 90) {
       this.setData({
-        scoreImg:"https://qbkeass.cn/images/level/level-A.png"
+        scoreImg: "https://qbkeass.cn/images/level/level-A.png"
       })
     } else if (score < 90 && score >= 75) {
       this.setData({
-        scoreImg:"https://qbkeass.cn/images/level/level-B.png"
+        scoreImg: "https://qbkeass.cn/images/level/level-B.png"
       })
     } else if (score < 75 && score >= 60) {
       this.setData({
-        scoreImg:"https://qbkeass.cn/images/level/level-C.png"
+        scoreImg: "https://qbkeass.cn/images/level/level-C.png"
       })
     } else {
       this.setData({
-        scoreImg:"https://qbkeass.cn/images/level/level-D.png"
+        scoreImg: "https://qbkeass.cn/images/level/level-D.png"
       })
     }
     console.log("分数：" + score);
@@ -434,16 +440,15 @@ Page({
       this.setData({
         scoreShow: false
       });
-      if(this.data.testFlag==0)
-      {
+      if (this.data.testFlag == 0) {
         wx.switchTab({
           url: '/pages/games/index',
         })
-      }else if(this.data.testFlag==1){
+      } else if (this.data.testFlag == 1) {
         wx.redirectTo({
           url: '/pages/games/visualSearch/index?testFlag=1',
         })
-      }else{
+      } else {
         wx.redirectTo({
           url: '/pages/games/visualSearch/index?testFlag=2',
         })
@@ -461,9 +466,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (option) {
-    console.log(option)//可以打印一下option看查看参数
+    console.log(option) //可以打印一下option看查看参数
     this.setData({
-        testFlag:option.testFlag,
+      testFlag: option.testFlag,
     })
     console.log(this.data.testFlag)
 
@@ -473,14 +478,14 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-    
+
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function (option) {
-    if(this.data.testFlag==2){
+    if (this.data.testFlag == 2) {
       wx.hideHomeButton();
     }
   },

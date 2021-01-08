@@ -1,48 +1,72 @@
 <!--pages/RecieveAttention/index.wxml-->
 <!-- 首页 -->
 <view class="index" hidden="{{type==-1?false:true}}">
-  <!-- 背景图 -->
   <view class="head-title">
     <view class="title-cn">接收的注意</view>
     <view class="title-en">Receptive Attention</view>
   </view>
-  <view class="game-show">
-    <swiper class="swiper" indicator-dots="true" autoplay="true" interval="3000" duration="1000" circular="true">
-      <block wx:for="{{slideImgArr}}" wx:key="*this">
+  <view>
+    <swiper class="swiper" indicator-dots="true" autoplay="{{false}}" interval="3000" duration="1000" circular="true">
+      <block wx:for="{{help}}" wx:key="*this">
         <swiper-item class="swiper-item">
-          <view>
-            <image class="swiper-image" src="{{item}}" mode="heightFix" />
+          <view class="info">
+            <view class="title2">
+              <icon class="info-icon">
+                <image src="https://qbkeass.cn/images/tabbar/game.png">
+                </image>
+              </icon> {{item.text}}
+            </view>
+            <view class="help">
+              <image
+                src="{{item.img}}"
+                mode="aspectFit"></image>
+            </view>
+            <view class="white">
+            </view>
           </view>
         </swiper-item>
       </block>
     </swiper>
   </view>
-
+  <!-- <view class="info">
+    <view class="title2">
+      <icon class="info-icon">
+        <image src="https://qbkeass.cn/images/tabbar/game.png">
+        </image>
+      </icon> 进入页面后，你将会看到最上面一行的题目和5*36的气泡
+    </view>
+    <view class="help">
+      <image
+        src="cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/Game_RecieveAttention/1.png"
+        mode="aspectFit"></image>
+    </view>
+  </view>
   <view class="info">
     <view class="title2">
       <icon class="info-icon">
-        <image
-          src="https://qbkeass.cn/images/tabbar/game.png">
+        <image src="https://qbkeass.cn/images/tabbar/game.png">
         </image>
-      </icon> 游戏介绍
+      </icon> 根据上方的题目选择正确的气泡，再点一次可以取消，同时页面可以滚动
     </view>
-    <view class="content">
-      接收的注意游戏，分为二种游戏情景：一是选出所有同样字体的字母对，如对HN而不是对<text style="font-style:italic">H</text>
-      h作出反应；二是选出同样名称的字母对，如Aa。
+    <view class="help">
+      <image
+        src="cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/Game_RecieveAttention/2.gif"
+        mode="aspectFit"></image>
     </view>
   </view>
-
-  <view class="rule">
+  <view class="info">
     <view class="title2">
       <icon class="info-icon">
-        <image
-          src="https://qbkeass.cn/images/tabbar/game.png">
+        <image src="https://qbkeass.cn/images/tabbar/game.png">
         </image>
-      </icon> 游戏规则
+      </icon> 做完了别忘了提交哦，限时120s，做对的越多，时间越少，分数越高。
     </view>
-    <view class="content">
-      游戏随机两种出题方式，一种为找出同样字体的字母对，字体为正常，斜体，加粗，加粗斜体四种。一种为找出大小写组合的字母对。一共180个随机字母对，限时120s，游戏上方有倒计时提示，可以提早提交,提交越早分数越高，游戏等级越高。</view>
-  </view>
+    <view class="help">
+      <image
+        src="cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/Game_RecieveAttention/3.png"
+        mode="aspectFit"></image>
+    </view>
+  </view> -->
   <view class="start" bindtap="tap_start">
     <van-button round type="primary" block color="#c93c42"> 开始游戏 </van-button>
   </view>
@@ -50,22 +74,19 @@
 <!-- 游戏主体 -->
 <view class="game" hidden="{{type==-1?true:false}}">
   <!-- 背景图 -->
-  <image class="background"
-    src="https://qbkeass.cn/images/wallpaper/game-wp1.png"
-    mode="widthFix"></image>
+  <image class="background" src="https://qbkeass.cn/images/wallpaper/game-wp1.png" mode="widthFix"></image>
   <view class="head">
     <!-- 剩余时间 -->
     <view class="time">
       <van-progress pivot-text=" " stroke-width="12" color="#004e66" percentage="{{time/1.2}}"></van-progress>
-      <image class="progressimg"
-        src="https://qbkeass.cn/images/tabbar/test-chosen.png"
-        mode="aspectFill" style="margin-left:{{5*time-20}}rpx"></image>
+      <image class="progressimg" src="https://qbkeass.cn/images/tabbar/test-chosen.png" mode="aspectFill"
+        style="margin-left:{{5*time-20}}rpx"></image>
     </view>
-  <!-- Question -->
-  <view class="Question">
-    <text>{{question}}</text>
+    <!-- Question -->
+    <view class="Question">
+      <text>{{question}}</text>
+    </view>
   </view>
- </view>
   <!-- n*n的格子 -->
   <view style="margin-top: 200rpx">
     <view class="line" wx:for="{{line}}" wx:key="idx" wx:for-index="idx">
@@ -83,19 +104,16 @@
     </view>
   </view>
   <view>
-      <image class="confirm"
-        src="https://qbkeass.cn/images/button/confirm.png"
-        bindtap="tap_over" mode="heightFix"></image>
-    </view>
+    <image class="confirm" src="https://qbkeass.cn/images/button/confirm.png" bindtap="tap_over" mode="heightFix">
+    </image>
+  </view>
   <view class="white"> </view>
- 
-    <van-overlay show="{{scoreShow}}">
-      <view class="wrapper">
-        <view>
-          <image class="_img"
-            src="{{scoreImg}}"
-            mode="heightFix"></image>
-        </view>
+
+  <van-overlay show="{{scoreShow}}">
+    <view class="wrapper">
+      <view>
+        <image class="_img" src="{{scoreImg}}" mode="heightFix"></image>
       </view>
-    </van-overlay>
+    </view>
+  </van-overlay>
 </view>

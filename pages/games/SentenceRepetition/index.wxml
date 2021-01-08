@@ -25,8 +25,7 @@
       </icon> 游戏介绍
     </view>
     <view class="content">
-      句子问题游戏，玩家需阅读含有颜色词的句子。这些颜色词在同一个句子可能会有不同的词性。如“这个蓝色正在变成灰色”（The blue is
-      graying）。然后要求玩家回答以下问题：“哪个颜色正在变灰？”。
+      句子问题游戏，玩家需阅读含有颜色词的句子。这些颜色词在同一个句子可能会有不同的词性。如“这个蓝色正在变成灰色”（The blue is graying）。然后要求玩家回答以下问题：“哪个颜色正在变灰？”。
     </view>
   </view>
 
@@ -52,10 +51,10 @@
   <van-dialog id="van-dialog" />
   <!-- 剩余时间 -->
   <view class="time">
-    <van-progress pivot-text=" " stroke-width="12" color="#004e66" percentage="{{time/0.1}}"></van-progress>
+    <van-progress pivot-text=" " stroke-width="12" color="#004e66" percentage="{{time/0.07}}"></van-progress>
     <image class="progressimg"
       src="https://qbkeass.cn/images/tabbar/test-chosen.png"
-      mode="aspectFill" style="margin-left:{{60*time-20}}rpx"></image>
+      mode="aspectFill" style="margin-left:{{(600/7)*time-20}}rpx"></image>
   </view>
   <!-- Title -->
   <view class="in_title_text">
@@ -83,25 +82,25 @@
       <van-button round size="large" type="default" class="button" bindtap="select" data-selection="0"
         color="{{selector==0?'pink':'#004e66'}}"
         style="border-color: {{selector==0?'rgb(255, 61, 3)':'rgb(000, 000, 000)'}}"><text class="selector">A
-          {{selectA}}色</text>
+          {{selectA}}</text>
       </van-button>
 
       <van-button round size="large" type="default" class="button" bindtap="select" data-selection="1"
         color="{{selector==1?'pink':'#004e66'}}"
         style="border-color: {{selector==1?'rgb(255, 61, 3)':'rgb(000, 000, 000)'}}"><text class="selector">B
-          {{selectB}}色</text>
+          {{selectB}}</text>
       </van-button>
 
       <van-button round size="large" type="default" class="button" bindtap="select" data-selection="2"
         color="{{selector==2?'pink':'#004e66'}}"
         style="border-color: {{selector==2?'rgb(255, 61, 3)':'rgb(000, 000, 000)'}}"><text class="selector">C
-          {{selectC}}色</text>
+          {{selectC}}</text>
       </van-button>
 
       <van-button round size="large" type="default" class="button" bindtap="select" data-selection="3"
         color="{{selector==3?'pink':'#004e66'}}"
         style="border-color: {{selector==3?'rgb(255, 61, 3)':'rgb(000, 000, 000)'}}"><text class="selector">D
-          {{selectD}}色</text>
+          {{selectD}}</text>
       </van-button>
     </view>
 

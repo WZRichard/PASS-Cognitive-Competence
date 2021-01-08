@@ -19,47 +19,50 @@
 }
 
 .swiper {
-  height: 200px;
+  height: 800rpx;
 }
 
 .swiper-item {
-  height: 200px;
+  height: 800rpx;
 }
 
 .swiper-item>view {
   display: flex;
   justify-content: center;
-}
-
-.swiper-image {
-  height: 200px;
+  flex-direction: column;
 }
 
 .info-icon image{
   height: 35rpx;
   width: 35rpx;
 }
+
+.help{
+  height: 600rpx;
+  margin-left: 87.5rpx;
+}
+
+.help image{
+  height: 600rpx;
+}
+
 .title2{
   margin-top: 30rpx;
-  font-size: 35rpx;
-  height: 35rpx;
-  line-height: 35rpx;
-  margin-left: 30rpx;
-}
-.content{
-  margin-top: 50rpx;
   font-size: 30rpx;
   line-height: 45rpx;
-  color: rgb(146, 15, 145)4;
   margin-left: 100rpx;
   margin-right: 100rpx;
+}
+
+.white{
+  height: 50rpx;
 }
 .start{
   height: 80rpx;
   line-height: 80rpx;
   font-size: 35rpx;
   text-align: center;
-  margin: 18rpx 10rpx;
+  margin: 50rpx 10rpx;
   color: white;
   font-weight: 200;
   border-radius: 100rpx;
@@ -121,7 +124,6 @@
 
 .img {
   height: 100rpx;
-  transition: 0.5s;
 }
 
 .text {
