@@ -93,37 +93,28 @@
 
 </view>
 <!--showhomepage-->
-<view class="{{showGamebox ?'homepage_hidden':'homepage_show'}}" style="height:{{gameHeight-60}}rpx">
-  <view class="head-title">
-    <view class="title-cn">数 字 回 忆</view>
-    <view class="title-en">recall number</view>
-  </view>
-  <view class="game-show">
-    <swiper indicator-dots="true" autoplay="true" interval="3000" duration="1000" circular="true">
-      <!-- style="height:{{gameHeight/3}}rpx" -->
-      <block wx:for="{{slideImgArr}}" wx:key="*this">
-        <swiper-item>
-          <image class="slide-image" src="{{item}}" mode="heightFix" />
-        </swiper-item>
-      </block>
-    </swiper>
-  </view>
-  <view class="info">
-    <view class="title2">
-      <icon class="info-icon"><image src="https://qbkeass.cn/images/tabbar/game.png"></image></icon>  游戏介绍
+  <view class="{{showGamebox?'search-info-hidden':'search-info'}}"  style="height:{{gameHeight}}rpx">
+    <view class="head-title" style="height:{{gameHeight*0.1}}rpx;padding-top:{{gameHeight*0.02}}rpx">
+      <view class="title-cn">数 字 回 忆</view>
+      <view class="title-en">number recall</view>
     </view>
-    <view class="content">
-      屏幕上会出现一串数字，记住数字，让玩家输入数字。从1个数字开始记忆，每通过一关，就会增加1位数字。一般人只能可靠地记住7位数字。
+    <!-- 轮播图 -->
+    <view style="height:{{gameHeight*0.85}}rpx;width:100%">
+      <swiper class="guide" style="height:100%" bindchange="currentHandle">
+        <block wx:for="{{help}}" wx:key="*this">
+          <swiper-item>
+            <view class="slide_image">
+              <image src = "{{item.img}}"/>
+            </view>
+            <view class="guide_text">
+              <icon class="info-icon"><image src="https://qbkeass.cn/images/tabbar/game.png" ></image></icon>
+              <text>{{item.text}}</text></view>
+            <view class="start" bindtap="btnAS" hidden="{{!item.startShow}}">开始游戏</view>
+          </swiper-item>
+        </block>
+      </swiper>
+      <view class="swp-dot">
+        <view class="square-12 m-r-8 {{current === index ?'dot_active': ''}}" wx:for="{{help}}" wx:key="{{index}}"></view>
+      </view>
     </view>
   </view>
-  <view class="rule">
-    <view class="title2">
-      <icon class="info-icon"><image src="https://qbkeass.cn/images/tabbar/game.png"></image></icon>  游戏介绍
-    </view>
-    <view class="content">每一关都只有5秒时间记忆，5秒后数字消失，答案提交时间无限制。从1个数字开始记忆，每通过一关，就会增加1个数字。设定为10关。十轮，每轮限定时间5秒。根据通关数给出游戏等级。</view>
-  </view>
-
-  <view class="start" bindtap="btnAS">
-    <van-button round type="primary" block color="#c93c42"> 开始游戏 </van-button>
-  </view>
-</view>

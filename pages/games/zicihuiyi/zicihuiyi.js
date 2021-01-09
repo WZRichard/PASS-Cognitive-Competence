@@ -41,23 +41,39 @@ Page({
     
     countTime:3,
     /* 开始界面 */ 
-     slideImgArr: ['https://qbkeass.cn/images/games/recallNumber/rnA.png','https://qbkeass.cn/images/games/recallNumber/rnB.png','https://qbkeass.cn/images/games//recallNumber/rnC.png'], //游戏介绍界面
-    indicatorDots: true, // 是否显示面板指示点
-    autoplay: true,      // 是否自动切换
-    circular: true,      // 是否采用衔接滑动
-    interval: 3000,      // 自动切换时间间隔
-    duration: 3000,      // 滑动动画时长
+    help: [{
+      img: './images/IMG_4908.PNG',
+      text: '进入页面后，你将会看到最上面出现了数字 3',
+      startShow: false
+    },
+    {
+      img: './images/IMG_4909.PNG',
+      text: '点击刚刚出现的数字 3',
+      startShow: false
+    },
+    {
+      img: './images/IMG_4910.PNG',
+      text: '点击小袋子',
+      startShow: false
+    },
+    {
+      img: './images/IMG_4911.PNG',
+      text: '恭喜你做对了，赶快开始游戏吧',
+      startShow: true
+    },
+  ],//之后再插入游戏图片   
 
-    showhomepage: true, //是否开始游戏
-    gameHeight: '0',
-
-    time: '100',//限定时间100s
-    mTime: 100000,//以毫秒为单位
-    timer: null,
-
-    testFlag:0,
+  current:0,
+  gameHeight: '0',
   },
-
+  currentHandle(e) {
+    let {
+      current
+    } = e.detail
+    this.setData({
+      current
+    })
+  },
   exit:function () {
     console.log(this.data.score);
     console.log('exit');
@@ -89,7 +105,6 @@ Page({
     this.setData({
       rate: rate,
       gameHeight: rate * res.windowHeight,
-      testFlag:option.testFlag,
     })
     console.log(this.data.testFlag);
   },

@@ -91,45 +91,28 @@
   </view>
 </view>
 <!--showhomepage-->
-<view class="{{showhomepage ?'homepage_show':'homepage_hidden'}}" style="height:{{gameHeight-60}}rpx">
-  <view class="head-title">
-    <view class="title-cn">计 划 连 接</view>
-    <view class="title-en">plan to connect</view>
-  </view>
-  <view class="game-show">
-    <swiper indicator-dots="true" autoplay="true" interval="3000" duration="1000" circular="true">
-      <!-- style="height:{{gameHeight/3}}rpx" -->
-      <block wx:for="{{slideImgArr}}" wx:key="*this">
-        <swiper-item>
-          <image class="slide-image" src="{{item}}" mode="heightFix" />
-        </swiper-item>
-      </block>
-    </swiper>
-  </view>
-  <view class="info">
-    <view class="title2">
-      <icon class="info-icon">
-        <image
-          src="https://qbkeass.cn/images/tabbar/game.png">
-        </image>
-      </icon> 游戏介绍
+<view class="{{showHomepage?'search-info':'search-info-hidden'}}"  style="height:{{gameHeight}}rpx">
+  <view class="head-title" style="height:{{gameHeight*0.1}}rpx;padding-top:{{gameHeight*0.02}}rpx">
+      <view class="title-cn">数 字 回 忆</view>
+      <view class="title-en">number recall</view>
     </view>
-    <view class="content">
-      屏幕上散布数字或字母。要求玩家把这些字母或数字按一定的顺序连接起来。比较简单的关卡是连接数字或字母；较难的关卡是交替连接数字和字母。
+    <!-- 轮播图 -->
+    <view style="height:{{gameHeight*0.85}}rpx;width:100%">
+      <swiper class="guide" style="height:100%" bindchange="currentHandle">
+        <block wx:for="{{help}}" wx:key="*this">
+          <swiper-item>
+            <view class="slide_image">
+              <image src = "{{item.img}}"/>
+            </view>
+            <view class="guide_text">
+              <icon class="info-icon"><image src="https://qbkeass.cn/images/tabbar/game.png" ></image></icon>
+              <text>{{item.text}}</text></view>
+            <view class="start" bindtap="btnAS" hidden="{{!item.startShow}}">开始游戏</view>
+          </swiper-item>
+        </block>
+      </swiper>
+      <view class="swp-dot">
+        <view class="square-12 m-r-8 {{current === index ?'dot_active': ''}}" wx:for="{{help}}" wx:key="{{index}}"></view>
+      </view>
     </view>
-  </view>
-  <view class="rule">
-    <view class="title2">
-      <icon class="info-icon">
-        <image
-          src="https://qbkeass.cn/images/tabbar/game.png">
-        </image>
-      </icon> 游戏规则
-    </view>
-    <view class="content">在游戏开始前给出连接顺序，开始后在游戏出现字母（A-Z）和数字（0-99），按给出的顺序点击数字或字母。三轮，每轮限定时间100秒。完成时间越短，游戏等级越高。</view>
-  </view>
-
-  <view class="start" bindtap="btnAS">
-    <van-button round type="primary" block color="#c93c42"> 开始游戏 </van-button>
-  </view>
 </view>

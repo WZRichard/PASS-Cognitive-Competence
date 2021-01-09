@@ -24,6 +24,7 @@ Page({
 
     question:[],//问题
     pointer:0,//指针
+    showHomepage:true,
     showGamebox1:false,
     showGamebox2:false,
     showView1: false,//再试一次按钮的显示
@@ -39,20 +40,33 @@ Page({
     jiao:[],//旋转的角度
     jiao2:20,
      /*主页面*/ 
-    slideImgArr: ['https://qbkeass.cn/images/games/planToConnect/ptcA.png','https://qbkeass.cn/images/games/planToConnect/ptcB.png'], //游戏介绍界面
-    indicatorDots: true, // 是否显示面板指示点
-    autoplay: true,      // 是否自动切换
-    circular: true,      // 是否采用衔接滑动
-    interval: 3000,      // 自动切换时间间隔
-    duration: 3000,      // 滑动动画时长
+    help: [{
+      img: './images/IMG_4912.PNG',
+      text: '进入页面后，你将会看到最上面一行从小到大的数字，点击开始',
+      startShow: false
+    },
+    {
+      img: './images/g1.gif',
+      text: '按从小到大顺序点击数字',
+      startShow: false
+    },
+    {
+      img: './images/IMG_4913.PNG',
+      text: '如果需要帮助可以点击"查看提示"',
+      startShow: true
+    },
+    ],//之后再插入游戏图片   
 
-    showhomepage: true, //是否开始游戏
+    current:0,
     gameHeight: '0',
-
-    time: '100',//限定时间100s
-    mTime: 100000,//以毫秒为单位
-    timer: null,
-    testFlag:0,
+  },
+  currentHandle(e) {
+    let {
+      current
+    } = e.detail
+    this.setData({
+      current
+    })
   },
   exit:function () {
     console.log(this.data.score);
@@ -81,7 +95,6 @@ Page({
     this.setData({
       rate: rate,
       gameHeight: rate * res.windowHeight,
-      testFlag: option.testFlag,
     })
     console.log(this.data.testFlag)
   },
@@ -89,36 +102,10 @@ Page({
     console.log('btnAS');
     this.gameStart();
     this.setData({
-      showhomepage: false,
+      showHomepage: false,
       mTime: this.data.time * 1000,
       showGamebox1:true,
       showGamebox2:false,
-    })
-    this.drawActive();
-  },
-  drawActive: function () {
-    var this2 = this;
-    var timer = setInterval(function () {
-      var length = 50 + (700 - 50) * (this2.data.mTime) / (this2.data.time * 1000);
-      var currentTime = this2.data.mTime - 100;
-      this2.setData({
-        mTime: currentTime
-      });
-      if (length > 50) {
-        var lineWidth = 5 / this2.data.rate;//px
-        var ctx = wx.createCanvasContext('progress_active');//不需要'#'
-        ctx.setLineCap('butt');
-        ctx.setLineWidth(lineWidth);
-        ctx.setStrokeStyle('#E06663');
-        ctx.beginPath();
-        ctx.moveTo(50 / this2.data.rate, 20);
-        ctx.lineTo(length / this2.data.rate, 20);
-        ctx.stroke();
-        ctx.draw();
-      }
-    }, 100);
-    this2.setData({
-      timer: timer
     })
   },
   gameOver:function(){

@@ -16,18 +16,16 @@
   height: 100%;
   position: fixed;
   background-size: 100% 100%;
-  z-index: -5;
+  z-index: -2;
   margin-top: 0px;
 }
 
 .btnimg {
-  height: 120px;
-  width: 90px;
-  position: fixed;
+  height: 100px;
+  width: 75px;
   background-size: 100% 100%;
   z-index: -5;
-  border-radius: 10px;
-  filter: drop-shadow(5px 5px 5px #000000);
+  filter: drop-shadow(1px 1px 1px #000000);
 }
 
 .progressimg {
@@ -47,9 +45,9 @@
 
 .gamebox_show {
   height: 100vh;
-  position: relative;
   width: 100vw;
   display: flex;
+  position: relative;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
@@ -79,11 +77,12 @@
   display: none;
 }
 .Keyboard_show{
-  margin-top: 5vh;
+  margin-top: 12vh;
   width: 36vh;
   height: 36vh;
   flex-direction: column;
   align-items: center;
+  position: fixed;
 }
 .keyboardLine{
   width: 36vh;
@@ -102,6 +101,7 @@
   border-radius: 8vh;
   font-weight:bold;
   color: #ffffff;
+  position: relative;
 }
 .imgKB1{
   margin-top: -0.5vh;
@@ -135,14 +135,13 @@
   height: 15vh;
   width: max-content;
   align-items: center;
-  overflow: hidden;
 }
 
 .bottom2 {
   flex-direction: column;
   display: flex;
   height: 10vh;
-  width: 100vh;
+  width: 100vw;
   align-items: center;
 }
 
@@ -264,9 +263,9 @@
 .submit_show {
   margin-left: 20px;
   margin-right: 20px;
-  margin-top: 40px;
-  height: 120px;
-  width: 90px;
+  margin-top: 10px;
+  height: 100px;
+  width: 75px;
 }
 
 .bottomitem1_hidden {
@@ -276,9 +275,9 @@
 .bottomitem1_show {
   margin-left: 20px;
   margin-right: 20px;
-  margin-top: 40px;
-  height: 120px;
-  width: 90px;
+  margin-top: 10px;
+  height: 100px;
+  width: 75px;
 }
 
 .bottomitem2_hidden {
@@ -288,9 +287,9 @@
 .bottomitem2_show {
   margin-left: 20px;
   margin-right: 20px;
-  margin-top: 40px;
-  height: 120px;
-  width: 90px;
+  margin-top: 10px;
+  height: 100px;
+  width: 75px;
 }
 
 .bottomitem3_hidden {
@@ -300,9 +299,9 @@
 .bottomitem3_show {
   margin-left: 20px;
   margin-right: 20px;
-  margin-top: 40px;
-  height: 120px;
-  width: 90px;
+  margin-top: 10px;
+  height: 100px;
+  width: 75px;
 }
 
 .tip_show {
@@ -321,92 +320,91 @@
 
 
 /*homepage*/
-.homepage_show {
-  height: 100vh;
-  position: relative;
-  width: 100vw;
-  display: flex;
-  flex-direction: column;
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  color: transparent;
+}
+.search-info{
+  padding-right: 30rpx;
+  padding-left: 30rpx;
+}
+.search-info-hidden{
+display: none;
+}
+
+.head-title{
   align-items: center;
-  justify-content: space-between;
-  box-sizing: border-box;
+  text-align: center;
 }
 
-.homepage_hidden {
-  display: none;
-}
-
-.game-show {
-  width: 70vw;
-}
-
-.color-info {
-  padding: 30rpx;
-}
-
-.head-title {
-  align-items: center;
-}
-
-.info {
-  width: 90vw;
-}
-
-.rule {
-  width: 90vw;
-}
-
-.title-cn {
+.head-title .title-cn{
   font-size: 40rpx;
+
 }
 
-.title-en {
+.head-title .title-en{
   font-size: 30rpx;
   color: rgb(100, 100, 100);
 }
-
-.slide-image {
-  width: 100%;
+.slide_image{
+  width: 700rpx;
+  height: 700rpx;
   margin: 0 auto;
 }
+.slide_image image{
+  width: 100%;
+  height: 100%;
+}
 
-.info-icon image {
+.info-icon image{
   height: 35rpx;
   width: 35rpx;
 }
-
-.title2 {
-  margin-top: 30rpx;
-  font-size: 35rpx;
-  height: 35rpx;
-  line-height: 35rpx;
+.guide_text{
+  width: 650rpx;
+  margin: 10rpx auto;
 }
 
-.content {
-  margin-top: 50rpx;
-  font-size: 30rpx;
-  line-height: 45rpx;
-  color: rgb(146, 15, 145)4;
-}
-
-.start {
-  height: 40px;
-  width: 80vw;
-  line-height: 40px;
+.start{
+  width: 80%;
+  height: 80rpx;
+  line-height: 80rpx;
   font-size: 35rpx;
   text-align: center;
-  margin: 50rpx 30rpx;
+  margin-top: 80rpx;
+  margin-left:10%;
   background-color: #c93c42;
   color: white;
   font-weight: 200;
   border-radius: 100rpx;
 }
 
-.progress {
-  width: max-content;
+.swp-dot {
+  display: flex;
+  justify-content: center;
+  flex: 1;
+  margin-top: 18rpx;
 }
 
-canvas {
-  height: 100rpx;
-  width: 750rpx;
+.m-r-8 {
+  margin-right: 8rpx;
+}
+
+.m-l-8 {
+  margin-right: 8rpx;
+}
+
+.square-12 {
+  width: 12rpx;
+  height: 12rpx;
+  background-color: #d8d8d8;
+  border-radius: 6rpx;
+  transition: width 0.2s linear;
+}
+
+.dot_active {
+  background-color: #3c3c3c;
+  width: 36rpx;
+  transition: width 0.2s linear;
 }
