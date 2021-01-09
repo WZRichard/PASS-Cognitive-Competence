@@ -6,7 +6,17 @@ Page({
    * 页面的初始数据
    */
   data: {
-    slideImgArr: ['https://qbkeass.cn/images/games/sentenceQusetion/help-1.png', 'https://qbkeass.cn/images/games/sentenceQusetion/help-2.png', ], //游戏介绍界面图库
+    help: [{
+      img: 'cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/Game_SentenceRepetition/1.gif',
+      text: '进入页面后，你将会看到上面的题目和下面的选项，点击就能选择啦',
+      startShow: false
+    },
+    {
+      img: 'cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/Game_SentenceRepetition/2.png',
+      text: '做完了别忘了提交哦，一道题限时7s，超时不算分哦',
+      startShow: true
+    },
+  ], //游戏介绍界面图库
     color: ["红", "橙", "黄", "绿", "青", "蓝", "紫", "黑", "灰", "白", "棕", "粉"], //所有颜色
     colorCount: 12, //颜色总数
     answer: 0, //当前题目答案
@@ -26,15 +36,27 @@ Page({
     scoreShow: false, //等级显示
     scoreImg: "",
 
+    current: 0,
+    gameHeight:0,
     testFlag: 0,
   },
 
+  currentHandle(e) {
+    let {
+      current
+    } = e.detail
+    this.setData({
+      current
+    })
+  },
+  
   /**
    * 开始游戏
    */
-  tap_start: function () {
+  tapStart: function () {
     this.setData({
       round: 1,
+
     })
     this.round1();
     this.countInterval();
@@ -467,8 +489,10 @@ Page({
    */
   onLoad: function (option) {
     console.log(option) //可以打印一下option看查看参数
+    var res = wx.getSystemInfoSync();
     this.setData({
       testFlag: option.testFlag,
+      gameHeight: 750 / res.windowWidth * res.windowHeight,
     })
     console.log(this.data.testFlag)
 

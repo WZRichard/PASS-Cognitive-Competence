@@ -1,6 +1,31 @@
 <!--pages/SentenceRepetition/index.wxml-->
 <!-- 首页 -->
-<view class="index" hidden="{{round==0?false:true}}">
+<view class="search-info" hidden="{{round==0?false:true}}" style="height:{{gameHeight}}rpx">
+    <view class="head-title" style="height:{{gameHeight*0.1}}rpx;padding-top:{{gameHeight*0.02}}rpx">
+      <view class="title-cn">句 子 问 题</view>
+      <view class="title-en">sentence repetition</view>
+    </view>
+    <!-- 轮播图 -->
+    <view style="height:{{gameHeight*0.85}}rpx;width:100%">
+      <swiper class="guide" style="height:100%" bindchange="currentHandle">
+        <block wx:for="{{help}}" wx:key="*this">
+          <swiper-item>
+            <view class="slide_image">
+              <image src = "{{item.img}}"/>
+            </view>
+            <view class="guide_text">
+              <icon class="info-icon"><image src="https://qbkeass.cn/images/tabbar/game.png" ></image></icon>
+              <text>{{item.text}}</text></view>
+            <view class="start" bindtap="tapStart" hidden="{{!item.startShow}}">开始游戏</view>
+          </swiper-item>
+        </block>
+      </swiper>
+      <view class="swp-dot">
+        <view class="square-12 m-r-8 {{current === index ?'dot_active': ''}}" wx:for="{{help}}" wx:key="{{index}}"></view>
+      </view>
+    </view>
+  </view>
+<!-- <view class="index" hidden="{{round==0?false:true}}">
   <view class="head-title">
     <view class="title-cn">句子问题</view>
     <view class="title-en">Sentence Repetition</view>
@@ -41,7 +66,7 @@
       游戏分为ABCD四个选项，题目为单选题，要求选出正确的选项。一共五关，句子长度由短至长，每关10s，每过一关增加2分，根据最后的闯关分数判定游戏等级。</view>
   </view>
   <view class="start" bindtap="tap_start">开始游戏</view>
-</view>
+</view> -->
 <!-- 游戏主体 -->
 <view class="game" hidden="{{round==0?true:false}}">
   <image class="bgimg"

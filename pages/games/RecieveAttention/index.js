@@ -8,15 +8,18 @@ Page({
   data: {
     help: [{
         img: 'cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/Game_RecieveAttention/1.png',
-        text: '进入页面后，你将会看到最上面一行的题目和5*36的气泡'
+        text: '进入页面后，你将会看到最上面一行的题目和5*36的气泡',
+        startShow: false
       },
       {
         img: 'cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/Game_RecieveAttention/2.gif',
-        text: '根据上方的题目选择正确的气泡，再点一次可以取消，同时页面可以滚动'
+        text: '根据上方的题目选择正确的气泡，再点一次可以取消，同时页面可以滚动',
+        startShow: false
       },
       {
         img: 'cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/Game_RecieveAttention/3.png',
-        text: '做完了别忘了提交哦，限时120s，做对的越多，时间越少，分数越高'
+        text: '做完了别忘了提交哦，限时120s，做对的越多，时间越少，分数越高',
+        startShow: true
       },
     ], //游戏介绍界面图库
     question: '',
@@ -76,8 +79,20 @@ Page({
     juzhen: 0,
     zici: 0,
     shuiguo: 0,
-    jieshou: 0
+    jieshou: 0,
+    current: 0,
+    gameHeight: '0',
   },
+
+  currentHandle(e) {
+    let {
+      current
+    } = e.detail
+    this.setData({
+      current
+    })
+  },
+
   /**
    * 点击字母对事件
    */
@@ -412,7 +427,7 @@ Page({
   /**
    * 开始游戏
    */
-  tap_start: function () {
+  tapStart: function () {
     wx.pageScrollTo({
       scrollTop: 0
     }) //回到页面顶部
@@ -448,9 +463,11 @@ Page({
    */
   onLoad: function (option) {
     var that = this
-    console.log(option)
+    console.log(option);
+    var res = wx.getSystemInfoSync();
     this.setData({
       testFlag: option.testFlag,
+      gameHeight: 750 / res.windowWidth * res.windowHeight,
     })
     console.log(this.data.testFlag)
     if (this.data.testFlag == 2 || this.data.testFlag == 1) {
