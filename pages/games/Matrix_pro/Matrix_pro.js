@@ -1,9 +1,9 @@
 // pages/Matrix_pro/Matrix_pro.js
 import Toast from '../../../miniprogram/miniprogram_npm/@vant/weapp/toast/toast/';
-import Dialog from '../../../miniprogram/miniprogram_npm/@vant/weapp/dialog/dialog';
 
-let countDownTimer = null //计时器
-let cnt_image_loading = 0
+let countDownTimer = null; //计时器
+let imageLoadedNum = 0;
+const timeLimit = 30;
 
 Page({
 
@@ -11,24 +11,23 @@ Page({
    * 页面的初始数据
    */
   data: {
-    image_name_pre: "https://qbkeass.cn/images/games/matrixPro/Matrix-", //图片地址头部
-    cnt_question: 20, //题目集题目总个数
-    question_index: 1, //待做题目下标
-    done_index: [], //已做题目下标
-    round: 0, //轮数 (初始化为0，0表示未开始)
-    cnt_round: 5, //总轮数
-    answer: [1, 3, 3, 3, 3, 1, 4, 2, 4, 4, 4, 4, 3, 1, 3, 1, 1, 3, 1, 2], //题目答案集(1:A; 2:B; 3:C; 4:D)
-    selector: 0, //被选择选项（每一关初始化为0）
-    countDownNum: 30, //计时时长（单位s；总时长30s）
-    // timer: null, 
-    // cnt_image_loading: 0, //有几张图片已经加载完成（初始化为0）
-    question_hidden: true, //题目是否显示
-    bingo_cnt: 0, //正确题目个数
-    slideImgArr: ['https://qbkeass.cn/images/games/matrixPro/Matrix_info_2.png', 'https://qbkeass.cn/images/games/matrixPro/Matrix_info_3.png',], //游戏介绍界面
-    startGame: false, //是否开始游戏
-    level_image: ["https://qbkeass.cn/images/level/level-A.png", "https://qbkeass.cn/images/level/level-B.png", "https://qbkeass.cn/images/level/level-C.png", "https://qbkeass.cn/images/level/level-D.png"],
-    level_show: false,
-    level: 0,
+    round: 0, //轮数
+    roundNum: 5, //总轮数 
+    questionNum: 15, //题目集题目总个数
+    questionIndex: 1, //当前题目下标
+    doneQuestionIndex: [], //已做题目下标
+    answer: [4, 2, 6, 3, 6, 2, 1, 4, 4, 3, 6, 6, 6, 3, 6], //题目答案集
+    countDownNum: timeLimit, //计时时长（单位s；总时长30s）
+    corretNum: 0, //正确题目个数
+    showQuestion: false, //题目是否显示
+    showGame: false, //游戏是否显示
+    showLevel: false, //等级是否显示
+    selectedImage: 0,
+    selectedImageClass: 'image1',
+    level: 0, //等级
+    imageNameHead: "https://qbkeass.cn/images/games/matrixPro/", //图片地址头部
+    slideImgArr: [,], //游戏介绍图
+    imageLevel: ["https://qbkeass.cn/images/level/level-A.png", "https://qbkeass.cn/images/level/level-B.png", "https://qbkeass.cn/images/level/level-C.png", "https://qbkeass.cn/images/level/level-D.png"], //游戏等级图
 
     testFlag: 0,
   },
@@ -36,115 +35,93 @@ Page({
   /**
    * 游戏内部函数
    */
-  comfirm: function () {
-    if (this.data.selector == 0) return;
 
-    if (this.data.countDownNum > 29) {
-      Toast('请多加思考哦');
-      return;
-    }
+  start: function () {
+    //当开始游戏按钮被点击时，隐藏视觉搜索介绍
+    var questionIndex = this.getIndexRamdom(), pa = this.data.questionIndex;
+    
+    this.setData({
+      round: 1,
+      showGame: true,
+      questionIndex: questionIndex,
+    })
 
-    clearInterval(countDownTimer);
-    // console.log(this.data.selector);
-    // console.log(this.data.answer[this.data.question_index - 1]);
-    if (this.data.selector == this.data.answer[this.data.question_index - 1]) { //答案正确
-      this.setData({
-        bingo_cnt: this.data.bingo_cnt + 1,
-      })
+    if (questionIndex == pa) {
+      imageLoadedNum--;
+      this.imageLoading();
     }
-    if (this.data.round < this.data.cnt_round) {
-      this.next_Question();
-    } else {
-      // Toast.success('闯关成功');
-      this.rebegin();
-    }
-
-    // if (this.data.selector == this.data.answer[this.data.question_index - 1]) { //答案正确
-    //   if (this.data.round < this.data.cnt_round) {
-    //     Toast.success('答案正确');
-    //     this.next_Question();
-    //   } else {
-    //     Toast.success('闯关成功');
-    //     this.rebegin();
-    //   }
-    // } else { //答案错误
-    //   Dialog.confirm({
-    //     message: '可惜！答案错误',
-    //     confirmButtonText: '再来一次',
-    //     cancelButtonText: '返回',
-    //   })
-    //     .then(() => {
-    //       this.restart();
-    //     })
-    //     .catch(() => {
-    //       this.rebegin();
-    //     });
-    // }
   },
 
-  // restart: function () {
-  //   var question_index = this.random_question_index();
-
-  //   this.setData({
-  //     done_index: [], //已做题目下标
-  //     round: 0, //轮数 (初始化为0，0表示未开始)
-  //     selector: 0, //被选择选项（每一关初始化为0）
-  //     countDownNum: 30, //计时时长（单位s；总时长30s）
-  //     timer: null, //计时器
-  //     question_hidden: true,
-  //     round: 1,
-  //     question_index: question_index,
-  //   })
-  // },
-
-  next_Question: function () {
-    this.data.done_index.push(this.data.question_index);
-    var round = this.data.round;
-    var question_index = this.random_question_index();
+  nextQuestion: function () {
+    var questionIndex = this.getIndexRamdom();
+    while (this.data.questionIndex == questionIndex) {
+      questionIndex = this.getIndexRamdom()
+    }
 
     this.setData({
-      selector: 0,
-      round: round + 1,
-      question_index: question_index,
-      question_hidden: true,
-      countDownNum: 30,
+      round: this.data.round + 1,
+      showQuestion: false,
+      questionIndex: questionIndex,
+      selectedImage: 0,
     });
   },
 
-  image_loaded: function (e) {
-    // var cnt_image_loading = this.data.cnt_image_loading + 1;
-    cnt_image_loading++
-    console.log("loading image:" + cnt_image_loading);
+  imageLoading: function () {
+    imageLoadedNum++
     
-    if (this.data.round == 0) {
-      cnt_image_loading = 0
-    } else if (cnt_image_loading == 3) {
-      this.countDown();
+    if (imageLoadedNum >= 7 && this.data.round != 0) {
+      console.log("image loaded")
 
-      cnt_image_loading = 0
       this.setData({
-        question_hidden: false,
-        countDownNum: 30,
+        countDownNum: timeLimit,
+        showQuestion: true,
       })
+
+      imageLoadedNum = 0
+      this.countDown()
     }
   },
 
-  image_loading_error: function () {
-    //待实现
-    console.log("error");
-  },
-
-  random_question_index: function () {
-    var index = parseInt(Math.random() * this.data.cnt_question + 1);
-    while (this.data.done_index.indexOf(index) != -1) {
-      index = parseInt(Math.random() * this.data.cnt_question + 1);
+  getIndexRamdom: function () {
+    var index = parseInt(Math.random() * this.data.questionNum + 1);
+    while (this.data.doneQuestionIndex.indexOf(index) != -1) {
+      index = parseInt(Math.random() * this.data.questionNum + 1);
     }
+    console.log("getNextQuestionIndex:"+index);
     return index;
   },
 
-  rebegin: function () {
-    var score = this.data.bingo_cnt * 100.0 / this.data.cnt_round
-    var level;
+  tapImage: function(e) {
+    this.setData({
+      selectedImage: e.currentTarget.dataset.select,
+    })
+  },
+
+  comfirm: function() {
+
+    this.data.doneQuestionIndex.push(this.data.questionIndex);
+    clearInterval(countDownTimer);
+
+    if (this.data.selectedImage == this.data.answer[this.data.questionIndex-1]) {
+      this.setData({
+        corretNum: this.data.corretNum + 1,
+      })
+    }
+
+    if (this.data.round < this.data.roundNum) {
+      this.nextQuestion();
+    } else {
+      this.gameOver();
+    }
+
+  },
+
+  gameOver: function () {
+    var score = this.data.score != 0 ? this.data.corretNum * 100.0 / this.data.doneQuestionIndex.length:0, level;
+    console.log("score:"+score);
+    wx.setStorage({ key: "hasJuzhen", data: true })
+    wx.setStorage({ key: "juzhen", data: score })
+
     if (score >= 90) {
       level = 1;
     } else if (score < 90 && score >= 75) {
@@ -155,27 +132,20 @@ Page({
       level = 4;
     }
 
-    console.log(score);
-
     this.setData({
-      level_show: true,
+      showLevel: true,
       level: level - 1,
     })
 
-    setTimeout(() => this.exit(), 2500);
-    clearTimeout();
+    var _subOp = setInterval(() => {
+      this.exit()
+      clearInterval(_subOp);
+    }, 2500);
   },
 
   exit: function () {
     this.setData({
-      level_show: false,
-      //   done_index: [], //已做题目下标
-      //   round: 0, //轮数 (初始化为0，0表示未开始)
-      //   selector: 0, //被选择选项（每一关初始化为0）
-      //   countDownNum: 30, //计时时长（单位s；总时长30s）
-      //   timer: null, //计时器
-      //   question_hidden: true,
-      //   bingo_cnt: 0,
+      showLevel: false,
     })
 
     if (this.data.testFlag == 0) {
@@ -193,42 +163,26 @@ Page({
     }
   },
 
-  select: function (e) {
-    this.setData({
-      selector: e.currentTarget.dataset.selection,
-    })
+  overTime: function () {
+    Toast ('超时啦');
+    this.data.doneQuestionIndex.push(this.data.questionIndex);
+
+    var _subOp = setInterval(() => {
+      if (this.data.round < this.data.roundNum) {
+        this.nextQuestion();
+      } else {
+        this.gameOver();
+      }
+      clearInterval(_subOp);
+    }, 1800);
   },
 
-  start: function () {
-    //当开始游戏按钮被点击时，隐藏视觉搜索介绍
-    var question_index = this.random_question_index()
-    while (this.data.question_index == question_index) {
-      question_index = this.random_question_index()
-    }
-    
-    this.setData({
-      startGame: true,
-      round: 1,
-      question_index: question_index,
-    })
-  },
-
-  overtime: function () { //超时
-    Toast.fail('超时啦');
-
-    this.next_Question();
-  },
-
-  /**
-   * 计时器
-   */
   countDown: function () {
-    // let that = this;
     let countDownNum = this.data.countDownNum;
     countDownTimer = setInterval(() => {
       if (countDownNum <= 0) {
         clearInterval(countDownTimer);
-        this.overtime();
+        this.overTime();
       } else {
         countDownNum = countDownNum - 1
         this.setData({
@@ -246,7 +200,6 @@ Page({
     this.setData({
       testFlag: option.testFlag
     })
-
   },
 
   /**

@@ -10,35 +10,35 @@ Page({
     size:5,
     num: [],
     text:"计划连接",
-    text3:"按从小到大的顺序点击数字",//规则
+    text2:"按从小到大的顺序点击数字",//规则
 
     currenta:-1,
     currentb: [],
     level:1,
     mh:20,
     marlt:0,
-    istimeout:false,
+    isTimeout:false,
 
     score_show:false,
-    scorelevel:"cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/images/tabbar/test-chosen.png",
+    scoreLevel:"cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/images/tabbar/test-chosen.png",
 
     question:[],//问题
     pointer:0,//指针
-    showgamebox1:false,
-    showgamebox2:false,
+    showGamebox1:false,
+    showGamebox2:false,
     showView1: false,//再试一次按钮的显示
     showView2: false,//下一关按钮的显示
     showView3: false,//返回按钮的显示(已删除)
     progressWidth:0,
     progressTime:10000,//10ms
     countTime:3,
-    countTimenext:3,
+    countTimenext:2,
 
     score:0,
 
     jiao:[],//旋转的角度
     jiao2:20,
-
+     /*主页面*/ 
     slideImgArr: ['https://qbkeass.cn/images/games/planToConnect/ptcA.png','https://qbkeass.cn/images/games/planToConnect/ptcB.png'], //游戏介绍界面
     indicatorDots: true, // 是否显示面板指示点
     autoplay: true,      // 是否自动切换
@@ -91,8 +91,8 @@ Page({
     this.setData({
       showhomepage: false,
       mTime: this.data.time * 1000,
-      showgamebox1:true,
-      showgamebox2:false,
+      showGamebox1:true,
+      showGamebox2:false,
     })
     this.drawActive();
   },
@@ -126,22 +126,22 @@ Page({
     console.log('gameOver');
     console.log(this.data.score);
     console.log(this.data.progressTime)
-    if(this.data.level===3||this.data.istimeout===true){
+    if(this.data.level===3||this.data.isTimeout===true){
       if(this.data.score>=90){
         this.setData({
-          scorelevel:"https://qbkeass.cn/images/level/level-A.png",
+          scoreLevel:"https://qbkeass.cn/images/level/level-A.png",
         });
       }else if(this.data.score>=75){
         this.setData({
-          scorelevel:"https://qbkeass.cn/images/level/level-B.png",
+          scoreLevel:"https://qbkeass.cn/images/level/level-B.png",
         });
       }else if(this.data.score>=60){
         this.setData({
-          scorelevel:"https://qbkeass.cn/images/level/level-C.png",
+          scoreLevel:"https://qbkeass.cn/images/level/level-C.png",
         });
       }else{
         this.setData({
-          scorelevel:"https://qbkeass.cn/images/level/level-D.png",
+          scoreLevel:"https://qbkeass.cn/images/level/level-D.png",
         });
       }
     }
@@ -149,7 +149,7 @@ Page({
     wx.setStorage({key: "jihua", data: that.data.score})
     this.setData({
       score_show:true,
-      countTimenext:3,
+      countTimenext:2,
     });
     this.timer3 = setInterval(this.run3, 1000);
   },
@@ -196,7 +196,7 @@ Page({
        this.setData({
         score_show:false,
       });
-      if(this.data.level===3||this.data.istimeout===true){
+      if(this.data.level===3||this.data.isTimeout===true){
         this.exit();
       }else{
         console.log('next step success');
@@ -234,7 +234,7 @@ Page({
       progressWidth: 0, //进度100%
       progressTime: 10000,//进度条需要总时间s
       text:"挑战失败",
-      istimeout:true,
+      isTimeout:true,
      })
      this.gameOver();
      return;
@@ -290,8 +290,8 @@ Page({
     }else{
       this.setData({
         mh:20,
-        showgamebox1:true,
-        showgamebox2:false,
+        showGamebox1:true,
+        showGamebox2:false,
         //showView2:false,
       }); 
       this.resetElement();
@@ -300,12 +300,12 @@ Page({
     }
     if(this.data.level===2){
       this.setData({
-        text3:"按从小到大的顺序点击字母",
+        text2:"按从小到大的顺序点击字母",
       });
     } 
     if(this.data.level>2){
       this.setData({
-        text3:"按从数字从大到小字母小到大的顺序依次点击",
+        text2:"按从小到大的顺序点击数字和字母",
       });
     }
   },
@@ -314,8 +314,8 @@ Page({
     console.log('btnStart');
     this.setData({
       text:"点击查看提示",
-      showgamebox1:false,
-      showgamebox2:true,
+      showGamebox1:false,
+      showGamebox2:true,
       mh:10,
     });
     this.timer = setInterval(this.run, 10);
@@ -324,11 +324,13 @@ Page({
     console.log('resetElement');
     this.setData({
       question:[],
+      currentb: [],
       pointer:0,
-      istimeout:false,
+      isTimeout:false,
       progressWidth:0,
       progressTime:10000,
       currenta:-1,
+      marlt:0,
     });
   },
   onShow: function (option) {

@@ -16,7 +16,7 @@
   height: 100%;
   position: fixed;
   background-size: 100% 100%;
-  z-index: -1;
+  z-index: -5;
   margin-top: 0px;
 }
 
@@ -25,7 +25,7 @@
   width: 90px;
   position: fixed;
   background-size: 100% 100%;
-  z-index: -1;
+  z-index: -5;
   border-radius: 10px;
   filter: drop-shadow(5px 5px 5px #000000);
 }
@@ -62,7 +62,7 @@
 
 .head {
   width: 100vw;
-  height: 27vh;
+  height: 25vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -70,23 +70,78 @@
 
 .middle {
   width: 100vw;
-  height: 23vh;
+  height: 50vh;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-
+.Keyboard_hidden{
+  display: none;
+}
+.Keyboard_show{
+  margin-top: 5vh;
+  width: 36vh;
+  height: 36vh;
+  flex-direction: column;
+  align-items: center;
+}
+.keyboardLine{
+  width: 36vh;
+  height: 9vh;
+  display: flex;
+  align-items: center;
+}
+.keyboardBtn{
+  line-height: 8vh;
+  text-align: center;
+  font-size: 4vh;
+  margin-left: 2vh;
+  margin-right: 2vh;
+  width: 8vh;
+  height: 8vh;
+  border-radius: 8vh;
+  font-weight:bold;
+  color: #ffffff;
+}
+.imgKB1{
+  margin-top: -0.5vh;
+  margin-left: 2vh;
+  width: 8vh;
+  height: 8vh;
+  position: fixed;
+  background-size: 100% 100%;
+  z-index: -1;
+}
+.imgKB2{
+  margin-top: -0.5vh;
+  margin-left: 14vh;
+  width: 8vh;
+  height: 8vh;
+  position: fixed;
+  background-size: 100% 100%;
+  z-index: -1;
+}
+.imgKB3{
+  margin-top: -0.5vh;
+  margin-left: 26vh;
+  width: 8vh;
+  height: 8vh;
+  position: fixed;
+  background-size: 100% 100%;
+  z-index: -1;
+}
 .buttom {
   display: flex;
-  height: 20vh;
+  height: 15vh;
   width: max-content;
   align-items: center;
+  overflow: hidden;
 }
 
 .bottom2 {
   flex-direction: column;
   display: flex;
-  height: 20vh;
+  height: 10vh;
   width: 100vh;
   align-items: center;
 }
@@ -139,15 +194,14 @@
   align-items: center;
 }
 
-.numbertorshow_hidden {
+.numbertoshow_hidden {
   display: none;
 }
 
-.numbertorshow_show {
+.numbertoshow_show {
   margin-top: 30px;
   height: 60px;
   width: max-content;
-  color: #ffffff;
   align-items: center;
 }
 
@@ -191,15 +245,16 @@
 }
 
 .input_show {
-  border: 5px;
-  margin-top: 26px;
-  border-radius: 45px;
+  margin-top: 3vh;
+  border-radius: 10vh;
   border: 5px solid white;
-  height: 45px;
-  width: 150px;
-  line-height: 50px;
+  height: 5vh;
+  width: 50vw;
+  font-size: 3vh;
   text-align: center;
+  line-height: 5vh;
   color: #ffffff;
+  overflow: hidden;
 }
 
 .submit_hidden {

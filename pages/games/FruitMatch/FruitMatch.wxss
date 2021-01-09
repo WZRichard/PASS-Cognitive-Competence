@@ -1,5 +1,4 @@
 /* pages/FruitMatch/FruitMatch.wxss */
-
 .background {
   width: 100%;
   height: 100%;
@@ -8,129 +7,15 @@
   z-index: -1;
 }
 
-.progress {
-  margin-top: 36rpx;
-  margin-bottom: 40rpx;
-  margin-left: 15%;
-  width: 70%;
+.imgBig {
+  height:400rpx;
 }
 
-.icon {
-  width: 80rpx;
+/* 前置 */
+.helperIcon {
   position: absolute;
-  top: 0;
-}
-
-.title {
-  margin-top: 30rpx;
-  text-align: center;
-}
-
-.title > image {
-  height: 120rpx;
-}
-
-/* .in_title {
-  position: absolute;
-  left: 25%;
-  top: 13%;
-
-  transition: 0.2s;
-}
-
-.in_title_text {
-  width: 163px;
-  padding: 5px;
-  border-radius: 10rem;
-  text-align: center;
-
-  font-size: 20px;
-}
-
-.in_title_button1 {
-  width: 100px;
-  margin-left: 45px;
-  z-index: 10;
-  margin-top: 50px;
-  background-color: antiquewhite;
-  border-radius: 10rem;
-}
-
-.in_title_button2 {
-  width: 100px;
-  margin-left: 45px;
-  z-index: 10;
-  margin-top: 20px;
-  background-color: antiquewhite;
-  border-radius: 10rem;
-}
-
-.Question {
-  margin-top: 50px;
-  margin-bottom: 20px;
-  text-align: center;
-  transition: 0.5s;
-
-  position: relative;
-  top: 5px;
-  transition: 0.5s;
-}
-
-
-.Question > view {
-  width: 60%;
-  padding: 5px;
-  margin: 5px auto;
-  border-radius: 10rem;
-  background-color: rgb(236, 236, 236);
-  text-align: center;
-}
-
-.Question > view > text {
-  font-size: 20px;
-} 
-
-.img_Question {
-  border: 5px solid #ddd;
-} */
-
-.img {
-  height: 160rpx;
-  background-color: #eeeeee;
-}
-
-.img_show {
-  opacity: 1;
-  transform: rotateX(0deg);
-  
-  transition: 0.8s ease-out;
-}
-
-.img_hide {
-  opacity: 0;
-  transform: rotateX(-90deg);
-  
-  transition: 0.8s ease-in;
-}
-
-.row {
-  float: left;
-  width: 160rpx;
-  height: 160rpx;
-  margin: 10rpx;
-  border-radius: 15%;
-  border: 10rpx solid #ffffff;
-  background-color: #ffffff;
-}
-
-.grid {
-  display: flex;
-  justify-content: center;
-}
-
-/* 修改2.0 游戏介绍 */
-.show2 {
-  margin-top: 251rpx;
+  right: 60rpx;
+  top: 20rpx;
 }
 
 .wrapper {
@@ -138,10 +23,6 @@
   align-items: center;
   justify-content: center;
   height: 100%;
-}
-
-._img {
-  height:400rpx;
 }
 
 .game-info {
@@ -199,20 +80,6 @@
   line-height: 45rpx;
 }
 
-/* .start {
-  width: 96%;
-  margin-left: 2%;
-  margin-right: 2%;
-  margin-bottom: 12px;
-
-  position: absolute;
-  bottom: 0px;
-}
-
-.start>van-button {
-  border-radius: 100rpx;
-} */
-
 .start{
   height: 80rpx;
   line-height: 80rpx;
@@ -226,24 +93,81 @@
   align-content: center;
 }
 
-.helper {
+/* 游戏 */
+.progress {
+  margin-top: 36rpx;
+  margin-bottom: 40rpx;
+  margin-left: 15%;
+  width: 70%;
+  transition: 0.8s ease-out;
+}
+
+.icon {
+  width: 80rpx;
   position: absolute;
-  right: 60rpx;
-  top: 20rpx;
+  top: 0;
 }
 
-.helper1 {
-  text-align: right;
-  line-height: 50rpx;
-  font-size: 30rpx;
-  margin: 20rpx 20rpx;
-  color:#004e66;
+.img {
+  height: 160rpx;
+  background-color: #eeeeee;
 }
 
-.helper2 {
-  margin-top: -20px;
+.imgShow {
+  opacity: 1;
+  transform: rotateX(0deg);
+  
+  transition: 0.8s ease-out;
+}
+
+.imgHide {
+  opacity: 0;
+  transform: rotateX(-90deg);
+  
+  transition: 0.8s ease-in;
+}
+
+.col {
+  float: left;
+  width: 160rpx;
+  height: 160rpx;
+  margin: 10rpx;
+  border-radius: 15%;
+  border: 10rpx solid #ffffff;
+  background-color: #ffffff;
+}
+
+.row {
+  display: flex;
+  justify-content: center;
+}
+
+.question {
+  margin-top: 251rpx;
+}
+
+/* 教程 */
+.popupController {
+  padding: 0 40rpx;
+}
+
+.helperContent {
   text-align: center;
-  color: #004e66;
-  font-size: 36rpx;
-  line-height: 80rpx;
+  font-size: 40rpx;
+  line-height: 50rpx;
+}
+
+.helperButtons {
+  display: flex;
+  margin-top: 30rpx;
+  margin-bottom: 50rpx;
+}
+
+.helperButtons > van-button {
+  flex: 1;
+}
+
+.helperButton {
+  padding: 30rpx;
+  margin-bottom: 50rpx;
 }

@@ -1,37 +1,46 @@
 <!--pages/FruitMatch/FruitMatch.wxml-->
 
 <!-- 背景图 -->
-<image class="background" hidden="{{!startGame}}"
-  src="https://qbkeass.cn/images/wallpaper/game-wp1.png"
+<image class="background" hidden="{{!showGame}}" src="https://qbkeass.cn/images/wallpaper/game-wp1.png"
   mode="aspectFill"></image>
-<van-toast id="van-toast" />
 
-<van-overlay show="{{level_show}}">
+<van-toast id="van-toast" />
+<van-overlay show="{{showLevel}}">
   <view class="wrapper">
     <view>
-      <image class="_img"
-        src="{{level_image[level]}}"
-        mode="heightFix"></image>
+      <image class="imgBig" src="{{imageLevel[level]}}" mode="heightFix"></image>
     </view>
   </view>
 </van-overlay>
 
 <!-- helper -->
-<van-popup show="{{ popup_show }}" bind:close="onClose" position="bottom" custom-style="height: 30%;">
-  <view class="helper1" bindtap="help_next">
-    下一步
-    <van-icon name="play-circle-o" size="40rpx" style="vertical-align: middle;" />
-  </view>
-  <view class="helper2">
+<van-popup show="{{ showPopup && (helperState==0?true:false) }}" position="bottom" round custom-class="popupController">
+  <view class="helperContent">
     <text>
-      {{helper_content}}
+      {{helperContent}}
     </text>
+  </view>
+  <view class="helperButtons">
+    <van-button plain block type="primary" bind:tap="start" color="pink" >开始测试</van-button>
+    <view style="width: 10px"></view>
+    <van-button plain block type="primary" bind:tap="helper" color="pink" >查看演示</van-button>
+  </view>
+</van-popup>
+
+<van-popup show="{{ showPopup && (helperState==0?false:true) }}" position="bottom" round custom-class="popupController">
+  <view class="helperContent">
+    <text>
+      {{helperContent}}
+    </text>
+  </view>
+  <view class="helperButton">
+    <van-button plain block type="primary" bind:tap="helpNext" color="pink" >下一步</van-button>
   </view>
 </van-popup>
 
 <!-- 前置 -->
-<view class="game-info" hidden="{{startGame}}">
-  <view class="helper" bindtap="helper">
+<view class="game-info" hidden="{{showGame}}">
+  <view class="helperIcon" bindtap="helper">
     <van-icon name="question-o" size="60rpx" color="rgb(212, 185, 32)" />
   </view>
   <!-- title -->
@@ -52,8 +61,7 @@
   </view>
   <view class="info">
     <view class="title2">
-      <image
-        src="https://qbkeass.cn/images/tabbar/game.png">
+      <image src="https://qbkeass.cn/images/tabbar/game.png">
       </image>
       游戏介绍
     </view>
@@ -64,19 +72,13 @@
 
   <view class="rule">
     <view class="title2">
-      <!-- <icon class="info-icon"> -->
-      <image
-        src="https://qbkeass.cn/images/tabbar/game.png">
+      <image src="https://qbkeass.cn/images/tabbar/game.png">
       </image>
-      <!-- </icon>  -->
       游戏规则
     </view>
     <view class="content">选出正确的图案即为通关。共有八关，前两关为2*2的格子，后六关为3*3的格子。每轮限定时间10秒。越到后面的关卡分数获得越多，根据总闯关分数判定游戏等级。</view>
   </view>
 
-  <!-- <view class="start" bindtap="start">
-    <van-button round type="primary" block color="#c93c42"> 开始游戏 </van-button>
-  </view> -->
   <view class="start" bindtap="start">
     <van-button round type="primary" block color="#c93c42"> 开始游戏 </van-button>
   </view>
@@ -85,46 +87,41 @@
 
 
 <!-- 游戏内容 -->
-<view class="_container" hidden="{{!startGame}}">
+<view class="_container" hidden="{{!showGame}}">
 
   <!-- 倒计时 -->
-  <view class="progress" style="opacity: {{question_begin}};">
-    <van-progress percentage="{{countDownNum*100.0/10}}" color="#004e66" pivot-text=" " show-pivot="false" stroke-width="24rpx" />
-    <image class="icon" mode="widthFix"
-      src="https://qbkeass.cn/images/tabbar/test-chosen.png"
+  <view class="progress" style="opacity: {{showQuestion?1:0}};">
+    <van-progress percentage="{{countDownNum*100.0/10}}" color="#004e66" pivot-text=" " show-pivot="false"
+      stroke-width="24rpx" />
+    <image class="icon" mode="widthFix" src="https://qbkeass.cn/images/tabbar/test-chosen.png"
       style="left: {{countDownNum*70.0/10+11}}%"></image>
   </view>
 
   <!-- 遮罩层 -->
-  <van-overlay show="{{ overlay_show }}">
+  <van-overlay show="{{ showOverlay }}">
     <view class="wrapper">
       <view>
-        <image class="_img"
-          src="https://qbkeass.cn/images/games/fruitMatch/fruits-{{answer}}.png"
-          mode="heightFix"></image>
+        <image class="imgBig" src="https://qbkeass.cn/images/games/fruitMatch/fruits-{{answer}}.png" mode="heightFix">
+        </image>
       </view>
     </view>
   </van-overlay>
 
-  <!-- Title -->
-  <view class="title">
-    <!-- <image
-      src="cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/Game_ FruitMatch/title.png"
-      mode="heightFix"></image> -->
+  <!-- 关卡 -->
+  <view hidden="{{round==0?true:false}}">
+    <van-divider contentPosition="center"
+      customStyle="color: #004e66; border-color: #004e66; font-size: 36rpx; font-weight: bold; margin-bottom:-10rpx">
+      第{{round}}关</van-divider>
   </view>
 
-  <van-divider contentPosition="center"
-    customStyle="color: #004e66; border-color: #004e66; font-size: 36rpx; font-weight: bold; margin-bottom:-10rpx">
-    第{{round}}关</van-divider>
-
   <!-- n*n的格子 -->
-  <view class="show2">
-    <view class="grid" wx:for="{{cnt_row}}" wx:key="idx" wx:for-index="idx">
-      <view class="row" wx:for="{{row[idx]}}" wx:key="index" bindtap="tap_image" data-index="{{index}}"
-        data-row="{{idx}}" wx:if="{{index < cnt_row}}">
-        <image class="img {{img_hidden[idx][index] ? 'img_show' : 'img_hide'}}"
-          src="https://qbkeass.cn/images/games/fruitMatch/fruits-{{item}}.png"
-          mode="heightFix" bindload="image_loaded" wx:if="{{item}}"></image>
+  <view class="question">
+    <view class="row" wx:for="{{rowNum}}" wx:key="*this" wx:for-index="row">
+      <view class="col" wx:for="{{imageSet[row]}}" wx:key="item" wx:for-index="col" bindtap="tapImage"
+        data-index="{{col}}" data-row="{{row}}" wx:if="{{col < rowNum}}">
+        <image class="img {{showImage[row][col] ? 'imgShow' : 'imgHide'}}"
+          src="https://qbkeass.cn/images/games/fruitMatch/fruits-{{item}}.png" mode="heightFix" bindload="imageLoading"
+          wx:if="{{item}}"></image>
       </view>
     </view>
   </view>

@@ -3,14 +3,14 @@
   <view class="wrapper">
     <view>
       <image class="_img"
-        src="{{scorelevel}}"
+        src="{{scoreLevel}}"
         mode="heightFix"></image>
     </view>
   </view>
 </van-overlay>
 
 <!--showgamebox1-->
-<view class="{{showgamebox1?'gamebox1_show':'gamebox1_hidden'}}">
+<view class="{{showGamebox1?'gamebox1_show':'gamebox1_hidden'}}">
   <!-- <image class="bgimg1"
     src="cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/Game_PlantoConnect/ptcbg1.jpg"
     mode="aspectFill"></image> -->
@@ -21,7 +21,7 @@
     <view class="question" bindtap="showQuestion" style="margin-top:{{mh}}vh">
       {{text}}
     </view>
-    <view class="text">{{text3}}</view>
+    <view class="text">{{text2}}</view>
 
   </view>
   <view class="bottom1">
@@ -38,7 +38,7 @@
   </view>
 </view>
 <!--showgamebox2-->
-<view class="{{showgamebox2?'gamebox2_show':'gamebox2_hidden'}}">
+<view class="{{showGamebox2?'gamebox2_show':'gamebox2_hidden'}}">
   <!-- <image class="bgimg2"
     src="cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/Game_PlantoConnect/ptcbg1.jpg"
     mode="aspectFill"></image> -->

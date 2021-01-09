@@ -7,110 +7,21 @@
   z-index: -1;
 }
 
-.progress {
-  margin-top: 18rpx;
-  margin-left: 15%;
-  width: 70%;
+.wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
 }
 
-.icon {
-  width: 80rpx;
-  position: absolute;
-  top: -16rpx;
+.imageLevel {
+  height:400rpx;
 }
 
+/* 前置 */
 .title {
   text-align: center;
 }
-
-.title_image {
-  height: 180rpx;
-}
-
-.in_title_begin {
-  margin: 40rpx;
-  font-size: 100rpx;
-}
-
-.in_title_begin_F {
-  margin-top: 100rpx;
-}
-
-.image {
-  height: 160rpx;
-}
-
-.image_Selection {
-  height: 200rpx;
-}
-
-.Question {
-  margin-top: 15rpx;
-  transition: all 1.2s;
-}
-
-.Question>view>text {
-  font-weight: bold;
-}
-
-.Question>view,
-.Selection>view {
-  display: flex;
-  justify-content: center;
-
-  font-size: 36rpx;
-}
-
-.Selection {
-  transition: all 1.2s;
-}
-
-.Question_detail {
-  margin-top: 30rpx;
-}
-
-.button {
-  margin: 30rpx 36rpx 30rpx 36rpx;
-  border-radius: 10rem;
-  /* border: 2px solid ; */
-}
-
-.button_active {
-  color: pink;
-}
-
-.button_none {
-  color: #004e66;
-}
-
-.selector{
-  font-size: 36rpx;
-  font-weight: bold;
-}
-
-.comfirm {
-  width: 100%;
-
-  display: flex;
-  justify-content: center;
-}
-
-.comfirm>image {
-  /* width: 100%;
-
-  position: absolute;
-  bottom: 0px; */
-
-  height: 180rpx;
-
-  /* position: relative;
-  top: -10rpx; */
-
-  /* position: absolute; */
-  /* bottom: 10rpx; */
-  /* left: 41%; */
-}
-
 
 .head-title {
   align-items: center;
@@ -126,13 +37,13 @@
   color: rgb(100, 100, 100);
 }
 
-.title2>image {
+.subTitle>image {
   height: 50rpx;
   width: 50rpx;
   vertical-align: middle;
 }
 
-.title2 {
+.subTitle {
   margin-top: 50rpx;
   font-size: 35rpx;
   height: 35rpx;
@@ -163,18 +74,6 @@
   line-height: 45rpx;
 }
 
-/* .start {
-  width: 96%;
-  margin-left: 2%;
-  margin-right: 2%;
-  margin-bottom: 12px;
-  position: absolute;
-  bottom: 0px;
-}
-
-.start>van-button {
-  border-radius: 100rpx;
-} */
 .start{
   height: 80rpx;
   line-height: 80rpx;
@@ -188,17 +87,106 @@
   align-content: center;
 }
 
-.game-info {
+.gameInfo {
   margin: 20rpx 18rpx 20rpx 18rpx;
 }
 
-.wrapper {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
+/* 游戏 */
+.progress {
+  margin-top: 18rpx;
+  margin-left: 15%;
+  width: 70%;
 }
 
-._img {
-  height:400rpx;
+.icon {
+  width: 80rpx;
+  position: absolute;
+  top: -16rpx;
 }
+
+.question>view,
+.selection>view {
+  display: flex;
+  justify-content: center;
+}
+
+.question {
+  margin: 60rpx 0 10rpx 0;
+  transition: all 1.2s;
+}
+
+.questionText {
+  font-weight: bold;
+  font-size: 50rpx;
+
+  margin-top: 20rpx;
+}
+
+.questionImage {
+  height: 450rpx;
+}
+
+.selection {
+  transition: all 1.2s;
+}
+
+.row {
+  display: flex;
+  justify-content: center;
+}
+
+.col {
+  float: left;
+  width: 178rpx;
+  height: 110rpx;
+  margin: 18rpx;
+  border-radius: 15%;
+  border: 10rpx solid #ffffff;
+  background-color: #ffffff;
+
+  display: flex;
+  justify-content: center;
+}
+
+.selectImage {
+  height: 110rpx;
+}
+
+.imageDefault {
+  position: relative;
+}
+
+.imageSelected {
+  border-color: rgb(179, 58, 21);
+}
+
+.comfirm {
+  width: fit-content;
+  margin: 0 auto;
+}
+
+.comfirmButton{
+  height: 80rpx;
+  width: 650rpx;
+  line-height: 80rpx;
+  font-size: 35rpx;
+  text-align: center;
+  margin: 50rpx 30rpx;
+  background-color:#004e66;
+  color: white;
+  font-weight: 200;
+  border-radius: 100rpx;
+}
+
+/* .image1{
+  animation: myfirst 5s;
+  position: relative;
+}
+
+@keyframes myfirst
+{
+0%   {background:red;left:0px; top:0px;}
+100% {background:red; left:100px; top:-100px;}
+}
+
+ */

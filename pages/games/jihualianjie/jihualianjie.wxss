@@ -97,7 +97,7 @@
   color: #004e66;
   text-align: center;
   line-height: 40px;
-  font-size: 30px;
+  font-size: 26px;
   font-weight: bolder;
 }
 .text{
@@ -185,8 +185,8 @@
   height: 6px;
   width: 300px;
   align-items: center;
-  overflow: hidden;
   font-size: 40px;
+  position: fixed;
 }
 
 .trow {
@@ -251,7 +251,7 @@
   font-weight: bold;
   text-align: center;
   border-radius: 12vw;
-  color: #004e66;
+  color: #0082aa;
 }
 
 /*按钮部分*/

@@ -1,21 +1,21 @@
 <!--pages/Matrix_pro/Matrix_pro.wxml-->
+
 <!-- 背景图 -->
-<image class="background" hidden="{{!startGame}}" src="https://qbkeass.cn/images/wallpaper/game-wp2.png"
+<image class="background" hidden="{{!showGame}}" src="https://qbkeass.cn/images/wallpaper/game-wp2.png"
   mode="aspectFill"></image>
 
 <!-- Vant -->
 <van-toast id="van-toast" />
-<van-dialog id="van-dialog" />
-<van-overlay show="{{level_show}}">
+<van-overlay show="{{showLevel}}">
   <view class="wrapper">
     <view>
-      <image class="_img" src="{{level_image[level]}}" mode="heightFix"></image>
+      <image class="imageLevel" src="{{imageLevel[level]}}" mode="heightFix"></image>
     </view>
   </view>
 </van-overlay>
 
 <!-- 前置 -->
-<view class="game-info" hidden="{{startGame}}">
+<view class="gameInfo" hidden="{{showGame}}">
   <view class="head-title">
     <view class="title-cn">矩阵问题</view>
     <view class="title-en">Matrix Problem</view>
@@ -32,7 +32,7 @@
     </swiper>
   </view>
   <view class="info">
-    <view class="title2">
+    <view class="subTitle">
       <image src="https://qbkeass.cn/images/tabbar/game.png">
       </image>
       游戏介绍
@@ -41,54 +41,35 @@
       矩阵问题这是一项图形类比推理游戏。观察下面关卡中图形的变化规律，要求玩家在4个可供选择的图形中推理出最适合的图形填入空白处。
     </view>
   </view>
-
   <view class="rule">
-    <view class="title2">
+    <view class="subTitle">
       <image src="https://qbkeass.cn/images/tabbar/game.png">
       </image>
       游戏规则
     </view>
     <view class="content">选出正确的答案即为通关。共有5关，答对题目数量越多，游戏等级越高。</view>
   </view>
-
-  <!-- <view class="start" bindtap="start">
-    <van-button round type="primary" block color="#c93c42"> 开始游戏 </van-button>
-  </view> -->
   <view class="start" bindtap="start">
     <van-button round type="primary" block color="#c93c42"> 开始游戏 </van-button>
   </view>
 </view>
 
 <!-- 游戏内容 -->
-<view class="_container" hidden="{{!startGame}}">
+<view class="_container" hidden="{{!showGame}}">
 
   <!-- 倒计时 -->
-  <view class="progress" style="opacity: {{round==0?0:1}};">
+  <view class="progress" style="opacity: {{round==0?0:1}}">
+
     <van-progress percentage="{{countDownNum*100.0/30}}" color="#004e66" pivot-text=" " show-pivot="false"
       stroke-width="12px" />
+
     <image class="icon" mode="widthFix" src="https://qbkeass.cn/images/tabbar/test-chosen.png"
-      style="left: {{countDownNum*70.0/30-9+15}}%"></image>
-    <!-- cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/Game_ FruitMatch/icons8-烟花-64.png -->
+      style="left: {{countDownNum*70.0/30-5+15}}%"></image>
+
   </view>
 
   <!-- Title -->
   <view class="title">
-    <!-- <view>
-      <image class="title_image"
-        src="cloud://pass-model-7g3fo4ig00002b96.7061-pass-model-7g3fo4ig00002b96-1304449250/Game_Martix/Matrix-Title.png">
-      </image>
-    </view>
-    <view hidden="{{round==0?false:true}}">
-      <view class="in_title_begin in_title_begin_F">
-        <van-button plain type="primary" icon="star-o" bindtap="start">开始</van-button>
-      </view>
-      <view class="in_title_begin">
-        <van-button plain type="primary" icon="share-o" bindtap="back">返回</van-button>
-      </view>
-      <view class="in_title_begin">
-        <van-button plain type="primary" icon="search" bindtap="">教程</van-button>
-      </view>
-    </view> -->
     <view class="in_title_text" hidden="{{round==0?true:false}}">
       <van-divider contentPosition="center"
         customStyle="color: #004e66; border-color: #004e66; font-size: 18px; font-weight: bold; margin-bottom:-5px">
@@ -97,60 +78,32 @@
   </view>
 
   <!-- Question -->
-  <view class="Question" hidden="{{question_hidden}}">
+  <view class="question" hidden="{{!showQuestion}}">
     <view>
-      <text>已知</text>
+      <image class="questionImage" src="{{imageNameHead}}{{questionIndex}}-T.png" mode="heightFix"
+        bindload="imageLoading"></image>
     </view>
-    <view>
-      <image class="image" src="{{image_name_pre}}{{question_index}}-1.jpg" mode="heightFix" bindload="image_loaded"
-        binderror="image_loading_error"></image>
-    </view>
-    <view style="margin-top: 5px;">
-      <text>下图中</text>
-      <van-icon name="question-o" size="20px" /> <text>处应该填什么呢？</text>
-    </view>
-    <view>
-      <image class="image" src="{{image_name_pre}}{{question_index}}-2.jpg" mode="heightFix" bindload="image_loaded"
-        binderror="image_loading_error"></image>
-    </view>
-    <view class="Question_detail">
-      <van-icon name="down" size="40rpx" />
-      <text>请在下方的选项中选择一个正确选项</text>
-      <van-icon name="down" size="40rpx" />
-    </view>
-    <view>
-      <image class="image_Selection" src="{{image_name_pre}}{{question_index}}-3.jpg" mode="heightFix"
-        bindload="image_loaded" binderror="image_loading_error"></image>
+
+    <view class="questionText">
+      <text>选出上图空白处缺失的图案</text>
     </view>
   </view>
 
   <!-- Selection -->
-  <view class="Selection" hidden="{{question_hidden}}">
-    <view>
-      <van-button round type="default" color="{{selector==1?'pink':'#004e66'}}" class="button" bindtap="select" data-selection="1"><text
-          class="selector">A</text>
-      </van-button>
-
-      <van-button round type="default" color="{{selector==2?'pink':'#004e66'}}" class="button" bindtap="select" data-selection="2"><text
-          class="selector">B</text>
-      </van-button>
-
-      <van-button round type="default" color="{{selector==3?'pink':'#004e66'}}" class="button" bindtap="select" data-selection="3"><text
-          class="selector">C</text>
-      </van-button>
-
-      <van-button round type="default" color="{{selector==4?'pink':'#004e66'}}" class="button" bindtap="select" data-selection="4"><text
-          class="selector">D</text>
-      </van-button>
+  <view class="selection" hidden="{{!showQuestion}}">
+    <view class="row" wx:for="{{[1, 2]}}" wx:key="*this" wx:for-item="row">
+      <view class="col {{ 3*(row-1)+col==selectedImage ? 'imageSelected':'imageDefault'}}" bindtap="tapImage" data-select="{{3*(row-1)+col}}" wx:for="{{[1, 2, 3]}}" wx:key="*this"
+        wx:for-item="col">
+        <image class="selectImage " mode="heightFix" src="{{imageNameHead}}{{questionIndex}}-A{{ 3*(row-1)+col }}.png"
+          bindload="imageLoading"></image>
+      </view>
     </view>
   </view>
 
-  <!-- 确认 -->
-  <view hidden="{{question_hidden}}" class="comfirm">
-    <!-- <van-button plain icon="coupon-o" type="primary" block class="comfirm" bindtap="comfirm" hidden="true"
-      style="opacity: {{selector==0?0.5:1}}">确认</van-button> -->
-
-    <image bindtap="comfirm" src="https://qbkeass.cn/images/button/submit.png" mode="heightFix"></image>
+  <view class="comfirm" hidden="{{selectedImage==0?true:false}}">
+    <view class="comfirmButton" bindtap="comfirm" >
+      提交
+    </view>
   </view>
 
 </view>

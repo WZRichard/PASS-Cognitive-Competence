@@ -11,44 +11,39 @@ Create.prototype = {
   createJump(){
     var char = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'];
     var numlist=[];
-    var numlist2=[];
-    var numlist3=[];
     if(this.level===1){
-      var j = Math.floor(Math.random()*16);
-      for(var i = 0; i < 8; i++){
-        var x = j + Math.floor(Math.random()*12)+1;
+      var j = Math.floor(Math.random()*(100/this.size/2));
+      numlist.push(j);
+      for(var i = 0; i < this.size*2-1; i++){
+        var x =j +  Math.floor(Math.random()*(100/this.size/2)+1);
+        j=x;
         numlist.push(x);
-        j = x;
       }
     }else if(this.level===2){
-      var j = Math.floor(Math.random()*5);
-      for(var i = 0; i < 8; i++){
-        var x = j + Math.floor(Math.random()*3)+1;
+      var j = Math.floor(Math.random()*8);
+      numlist.push(char[j]);
+      for(var i = 0; i < this.size*2-1; i++){
+        var x =j + Math.floor(Math.random()*2+1);
+        j=x;
         numlist.push(char[x]);
-        j = x;
       }
     }else{
-      var j = Math.floor(Math.random()*8);
-      for(var i = 0; i < 4; i++){
-        var x = j + Math.floor(Math.random()*6)+1;
-        numlist3.push(char[x]);
-        j = x;
+      var j = Math.floor(Math.random()*(100/this.size));
+      numlist.push(j);
+      for(var i = 0; i < this.size-1; i++){
+        var x =j +  Math.floor(Math.random()*(100/this.size)+1);
+        j=x;
+        numlist.push(x);
       }
-      j = Math.floor(Math.random()*10);
-      for(var i = 0; i < 4; i++){
-        var x = j + Math.floor(Math.random()*10)+1;
-        numlist2.push(x);
-        j = x;
-      }
-      var y = Math.random()*2;
-      for(var i = 0; i < 4; i++){
-        if(y>=1)
-          numlist.push(numlist2[3-i]);
-        numlist.push(numlist3[i]);
-        if(y<1)
-          numlist.push(numlist2[3-i]);
+      j = Math.floor(Math.random()*6);
+      numlist.push(char[j]);
+      for(var i = 0; i < this.size-1; i++){
+        var x =j + Math.floor(Math.random()*5+1);
+        j=x;
+        numlist.push(char[x]);
       }
     }
+    console.log(numlist);
    return numlist;
   },
   init(list) { // 填充数据
@@ -67,9 +62,9 @@ Create.prototype = {
   },
   createList(list){
     var numlist=[];
-    for(var i = 0; i < 8; i++)
+    for(var i = 0; i < this.size*2; i++)
       numlist.push(list[i]);
-    for(var i = 0; i < this.size*this.size-8; i++)
+    for(var i = 0; i < this.size*(this.size-2); i++)
       numlist.push("");
     return numlist;
   },
@@ -85,11 +80,11 @@ Create.prototype = {
         numlist[b]=x;
     }
     var count = 0;
-    for(var i = 0; i < 10; i++){
+    for(var i = 0; i < this.size*2; i++){
       if(numlist[i]==="")
         count++;
     }
-    if(count<5)
+    if(count<this.size)
        this.washList(numlist);
     return numlist;
   },
@@ -103,7 +98,7 @@ Create.prototype = {
   },
   createQuestion(list){
     var que=[];
-    for(var i = 0; i < 8; i++){
+    for(var i = 0; i < this.size*2; i++){
       que.push(list[i]);  
     }
     return que;

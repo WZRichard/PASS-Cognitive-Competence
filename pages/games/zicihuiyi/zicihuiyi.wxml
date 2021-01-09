@@ -1,26 +1,26 @@
 <!--pages/zicihuiyi/zicihuiyi.wxml-->
 
-<van-overlay show="{{score_show}}">
+<van-overlay show="{{scoreShow}}">
   <view class="wrapper">
     <view>
       <image class="_img"
-        src="{{scorelevel}}"
+        src="{{scoreLevel}}"
         mode="heightFix"></image>
     </view>
   </view>
 </van-overlay>
 
-<view class="{{showgamebox?'gamebox_show':'gamebox_hidden'}}">
+<view class="{{showGamebox?'gamebox_show':'gamebox_hidden'}}">
   <image class="bgimg" src="https://qbkeass.cn/images/wallpaper/game-wp4.png" mode="aspectFill"></image>
   <view class="head">
-    <view class="{{shownumbertoremember?'numbertoremember_show':'numbertoremember_hidden'}}" style=" font-size:{{fontsize}}px">{{numrem}}</view>
+    <view class="{{showNumbertoremember?'numbertoremember_show':'numbertoremember_hidden'}}" style=" font-size:{{fontSize}}px">{{numRem}}</view>
     <view class="{{showWords?'word_show':'word_hidden'}}">{{words}}</view>
-    <view class="{{shownumbertorshow?'numbertorshow_show':'numbertorshow_hidden'}}" style="color:{{numshowcolor}}; font-size:{{fontsize}}px">
-      {{numshow}}</view>
+    <view class="{{showNumbertorshow?'numbertoshow_show':'numbertoshow_hidden'}}" style="color:{{numshowColor}} ;font-size:{{fontSize}}px">
+      {{numShow}}</view>
   </view>
   <view class="middle">
 
-    <view class="{{showtimerow?'timerow_show':'timerow_hidden'}}">
+    <view class="{{showTimerow?'timerow_show':'timerow_hidden'}}">
       <image class="progressimg"
         src="https://qbkeass.cn/images/tabbar/test-chosen.png"
         mode="aspectFill" style="margin-left:{{marlt}}px;  transform: rotate({{jiao}}deg);"></image>
@@ -28,8 +28,41 @@
       </view>
     </view>
 
-    <input class="{{showInput?'input_show':'input_hidden'}}" type="number" bindinput="inputnum" value='{{inputValue}}'
-      auto-focus></input>
+    <view class="{{showInput?'input_show':'input_hidden'}}" type="number" auto-focus>{{inputValue}}</view>
+    <view class="{{showInput?'Keyboard_show':'Keyboard_hidden'}}">
+      <view class="keyboardLine">
+        <image class="imgKB1" src="{{btnImg}}" style=" transform: rotate({{select==1?'10':'0'}}deg)"></image>
+        <image class="imgKB2" src="{{btnImg}}" style=" transform: rotate({{select==2?'10':'0'}}deg)"></image>
+        <image class="imgKB3" src="{{btnImg}}" style=" transform: rotate({{select==3?'10':'0'}}deg)"></image>
+        <view class="keyboardBtn" bindtap="btnOne">1</view>
+        <view class="keyboardBtn" bindtap="btnTwo">2</view>
+        <view class="keyboardBtn" bindtap="btnThree">3</view>
+      </view>
+      <view class="keyboardLine">
+        <image class="imgKB1" src="{{btnImg}}" style=" transform: rotate({{select==4?'10':'0'}}deg)"></image>
+        <image class="imgKB2" src="{{btnImg}}" style=" transform: rotate({{select==5?'10':'0'}}deg)"></image>
+        <image class="imgKB3" src="{{btnImg}}" style=" transform: rotate({{select==6?'10':'0'}}deg)"></image>
+        <view class="keyboardBtn" bindtap="btnFour">4</view>
+        <view class="keyboardBtn" bindtap="btnFive">5</view>
+        <view class="keyboardBtn" bindtap="btnSix">6</view>
+      </view>
+      <view class="keyboardLine">
+        <image class="imgKB1" src="{{btnImg}}" style=" transform: rotate({{select==7?'10':'0'}}deg)"></image>
+        <image class="imgKB2" src="{{btnImg}}" style=" transform: rotate({{select==8?'10':'0'}}deg)"></image>
+        <image class="imgKB3" src="{{btnImg}}" style=" transform: rotate({{select==9?'10':'0'}}deg)"></image>
+        <view class="keyboardBtn" bindtap="btnSeven">7</view>
+        <view class="keyboardBtn" bindtap="btnEight">8</view>
+        <view class="keyboardBtn" bindtap="btnNine">9</view>
+      </view>
+      <view class="keyboardLine">
+        <image class="imgKB1" src="{{btnImg}}"></image>
+        <image class="imgKB2" src="{{btnImg}}" style=" transform: rotate({{select==0?'10':'0'}}deg)"></image>
+        <image class="imgKB3" src="{{btnImg}}"></image>
+        <view class="keyboardBtn" bindtap="btnClear">C</view>
+        <view class="keyboardBtn" bindtap="btnZero">0</view>
+        <view class="keyboardBtn" bindtap="btnDel">←</view>
+      </view>
+    </view>
   </view>
 
   <view class="buttom">
@@ -60,7 +93,7 @@
 
 </view>
 <!--showhomepage-->
-<view class="{{showgamebox ?'homepage_hidden':'homepage_show'}}" style="height:{{gameHeight-60}}rpx">
+<view class="{{showGamebox ?'homepage_hidden':'homepage_show'}}" style="height:{{gameHeight-60}}rpx">
   <view class="head-title">
     <view class="title-cn">数 字 回 忆</view>
     <view class="title-en">recall number</view>
