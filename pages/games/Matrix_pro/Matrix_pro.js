@@ -22,12 +22,23 @@ Page({
     showQuestion: false, //题目是否显示
     showGame: false, //游戏是否显示
     showLevel: false, //等级是否显示
-    selectedImage: 0,
-    selectedImageClass: 'image1',
     level: 0, //等级
     imageNameHead: "https://qbkeass.cn/images/games/matrixPro/", //图片地址头部
     slideImgArr: [,], //游戏介绍图
     imageLevel: ["https://qbkeass.cn/images/level/level-A.png", "https://qbkeass.cn/images/level/level-B.png", "https://qbkeass.cn/images/level/level-C.png", "https://qbkeass.cn/images/level/level-D.png"], //游戏等级图
+    //helper
+    help: [{
+      img: './image/Matrix-info-1.png',
+      text: '进入游戏后，你将会看到上方的题目图片',
+      startShow: false
+    },
+    {
+      img: './image/Matrix-info-2.png',
+      text: '根据上方的题目选空白处缺失的图案，确认后点击提交',
+      startShow: true
+    },
+    ], //游戏介绍界面图库
+    current: 0,
 
     testFlag: 0,
   },
@@ -39,11 +50,12 @@ Page({
   start: function () {
     //当开始游戏按钮被点击时，隐藏视觉搜索介绍
     var questionIndex = this.getIndexRamdom(), pa = this.data.questionIndex;
-    
+
     this.setData({
       round: 1,
       showGame: true,
       questionIndex: questionIndex,
+      countDownNum: timeLimit,
     })
 
     if (questionIndex == pa) {
@@ -68,7 +80,7 @@ Page({
 
   imageLoading: function () {
     imageLoadedNum++
-    
+
     if (imageLoadedNum >= 7 && this.data.round != 0) {
       console.log("image loaded")
 
@@ -87,22 +99,22 @@ Page({
     while (this.data.doneQuestionIndex.indexOf(index) != -1) {
       index = parseInt(Math.random() * this.data.questionNum + 1);
     }
-    console.log("getNextQuestionIndex:"+index);
+    console.log("getNextQuestionIndex:" + index);
     return index;
   },
 
-  tapImage: function(e) {
+  tapImage: function (e) {
     this.setData({
       selectedImage: e.currentTarget.dataset.select,
     })
   },
 
-  comfirm: function() {
+  comfirm: function () {
 
     this.data.doneQuestionIndex.push(this.data.questionIndex);
     clearInterval(countDownTimer);
 
-    if (this.data.selectedImage == this.data.answer[this.data.questionIndex-1]) {
+    if (this.data.selectedImage == this.data.answer[this.data.questionIndex - 1]) {
       this.setData({
         corretNum: this.data.corretNum + 1,
       })
@@ -117,8 +129,8 @@ Page({
   },
 
   gameOver: function () {
-    var score = this.data.score != 0 ? this.data.corretNum * 100.0 / this.data.doneQuestionIndex.length:0, level;
-    console.log("score:"+score);
+    var score = this.data.score != 0 ? this.data.corretNum * 100.0 / this.data.doneQuestionIndex.length : 0, level;
+    console.log("score:" + score);
     wx.setStorage({ key: "hasJuzhen", data: true })
     wx.setStorage({ key: "juzhen", data: score })
 
@@ -164,7 +176,7 @@ Page({
   },
 
   overTime: function () {
-    Toast ('超时啦');
+    Toast('超时啦');
     this.data.doneQuestionIndex.push(this.data.questionIndex);
 
     var _subOp = setInterval(() => {
@@ -192,6 +204,15 @@ Page({
     }, 1000);
   },
 
+  currentHandle(e) {
+    let {
+      current
+    } = e.detail
+    this.setData({
+      current
+    })
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */
@@ -199,6 +220,13 @@ Page({
     console.log(option)
     this.setData({
       testFlag: option.testFlag
+    })
+
+
+    var res = wx.getSystemInfoSync();
+    this.setData({
+      testFlag: option.testFlag,
+      gameHeight: 750 / res.windowWidth * res.windowHeight,
     })
   },
 
@@ -213,7 +241,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function (option) {
-    if(this.data.testFlag==2){
+    if (this.data.testFlag == 2) {
       wx.hideHomeButton();
     }
   },

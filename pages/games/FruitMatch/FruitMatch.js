@@ -7,12 +7,6 @@ let demoOp = {
 } //顺序执行计时器
 let countDownTimer = null; //计时器
 let imageLoadedNum = 0;
-let available = {
-  startButton: true,
-  helpButton: true,
-  nextButton: false,
-  // selectImage: false,
-}
 const timeLimit = 10;
 
 Page({
@@ -30,16 +24,26 @@ Page({
     difficulty: [2, 2, 3, 3, 4, 4, 5, 6], //关卡困难程度（有几种水果）
     showQuestion: false, //是否开始答题
     showOverlay: false, //answer是否显示
-    showGame: true, //是否开始游戏
+    showGame: false, //是否开始游戏
     showPopup: true, //是否显示帮助
     showImage: [[0, 0, 0], [0, 0, 0], [0, 0, 0]], //图片是否显示
     showImageBefore: [], //保证所有水果都有被展示
     showLevel: false, //是否显示等级
     level: 0, //等级
-    helperContent: '方框中隐藏着不同的水果\n请尽可能多的记住它们', //帮助内容
-    helperState: 0, //帮助状态
     slideImgArr: ['https://qbkeass.cn/images/games/fruitMatch/Fruits_info_1.png', 'https://qbkeass.cn/images/games/fruitMatch/fruit2-2.png', 'https://qbkeass.cn/images/games/fruitMatch/fruit2-3.png',], //游戏介绍图
     imageLevel: ["https://qbkeass.cn/images/level/level-A.png", "https://qbkeass.cn/images/level/level-B.png", "https://qbkeass.cn/images/level/level-C.png", "https://qbkeass.cn/images/level/level-D.png"], //游戏等级图
+    help: [{
+      img: './image/Fruit-info-1.gif',
+      text: '进入游戏后，将会有几个隐藏着的水果格子，接下来的时间里会有水果依次翻出，你需要尽可能多的记住各自内的水果',
+      startShow: false
+    },
+    {
+      img: './image/Fruit-info-2.gif',
+      text: '翻出三次水果后，会展示一张水果图片，请点击隐藏着这个水果的任意一个格子',
+      startShow: true
+    },
+    ], //游戏介绍界面图库
+    current: 0,
 
     testFlag: 0,
   },
@@ -49,13 +53,6 @@ Page({
    */
 
   start: function () {
-    if (!available.startButton) {
-      return;
-    } else {
-      available.startButton = false
-      available.helpButton = false
-    }
-
     this.setData({
       round: 1,
       showGame: true,
@@ -118,18 +115,10 @@ Page({
       imageLoadedNum = 0
     } else if (imageLoadedNum == (round < 3 ? 4 : 9)) {
       imageLoadedNum = 0
-      if (this.data.helperState == 0) {
-        let subOp = setInterval(() => {
-          this.animation();
-          clearInterval(subOp);
-        }, 800);
-      } else {
-        let subOp = setInterval(() => {
-          available.nextButton = true
-          this.helpNext();
-          clearInterval(subOp);
-        }, 800);
-      }
+      let subOp = setInterval(() => {
+        this.animation();
+        clearInterval(subOp);
+      }, 800);
     }
   },
 
@@ -198,30 +187,7 @@ Page({
     })
 
     clearInterval(countDownTimer);
-    if (this.data.helperState > 0) {
-      // 帮助界面
-      available.startButton = true
-      available.helpButton = true
-      if (this.data.imageSet[e.currentTarget.dataset.row][e.currentTarget.dataset.index] == this.data.answer) {
-        this.setData({
-          showPopup: true,
-          helperState: 0,
-          helperContent: '恭喜您答对了\n开始您的挑战吧',
-        })
-      } else {
-        this.setData({
-          showPopup: true,
-          helperState: 0,
-          helperContent: '抱歉答案错误\n再接再厉吧',
-        })
-      }
-
-      let subOp = setInterval(() => {
-        this.hideImage();
-        clearInterval(subOp);
-      }, 1000);
-
-    } else if (this.data.imageSet[e.currentTarget.dataset.row][e.currentTarget.dataset.index] == this.data.answer) {
+    if (this.data.imageSet[e.currentTarget.dataset.row][e.currentTarget.dataset.index] == this.data.answer) {
       // 答案正确
       this.setData({
         corretNum: this.data.corretNum + 1,
@@ -323,24 +289,7 @@ Page({
     countDownTimer = setInterval(() => {
       if (countDownNum <= 0) {
         clearInterval(countDownTimer)
-        if (this.data.helperState == 0) {
-          this.showLevel();
-        } else {
-          // 帮助界面
-          available.startButton = true
-          available.helpButton = true
-          this.setData({
-            showPopup: true,
-            helperState: 0,
-            helperContent: '抱歉超时啦\n再接再厉吧',
-            corretNum: this.data.corretNum + 1,
-          })
-
-          let subOp = setInterval(() => {
-            this.hideImage();
-            clearInterval(subOp);
-          }, 1000);
-        }
+        this.showLevel();
       } else {
         countDownNum = countDownNum - 1
         this.setData({
@@ -414,104 +363,6 @@ Page({
     }
   },
 
-  helper: function () {
-    if (!available.helpButton) {
-      return;
-    } else {
-      available.startButton = false
-      available.helpButton = false
-    }
-
-    this.setData({
-      showPopup: false,
-      helperState: 1,
-      showGame: true,
-      round: 1,
-      countDownNum: timeLimit,
-    })
-    this.setImage()
-  },
-
-  helpNext: function () {
-    if (!available.nextButton) {
-      return;
-    } else {
-      available.nextButton = false
-    }
-
-    let state = this.data.helperState;
-    switch (state) {
-      case 1: {
-        this.setData({
-          helperState: 2,
-        })
-        demoOp.steps = [{
-          func: () => this.showImageRandom(false),
-          playtime: 1500
-        }, {
-          func: () => this.hideImage(),
-          playtime: 1500
-        }, {
-          func: () => this.showImageRandom(true),
-          playtime: 1500
-        }, {
-          func: () => this.hideImage(),
-          playtime: 1500
-        }, {
-          func: () => this.showImageRandom(false),
-          playtime: 1500
-        }, {
-          func: () => this.hideImage(),
-          playtime: 1500
-        }, {
-          func: () => {
-            available.nextButton = true
-            this.setData({
-              showPopup: true,
-              helperContent: '记住接下来展示的水果',
-            })
-          },
-          playtime: 500
-        }]
-        this.syncOperation(demoOp)
-        break;
-      }
-      case 2: {
-        let answer = this.data.imageSet[this.getRadomInt(this.data.rowNum, 0)][this.getRadomInt(this.data.rowNum, 0)];
-
-        this.setData({
-          showPopup: false,
-          answer: answer,
-          showQuestion: true,
-          helperState: 3,
-        })
-        demoOp.steps = [{
-          func: () => this.showAnswer(),
-          playtime: 1500
-        }, {
-          func: () => {
-            available.nextButton = true
-            this.hideAnswer()
-            this.setData({
-              showPopup: true,
-              helperContent: '在方框中找出一个相同的水果\n注意不要超时咯',
-            })
-          },
-          playtime: 1500
-        }]
-        this.syncOperation(demoOp)
-        break;
-      }
-      case 3: {
-        this.setData({
-          showPopup: false,
-        })
-        this.countDown()
-        break;
-      }
-    }
-  },
-
   getRadomInt: function (a, b) {
     return parseInt(Math.random() * a + b);
   },
@@ -532,6 +383,15 @@ Page({
     }
   },
 
+  currentHandle(e) {
+    let {
+      current
+    } = e.detail
+    this.setData({
+      current
+    })
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */
@@ -540,7 +400,12 @@ Page({
     this.setData({
       testFlag: option.testFlag,
     })
-    console.log(this.data.testFlag);
+    
+    var res = wx.getSystemInfoSync();
+    this.setData({
+      testFlag: option.testFlag,
+      gameHeight: 750 / res.windowWidth * res.windowHeight,
+    })
   },
 
   /**

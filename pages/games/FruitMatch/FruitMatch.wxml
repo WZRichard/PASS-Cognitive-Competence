@@ -13,78 +13,35 @@
   </view>
 </van-overlay>
 
-<!-- helper -->
-<van-popup show="{{ showPopup && (helperState==0?true:false) }}" position="bottom" round custom-class="popupController">
-  <view class="helperContent">
-    <text>
-      {{helperContent}}
-    </text>
-  </view>
-  <view class="helperButtons">
-    <van-button plain block type="primary" bind:tap="start" color="pink" >开始测试</van-button>
-    <view style="width: 10px"></view>
-    <van-button plain block type="primary" bind:tap="helper" color="pink" >查看演示</van-button>
-  </view>
-</van-popup>
-
-<van-popup show="{{ showPopup && (helperState==0?false:true) }}" position="bottom" round custom-class="popupController">
-  <view class="helperContent">
-    <text>
-      {{helperContent}}
-    </text>
-  </view>
-  <view class="helperButton">
-    <van-button plain block type="primary" bind:tap="helpNext" color="pink" >下一步</van-button>
-  </view>
-</van-popup>
-
 <!-- 前置 -->
-<view class="game-info" hidden="{{showGame}}">
-  <view class="helperIcon" bindtap="helper">
-    <van-icon name="question-o" size="60rpx" color="rgb(212, 185, 32)" />
+<view class="search-info" hidden="{{showGame}}" style="height:{{gameHeight}}rpx">
+  <view class="head-title" style="height:{{gameHeight*0.1}}rpx;padding-top:{{gameHeight*0.02}}rpx">
+    <view class="title-cn">水 果 配 对</view>
+    <view class="title-en">fruit match</view>
   </view>
-  <!-- title -->
-  <view class="head-title">
-    <view class="title-cn">水果配对</view>
-    <view class="title-en">Fruit Match</view>
-  </view>
-  <view>
-    <swiper class="swiper" indicator-dots="true" autoplay="true" interval="3000" duration="1000" circular="true">
-      <block wx:for="{{slideImgArr}}" wx:key="*this">
-        <swiper-item class="swiper-item">
-          <view>
-            <image class="swiper-image" src="{{item}}" mode="heightFix" />
+  <!-- 轮播图 -->
+  <view style="height:{{gameHeight*0.85}}rpx;width:100%">
+    <swiper class="guide" style="height:100%" bindchange="currentHandle">
+      <block wx:for="{{help}}" wx:key="*this">
+        <swiper-item>
+          <view class="slide_image">
+            <image src="{{item.img}}" />
           </view>
+          <view class="guide_text">
+            <icon class="info-icon">
+              <image src="https://qbkeass.cn/images/tabbar/game.png"></image>
+            </icon>
+            <text>{{item.text}}</text>
+          </view>
+          <view class="start" bindtap="start" hidden="{{!item.startShow}}">开始游戏</view>
         </swiper-item>
       </block>
     </swiper>
-  </view>
-  <view class="info">
-    <view class="title2">
-      <image src="https://qbkeass.cn/images/tabbar/game.png">
-      </image>
-      游戏介绍
-    </view>
-    <view class="content">
-      n*n的格子中随机会显示图案，给定3轮记忆，每轮随机翻出一半的格子，给3秒记忆时间；记忆结束后，屏幕出现需要选择的图案，并在5秒内点击对应图案的任意一个格子。
+    <view class="swp-dot">
+      <view class="square-12 m-r-8 {{current === index ?'dot_active': ''}}" wx:for="{{help}}" wx:key="{{index}}"></view>
     </view>
   </view>
-
-  <view class="rule">
-    <view class="title2">
-      <image src="https://qbkeass.cn/images/tabbar/game.png">
-      </image>
-      游戏规则
-    </view>
-    <view class="content">选出正确的图案即为通关。共有八关，前两关为2*2的格子，后六关为3*3的格子。每轮限定时间10秒。越到后面的关卡分数获得越多，根据总闯关分数判定游戏等级。</view>
-  </view>
-
-  <view class="start" bindtap="start">
-    <van-button round type="primary" block color="#c93c42"> 开始游戏 </van-button>
-  </view>
-
 </view>
-
 
 <!-- 游戏内容 -->
 <view class="_container" hidden="{{!showGame}}">
